@@ -21,10 +21,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body data-theme="liquid">
 
-<!-- Cheap static background: pure CSS gradients, no video, no canvas -->
-<div class="bg" aria-hidden="true"></div>
+<!-- Background: gradient blobs always; video layer only if switched on in admin -->
+<div class="bg" aria-hidden="true">
+  <span class="bg__blob bg__blob--1"></span>
+  <span class="bg__blob bg__blob--2"></span>
+  <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <span class="bg__tint" id="bgTint"></span>
+</div>
+
+<!-- Settings: theme switcher + CV download -->
+<div class="settings" id="settings">
+  <button class="settings__btn" id="settingsBtn" aria-label="Sozlamalar" title="Sozlamalar">
+    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+  </button>
+  <div class="settings__panel" id="settingsPanel">
+    <div class="settings__head"><h3>Versiya tanlang</h3><button class="settings__x" id="settingsClose" aria-label="Yopish">×</button></div>
+    <div class="themes">
+      <button class="theme" data-theme-set="liquid"><span class="theme__p theme__p--liquid"></span><b>Liquid Glass</b></button>
+      <button class="theme" data-theme-set="classic"><span class="theme__p theme__p--classic"></span><b>Classic CV</b></button>
+      <button class="theme" data-theme-set="modern"><span class="theme__p theme__p--modern"></span><b>Modern CV</b></button>
+      <button class="theme" data-theme-set="dark"><span class="theme__p theme__p--dark"></span><b>Dark Premium</b></button>
+    </div>
+    <button class="btn btn--ghost btn--full" id="downloadCv2">CV yuklab olish (PDF) ↓</button>
+  </div>
+</div>
 
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav">
@@ -75,8 +99,12 @@
     </div>
 
     <figure class="hero__photo">
-      <img id="avatarImg" src="assets/kamolbek-900.jpg" width="900" height="1124"
-           alt="Kamolbek Muzaffarov" fetchpriority="high" decoding="async" />
+      <span class="hero__ring" aria-hidden="true"></span>
+      <span class="hero__disc">
+        <img id="avatarImg" src="assets/kamolbek-900.jpg" width="900" height="1124"
+             alt="Kamolbek Muzaffarov" fetchpriority="high" decoding="async" />
+        <span class="hero__shine" aria-hidden="true"></span>
+      </span>
       <figcaption class="hero__avail"><i></i> Available</figcaption>
     </figure>
   </div>
@@ -169,6 +197,7 @@
         <button class="admin__tab" data-tab="social">Ijtimoiy tarmoq</button>
         <button class="admin__tab" data-tab="contacts">Kontakt</button>
         <button class="admin__tab" data-tab="music">Musiqa</button>
+        <button class="admin__tab" data-tab="bgvideo">Fon video</button>
         <button class="admin__tab" data-tab="security">Maxfiylik</button>
         <button class="admin__tab admin__tab--red" data-tab="reset">Reset</button>
       </aside>
@@ -252,6 +281,20 @@
           <div class="field"><label>Fayl yuklash (max 5MB)</label><input type="file" id="musicFile" accept="audio/*" /></div>
           <div class="field"><label>Ovoz: <b id="volLabel">40</b>%</label><input type="range" id="musicVol" min="0" max="100" /></div>
           <label class="check"><input type="checkbox" data-model="music.autoplay" /> <span>Sahifa ochilganda avtomatik chalinsin</span></label>
+        </div>
+
+        <!-- BG VIDEO -->
+        <div class="pane" data-pane="bgvideo">
+          <h3>Fon videosi</h3>
+          <label class="check"><input type="checkbox" data-model="bgVideo.enabled" /> <span>Fon videoni yoqish</span></label>
+          <p class="hint" style="margin:10px 0 16px">
+            Video fonni og'irlashtiradi. O'chirilgan bo'lsa — chiroyli gradient fon ishlaydi (eng tez).
+            Yoqsang, video <b>faqat shunda</b> yuklanadi.
+          </p>
+          <div id="bgVideoPresets" class="vpresets"></div>
+          <div class="field"><label>Yoki video URL (mp4)</label><input type="text" data-model="bgVideo.src" placeholder="https://...mp4" /></div>
+          <div class="field"><label>Ko'rinishi: <b id="bgOpLabel">70</b>%</label><input type="range" id="bgOp" min="10" max="100" /></div>
+          <div class="field"><label>Qorong'ilashtirish: <b id="bgTintLabel">55</b>%</label><input type="range" id="bgTintR" min="0" max="90" /></div>
         </div>
 
         <!-- SECURITY -->

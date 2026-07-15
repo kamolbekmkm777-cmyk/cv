@@ -73,9 +73,31 @@ const DEFAULTS = {
     phone:   "+998 77 293 77 97",
     website: "https://kamolbek.com"
   },
-  music: { src: "", volume: 40, autoplay: false, presetId: "" },
+  music: { src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+           volume: 40, autoplay: true, presetId: "song1" },
+  bgVideo: { enabled: false, presetId: "forest", src: "", opacity: 70, tint: 55 },
+  theme: "liquid",
   publicCode: "mkm777"
 };
+
+const THEMES = ['liquid','classic','modern','dark'];
+
+/* Aerial nature loops — archive.org serves these with CORS and they're
+   hotlink-friendly (Mixkit/Pexels/Pixabay all 403 direct embeds). */
+const VIDEO_PRESETS = [
+  { id:'forest',    name:"Bulutlar va yashil o'rmon", thumb:'https://archive.org/services/img/pixabay-9584',
+    url:'https://archive.org/download/pixabay-9584/video-9584_source.mp4' },
+  { id:'green',     name:"Yashil o'rmon manzarasi",   thumb:'https://archive.org/services/img/pixabay-19400',
+    url:'https://archive.org/download/pixabay-19400/video-19400_large.mp4' },
+  { id:'path',      name:"Sehrli o'rmon yo'li",       thumb:'https://archive.org/services/img/pixabay-19731',
+    url:'https://archive.org/download/pixabay-19731/video-19731_large.mp4' },
+  { id:'mountains', name:"Tog' panoramasi",           thumb:'https://archive.org/services/img/pixabay-21896',
+    url:'https://archive.org/download/pixabay-21896/video-21896_source.mp4' },
+  { id:'clouds',    name:'Bulutlar va osmon',         thumb:'https://archive.org/services/img/pixabay-21285',
+    url:'https://archive.org/download/pixabay-21285/video-21285_source.mp4' },
+  { id:'fog',       name:'Quyosh tumani',             thumb:'https://archive.org/services/img/pixabay-19409',
+    url:'https://archive.org/download/pixabay-19409/video-19409_large.mp4' }
+];
 
 const MUSIC_PRESETS = [
   { id: 'song1', name: 'SoundHelix 1', icon: '🎵', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
@@ -289,6 +311,51 @@ function renderContact(){
   }
 }
 
+/* ------------------------------------------------------- THEME + VIDEO */
+function applyTheme(t){
+  if (!THEMES.includes(t)) t = 'liquid';
+  data.theme = t;
+  document.body.dataset.theme = t;
+  $$('.theme').forEach(b => b.classList.toggle('active', b.dataset.themeSet === t));
+}
+
+/* The <video> has preload="none" and no src until it's switched on, so a
+   visitor who never enables it downloads exactly 0 bytes of video. */
+function applyBgVideo(){
+  const v = $('#bgVideo'), bg = $('.bg');
+  if (!v || !bg) return;
+  const cfg = data.bgVideo || {};
+  bg.style.setProperty('--bgv-op',   (Number(cfg.opacity ?? 70))/100);
+  bg.style.setProperty('--bgv-tint', (Number(cfg.tint ?? 55))/100);
+
+  const preset = VIDEO_PRESETS.find(p => p.id === cfg.presetId);
+  const src = tidyUrl(cfg.src) || preset?.url || '';
+
+  if (!cfg.enabled || !src){
+    v.classList.remove('on'); bg.classList.remove('video-on');
+    v.pause(); v.removeAttribute('src'); v.load();
+    return;
+  }
+  bg.classList.add('video-on');
+  if (v.getAttribute('src') !== src){
+    v.src = src;
+    // play() must wait for loadeddata — calling it right after load() aborts
+    // the promise and the video silently never starts.
+    v.addEventListener('loadeddata', () => {
+      v.classList.add('on');
+      v.play().catch(()=>{});
+    }, { once:true });
+    v.addEventListener('error', () => {
+      v.classList.remove('on'); bg.classList.remove('video-on');
+      toast('Videoni yuklab bo\'lmadi');
+    }, { once:true });
+    v.load();
+  } else {
+    v.classList.add('on');
+    v.play().catch(()=>{});
+  }
+}
+
 function renderAll(){
   renderBindings(); renderStats(); renderSkills(); renderTimeline();
   renderPortfolio(); renderFavorites(); renderSocial(); renderContact();
@@ -356,7 +423,14 @@ function initNav(){
     }
     links.forEach(a => a.classList.toggle('active', a.dataset.section === cur));
   };
-  addEventListener('scroll', () => { raf ||= requestAnimationFrame(update); }, { passive:true });
+  // Tag the body while scrolling so CSS can drop blur mid-scroll.
+  let stop = null;
+  addEventListener('scroll', () => {
+    raf ||= requestAnimationFrame(update);
+    if (!document.body.classList.contains('scrolling')) document.body.classList.add('scrolling');
+    clearTimeout(stop);
+    stop = setTimeout(() => document.body.classList.remove('scrolling'), 140);
+  }, { passive:true });
   update();
 
   // Mobile menu
@@ -478,8 +552,20 @@ const admin = {
     });
     const vol = $('#musicVol');
     if (vol){ vol.value = data.music.volume ?? 40; $('#volLabel').textContent = vol.value; }
+    const op = $('#bgOp'), tn = $('#bgTintR');
+    if (op){ op.value = data.bgVideo.opacity ?? 70; $('#bgOpLabel').textContent = op.value; }
+    if (tn){ tn.value = data.bgVideo.tint ?? 55;    $('#bgTintLabel').textContent = tn.value; }
     this.renderSkills(); this.renderExperience(); this.renderPortfolio();
-    this.renderFavorites(); this.renderSocial(); this.renderMusic();
+    this.renderFavorites(); this.renderSocial(); this.renderMusic(); this.renderVideos();
+  },
+
+  renderVideos(){
+    const w = $('#bgVideoPresets'); if (!w) return;
+    w.innerHTML = VIDEO_PRESETS.map(p => `
+      <div class="vpreset ${data.bgVideo.presetId===p.id?'active':''}"
+           data-vpreset="${p.id}" style="background-image:url('${esc(p.thumb)}')">
+        <b>${esc(p.name)}</b>
+      </div>`).join('');
   },
 
   renderSkills(){
@@ -572,8 +658,17 @@ function initAdmin(){
 
     if (el.dataset.model){
       set(el.dataset.model, el.type === 'checkbox' ? el.checked : el.value);
-      if (el.dataset.model.startsWith('music.')) window.__applyMusic?.();
+      if (el.dataset.model.startsWith('music.'))   window.__applyMusic?.();
+      if (el.dataset.model.startsWith('bgVideo.')) applyBgVideo();
       saveSoon(); renderAll(); return;
+    }
+    if (el.id === 'bgOp'){
+      data.bgVideo.opacity = Number(el.value); $('#bgOpLabel').textContent = el.value;
+      applyBgVideo(); saveSoon(); return;
+    }
+    if (el.id === 'bgTintR'){
+      data.bgVideo.tint = Number(el.value); $('#bgTintLabel').textContent = el.value;
+      applyBgVideo(); saveSoon(); return;
     }
     if (el.dataset.arr){
       const [root, i, key] = el.dataset.arr.split('.');
@@ -612,6 +707,17 @@ function initAdmin(){
       }[k];
       (k === 'skills' ? data[k].push(clone(blank)) : data[k].unshift(clone(blank)));
       save(); admin.fill(); renderAll(); return;
+    }
+    const vp = e.target.closest('[data-vpreset]');
+    if (vp){
+      const p = VIDEO_PRESETS.find(x => x.id === vp.dataset.vpreset); if (!p) return;
+      data.bgVideo.presetId = p.id;
+      data.bgVideo.src = '';                 // preset wins over a custom URL
+      data.bgVideo.enabled = true;
+      const chk = $('[data-model="bgVideo.enabled"]'); if (chk) chk.checked = true;
+      const url = $('[data-model="bgVideo.src"]');     if (url) url.value = '';
+      save(); admin.renderVideos(); applyBgVideo(); toast('▶ ' + p.name);
+      return;
     }
     const pre = e.target.closest('[data-preset]');
     if (pre){
@@ -707,15 +813,34 @@ function initStealth(){
   document.addEventListener('click', e => { if (on && !e.target.closest('#mkmTrigger')) stop(); });
 }
 
+/* ------------------------------------------------------------ SETTINGS */
+function initSettings(){
+  const panel = $('#settingsPanel'), btn = $('#settingsBtn');
+  btn.onclick = e => { e.stopPropagation(); panel.classList.toggle('open'); };
+  $('#settingsClose').onclick = () => panel.classList.remove('open');
+  document.addEventListener('click', e => {
+    if (!panel.contains(e.target) && !btn.contains(e.target)) panel.classList.remove('open');
+  });
+  $$('.theme').forEach(b => b.onclick = () => {
+    applyTheme(b.dataset.themeSet);
+    save();
+    toast('Tema: ' + b.querySelector('b').textContent);
+  });
+  $('#downloadCv2').onclick = downloadCV;
+}
+
 /* ---------------------------------------------------------------- INIT */
 function init(){
   $('#year').textContent = new Date().getFullYear();
+  applyTheme(data.theme);
   renderAll();
-  initNav(); initMusic(); initForm(); initAdmin(); initStealth();
+  applyBgVideo();
+  initNav(); initMusic(); initForm(); initAdmin(); initStealth(); initSettings();
   $('#downloadCv').onclick = downloadCV;
 
   // Expose a tiny surface for hand-control.js + tests
-  window.__cv = { get data(){ return data; }, save, renderAll, admin, DEFAULTS, toast };
+  window.__cv = { get data(){ return data; }, save, renderAll, admin, DEFAULTS, toast,
+                  applyTheme, applyBgVideo, THEMES, VIDEO_PRESETS, MUSIC_PRESETS };
 }
 
 if (document.readyState === 'loading') addEventListener('DOMContentLoaded', init);
