@@ -10,10 +10,10 @@
 const DEFAULTS = {
   profile: {
     name: "Kamolbek Muzaffarov",
-    profession: { uz: "Full-Stack Dasturchi & AI Muhandis", en: "Full-Stack Developer & AI Engineer", ru: "Full-Stack разработчик и AI-инженер" },
-    slogan: { uz: "Men miqyoslashadigan aqlli mahsulotlar yarataman — zamonaviy biznes uchun Telegram botlar, AI va toza cloud infratuzilma.", en: "I build intelligent products that scale — bots, AI, and clean cloud infrastructure for modern businesses.", ru: "Я создаю умные продукты, которые масштабируются — боты, AI и чистая облачная инфраструктура для современного бизнеса." },
+    profession: { uz: "Full-Stack dasturchi va sunʼiy intellekt muhandisi", en: "Full-Stack Developer & AI Engineer", ru: "Full-Stack разработчик и AI-инженер" },
+    slogan: { uz: "Men miqyoslashadigan aqlli mahsulotlar yarataman — zamonaviy biznes uchun Telegram botlar, sunʼiy intellekt va bulutli infratuzilma.", en: "I build intelligent products that scale — bots, AI, and clean cloud infrastructure for modern businesses.", ru: "Я создаю умные продукты, которые масштабируются — боты, AI и чистая облачная инфраструктура для современного бизнеса." },
     location: { uz: "Toshkent, Oʻzbekiston", en: "Tashkent, Uzbekistan", ru: "Ташкент, Узбекистан" },
-    bio: { uz: "Men Kamolbek — AI, avtomatlashtirish va dizayn kesishmasiga qiziqqan o'z-o'zini o'rgatgan muhandisman. So'nggi yillarda men siz uxlab yotganingizda lidlarni qo'lga oladigan Telegram botlarni, xona rasmlarini o'qib dizayn taklif qiladigan AI yordamchilarni va xaosni aniqlikka aylantiradigan admin paneli loyihalarini ishlab chiqdim.", en: "I'm Kamolbek — a self-taught engineer fascinated by the intersection of AI, automation, and design. Over the past few years, I've built Telegram bots that capture leads while you sleep, AI assistants that read a photo of a room and suggest design ideas, and admin dashboards that turn chaos into clarity.", ru: "Я Камолбек — инженер-самоучка, увлечённый всем, что рождается на стыке AI, автоматизации и дизайна. За последние годы я создавал Telegram-ботов, которые ловят лиды, пока вы спите, AI-ассистентов, которые анализируют фото комнаты и подсказывают дизайн-решения, и админ-панели, которые превращают хаос в порядок." },
+    bio: { uz: "Men Kamolbek — sunʼiy intellekt, avtomatlashtirish va dizayn kesishmasiga qiziqqan oʻz-oʻzini oʻrgatgan muhandisman. Soʻnggi yillarda men siz uxlab yotganingizda lidlarni qoʻlga oladigan Telegram botlarni, xona rasmlarini oʻqib dizayn taklif qiladigan sunʼiy intellekt yordamchilarini va xaosni aniqlikka aylantiradigan boshqaruv panellarini ishlab chiqdim.", en: "I'm Kamolbek — a self-taught engineer fascinated by the intersection of AI, automation, and design. Over the past few years, I've built Telegram bots that capture leads while you sleep, AI assistants that read a photo of a room and suggest design ideas, and admin dashboards that turn chaos into clarity.", ru: "Я Камолбек — инженер-самоучка, увлечённый всем, что рождается на стыке AI, автоматизации и дизайна. За последние годы я создавал Telegram-ботов, которые ловят лиды, пока вы спите, AI-ассистентов, которые анализируют фото комнаты и подсказывают дизайн-решения, и админ-панели, которые превращают хаос в порядок." },
     avatar: "assets/kamolbek-900.jpg"
   },
   ui: { hero_badge: { uz: "Yangi loyihalar uchun ochiq · 2026", en: "Open to new projects · 2026", ru: "Открыт к новым проектам · 2026" } },
@@ -38,11 +38,11 @@ const DEFAULTS = {
   ],
   experience: [
     { period: { uz: "2024 — Hozir", en: "2024 — Present", ru: "2024 — наст. время" }, title: { uz: "Asoschi va Bosh Dasturchi", en: "Founder & Lead Developer", ru: "Основатель и ведущий разработчик" }, company: "Independent / Freelance",
-      description: { uz: "Telegram botlari, AI integratsiyalari va cloud avtomatlashtirish loyihalari ustida ishlayman. Mijozlar uchun end-to-end yechimlar ishlab chiqaman — boshlang'ich serverdan to to'lov qiladigan mijozgacha.", en: "I build Telegram bots, AI integrations, and cloud automation. I deliver end-to-end solutions for clients — from the backend server to the paying customer.", ru: "Работаю над Telegram-ботами, AI-интеграциями и проектами облачной автоматизации. Разрабатываю для клиентов решения под ключ — от настройки сервера до первого платящего клиента." } },
+      description: { uz: "Telegram botlari, sunʼiy intellekt integratsiyalari va bulutli avtomatlashtirish loyihalari ustida ishlayman. Mijozlar uchun boshidan oxirigacha yechimlar ishlab chiqaman — boshlangʻich serverdan to toʻlov qiladigan mijozgacha.", en: "I build Telegram bots, AI integrations, and cloud automation. I deliver end-to-end solutions for clients — from the backend server to the paying customer.", ru: "Работаю над Telegram-ботами, AI-интеграциями и проектами облачной автоматизации. Разрабатываю для клиентов решения под ключ — от настройки сервера до первого платящего клиента." } },
     { period: { uz: "2022 — 2024", en: "2022 — 2024", ru: "2022 — 2024" }, title: { uz: "Full-Stack Dasturchi", en: "Full-Stack Developer", ru: "Full-Stack разработчик" }, company: "Tech Studio Tashkent",
-      description: { uz: "B2B SaaS mahsulotlari uchun frontend va backend ishlab chiqdim. React/Next.js asosida 10+ ta dashboard, FastAPI backend va PostgreSQL bilan ishladim.", en: "Built frontend and backend for B2B SaaS products. Shipped 10+ dashboards in React/Next.js, backed by FastAPI and PostgreSQL.", ru: "Разрабатывал фронтенд и бэкенд для B2B SaaS-продуктов. Создал более 10 дашбордов на React/Next.js, работал с бэкендом на FastAPI и базой PostgreSQL." } },
+      description: { uz: "B2B SaaS mahsulotlari uchun interfeys va server qismlarini ishlab chiqdim. React/Next.js asosida 10+ boshqaruv paneli yaratdim, FastAPI va PostgreSQL bilan ishladim.", en: "Built frontend and backend for B2B SaaS products. Shipped 10+ dashboards in React/Next.js, backed by FastAPI and PostgreSQL.", ru: "Разрабатывал фронтенд и бэкенд для B2B SaaS-продуктов. Создал более 10 дашбордов на React/Next.js, работал с бэкендом на FastAPI и базой PostgreSQL." } },
     { period: { uz: "2020 — 2022", en: "2020 — 2022", ru: "2020 — 2022" }, title: { uz: "Junior Dasturchi", en: "Junior Developer", ru: "Младший разработчик" }, company: "StartupHub",
-      description: { uz: "Web ilovalar, lending sahifalar va dastlabki bot loyihalarda qatnashdim. Python, Django va REST API bilan ishladim.", en: "Contributed to web apps, landing pages, and early bot projects. Worked with Python, Django, and REST APIs.", ru: "Участвовал в разработке веб-приложений, лендингов и первых ботов. Работал с Python, Django и REST API." } }
+      description: { uz: "Veb-ilovalar, bir sahifali saytlar va dastlabki bot loyihalarida qatnashdim. Python, Django va REST API bilan ishladim.", en: "Contributed to web apps, landing pages, and early bot projects. Worked with Python, Django, and REST APIs.", ru: "Участвовал в разработке веб-приложений, лендингов и первых ботов. Работал с Python, Django и REST API." } }
   ],
   education: [
     { id:'school', name:{ uz:"O'rta maktab", en:"Secondary school", ru:"Средняя школа" },
@@ -53,13 +53,13 @@ const DEFAULTS = {
       period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] }
   ],
   portfolio: [
-    { title: { uz: "Chozma Shift AI Bot", en: "Chozma Shift AI Bot", ru: "Chozma Shift AI Bot" }, description: { uz: "Stretch-ceiling biznesi uchun Telegram bot. Gemini Vision orqali xona rasmlarini tahlil qiladi, narxni hisoblaydi va lidlarni admin CRM ga uzatadi.", en: "A Telegram bot for a stretch-ceiling business. It analyzes photos of a room with Gemini Vision, calculates pricing, and pushes leads straight into the admin CRM.", ru: "Telegram-бот для бизнеса по натяжным потолкам. С помощью Gemini Vision анализирует фото комнаты, рассчитывает стоимость и передаёт лиды в CRM администратора." },
+    { title: { uz: "Chozma Shift AI Bot", en: "Chozma Shift AI Bot", ru: "Chozma Shift AI Bot" }, description: { uz: "Chozma shift biznesi uchun Telegram bot. Gemini Vision orqali xona rasmlarini tahlil qiladi, narxni hisoblaydi va lidlarni CRM tizimiga uzatadi.", en: "A Telegram bot for a stretch-ceiling business. It analyzes photos of a room with Gemini Vision, calculates pricing, and pushes leads straight into the admin CRM.", ru: "Telegram-бот для бизнеса по натяжным потолкам. С помощью Gemini Vision анализирует фото комнаты, рассчитывает стоимость и передаёт лиды в CRM администратора." },
       image: "", link: "", tags: ["Aiogram 3", "Gemini Vision", "SQLite", "Oracle Cloud"], cat: "bot" },
-    { title: { uz: "Lead Funnel Pro", en: "Lead Funnel Pro", ru: "Lead Funnel Pro" }, description: { uz: "Telegram, Instagram DM va veb-formani birlashtirgan ko'p bosqichli lidlarni tasniflash mexanizmi. Issiq lidlarni avtomatik sotuvga yo'naltiradi.", en: "A multi-stage lead qualification engine that brings together Telegram, Instagram DMs, and a web form. It automatically routes hot leads straight to sales.", ru: "Многоступенчатый механизм квалификации лидов, объединяющий Telegram, Instagram DM и веб-форму. Горячие лиды автоматически направляются в отдел продаж." },
+    { title: { uz: "Lead Funnel Pro", en: "Lead Funnel Pro", ru: "Lead Funnel Pro" }, description: { uz: "Telegram, Instagram shaxsiy xabarlari va veb-formani birlashtirgan koʻp bosqichli lidlarni saralash tizimi. Issiq lidlarni avtomatik sotuv boʻlimiga yoʻnaltiradi.", en: "A multi-stage lead qualification engine that brings together Telegram, Instagram DMs, and a web form. It automatically routes hot leads straight to sales.", ru: "Многоступенчатый механизм квалификации лидов, объединяющий Telegram, Instagram DM и веб-форму. Горячие лиды автоматически направляются в отдел продаж." },
       image: "", link: "", tags: ["FastAPI", "PostgreSQL", "Redis", "Next.js"], cat: "bot" },
-    { title: { uz: "Vision Designer", en: "Vision Designer", ru: "Vision Designer" }, description: { uz: "AI bilan interyer dizayn previewi. Foydalanuvchi xona rasmini yuklaydi, materiallar tanlaydi — tizim fotorealistik mockuplar qaytaradi.", en: "An AI-powered interior design preview. The user uploads a photo of a room and picks materials — the system returns photorealistic mockups.", ru: "Превью дизайна интерьера на базе AI. Пользователь загружает фото комнаты и выбирает материалы — система возвращает фотореалистичные макеты." },
+    { title: { uz: "Vision Designer", en: "Vision Designer", ru: "Vision Designer" }, description: { uz: "Sunʼiy intellekt bilan interyer dizaynining dastlabki koʻrinishi. Foydalanuvchi xona rasmini yuklaydi, materiallarni tanlaydi — tizim fotorealistik maketlarni qaytaradi.", en: "An AI-powered interior design preview. The user uploads a photo of a room and picks materials — the system returns photorealistic mockups.", ru: "Превью дизайна интерьера на базе AI. Пользователь загружает фото комнаты и выбирает материалы — система возвращает фотореалистичные макеты." },
       image: "", link: "", tags: ["Python", "Stable Diffusion", "React", "WebSockets"], cat: "app" },
-    { title: { uz: "Pulse Analytics", en: "Pulse Analytics", ru: "Pulse Analytics" }, description: { uz: "Kichik biznes uchun real-vaqt dashboard. Telegram bot egasining savollarini oddiy tilda javob beradi — streaming data warehouse bilan.", en: "A real-time dashboard for small businesses. A Telegram bot answers the owner's questions in plain language — powered by a streaming data warehouse.", ru: "Дашборд в реальном времени для малого бизнеса. Telegram-бот простым языком отвечает на вопросы владельца — на основе потокового хранилища данных." },
+    { title: { uz: "Pulse Analytics", en: "Pulse Analytics", ru: "Pulse Analytics" }, description: { uz: "Kichik biznes uchun real vaqtli boshqaruv paneli. Telegram bot egasining savollariga oddiy tilda javob beradi — oqimli maʼlumotlar ombori asosida.", en: "A real-time dashboard for small businesses. A Telegram bot answers the owner's questions in plain language — powered by a streaming data warehouse.", ru: "Дашборд в реальном времени для малого бизнеса. Telegram-бот простым языком отвечает на вопросы владельца — на основе потокового хранилища данных." },
       image: "", link: "", tags: ["Aiogram", "OpenAI", "ClickHouse", "D3.js"], cat: "site" }
   ],
   favorites: [
@@ -215,36 +215,36 @@ function L(v){
 const STRINGS = {
   nav_home:      { uz:'Bosh',      en:'Home',       ru:'Главная' },
   nav_about:     { uz:'Haqimda',   en:'About',      ru:'Обо мне' },
-  nav_skills:    { uz:'Skills',    en:'Skills',     ru:'Навыки' },
+  nav_skills:    { uz:'Koʻnikmalar', en:'Skills',   ru:'Навыки' },
   nav_exp:       { uz:'Tajriba',   en:'Experience', ru:'Опыт' },
-  nav_portfolio: { uz:'Portfolio', en:'Portfolio',  ru:'Портфолио' },
+  nav_portfolio: { uz:'Ishlarim',  en:'Portfolio',  ru:'Портфолио' },
   nav_fav:       { uz:'Sevimli',   en:'Favorites',  ru:'Избранное' },
   nav_contact:   { uz:'Kontakt',   en:'Contact',    ru:'Контакты' },
 
   settings_title:{ uz:'Til va koʻrinish', en:'Language & theme', ru:'Язык и тема' },
   lang_label:    { uz:'Til',       en:'Language',   ru:'Язык' },
-  theme_liquid:  { uz:'Liquid Glass', en:'Liquid Glass', ru:'Liquid Glass' },
+  theme_liquid:  { uz:'Suyuq shisha', en:'Liquid Glass', ru:'Жидкое стекло' },
   theme_sand:    { uz:'Uch rang',  en:'Three colors', ru:'Три цвета' },
   download_cv:   { uz:'CV yuklab olish (PDF) ↓', en:'Download CV (PDF) ↓', ru:'Скачать CV (PDF) ↓' },
 
   hand_title:    { uz:'Qoʻl bilan boshqaruv', en:'Hand control', ru:'Управление рукой' },
   hand_reset:    { uz:'standart', en:'reset', ru:'сброс' },
-  hand_hint:     { uz:'Koʻrsatkich barmogʻingiz — sichqoncha. Bosh barmoqqa tez tekkizsangiz — bosish. Tekkizib turib qoʻlni tepa/pastga — scroll.',
+  hand_hint:     { uz:'Koʻrsatkich barmogʻingiz — sichqoncha. Bosh barmoqqa tez tekkizsangiz — bosish. Tekkizib turib qoʻlni tepa/pastga suring — sahifa aylanadi.',
                    en:'Your index finger is the cursor. A quick tap to the thumb is a click. Hold them together and move up/down to scroll.',
                    ru:'Указательный палец — курсор. Быстрое касание большого пальца — клик. Держите вместе и двигайте вверх/вниз — прокрутка.' },
   hand_speed:    { uz:'Kursor sezgirligi', en:'Cursor sensitivity', ru:'Чувствительность курсора' },
   hand_smooth:   { uz:'Silliqlash (titrashga qarshi)', en:'Smoothing (anti-jitter)', ru:'Сглаживание (против дрожания)' },
   hand_pinch:    { uz:'Barmoq tekkizish sezgirligi', en:'Pinch sensitivity', ru:'Чувствительность щипка' },
-  hand_scroll:   { uz:'Scroll tezligi', en:'Scroll speed', ru:'Скорость прокрутки' },
+  hand_scroll:   { uz:'Aylantirish tezligi', en:'Scroll speed', ru:'Скорость прокрутки' },
 
   hero_contact:  { uz:'Bogʻlanish', en:'Get in touch', ru:'Связаться' },
   hero_cv:       { uz:'CV yuklab olish', en:'Download CV', ru:'Скачать CV' },
-  hero_available:{ uz:'Available', en:'Available', ru:'Доступен' },
+  hero_available:{ uz:'Ishga tayyor', en:'Available', ru:'Доступен' },
 
   sec_about:     { uz:'Haqimda', en:'About', ru:'Обо мне' },
-  sec_skills:    { uz:'Skills', en:'Skills', ru:'Навыки' },
+  sec_skills:    { uz:'Koʻnikmalar', en:'Skills', ru:'Навыки' },
   sec_exp:       { uz:'Ish tajribasi', en:'Experience', ru:'Опыт работы' },
-  sec_portfolio: { uz:'Portfolio', en:'Portfolio', ru:'Портфолио' },
+  sec_portfolio: { uz:'Ishlarim', en:'Portfolio', ru:'Портфолио' },
   sec_fav:       { uz:'Sevimlilarim', en:'My favorites', ru:'Избранное' },
   sec_fav_sub:   { uz:'Men yoqtirgan pleylistlar, kanallar va resurslar',
                    en:'Playlists, channels and resources I love',
@@ -261,7 +261,7 @@ const STRINGS = {
                    en:'Drop a message — I reply within 24 hours.',
                    ru:'Напишите — отвечаю в течение 24 часов.' },
   form_name:     { uz:'Ismingiz', en:'Your name', ru:'Ваше имя' },
-  form_email:    { uz:'Email', en:'Email', ru:'Email' },
+  form_email:    { uz:'Elektron pochta', en:'Email', ru:'Эл. почта' },
   form_subject:  { uz:'Mavzu', en:'Subject', ru:'Тема' },
   form_message:  { uz:'Xabar', en:'Message', ru:'Сообщение' },
   form_ph_name:  { uz:'Toʻliq ismingiz', en:'Your full name', ru:'Ваше полное имя' },
@@ -291,10 +291,16 @@ const STRINGS = {
   cat_award: { uz:'Mukofotlar', en:'Awards', ru:'Награды' },
   cat_other: { uz:'Boshqa', en:'Other', ru:'Другое' },
 
-  pwd_title: { uz:'Admin panelga kirish', en:'Admin access', ru:'Вход в админ-панель' },
-  pwd_btn:   { uz:'Kirish', en:'Enter', ru:'Войти' },
-  pwd_wrong: { uz:'Notoʻgʻri parol', en:'Wrong password', ru:'Неверный пароль' },
-  pwd_locked:{ uz:'Koʻp urinish — 5 daqiqadan soʻng qayta urining', en:'Too many attempts — try again in 5 minutes', ru:'Слишком много попыток — повторите через 5 минут' }
+};
+
+/* Skill-category display names. The data keeps the original keys; only the
+   heading shown to the visitor is translated. Unknown categories (the owner
+   can invent new ones in the admin) pass through untouched. */
+const CAT_I18N = {
+  'Languages':    { uz:'Dasturlash tillari', en:'Languages', ru:'Языки программирования' },
+  'Frontend':     { uz:'Veb-interfeys', en:'Frontend', ru:'Веб-интерфейс' },
+  'Backend & AI': { uz:'Server va sunʼiy intellekt', en:'Backend & AI', ru:'Сервер и ИИ' },
+  'DevOps':       { uz:'DevOps', en:'DevOps', ru:'DevOps' }
 };
 
 /* Portfolio categories, in display order. Chips render only for categories
@@ -431,7 +437,7 @@ function renderSkills(){
   data.skills.forEach(s => (groups[s.category || 'Other'] ||= []).push(s));
   $('#skillsWrap').innerHTML = Object.entries(groups).map(([cat, arr]) => `
     <div class="sgroup" data-rv>
-      <h3>${esc(cat)}</h3>
+      <h3>${esc(CAT_I18N[cat]?.[lang] || cat)}</h3>
       ${arr.map(s => `
         <div class="skill">
           <div class="skill__t"><b>${esc(s.name)}</b><span>${Number(s.level)||0}%</span></div>
@@ -649,14 +655,16 @@ function renderSocial(){
 function renderContact(){
   const c = data.contacts;
   const phoneLabel = { uz:'Telefon', en:'Phone', ru:'Телефон' }[lang] || 'Telefon';
+  const siteLabel  = { uz:'Veb-sayt', en:'Website', ru:'Веб-сайт' }[lang] || 'Veb-sayt';
+  const mailLabel  = { uz:'Elektron pochta', en:'Email', ru:'Эл. почта' }[lang] || 'Elektron pochta';
   const items = [
-    c.email && { l:'Email',   v:c.email, h:'mailto:'+c.email,
+    c.email && { l:mailLabel, v:c.email, h:'mailto:'+c.email,
       i:'<path d="M2 5.5h20v13H2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="m3 6 9 6 9-6" fill="none" stroke="currentColor" stroke-width="2"/>' },
     c.phone && { l:phoneLabel, v:c.phone, h:'tel:'+String(c.phone).replace(/[^\d+]/g,''),
       i:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" fill="none" stroke="currentColor" stroke-width="2"/>' },
     tidyUrl(data.social?.telegram) && { l:'Telegram', v:String(data.social.telegram).replace(/^https?:\/\//,''), h:tidyUrl(data.social.telegram),
       i:`<path d="${ICONS.telegram}" fill="currentColor"/>` },
-    c.website && { l:'Website', v:String(c.website).replace(/^https?:\/\//,''), h:tidyUrl(c.website),
+    c.website && { l:siteLabel, v:String(c.website).replace(/^https?:\/\//,''), h:tidyUrl(c.website),
       i:'<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z" fill="none" stroke="currentColor" stroke-width="2"/>' }
   ].filter(Boolean);
 
@@ -1695,45 +1703,98 @@ function pwdLockState(){
 
 function initStealth(){
   const t = $('#mkmTrigger'); if (!t) return;
-  const modal = $('#pwdModal'), input = $('#pwdInput'), btn = $('#pwdBtn'), msg = $('#pwdMsg');
-  if (!modal) return;
 
-  const open = () => {
-    $('#pwdTitle').textContent = T('pwd_title');
-    btn.textContent = T('pwd_btn');
-    msg.textContent = ''; input.value = '';
-    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
-    setTimeout(() => input.focus(), 60);
-  };
-  const close = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); input.value = ''; };
+  /* Fully invisible entry, as requested: clicking MKM777 shows NOTHING on the
+     page — no dialog, no indicator, no error. The visitor types the password
+     blind and presses Enter. A wrong guess fails silently; the 5-try/5-minute
+     lockout still counts underneath.
+
+     The characters land in a hidden <input> rather than a keydown buffer so
+     phones get a keyboard too (focusing an input is the only way to summon
+     one). The input is 1px, transparent, caret hidden, behind the page —
+     nothing of it can be seen. */
+  const form = document.createElement('form');
+  form.setAttribute('aria-hidden', 'true');
+  Object.assign(form.style, {
+    position:'fixed', bottom:'0', left:'0', width:'1px', height:'1px',
+    overflow:'hidden', opacity:'0', zIndex:'-1', pointerEvents:'none'
+  });
+  const inp = document.createElement('input');
+  inp.type = 'password';
+  inp.autocomplete = 'off';
+  inp.tabIndex = -1;
+  Object.assign(inp.style, {
+    width:'1px', height:'1px', border:'0', padding:'0', background:'transparent',
+    color:'transparent', caretColor:'transparent', outline:'none'
+  });
+  form.appendChild(inp);
+  document.body.appendChild(form);
+
+  let armed = false, timer = null;
+  const disarm = () => { armed = false; inp.value = ''; clearTimeout(timer); try{ inp.blur(); }catch{} };
+  const touchTimer = () => { clearTimeout(timer); timer = setTimeout(disarm, 45000); };
 
   const attempt = async () => {
+    const val = inp.value; inp.value = '';
+    if (!val) { disarm(); return; }
     const lock = pwdLockState();
-    if (lock.until){ msg.textContent = T('pwd_locked'); return; }
-    if (!crypto?.subtle){ msg.textContent = 'HTTPS kerak'; return; }
-    const val = input.value; input.value = '';
-    if (!val) return;
+    if (lock.until || !crypto?.subtle){ disarm(); return; }      // silent
     const hex = await sha256hex(val);
     if (hex === ADMIN_HASH){
       try { localStorage.removeItem(PWD_LOCK_KEY); } catch {}
-      close(); admin.open();
+      disarm();
+      admin.open();
     } else {
       const fails = (lock.fails || 0) + 1;
       const next = fails >= 5 ? { fails, until: Date.now() + 5*60*1000 } : { fails };
       try { localStorage.setItem(PWD_LOCK_KEY, JSON.stringify(next)); } catch {}
-      msg.textContent = next.until ? T('pwd_locked') : T('pwd_wrong');
-      modal.querySelector('.pwd__card').classList.remove('shake');
-      void modal.querySelector('.pwd__card').offsetWidth;   // restart the animation
-      modal.querySelector('.pwd__card').classList.add('shake');
+      disarm();                                                   // silent — no hint at all
     }
   };
 
-  t.addEventListener('click', e => { e.stopPropagation(); open(); });
-  btn.onclick = attempt;
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
-  $('#pwdClose').onclick = close;
-  modal.addEventListener('click', e => { if (e.target === modal) close(); });
-  addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+  t.addEventListener('click', e => {
+    e.stopPropagation();
+    armed = true; inp.value = '';
+    // focus() must run inside the click gesture or mobile keyboards refuse
+    inp.focus({ preventScroll: true });
+    touchTimer();
+  });
+  // Enter arrives differently per platform: e.key 'Enter', legacy 'Return',
+  // keyCode 13, or (on phones) only as a form submit from the "Go" key.
+  const isEnter = e => e.key === 'Enter' || e.key === 'Return' || e.keyCode === 13 || e.code === 'Enter' || e.code === 'NumpadEnter';
+  form.addEventListener('submit', e => { e.preventDefault(); if (armed) attempt(); });
+  inp.addEventListener('keydown', e => {
+    if (!armed) return;
+    touchTimer();
+    if (isEnter(e)){ e.preventDefault(); attempt(); }
+    else if (e.key === 'Escape') disarm();
+  });
+  /* The main path needs no Enter at all: after every keystroke the current
+     value is hashed, and the instant it matches the panel opens. This works
+     on every keyboard and IME (some never deliver a usable Enter event) and
+     is even stealthier — the password simply "happens". Only the SUCCESS
+     case fires here; failures are counted solely on an explicit Enter, so
+     partial prefixes while typing are never punished. */
+  let checking = false;
+  const tryAuto = async () => {
+    if (!armed || checking) return;
+    const val = inp.value;
+    if (val.length < 8) return;                       // no point hashing tiny prefixes
+    const lock = pwdLockState();
+    if (lock.until || !crypto?.subtle) return;
+    checking = true;
+    try {
+      const hex = await sha256hex(val);
+      if (armed && hex === ADMIN_HASH && inp.value === val){
+        try { localStorage.removeItem(PWD_LOCK_KEY); } catch {}
+        disarm();
+        admin.open();
+      }
+    } finally { checking = false; }
+  };
+  inp.addEventListener('input', () => { if (armed){ touchTimer(); tryAuto(); } });
+  // Clicking anywhere else steals focus → silently stand down.
+  inp.addEventListener('blur', () => { if (armed) disarm(); });
 }
 
 /* ---------------------------------------------------------------- LANGUAGE */
