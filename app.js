@@ -44,15 +44,23 @@ const DEFAULTS = {
     { period: { uz: "2020 — 2022", en: "2020 — 2022", ru: "2020 — 2022" }, title: { uz: "Junior Dasturchi", en: "Junior Developer", ru: "Младший разработчик" }, company: "StartupHub",
       description: { uz: "Web ilovalar, lending sahifalar va dastlabki bot loyihalarda qatnashdim. Python, Django va REST API bilan ishladim.", en: "Contributed to web apps, landing pages, and early bot projects. Worked with Python, Django, and REST APIs.", ru: "Участвовал в разработке веб-приложений, лендингов и первых ботов. Работал с Python, Django и REST API." } }
   ],
+  education: [
+    { id:'school', name:{ uz:"O'rta maktab", en:"Secondary school", ru:"Средняя школа" },
+      period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] },
+    { id:'lyceum', name:{ uz:"Litsey", en:"Lyceum", ru:"Лицей" },
+      period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] },
+    { id:'university', name:{ uz:"Universitet", en:"University", ru:"Университет" },
+      period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] }
+  ],
   portfolio: [
     { title: { uz: "Chozma Shift AI Bot", en: "Chozma Shift AI Bot", ru: "Chozma Shift AI Bot" }, description: { uz: "Stretch-ceiling biznesi uchun Telegram bot. Gemini Vision orqali xona rasmlarini tahlil qiladi, narxni hisoblaydi va lidlarni admin CRM ga uzatadi.", en: "A Telegram bot for a stretch-ceiling business. It analyzes photos of a room with Gemini Vision, calculates pricing, and pushes leads straight into the admin CRM.", ru: "Telegram-бот для бизнеса по натяжным потолкам. С помощью Gemini Vision анализирует фото комнаты, рассчитывает стоимость и передаёт лиды в CRM администратора." },
-      image: "", link: "", tags: ["Aiogram 3", "Gemini Vision", "SQLite", "Oracle Cloud"] },
+      image: "", link: "", tags: ["Aiogram 3", "Gemini Vision", "SQLite", "Oracle Cloud"], cat: "bot" },
     { title: { uz: "Lead Funnel Pro", en: "Lead Funnel Pro", ru: "Lead Funnel Pro" }, description: { uz: "Telegram, Instagram DM va veb-formani birlashtirgan ko'p bosqichli lidlarni tasniflash mexanizmi. Issiq lidlarni avtomatik sotuvga yo'naltiradi.", en: "A multi-stage lead qualification engine that brings together Telegram, Instagram DMs, and a web form. It automatically routes hot leads straight to sales.", ru: "Многоступенчатый механизм квалификации лидов, объединяющий Telegram, Instagram DM и веб-форму. Горячие лиды автоматически направляются в отдел продаж." },
-      image: "", link: "", tags: ["FastAPI", "PostgreSQL", "Redis", "Next.js"] },
+      image: "", link: "", tags: ["FastAPI", "PostgreSQL", "Redis", "Next.js"], cat: "bot" },
     { title: { uz: "Vision Designer", en: "Vision Designer", ru: "Vision Designer" }, description: { uz: "AI bilan interyer dizayn previewi. Foydalanuvchi xona rasmini yuklaydi, materiallar tanlaydi — tizim fotorealistik mockuplar qaytaradi.", en: "An AI-powered interior design preview. The user uploads a photo of a room and picks materials — the system returns photorealistic mockups.", ru: "Превью дизайна интерьера на базе AI. Пользователь загружает фото комнаты и выбирает материалы — система возвращает фотореалистичные макеты." },
-      image: "", link: "", tags: ["Python", "Stable Diffusion", "React", "WebSockets"] },
+      image: "", link: "", tags: ["Python", "Stable Diffusion", "React", "WebSockets"], cat: "app" },
     { title: { uz: "Pulse Analytics", en: "Pulse Analytics", ru: "Pulse Analytics" }, description: { uz: "Kichik biznes uchun real-vaqt dashboard. Telegram bot egasining savollarini oddiy tilda javob beradi — streaming data warehouse bilan.", en: "A real-time dashboard for small businesses. A Telegram bot answers the owner's questions in plain language — powered by a streaming data warehouse.", ru: "Дашборд в реальном времени для малого бизнеса. Telegram-бот простым языком отвечает на вопросы владельца — на основе потокового хранилища данных." },
-      image: "", link: "", tags: ["Aiogram", "OpenAI", "ClickHouse", "D3.js"] }
+      image: "", link: "", tags: ["Aiogram", "OpenAI", "ClickHouse", "D3.js"], cat: "site" }
   ],
   favorites: [
     { icon: "🎧", title: { uz: "Mening pleylistim", en: "My playlist", ru: "Мой плейлист" }, url: "" },
@@ -102,8 +110,10 @@ const DEFAULTS = {
       url:'https://archive.org/download/pixabay-19409/video-19409_large.mp4',
       accent:'#e8ecf2', accent2:'#b9c2cf' }
   ],
+  /* url = to'g'ridan-to'g'ri audio fayl (saytda chalinadi);
+     link = tashqi sahifa (YouTube / Spotify / Yandex Music) — yangi oynada ochiladi. */
   tracks: [
-    { id:'song1',  name:'SoundHelix 1',  icon:'🎵', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+    { id:'song1',  name:'SoundHelix 1',  icon:'🎵', link:'', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
     { id:'song2',  name:'SoundHelix 2',  icon:'🎶', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
     { id:'song9',  name:'SoundHelix 9',  icon:'🎼', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3' },
     { id:'song15', name:'SoundHelix 15', icon:'🎧', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3' }
@@ -141,8 +151,7 @@ const DEFAULTS = {
            volume: 40, autoplay: true, presetId: "song1" },
   bgVideo: { enabled: true, presetId: "clouds", src: "", opacity: 70, tint: 55 },
   lang: "uz",
-  theme: "liquid",
-  publicCode: "mkm777"
+  theme: "liquid"
 };
 const THEMES = ['liquid','sand'];
 
@@ -182,6 +191,7 @@ const ML_FIELDS = {
   experience: ['period','title','description'],
   portfolio:  ['title','description'],
   favorites:  ['title'],
+  education:  ['name','period','description'],
   gallery:    ['caption']
 };
 
@@ -259,8 +269,37 @@ const STRINGS = {
   form_ph_msg:   { uz:'Loyihangiz haqida batafsil...', en:'Tell me about your project...', ru:'Расскажите о вашем проекте...' },
   form_send:     { uz:'Xabar yuborish', en:'Send message', ru:'Отправить' },
 
-  photos_link:   { uz:'Rasmlarim', en:'My photos', ru:'Мои фото' }
+  photos_link:   { uz:'Rasmlarim', en:'My photos', ru:'Мои фото' },
+
+  nav_edu:       { uz:'Taʼlim', en:'Education', ru:'Образование' },
+  sec_edu:       { uz:'Taʼlim', en:'Education', ru:'Образование' },
+  edu_docs:      { uz:'Hujjatlar va rasmlar', en:'Documents & photos', ru:'Документы и фото' },
+  edu_nodocs:    { uz:'Hujjatlar tez orada qoʻshiladi', en:'Documents coming soon', ru:'Документы скоро появятся' },
+  edu_open:      { uz:'Batafsil →', en:'Details →', ru:'Подробнее →' },
+  close:         { uz:'Yopish', en:'Close', ru:'Закрыть' },
+
+  sec_playlist:  { uz:'Musiqalarim', en:'My music', ru:'Моя музыка' },
+  playlist_sub:  { uz:'Men yoqtirgan qoʻshiqlar — shu yerda tinglang yoki havolada oching',
+                   en:'Songs I love — listen right here or open the link',
+                   ru:'Песни, которые я люблю — слушайте здесь или откройте по ссылке' },
+
+  cat_all:   { uz:'Barchasi', en:'All', ru:'Все' },
+  cat_bot:   { uz:'Botlar', en:'Bots', ru:'Боты' },
+  cat_site:  { uz:'Saytlar', en:'Websites', ru:'Сайты' },
+  cat_app:   { uz:'Ilovalar', en:'Apps', ru:'Приложения' },
+  cat_esp32: { uz:'ESP32', en:'ESP32', ru:'ESP32' },
+  cat_award: { uz:'Mukofotlar', en:'Awards', ru:'Награды' },
+  cat_other: { uz:'Boshqa', en:'Other', ru:'Другое' },
+
+  pwd_title: { uz:'Admin panelga kirish', en:'Admin access', ru:'Вход в админ-панель' },
+  pwd_btn:   { uz:'Kirish', en:'Enter', ru:'Войти' },
+  pwd_wrong: { uz:'Notoʻgʻri parol', en:'Wrong password', ru:'Неверный пароль' },
+  pwd_locked:{ uz:'Koʻp urinish — 5 daqiqadan soʻng qayta urining', en:'Too many attempts — try again in 5 minutes', ru:'Слишком много попыток — повторите через 5 минут' }
 };
+
+/* Portfolio categories, in display order. Chips render only for categories
+   that actually contain projects (plus "all"). */
+const PORTFOLIO_CATS = ['bot','site','app','esp32','award','other'];
 
 const T = key => (STRINGS[key] ? (STRINGS[key][lang] || STRINGS[key].uz) : key);
 
@@ -414,13 +453,101 @@ function renderTimeline(){
     </div>`).join('');
 }
 
+/* ------------------------------------------------------------ EDUCATION
+   The site shows only name + years; clicking a row opens a modal with the
+   full description and the proof documents/photos. */
+function renderEducation(){
+  const w = $('#educationWrap'), sec = $('#education');
+  if (!w || !sec) return;
+  const list = (data.education || []).filter(e => L(e.name));
+  const navLink = $('.nav__links a[data-section="education"]')?.parentElement;
+  const mobLink = $('#mobileMenu a[href="#education"]');
+  sec.hidden = !list.length;
+  if (navLink) navLink.hidden = !list.length;
+  if (mobLink) mobLink.hidden = !list.length;
+  if (!list.length){ w.innerHTML=''; return; }
+  w.innerHTML = list.map((e, i) => `
+    <button class="edu" data-edu="${i}">
+      <span class="edu__b">
+        <b>${esc(L(e.name))}</b>
+        ${L(e.period) ? `<span class="edu__p">${esc(L(e.period))}</span>` : ''}
+      </span>
+      <span class="edu__go">${esc(T('edu_open'))}</span>
+    </button>`).join('');
+}
+
+let eduDocs = [], eduDocIdx = 0;
+function openEduModal(i){
+  const e = (data.education||[])[i]; if (!e) return;
+  const m = $('#eduModal'); if (!m) return;
+  $('#eduMTitle').textContent = L(e.name);
+  $('#eduMPeriod').textContent = L(e.period) || '';
+  $('#eduMDesc').textContent = L(e.description) || '';
+  const docs = (e.docs||[]).filter(d => d && d.src);
+  eduDocs = docs;
+  $('#eduMDocsH').textContent = T('edu_docs');
+  $('#eduMDocs').innerHTML = docs.length
+    ? docs.map((d,j) => `<img src="${esc(d.thumb || d.src)}" alt="doc ${j+1}" loading="lazy" data-doc="${j}">`).join('')
+    : `<p class="muted" style="font-size:13px">${esc(T('edu_nodocs'))}</p>`;
+  m.classList.add('open'); m.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeEduModal(){
+  const m = $('#eduModal'); if (!m) return;
+  m.classList.remove('open'); m.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+function showDoc(n){
+  if (!eduDocs.length) return;
+  eduDocIdx = (n + eduDocs.length) % eduDocs.length;
+  $('#dlbImg').src = eduDocs[eduDocIdx].src;
+}
+function initEducation(){
+  $('#educationWrap')?.addEventListener('click', e => {
+    const b = e.target.closest('[data-edu]'); if (b) openEduModal(+b.dataset.edu);
+  });
+  $('#eduMClose').onclick = closeEduModal;
+  $('#eduModal')?.addEventListener('click', e => { if (e.target.id === 'eduModal') closeEduModal(); });
+  // Doc lightbox on top of the modal
+  const dlb = $('#docLightbox');
+  const closeDlb = () => { dlb.classList.remove('open'); $('#dlbImg').removeAttribute('src'); };
+  $('#eduMDocs')?.addEventListener('click', e => {
+    const im = e.target.closest('[data-doc]'); if (!im) return;
+    showDoc(+im.dataset.doc); dlb.classList.add('open');
+  });
+  $('#dlbClose').onclick = closeDlb;
+  $('#dlbPrev').onclick = ev => { ev.stopPropagation(); showDoc(eduDocIdx-1); };
+  $('#dlbNext').onclick = ev => { ev.stopPropagation(); showDoc(eduDocIdx+1); };
+  dlb?.addEventListener('click', e => { if (e.target === dlb || e.target.id === 'dlbImg') closeDlb(); });
+  addEventListener('keydown', e => {
+    if (dlb?.classList.contains('open')){
+      if (e.key === 'Escape') closeDlb();
+      if (e.key === 'ArrowLeft') showDoc(eduDocIdx-1);
+      if (e.key === 'ArrowRight') showDoc(eduDocIdx+1);
+      return;
+    }
+    if (e.key === 'Escape' && $('#eduModal')?.classList.contains('open')) closeEduModal();
+  });
+}
+
+let portfolioFilter = 'all';
 function renderPortfolio(){
+  const chips = $('#portfolioCats');
+  if (chips){
+    const present = PORTFOLIO_CATS.filter(c => (data.portfolio||[]).some(p => (p.cat||'other') === c));
+    chips.innerHTML = present.length > 1
+      ? ['all', ...present].map(c =>
+          `<button class="chip ${portfolioFilter===c?'active':''}" data-cat="${c}">${esc(T('cat_'+c))}</button>`).join('')
+      : '';
+    if (portfolioFilter !== 'all' && !present.includes(portfolioFilter)) portfolioFilter = 'all';
+  }
   const w = $('#portfolioWrap');
   const empty = { uz:'Hali loyiha qoʻshilmagan.', en:'No projects added yet.', ru:'Проекты пока не добавлены.' };
   if (!data.portfolio.length){ w.innerHTML = `<p class="muted">${esc(empty[lang]||empty.uz)}</p>`; return; }
   const view = { uz:"Koʻrish ↗", en:'View ↗', ru:'Открыть ↗' };
   const grads = ['linear-gradient(135deg,#ccff33,#5fbf3f)','linear-gradient(135deg,#8a6bff,#4a3fbf)','linear-gradient(135deg,#ff6bcb,#bf3f8a)'];
-  w.innerHTML = data.portfolio.map((p,i) => {
+  const shown = data.portfolio.filter(p => portfolioFilter === 'all' || (p.cat||'other') === portfolioFilter);
+  w.innerHTML = shown.map((p,i) => {
     const link = tidyUrl(p.link);
     const title = L(p.title);
     return `
@@ -443,25 +570,70 @@ function renderFavorites(){
   const list = (data.favorites||[]).filter(f => L(f.title) && tidyUrl(f.url));
   const w = $('#favoritesWrap');
   const sec = $('#favorites');
-  // Hide the section AND its nav link when there is nothing to show, so the
-  // nav never points at an empty anchor.
+  // The playlist lives inside this section too, so the section must survive
+  // when there are tracks even if every favourite link is empty. Hide the
+  // section (and its nav links) only when BOTH are empty.
+  const hasTracks = (data.tracks||[]).some(t => t.name && (tidyUrl(t.url) || tidyUrl(t.link)));
   const navLink = $('.nav__links a[data-section="favorites"]')?.parentElement;
   const mobLink = $('#mobileMenu a[href="#favorites"]');
-  if (!list.length){
-    sec.hidden = true;
-    if (navLink) navLink.hidden = true;
-    if (mobLink) mobLink.hidden = true;
-    return;
-  }
-  sec.hidden = false;
-  if (navLink) navLink.hidden = false;
-  if (mobLink) mobLink.hidden = false;
+  const show = !!(list.length || hasTracks);
+  sec.hidden = !show;
+  if (navLink) navLink.hidden = !show;
+  if (mobLink) mobLink.hidden = !show;
+  if (!list.length){ w.innerHTML = ''; return; }
   w.innerHTML = list.map(f => `
     <a class="link" href="${esc(tidyUrl(f.url))}" target="_blank" rel="noopener" data-rv>
       <span class="link__ico">${esc(f.icon || '🔗')}</span>
       <span class="link__b"><b>${esc(L(f.title))}</b><span>${esc(String(f.url).replace(/^https?:\/\//,''))}</span></span>
       <span class="link__go">↗</span>
     </a>`).join('');
+}
+
+/* ------------------------------------------------------------- PLAYLIST
+   Public list of the owner's favourite tracks. A track can be:
+     url  → a direct audio file, playable right on the site
+     link → an external page (YouTube / Spotify / Yandex Music), opens in a tab */
+function renderPlaylist(){
+  const w = $('#playlistWrap'), blk = $('#playlistBlock');
+  if (!w || !blk) return;
+  const list = (data.tracks||[]).filter(t => t.name && (tidyUrl(t.url) || tidyUrl(t.link)));
+  blk.hidden = !list.length;
+  if (!list.length){ w.innerHTML=''; return; }
+  const cur = $('#bgAudio');
+  w.innerHTML = list.map((t, i) => {
+    const playable = !!tidyUrl(t.url);
+    const playing = playable && cur && !cur.paused && cur.src === tidyUrl(t.url);
+    return `
+    <div class="trk ${playing?'trk--on':''}">
+      ${playable ? `<button class="trk__play" data-play="${i}" aria-label="Play">
+          ${playing
+            ? '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'
+            : '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>'}
+        </button>` : `<span class="trk__ico">${esc(t.icon||'🎵')}</span>`}
+      <span class="trk__n">${esc(t.name)}</span>
+      ${tidyUrl(t.link) ? `<a class="trk__ext" href="${esc(tidyUrl(t.link))}" target="_blank" rel="noopener" title="Havolada ochish">↗</a>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function initPlaylist(){
+  const audio = $('#bgAudio');
+  $('#playlistWrap')?.addEventListener('click', async e => {
+    const b = e.target.closest('[data-play]'); if (!b) return;
+    const list = (data.tracks||[]).filter(t => t.name && (tidyUrl(t.url) || tidyUrl(t.link)));
+    const t = list[+b.dataset.play]; if (!t) return;
+    const src = tidyUrl(t.url); if (!src) return;
+    if (audio.src === src && !audio.paused){ audio.pause(); }
+    else {
+      // Preview playback deliberately does NOT overwrite data.music.src — the
+      // background-music choice in the admin stays whatever the owner set.
+      audio.src = src;
+      try { await audio.play(); } catch { toast('Chalib boʻlmadi'); }
+    }
+    renderPlaylist();
+  });
+  audio?.addEventListener('play',  () => renderPlaylist());
+  audio?.addEventListener('pause', () => renderPlaylist());
 }
 
 function renderSocial(){
@@ -787,7 +959,7 @@ function initLightbox(){
 
 function renderAll(){
   renderBindings(); renderStats(); renderSkills(); renderTimeline();
-  renderPortfolio(); renderFavorites(); renderSocial(); renderContact();
+  renderPortfolio(); renderEducation(); renderFavorites(); renderPlaylist(); renderSocial(); renderContact();
   observeReveal();
 }
 
@@ -1011,7 +1183,7 @@ const admin = {
     if (op){ op.value = data.bgVideo.opacity ?? 70; $('#bgOpLabel').textContent = op.value; }
     if (tn){ tn.value = data.bgVideo.tint ?? 55;    $('#bgTintLabel').textContent = tn.value; }
     this.renderSkills(); this.renderExperience(); this.renderPortfolio();
-    this.renderFavorites(); this.renderSocial(); this.renderMusic(); this.renderVideos();
+    this.renderEducation(); this.renderFavorites(); this.renderSocial(); this.renderMusic(); this.renderVideos();
     this.renderGallery(); this.renderSync();
   },
 
@@ -1088,14 +1260,42 @@ const admin = {
         </div>
       </div>`).join('');
   },
+  renderEducation(){
+    const w = $('#adminEducation'); if (!w) return;
+    w.innerHTML = (data.education||[]).map((e,i) => `
+      <div class="item">
+        <div class="item__h"><b>Taʼlim ${i+1}</b><button class="item__x" data-del="education" data-i="${i}">O'chirish</button></div>
+        <div class="item__g">
+          ${mlInput(`education.${i}.name`, e.name, {label:'Nomi (maktab/litsey/universitet)'})}
+          ${mlInput(`education.${i}.period`, e.period, {label:"Yillari (masalan: 2013 — 2022)"})}
+          ${mlInput(`education.${i}.description`, e.description, {label:"Batafsil ma'lumot", textarea:true})}
+          <div class="field full">
+            <label>Hujjatlar va rasmlar (diplom, attestat, sertifikat...)</label>
+            <div class="edudocs">
+              ${(e.docs||[]).map((d,j) => `
+                <span class="edudoc" style="background-image:url('${esc(d.thumb || d.src)}')">
+                  <button class="gcell__x" data-deldoc="${i}.${j}" title="O'chirish">×</button>
+                </span>`).join('')}
+            </div>
+            <label class="btn btn--ghost" style="cursor:pointer;margin-top:8px;display:inline-flex">📄 Hujjat/rasm qo'shish
+              <input type="file" accept="image/*" data-edudoc="${i}" multiple hidden>
+            </label>
+          </div>
+        </div>
+      </div>`).join('');
+  },
   renderPortfolio(){
     $('#adminPortfolio').innerHTML = data.portfolio.map((p,i) => `
       <div class="item">
         <div class="item__h"><b>Loyiha ${i+1}</b><button class="item__x" data-del="portfolio" data-i="${i}">O'chirish</button></div>
         <div class="item__g">
+          <div class="field"><label>Kategoriya</label>
+            <select data-arr="portfolio.${i}.cat">
+              ${PORTFOLIO_CATS.map(c=>`<option value="${c}" ${(p.cat||'other')===c?'selected':''}>${esc(T('cat_'+c))}</option>`).join('')}
+            </select></div>
+          <div class="field"><label>Link</label><input type="text" data-arr="portfolio.${i}.link" value="${esc(p.link)}" placeholder="https://..."></div>
           ${mlInput(`portfolio.${i}.title`, p.title, {label:'Nom'})}
           ${mlInput(`portfolio.${i}.description`, p.description, {label:'Tavsif', textarea:true})}
-          <div class="field"><label>Link</label><input type="text" data-arr="portfolio.${i}.link" value="${esc(p.link)}" placeholder="https://..."></div>
           <div class="field"><label>Tags (vergul bilan)</label><input type="text" data-tags="${i}" value="${esc((p.tags||[]).join(', '))}"></div>
           <div class="field full"><label>Rasm URL</label><input type="text" data-arr="portfolio.${i}.image" value="${esc(p.image)}" placeholder="https://... yoki yuklang">
             <input type="file" accept="image/*" data-img="${i}"></div>
@@ -1133,7 +1333,8 @@ const admin = {
         <span class="mediarow__thumb">${esc(t.icon || '🎵')}</span>
         <div class="mediarow__f">
           <input type="text" data-arr="tracks.${i}.name" value="${esc(t.name)}" placeholder="Qo'shiq nomi">
-          <input type="text" data-arr="tracks.${i}.url" value="${esc(t.url)}" placeholder="https://...mp3">
+          <input type="text" data-arr="tracks.${i}.url" value="${esc(t.url)}" placeholder="Audio fayl: https://...mp3 (saytda chalinadi)">
+          <input type="text" data-arr="tracks.${i}.link" value="${esc(t.link||'')}" placeholder="Havola: YouTube / Spotify / Yandex Music (ixtiyoriy)">
         </div>
         <div class="mediarow__acts">
           <button class="mediarow__btn ${on?'mediarow__btn--use':''}" data-usetrack="${i}" ${on?'disabled':''}>${on?'✓ Chalinmoqda':'Qo\'yish'}</button>
@@ -1231,6 +1432,17 @@ function initAdmin(){
       save(); admin.fill(); renderAll(); toast('O\'chirildi'); return;
     }
 
+    const dd = e.target.closest('[data-deldoc]');
+    if (dd){
+      const [ei, dj] = dd.dataset.deldoc.split('.').map(Number);
+      const doc = data.education?.[ei]?.docs?.[dj];
+      if (!doc) return;
+      if (!confirm('Bu hujjat o\'chirilsinmi?')) return;
+      data.education[ei].docs.splice(dj, 1);
+      if (doc.src) window.Cloud?.remove?.(doc.src);
+      save(); admin.renderEducation(); renderEducation(); toast('O\'chirildi');
+      return;
+    }
     const add = e.target.closest('[data-add]');
     if (add){
       const k = add.dataset.add;
@@ -1242,8 +1454,9 @@ function initAdmin(){
         experience: { period:ml('2026 — Hozir'), title:ml('Lavozim'), company:'Kompaniya', description:ml('Tavsif...') },
         portfolio:  { title:ml('Yangi loyiha'), description:ml('Tavsif'), image:'', link:'', tags:[] },
         favorites:  { icon:'🔗', title:ml('Yangi link'), url:'' },
+        education:  { id:'e'+uid(), name:ml("Yangi ta'lim"), period:ml(''), description:ml(''), docs:[] },
         videos:     { id:'v'+uid(), name:'Yangi video', url:'', thumb:'' },
-        tracks:     { id:'t'+uid(), name:'Yangi musiqa', url:'', icon:'🎵' }
+        tracks:     { id:'t'+uid(), name:'Yangi musiqa', url:'', link:'', icon:'🎵' }
       }[k];
       (k === 'skills' ? data[k].push(clone(blank)) : data[k].unshift(clone(blank)));
       save(); admin.fill(); renderAll(); return;
@@ -1296,6 +1509,12 @@ function initAdmin(){
 
   main.addEventListener('change', async e => {
     const el = e.target;
+    // <select data-arr> fires change, not input — route it to the same writer.
+    if (el.tagName === 'SELECT' && el.dataset.arr){
+      const [root, i, key] = el.dataset.arr.split('.');
+      data[root][+i][key] = el.value;
+      saveSoon(); renderAll(); return;
+    }
     const files = Array.from(el.files || []);
     if (!files.length) return;
     const busy = msg => toast(msg, 60000);
@@ -1336,6 +1555,18 @@ function initAdmin(){
           n++;
         }
         save(); admin.renderMusic(); toast(n ? `${n} ta musiqa qo'shildi` : 'Qo\'shilmadi');
+      }
+      else if (el.dataset.edudoc !== undefined){
+        const ei = +el.dataset.edudoc; let n = 0;
+        for (const [k, f] of files.entries()){
+          busy(`Yuklanmoqda… ${k+1}/${files.length}`);
+          const src = await put(f, 'edu', 8);
+          if (!src) continue;
+          (data.education[ei].docs ||= []).push({ src });
+          n++;
+        }
+        save(); admin.renderEducation(); renderEducation();
+        toast(n ? `${n} ta hujjat qo'shildi` : 'Qo\'shilmadi');
       }
       else if (el.id === 'videoFiles'){
         let n = 0;
@@ -1433,27 +1664,76 @@ function initAdmin(){
 }
 
 /* ------------------------------------------------------- STEALTH ENTRY */
+/* Admin access. Two honest layers:
+
+   LAYER 1 (this function): a password gate on the panel UI. Only the SHA-256
+   hash lives in the code — the password itself appears nowhere, so reading
+   the source doesn't reveal it. Brute force is slowed by a 5-try / 5-minute
+   lockout. This keeps casual snoopers out.
+
+   LAYER 2 (the real wall): the panel only edits THIS browser's localStorage.
+   Publishing to every visitor requires Cloud.save(), which Supabase rejects
+   without the admin's email+password session (RLS). So even someone who
+   bypasses layer 1 — which is always possible in an open-source frontend —
+   can vandalise nothing but their own browser. */
+const ADMIN_HASH = '6599000f1217f89dd44441ba82e1d9ba7bac006181810c9872cae82246a91b10';
+const PWD_LOCK_KEY = 'admLock';
+
+async function sha256hex(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function pwdLockState(){
+  try {
+    const l = JSON.parse(localStorage.getItem(PWD_LOCK_KEY) || '{}');
+    if (l.until && Date.now() < l.until) return l;
+    if (l.until && Date.now() >= l.until) { localStorage.removeItem(PWD_LOCK_KEY); return { fails: 0 }; }
+    return { fails: l.fails || 0 };
+  } catch { return { fails: 0 }; }
+}
+
 function initStealth(){
   const t = $('#mkmTrigger'); if (!t) return;
-  let on = false, buf = '', timer = null;
-  const stop = () => { on = false; buf = ''; t.classList.remove('listening'); clearTimeout(timer); };
+  const modal = $('#pwdModal'), input = $('#pwdInput'), btn = $('#pwdBtn'), msg = $('#pwdMsg');
+  if (!modal) return;
 
-  t.addEventListener('click', e => {
-    e.stopPropagation();
-    on = true; buf = ''; t.classList.add('listening');
-    clearTimeout(timer); timer = setTimeout(stop, 8000);
-  });
-  addEventListener('keydown', e => {
-    if (!on) return;
-    if (e.key === 'Escape') return stop();
-    if (e.key.length !== 1) return;
-    buf += e.key.toLowerCase();
-    const code = String(data.publicCode || 'mkm777').toLowerCase();
-    if (buf === code) { stop(); admin.open(); return; }
-    if (!code.startsWith(buf)) stop();
-  });
-  addEventListener('scroll', () => { if (on) stop(); }, { passive:true });
-  document.addEventListener('click', e => { if (on && !e.target.closest('#mkmTrigger')) stop(); });
+  const open = () => {
+    $('#pwdTitle').textContent = T('pwd_title');
+    btn.textContent = T('pwd_btn');
+    msg.textContent = ''; input.value = '';
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+    setTimeout(() => input.focus(), 60);
+  };
+  const close = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); input.value = ''; };
+
+  const attempt = async () => {
+    const lock = pwdLockState();
+    if (lock.until){ msg.textContent = T('pwd_locked'); return; }
+    if (!crypto?.subtle){ msg.textContent = 'HTTPS kerak'; return; }
+    const val = input.value; input.value = '';
+    if (!val) return;
+    const hex = await sha256hex(val);
+    if (hex === ADMIN_HASH){
+      try { localStorage.removeItem(PWD_LOCK_KEY); } catch {}
+      close(); admin.open();
+    } else {
+      const fails = (lock.fails || 0) + 1;
+      const next = fails >= 5 ? { fails, until: Date.now() + 5*60*1000 } : { fails };
+      try { localStorage.setItem(PWD_LOCK_KEY, JSON.stringify(next)); } catch {}
+      msg.textContent = next.until ? T('pwd_locked') : T('pwd_wrong');
+      modal.querySelector('.pwd__card').classList.remove('shake');
+      void modal.querySelector('.pwd__card').offsetWidth;   // restart the animation
+      modal.querySelector('.pwd__card').classList.add('shake');
+    }
+  };
+
+  t.addEventListener('click', e => { e.stopPropagation(); open(); });
+  btn.onclick = attempt;
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+  $('#pwdClose').onclick = close;
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
 }
 
 /* ---------------------------------------------------------------- LANGUAGE */
@@ -1562,6 +1842,12 @@ function init(){
   renderAll();
   applyBgVideo();
   initNav(); initMusic(); initForm(); initAdmin(); initStealth(); initSettings();
+  initEducation(); initPlaylist();
+  $('#portfolioCats')?.addEventListener('click', e => {
+    const c = e.target.closest('[data-cat]'); if (!c) return;
+    portfolioFilter = c.dataset.cat;
+    renderPortfolio(); observeReveal(); showEverything();
+  });
   $('#downloadCv').onclick = downloadCV;
 
   // Expose a tiny surface for hand-control.js + tests

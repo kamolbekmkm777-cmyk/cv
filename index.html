@@ -98,6 +98,7 @@
     <li><a href="#about" data-section="about" data-i18n="nav_about">Haqimda</a></li>
     <li><a href="#skills" data-section="skills" data-i18n="nav_skills">Skills</a></li>
     <li><a href="#experience" data-section="experience" data-i18n="nav_exp">Tajriba</a></li>
+    <li><a href="#education" data-section="education" data-i18n="nav_edu">Taʼlim</a></li>
     <li><a href="#portfolio" data-section="portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
     <li><a href="#favorites" data-section="favorites" data-i18n="nav_fav">Sevimli</a></li>
     <li><a href="#contact" data-section="contact" data-i18n="nav_contact">Kontakt</a></li>
@@ -113,6 +114,7 @@
     <a href="#about" data-i18n="nav_about">Haqimda</a>
     <a href="#skills" data-i18n="nav_skills">Skills</a>
     <a href="#experience" data-i18n="nav_exp">Tajriba</a>
+    <a href="#education" data-i18n="nav_edu">Taʼlim</a>
     <a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a>
     <a href="#favorites" data-i18n="nav_fav">Sevimli</a>
     <a href="#contact" data-i18n="nav_contact">Kontakt</a>
@@ -175,22 +177,35 @@
   <div class="timeline" id="timelineWrap"></div>
 </section>
 
+<!-- ============ EDUCATION ============ -->
+<section class="section" id="education">
+  <div class="shead"><span class="shead__i">04</span><h2 data-i18n="sec_edu">Taʼlim</h2></div>
+  <div class="edus" id="educationWrap"></div>
+</section>
+
 <!-- ============ PORTFOLIO ============ -->
 <section class="section" id="portfolio">
-  <div class="shead"><span class="shead__i">04</span><h2 data-i18n="sec_portfolio">Portfolio</h2></div>
+  <div class="shead"><span class="shead__i">05</span><h2 data-i18n="sec_portfolio">Portfolio</h2></div>
+  <div class="chips" id="portfolioCats"></div>
   <div class="grid" id="portfolioWrap"></div>
 </section>
 
 <!-- ============ FAVORITES / LINKS ============ -->
 <section class="section" id="favorites">
-  <div class="shead"><span class="shead__i">05</span><h2 data-i18n="sec_fav">Sevimlilarim</h2></div>
+  <div class="shead"><span class="shead__i">06</span><h2 data-i18n="sec_fav">Sevimlilarim</h2></div>
   <p class="shead__sub" data-i18n="sec_fav_sub">Men yoqtirgan pleylistlar, kanallar va resurslar</p>
   <div class="links" id="favoritesWrap"></div>
+
+  <div class="playlist" id="playlistBlock" hidden>
+    <h3 class="playlist__h" data-i18n="sec_playlist">Musiqalarim</h3>
+    <p class="shead__sub" data-i18n="playlist_sub">Men yoqtirgan qoʻshiqlar — shu yerda tinglang yoki havolada oching</p>
+    <div class="trks" id="playlistWrap"></div>
+  </div>
 </section>
 
 <!-- ============ CONTACT ============ -->
 <section class="section" id="contact">
-  <div class="shead"><span class="shead__i">06</span><h2 data-i18n="sec_contact">Bogʻlanish</h2></div>
+  <div class="shead"><span class="shead__i">07</span><h2 data-i18n="sec_contact">Bogʻlanish</h2></div>
   <div class="card contact">
     <div class="contact__left">
       <h3 data-i18n="contact_h">Loyihangiz haqida gaplashaylikmi?</h3>
@@ -237,6 +252,7 @@
         <button class="admin__tab" data-tab="skills">Skills</button>
         <button class="admin__tab" data-tab="experience">Tajriba</button>
         <button class="admin__tab" data-tab="portfolio">Portfolio</button>
+        <button class="admin__tab" data-tab="education">Taʼlim</button>
         <button class="admin__tab" data-tab="gallery">Fotogalereya</button>
         <button class="admin__tab" data-tab="favorites">Sevimlilar</button>
         <button class="admin__tab" data-tab="social">Ijtimoiy tarmoq</button>
@@ -351,6 +367,14 @@
           <div class="field"><label>Website</label><input type="text" data-model="contacts.website" /></div>
         </div>
 
+        <!-- EDUCATION -->
+        <div class="pane" data-pane="education">
+          <h3>Taʼlim</h3>
+          <p class="hint">Saytda faqat nomi va yillari koʻrinadi. Ustiga bosilganda — toʻliq maʼlumot va hujjatlar (diplom, attestat, rasmlar).</p>
+          <div id="adminEducation" class="list" style="margin-top:12px"></div>
+          <button class="btn btn--ghost" data-add="education">+ Taʼlim qo'shish</button>
+        </div>
+
         <!-- GALLERY -->
         <div class="pane" data-pane="gallery">
           <h3>Fotogalereya</h3>
@@ -430,11 +454,18 @@
         <!-- SECURITY -->
         <div class="pane" data-pane="security">
           <h3>Maxfiylik</h3>
-          <p class="hint">Admin panelga kirish: sayt pastidagi <b>MKM777</b> ni bosing, so'ng kodni yozing.</p>
-          <div class="field"><label>Kirish kodi</label><input type="text" data-model="publicCode" /></div>
+          <p class="hint">
+            Panelga kirish: sayt pastidagi <b>MKM777</b> → parol oynasi.
+            Parol kodda saqlanmaydi — faqat SHA-256 xeshi bor, 5 marta xato terilsa 5 daqiqa qulflanadi.
+          </p>
           <p class="hint" style="margin-top:14px">
-            Bu kod faqat panelni <b>ko'rsatadi</b> — u qulf emas, chunki barcha kod brauzerda.
-            Haqiqiy himoya bulut tomonda: Supabase'ga faqat sizning email/parolingiz bilan yozib bo'ladi.
+            <b>Asosiy himoya bulutda:</b> panelni qanday ochishdan qatʼi nazar, saytni hammaga
+            oʻzgartirish uchun Supabase email/parol kerak (Bulut ☁ boʻlimi). Usiz oʻzgarishlar
+            faqat oʻsha brauzerning oʻzida qoladi.
+          </p>
+          <p class="hint" style="margin-top:14px">
+            Parolni oʻzgartirish: yangi parolning SHA-256 xeshini <code>app.js</code> dagi
+            <code>ADMIN_HASH</code> ga yozib deploy qilinadi.
           </p>
         </div>
 
@@ -481,6 +512,37 @@
   <i class="hcursor__dot"></i>
 </div>
 <div class="hstatus" id="handStatus" role="status" aria-live="polite"></div>
+
+<!-- Education details modal -->
+<div class="edm" id="eduModal" aria-hidden="true" role="dialog">
+  <div class="edm__card">
+    <button class="edm__x" id="eduMClose" aria-label="Yopish">×</button>
+    <h3 id="eduMTitle"></h3>
+    <p class="edm__period" id="eduMPeriod"></p>
+    <p class="edm__desc" id="eduMDesc"></p>
+    <h4 class="edm__h" id="eduMDocsH">Hujjatlar va rasmlar</h4>
+    <div class="edm__docs" id="eduMDocs"></div>
+  </div>
+</div>
+
+<!-- Education doc lightbox (sits above the modal) -->
+<div class="lbox" id="docLightbox" aria-hidden="true" role="dialog" style="z-index:1200">
+  <button class="lbox__x" id="dlbClose" aria-label="Yopish">×</button>
+  <button class="lbox__nav lbox__nav--prev" id="dlbPrev" aria-label="Oldingi">‹</button>
+  <img id="dlbImg" alt="" />
+  <button class="lbox__nav lbox__nav--next" id="dlbNext" aria-label="Keyingi">›</button>
+</div>
+
+<!-- Admin password gate -->
+<div class="pwd" id="pwdModal" aria-hidden="true" role="dialog">
+  <div class="pwd__card">
+    <button class="edm__x" id="pwdClose" aria-label="Yopish">×</button>
+    <h3 id="pwdTitle">Admin panelga kirish</h3>
+    <input type="password" id="pwdInput" autocomplete="off" placeholder="••••••••••" />
+    <button class="btn btn--primary btn--full" id="pwdBtn">Kirish</button>
+    <p class="pwd__msg" id="pwdMsg"></p>
+  </div>
+</div>
 
 <div class="toast" id="toast"></div>
 

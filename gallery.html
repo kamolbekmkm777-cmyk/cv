@@ -36,6 +36,8 @@
 <div class="bg" aria-hidden="true">
   <span class="bg__blob bg__blob--1"></span>
   <span class="bg__blob bg__blob--2"></span>
+  <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <span class="bg__tint"></span>
 </div>
 
 <a class="brand" href="index.html" aria-label="Bosh sahifa">
@@ -116,8 +118,13 @@ async function loadData(){
   try { const s = JSON.parse(localStorage.getItem('cvData') || 'null'); if (s && Array.isArray(s.gallery)) return s; } catch {}
   // 3) deploy-time data.js
   if (window.DEPLOYED_DATA && Array.isArray(window.DEPLOYED_DATA.gallery)) return window.DEPLOYED_DATA;
-  // 4) shipped defaults
-  return { gallery: defaultGallery() };
+  // 4) shipped defaults — including the default sky video, so a visitor who
+  //    lands here first still gets the same background as the main page
+  return {
+    gallery: defaultGallery(),
+    bgVideo: { enabled:true, presetId:'clouds', src:'', opacity:70, tint:55 },
+    videos: [{ id:'clouds', url:'https://archive.org/download/pixabay-21285/video-21285_source.mp4' }]
+  };
 }
 
 let photos = [];
@@ -167,11 +174,30 @@ function initLightbox(){
   });
 }
 
+/* Background video — the same one the admin set for the main site. The
+   config travels in the same data document, so whatever plays on index.html
+   plays here. Sand theme hides it via the shared CSS. */
+function applyBgVideo(){
+  const v = document.getElementById('bgVideo'), bg = document.querySelector('.bg');
+  const cfg = data?.bgVideo; if (!v || !bg || !cfg) return;
+  bg.style.setProperty('--bgv-op',   (Number(cfg.opacity ?? 70))/100);
+  bg.style.setProperty('--bgv-tint', (Number(cfg.tint ?? 55))/100);
+  const custom = String(cfg.src||'').trim();
+  const preset = (data.videos||[]).find(x => x.id === cfg.presetId);
+  const src = custom || preset?.url || '';
+  if (!cfg.enabled || !src) return;
+  bg.classList.add('video-on');
+  v.src = src;
+  v.addEventListener('loadeddata', () => { v.classList.add('on'); v.play().catch(()=>{}); }, { once:true });
+  v.load();
+}
+
 let data = null;
 (async () => {
   data = await loadData();
   render();
   initLightbox();
+  applyBgVideo();
 })();
 })();
 </script>
