@@ -126,6 +126,21 @@ input,textarea,select{font:inherit}
 .bg.video-on .bg__blob{ opacity:0; }
 @media(prefers-reduced-motion:reduce){ .bg__video{ display:none } }
 
+/* ===== BRAND MARK (top-left) ===== */
+.brand{
+  position:fixed; top:16px; left:20px; z-index:920;
+  width:46px; height:46px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--fg);
+  background:var(--glass-bg); border:1px solid var(--glass-line);
+  backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
+  box-shadow:var(--glass-shadow);
+  transition:transform .2s var(--ease), border-color .2s, color .2s;
+}
+.brand:hover{ transform:translateY(-2px); border-color:var(--accent); color:var(--accent); }
+.brand__mk{ width:24px; height:24px; display:block; }
+@media(max-width:640px){ .brand{ width:40px; height:40px; top:12px; left:14px } .brand__mk{ width:21px; height:21px } }
+
 /* ===== SETTINGS / THEME SWITCHER ===== */
 .settings{ position:fixed; top:18px; right:20px; z-index:920; }
 .settings__btn{
