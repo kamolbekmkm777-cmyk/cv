@@ -326,21 +326,46 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
 }
 @keyframes orbit{ to{ transform:rotate(360deg) } }
 .hero__disc{
-  position:relative; display:block;
+  position:relative; display:block; cursor:pointer;
   width:100%; height:100%; border-radius:50%; overflow:hidden;
   border:1px solid var(--glass-line);
   background:var(--bg2);
   box-shadow:0 24px 64px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.14);
+  transition:transform .3s var(--ease), border-color .3s;
 }
+.hero__disc:hover{ transform:scale(1.015); border-color:var(--accent); }
 .hero__disc img{
   width:100%; height:100%;
   object-fit:cover; object-position:50% 8%;   /* keep the face centred */
-  transform:scale(1.02);
+  transform:scale(1.02); transition:transform .4s var(--ease);
 }
+.hero__disc:hover img{ transform:scale(1.08); }
 .hero__shine{
   position:absolute; inset:0; border-radius:50%; pointer-events:none;
   background:linear-gradient(115deg, transparent 42%, rgba(255,255,255,.16) 50%, transparent 58%);
 }
+/* "My photos" hint — rises out of the bottom of the portrait on hover, tells
+   the visitor the picture is a doorway to the gallery. */
+.hero__photos{
+  position:absolute; left:0; right:0; bottom:0; z-index:2;
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  padding:26px 10px 14px; font-size:12.5px; font-weight:600; color:#fff;
+  background:linear-gradient(transparent, rgba(0,0,0,.72));
+  opacity:0; transform:translateY(8px); transition:opacity .25s, transform .25s;
+}
+.hero__disc:hover .hero__photos,
+.hero__disc:focus-visible .hero__photos{ opacity:1; transform:none; }
+@media(hover:none){ .hero__photos{ opacity:1; transform:none; padding-top:20px; } }
+
+/* ===== LANGUAGE SWITCHER ===== */
+.lang{ display:flex; gap:6px; margin-bottom:14px; }
+.lang__b{
+  flex:1; padding:8px 0; border-radius:10px; font-size:12px; font-weight:700; letter-spacing:.04em;
+  color:var(--muted); background:var(--surface); border:1px solid var(--line);
+  transition:color .18s, border-color .18s, background-color .18s, transform .18s var(--ease);
+}
+.lang__b:hover{ transform:translateY(-1px); color:var(--fg); }
+.lang__b.active{ color:var(--on-accent,#000); background:var(--accent); border-color:var(--accent); }
 .hero__avail{
   position:absolute; left:50%; bottom:-8px; transform:translateX(-50%);
   display:flex; align-items:center; gap:7px; white-space:nowrap;
@@ -777,3 +802,27 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
 .syncbar--live .syncbar__dot{ background:#10b981; box-shadow:0 0 7px #10b981; }
 .syncbar--err  .syncbar__dot{ background:#ef4444; }
 .syncbar__t{ flex:1; min-width:120px; color:var(--muted); }
+
+/* ===== ADMIN · trilingual fields ===== */
+.mlf{ margin-bottom:14px; }
+.mlf > label{ display:block; font-size:12px; color:var(--muted); margin-bottom:7px; }
+.mlf__req{
+  font-size:10px; font-weight:700; letter-spacing:.04em; color:var(--accent);
+  border:1px solid var(--accent-edge); border-radius:6px; padding:1px 6px; margin-left:6px;
+}
+.mlf__row{ display:flex; align-items:flex-start; gap:8px; margin-bottom:6px; }
+.mlf__lg{
+  flex:none; width:30px; padding:8px 0; text-align:center;
+  font-size:10.5px; font-weight:700; color:var(--dim);
+  background:var(--surface); border:1px solid var(--line); border-radius:8px;
+}
+.mlf__in{
+  flex:1; width:100%; padding:9px 11px; border-radius:8px; font-size:13px;
+  background:var(--surface); border:1px solid var(--line); color:var(--fg);
+  resize:vertical;
+}
+.mlf__in:focus{ outline:none; border-color:var(--accent); background:var(--surface2); }
+.mlf__in--miss{ border-color:rgba(239,68,68,.55); }
+
+.gcell__caps{ position:absolute; left:0; right:0; bottom:0; display:grid; gap:1px; }
+.gcell__caps .gcell__cap{ position:static; }

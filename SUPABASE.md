@@ -86,13 +86,18 @@ Vercel o'zi qayta deploy qiladi.
 
 ## Kundalik ishlash tartibi
 
-| Qadam | Nima bo'ladi |
-|---|---|
-| Admin panelda tahrirlaysiz | Faqat shu brauzerda saqlanadi |
-| **Bulut ☁ → Bulutga saqlash** | **Hamma ko'radi** |
+Bulutga **kirgan** bo'lsangiz (Bulut ☁ bo'limidan), admin paneldagi **har bir
+o'zgarish** ~1.5 soniyadan so'ng avtomatik bulutga yoziladi — hamma ko'radi.
+Qo'lda hech narsa bosish shart emas.
 
-Yuklangan fayllar (rasm/musiqa/video) darhol Storage'ga tushadi, lekin
-**ro'yxatning o'zi** faqat "Bulutga saqlash" bosilganda chop etiladi.
+| Holat | Nima bo'ladi |
+|---|---|
+| Bulutga kirgansiz | Har bir tahrir **avtomatik** hammaga chop etiladi |
+| Kirmagansiz | O'zgarishlar faqat shu brauzerda (localStorage) |
+| Qo'lda majburlash | **Bulut ☁ → Bulutga saqlash** tugmasi ham bor |
+
+Yuklangan fayllar (rasm/musiqa/video) darhol Supabase Storage'ga link bilan tushadi.
+Har bir matnli maydon 3 tilda (UZ/EN/RU) saqlanadi.
 
 ## Muammolar
 

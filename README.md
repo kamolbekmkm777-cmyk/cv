@@ -10,6 +10,8 @@ cloud.js          Supabase (ixtiyoriy — bo'lmasa localStorage)
 hand-control.js   qo'l bilan boshqarish (MediaPipe, lazy-loaded)
 config.js         Supabase kalitlari (SUPABASE.md ga qarang)
 data.js           deploy qilingan ma'lumot (admin paneldan yaratiladi)
+gallery.html      alohida fotogalereya sahifasi (yangi oynada)
+assets/logo.svg   MK logotipi (rangga moslashadi) + favicon fayllari
 assets/gallery/   fotogalereya (27 rasm + thumbnail)
 supabase.sql      baza sxemasi — Supabase SQL Editor'ga qo'ying
 ```
@@ -20,6 +22,24 @@ supabase.sql      baza sxemasi — Supabase SQL Editor'ga qo'ying
 |---|---|
 | **Liquid Glass** | Qorong'i shisha. Urg'u rangi **fon videosidan olinadi** — yashil o'rmon → yashil, ko'k osmon → ko'k, rangsiz video → nozik oq. |
 | **Uch rang** | Faqat 3 ta bo'yoq: `#B86B00` amber · `#0F2D52` navy · `#FAF7F2` paper. Bu temada fon videosi ko'rsatilmaydi — aks holda 4-rang qo'shilardi. |
+
+## Uch til
+
+Sayt UZ / EN / RU tillarda. Standart — **oʻzbekcha**. Til almashtirgich ⚙ sozlamalarda.
+Tarjimalar `data` ichida `{ uz, en, ru }` obyektlari sifatida saqlanadi; statik matnlar
+(menyu, tugmalar) `app.js` dagi `STRINGS` jadvalida. Admin panelda har bir matnli maydon
+**3 tilda** kiritiladi — boʻsh til qizil chiziq bilan belgilanadi.
+
+## Fotogalereya — alohida oyna
+
+Galereya asosiy sahifada koʻrinmaydi. Bosh sahifadagi **rasm ustiga bosilsa**, u yangi
+oynada (`gallery.html`) ochiladi. `gallery.html` bir xil maʼlumot manbaidan oʻqiydi
+(bulut → localStorage → data.js → standart 27 rasm) va til/temaga moslashadi.
+
+## Standart fon
+
+Bosh sahifa **osmon (bulut) videosi** bilan ochiladi. Liquid Glass temasida sayt ranglari
+shu videoning rangiga moslashadi. Uch rang temasida video koʻrsatilmaydi.
 
 ## Ishga tushirish
 

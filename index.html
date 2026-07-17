@@ -49,35 +49,42 @@
     </svg>
   </button>
   <div class="settings__panel" id="settingsPanel">
-    <div class="settings__head"><h3>Versiya tanlang</h3><button class="settings__x" id="settingsClose" aria-label="Yopish">×</button></div>
-    <div class="themes">
-      <button class="theme" data-theme-set="liquid"><span class="theme__p theme__p--liquid"></span><b>Liquid Glass</b></button>
-      <button class="theme" data-theme-set="sand"><span class="theme__p theme__p--sand"></span><b>Uch rang</b></button>
+    <div class="settings__head"><h3 data-i18n="settings_title">Til va koʻrinish</h3><button class="settings__x" id="settingsClose" aria-label="Yopish">×</button></div>
+
+    <!-- Language: UZ / EN / RU. Default Uzbek. -->
+    <div class="lang" role="group" aria-label="Til / Language">
+      <button class="lang__b active" data-lang="uz">UZ</button>
+      <button class="lang__b" data-lang="en">EN</button>
+      <button class="lang__b" data-lang="ru">RU</button>
     </div>
-    <button class="btn btn--ghost btn--full" id="downloadCv2">CV yuklab olish (PDF) ↓</button>
+
+    <div class="themes">
+      <button class="theme" data-theme-set="liquid"><span class="theme__p theme__p--liquid"></span><b data-i18n="theme_liquid">Liquid Glass</b></button>
+      <button class="theme" data-theme-set="sand"><span class="theme__p theme__p--sand"></span><b data-i18n="theme_sand">Uch rang</b></button>
+    </div>
+    <button class="btn btn--ghost btn--full" id="downloadCv2" data-i18n="download_cv">CV yuklab olish (PDF) ↓</button>
 
     <!-- Hand-control tuning. Lives here so it's reachable before the camera
          is even switched on, and stays reachable while it's running. -->
     <div class="hset">
-      <div class="hset__h"><span>Qo'l bilan boshqaruv</span><button class="hset__reset" id="handReset">standart</button></div>
-      <p class="hset__hint">
-        Ko'rsatkich barmog'ingiz — sichqoncha. Bosh barmoqqa <b>tez tekkizib qo'ysangiz</b> — click.
-        <b>Tekkizib turib</b> qo'lni tepa/pastga — scroll.
+      <div class="hset__h"><span data-i18n="hand_title">Qoʻl bilan boshqaruv</span><button class="hset__reset" id="handReset" data-i18n="hand_reset">standart</button></div>
+      <p class="hset__hint" data-i18n="hand_hint">
+        Koʻrsatkich barmogʻingiz — sichqoncha. Bosh barmoqqa tez tekkizsangiz — bosish. Tekkizib turib qoʻlni tepa/pastga — scroll.
       </p>
       <div class="hset__row">
-        <label>Kursor sezgirligi <b id="hsSpeedL">1.0</b>×</label>
+        <label><span data-i18n="hand_speed">Kursor sezgirligi</span> <b id="hsSpeedL">1.0</b>×</label>
         <input type="range" id="hsSpeed" min="5" max="25" step="1" />
       </div>
       <div class="hset__row">
-        <label>Silliqlash (titrashga qarshi) <b id="hsSmoothL">50</b>%</label>
+        <label><span data-i18n="hand_smooth">Silliqlash (titrashga qarshi)</span> <b id="hsSmoothL">50</b>%</label>
         <input type="range" id="hsSmooth" min="0" max="100" step="1" />
       </div>
       <div class="hset__row">
-        <label>Barmoq tekkizish sezgirligi <b id="hsPinchL">50</b>%</label>
+        <label><span data-i18n="hand_pinch">Barmoq tekkizish sezgirligi</span> <b id="hsPinchL">50</b>%</label>
         <input type="range" id="hsPinch" min="0" max="100" step="1" />
       </div>
       <div class="hset__row">
-        <label>Scroll tezligi <b id="hsScrollL">3.2</b>×</label>
+        <label><span data-i18n="hand_scroll">Scroll tezligi</span> <b id="hsScrollL">3.2</b>×</label>
         <input type="range" id="hsScroll" min="5" max="90" step="1" />
       </div>
     </div>
@@ -87,14 +94,13 @@
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav">
   <ul class="nav__links">
-    <li><a href="#hero" data-section="hero" class="active">Bosh</a></li>
-    <li><a href="#about" data-section="about">Haqimda</a></li>
-    <li><a href="#skills" data-section="skills">Skills</a></li>
-    <li><a href="#experience" data-section="experience">Tajriba</a></li>
-    <li><a href="#portfolio" data-section="portfolio">Portfolio</a></li>
-    <li><a href="#gallery" data-section="gallery">Galereya</a></li>
-    <li><a href="#favorites" data-section="favorites">Sevimli</a></li>
-    <li><a href="#contact" data-section="contact">Kontakt</a></li>
+    <li><a href="#hero" data-section="hero" class="active" data-i18n="nav_home">Bosh</a></li>
+    <li><a href="#about" data-section="about" data-i18n="nav_about">Haqimda</a></li>
+    <li><a href="#skills" data-section="skills" data-i18n="nav_skills">Skills</a></li>
+    <li><a href="#experience" data-section="experience" data-i18n="nav_exp">Tajriba</a></li>
+    <li><a href="#portfolio" data-section="portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
+    <li><a href="#favorites" data-section="favorites" data-i18n="nav_fav">Sevimli</a></li>
+    <li><a href="#contact" data-section="contact" data-i18n="nav_contact">Kontakt</a></li>
   </ul>
   <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -104,13 +110,12 @@
   <div class="msheet__bg" id="mobileMenuBg"></div>
   <div class="msheet__panel">
     <button class="msheet__close" id="mobileMenuClose" aria-label="Yopish">×</button>
-    <a href="#about">Haqimda</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Tajriba</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#gallery">Galereya</a>
-    <a href="#favorites">Sevimli</a>
-    <a href="#contact">Kontakt</a>
+    <a href="#about" data-i18n="nav_about">Haqimda</a>
+    <a href="#skills" data-i18n="nav_skills">Skills</a>
+    <a href="#experience" data-i18n="nav_exp">Tajriba</a>
+    <a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a>
+    <a href="#favorites" data-i18n="nav_fav">Sevimli</a>
+    <a href="#contact" data-i18n="nav_contact">Kontakt</a>
   </div>
 </div>
 
@@ -127,8 +132,8 @@
         <span data-bind="profile.location">Tashkent, Uzbekistan</span>
       </p>
       <div class="hero__cta">
-        <a href="#contact" class="btn btn--primary">Bog'lanish <span>→</span></a>
-        <button class="btn btn--ghost" id="downloadCv">CV yuklab olish
+        <a href="#contact" class="btn btn--primary"><span data-i18n="hero_contact">Bogʻlanish</span> <span>→</span></a>
+        <button class="btn btn--ghost" id="downloadCv"><span data-i18n="hero_cv">CV yuklab olish</span>
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </button>
       </div>
@@ -136,19 +141,22 @@
 
     <figure class="hero__photo">
       <span class="hero__ring" aria-hidden="true"></span>
-      <span class="hero__disc">
+      <!-- Clicking the portrait opens the photo gallery in a new tab. -->
+      <a class="hero__disc" id="galleryOpen" href="gallery.html" target="_blank" rel="noopener"
+         aria-label="Fotogalereya" title="Fotogalereya">
         <img id="avatarImg" src="assets/kamolbek-900.jpg" width="900" height="1124"
              alt="Kamolbek Muzaffarov" fetchpriority="high" decoding="async" />
         <span class="hero__shine" aria-hidden="true"></span>
-      </span>
-      <figcaption class="hero__avail"><i></i> Available</figcaption>
+        <span class="hero__photos"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg> <span data-i18n="photos_link">Rasmlarim</span></span>
+      </a>
+      <figcaption class="hero__avail"><i></i> <span data-i18n="hero_available">Available</span></figcaption>
     </figure>
   </div>
 </header>
 
 <!-- ============ ABOUT ============ -->
 <section class="section" id="about">
-  <div class="shead"><span class="shead__i">01</span><h2>Haqimda</h2></div>
+  <div class="shead"><span class="shead__i">01</span><h2 data-i18n="sec_about">Haqimda</h2></div>
   <div class="card about">
     <p class="about__bio" data-bind="profile.bio"></p>
     <div class="stats" id="statsWrap"></div>
@@ -157,50 +165,44 @@
 
 <!-- ============ SKILLS ============ -->
 <section class="section" id="skills">
-  <div class="shead"><span class="shead__i">02</span><h2>Skills</h2></div>
+  <div class="shead"><span class="shead__i">02</span><h2 data-i18n="sec_skills">Skills</h2></div>
   <div class="skills" id="skillsWrap"></div>
 </section>
 
 <!-- ============ EXPERIENCE ============ -->
 <section class="section" id="experience">
-  <div class="shead"><span class="shead__i">03</span><h2>Ish tajribasi</h2></div>
+  <div class="shead"><span class="shead__i">03</span><h2 data-i18n="sec_exp">Ish tajribasi</h2></div>
   <div class="timeline" id="timelineWrap"></div>
 </section>
 
 <!-- ============ PORTFOLIO ============ -->
 <section class="section" id="portfolio">
-  <div class="shead"><span class="shead__i">04</span><h2>Portfolio</h2></div>
+  <div class="shead"><span class="shead__i">04</span><h2 data-i18n="sec_portfolio">Portfolio</h2></div>
   <div class="grid" id="portfolioWrap"></div>
-</section>
-
-<!-- ============ FOTOGALEREYA ============ -->
-<section class="section" id="gallery">
-  <div class="shead"><span class="shead__i">05</span><h2>Fotogalereya</h2></div>
-  <div class="gallery" id="galleryWrap"></div>
 </section>
 
 <!-- ============ FAVORITES / LINKS ============ -->
 <section class="section" id="favorites">
-  <div class="shead"><span class="shead__i">06</span><h2>Sevimlilarim</h2></div>
-  <p class="shead__sub">Men yoqtirgan pleylistlar, kanallar va resurslar</p>
+  <div class="shead"><span class="shead__i">05</span><h2 data-i18n="sec_fav">Sevimlilarim</h2></div>
+  <p class="shead__sub" data-i18n="sec_fav_sub">Men yoqtirgan pleylistlar, kanallar va resurslar</p>
   <div class="links" id="favoritesWrap"></div>
 </section>
 
 <!-- ============ CONTACT ============ -->
 <section class="section" id="contact">
-  <div class="shead"><span class="shead__i">07</span><h2>Bog'lanish</h2></div>
+  <div class="shead"><span class="shead__i">06</span><h2 data-i18n="sec_contact">Bogʻlanish</h2></div>
   <div class="card contact">
     <div class="contact__left">
-      <h3>Loyihangiz haqida gaplashaylikmi?</h3>
-      <p class="muted">Xabar yozing — 24 soat ichida javob beraman.</p>
+      <h3 data-i18n="contact_h">Loyihangiz haqida gaplashaylikmi?</h3>
+      <p class="muted" data-i18n="contact_sub">Xabar yozing — 24 soat ichida javob beraman.</p>
       <div class="channels" id="channelsWrap"></div>
     </div>
     <form class="contact__form" id="contactForm">
-      <div class="field"><label>Ismingiz</label><input type="text" name="name" required placeholder="To'liq ismingiz" /></div>
-      <div class="field"><label>Email</label><input type="email" name="email" required placeholder="email@example.com" /></div>
-      <div class="field"><label>Mavzu</label><input type="text" name="subject" placeholder="Loyiha haqida qisqacha" /></div>
-      <div class="field"><label>Xabar</label><textarea name="message" rows="4" required placeholder="Loyihangiz haqida batafsil..."></textarea></div>
-      <button type="submit" class="btn btn--primary btn--full">Xabar yuborish <span>→</span></button>
+      <div class="field"><label data-i18n="form_name">Ismingiz</label><input type="text" name="name" required data-i18n-ph="form_ph_name" placeholder="Toʻliq ismingiz" /></div>
+      <div class="field"><label data-i18n="form_email">Email</label><input type="email" name="email" required placeholder="email@example.com" /></div>
+      <div class="field"><label data-i18n="form_subject">Mavzu</label><input type="text" name="subject" data-i18n-ph="form_ph_subject" placeholder="Loyiha haqida qisqacha" /></div>
+      <div class="field"><label data-i18n="form_message">Xabar</label><textarea name="message" rows="4" required data-i18n-ph="form_ph_msg" placeholder="Loyihangiz haqida batafsil..."></textarea></div>
+      <button type="submit" class="btn btn--primary btn--full"><span data-i18n="form_send">Xabar yuborish</span> <span>→</span></button>
       <p class="formstatus" id="formStatus"></p>
     </form>
   </div>
@@ -250,12 +252,44 @@
         <!-- PROFILE -->
         <div class="pane active" data-pane="profile">
           <h3>Profil</h3>
-          <div class="field"><label>To'liq ism</label><input type="text" data-model="profile.name" /></div>
-          <div class="field"><label>Kasb</label><input type="text" data-model="profile.profession" /></div>
-          <div class="field"><label>Slogan</label><input type="text" data-model="profile.slogan" /></div>
-          <div class="field"><label>Joylashuv</label><input type="text" data-model="profile.location" /></div>
-          <div class="field"><label>Bio</label><textarea rows="5" data-model="profile.bio"></textarea></div>
-          <div class="field"><label>Hero badge matni</label><input type="text" data-model="ui.hero_badge" /></div>
+          <p class="hint" style="margin-bottom:14px">Matnli maydonlar 3 tilda — <b>UZ / EN / RU</b>. Bo'sh til qizil chiziq bilan belgilanadi.</p>
+          <div class="field"><label>To'liq ism (barcha tillar uchun bir xil)</label><input type="text" data-model="profile.name" /></div>
+
+          <div class="mlf">
+            <label>Kasb <span class="mlf__req">3 tilda</span></label>
+            <div class="mlf__row"><span class="mlf__lg">UZ</span><input type="text" class="mlf__in" data-ml="profile.profession" data-lang="uz" /></div>
+            <div class="mlf__row"><span class="mlf__lg">EN</span><input type="text" class="mlf__in" data-ml="profile.profession" data-lang="en" /></div>
+            <div class="mlf__row"><span class="mlf__lg">RU</span><input type="text" class="mlf__in" data-ml="profile.profession" data-lang="ru" /></div>
+          </div>
+
+          <div class="mlf">
+            <label>Slogan <span class="mlf__req">3 tilda</span></label>
+            <div class="mlf__row"><span class="mlf__lg">UZ</span><input type="text" class="mlf__in" data-ml="profile.slogan" data-lang="uz" /></div>
+            <div class="mlf__row"><span class="mlf__lg">EN</span><input type="text" class="mlf__in" data-ml="profile.slogan" data-lang="en" /></div>
+            <div class="mlf__row"><span class="mlf__lg">RU</span><input type="text" class="mlf__in" data-ml="profile.slogan" data-lang="ru" /></div>
+          </div>
+
+          <div class="mlf">
+            <label>Joylashuv <span class="mlf__req">3 tilda</span></label>
+            <div class="mlf__row"><span class="mlf__lg">UZ</span><input type="text" class="mlf__in" data-ml="profile.location" data-lang="uz" /></div>
+            <div class="mlf__row"><span class="mlf__lg">EN</span><input type="text" class="mlf__in" data-ml="profile.location" data-lang="en" /></div>
+            <div class="mlf__row"><span class="mlf__lg">RU</span><input type="text" class="mlf__in" data-ml="profile.location" data-lang="ru" /></div>
+          </div>
+
+          <div class="mlf">
+            <label>Bio <span class="mlf__req">3 tilda</span></label>
+            <div class="mlf__row"><span class="mlf__lg">UZ</span><textarea rows="4" class="mlf__in" data-ml="profile.bio" data-lang="uz"></textarea></div>
+            <div class="mlf__row"><span class="mlf__lg">EN</span><textarea rows="4" class="mlf__in" data-ml="profile.bio" data-lang="en"></textarea></div>
+            <div class="mlf__row"><span class="mlf__lg">RU</span><textarea rows="4" class="mlf__in" data-ml="profile.bio" data-lang="ru"></textarea></div>
+          </div>
+
+          <div class="mlf">
+            <label>Hero badge matni <span class="mlf__req">3 tilda</span></label>
+            <div class="mlf__row"><span class="mlf__lg">UZ</span><input type="text" class="mlf__in" data-ml="ui.hero_badge" data-lang="uz" /></div>
+            <div class="mlf__row"><span class="mlf__lg">EN</span><input type="text" class="mlf__in" data-ml="ui.hero_badge" data-lang="en" /></div>
+            <div class="mlf__row"><span class="mlf__lg">RU</span><input type="text" class="mlf__in" data-ml="ui.hero_badge" data-lang="ru" /></div>
+          </div>
+
           <div class="field">
             <label>Rasm (URL yoki yuklash)</label>
             <input type="text" data-model="profile.avatar" placeholder="assets/kamolbek-900.jpg" />
@@ -447,15 +481,6 @@
   <i class="hcursor__dot"></i>
 </div>
 <div class="hstatus" id="handStatus" role="status" aria-live="polite"></div>
-
-<!-- Lightbox -->
-<div class="lbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Rasm">
-  <button class="lbox__x" id="lbClose" aria-label="Yopish">×</button>
-  <button class="lbox__nav lbox__nav--prev" id="lbPrev" aria-label="Oldingi">‹</button>
-  <img id="lbImg" alt="" />
-  <button class="lbox__nav lbox__nav--next" id="lbNext" aria-label="Keyingi">›</button>
-  <p class="lbox__cap" id="lbCap"></p>
-</div>
 
 <div class="toast" id="toast"></div>
 
