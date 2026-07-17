@@ -42,11 +42,35 @@
     <div class="settings__head"><h3>Versiya tanlang</h3><button class="settings__x" id="settingsClose" aria-label="Yopish">×</button></div>
     <div class="themes">
       <button class="theme" data-theme-set="liquid"><span class="theme__p theme__p--liquid"></span><b>Liquid Glass</b></button>
-      <button class="theme" data-theme-set="classic"><span class="theme__p theme__p--classic"></span><b>Classic CV</b></button>
-      <button class="theme" data-theme-set="modern"><span class="theme__p theme__p--modern"></span><b>Modern CV</b></button>
-      <button class="theme" data-theme-set="dark"><span class="theme__p theme__p--dark"></span><b>Dark Premium</b></button>
+      <button class="theme" data-theme-set="sand"><span class="theme__p theme__p--sand"></span><b>Uch rang</b></button>
     </div>
     <button class="btn btn--ghost btn--full" id="downloadCv2">CV yuklab olish (PDF) ↓</button>
+
+    <!-- Hand-control tuning. Lives here so it's reachable before the camera
+         is even switched on, and stays reachable while it's running. -->
+    <div class="hset">
+      <div class="hset__h"><span>Qo'l bilan boshqaruv</span><button class="hset__reset" id="handReset">standart</button></div>
+      <p class="hset__hint">
+        Ko'rsatkich barmog'ingiz — sichqoncha. Bosh barmoqqa <b>tez tekkizib qo'ysangiz</b> — click.
+        <b>Tekkizib turib</b> qo'lni tepa/pastga — scroll.
+      </p>
+      <div class="hset__row">
+        <label>Kursor sezgirligi <b id="hsSpeedL">1.0</b>×</label>
+        <input type="range" id="hsSpeed" min="5" max="25" step="1" />
+      </div>
+      <div class="hset__row">
+        <label>Silliqlash (titrashga qarshi) <b id="hsSmoothL">50</b>%</label>
+        <input type="range" id="hsSmooth" min="0" max="100" step="1" />
+      </div>
+      <div class="hset__row">
+        <label>Barmoq tekkizish sezgirligi <b id="hsPinchL">50</b>%</label>
+        <input type="range" id="hsPinch" min="0" max="100" step="1" />
+      </div>
+      <div class="hset__row">
+        <label>Scroll tezligi <b id="hsScrollL">3.2</b>×</label>
+        <input type="range" id="hsScroll" min="5" max="90" step="1" />
+      </div>
+    </div>
   </div>
 </div>
 
@@ -58,6 +82,7 @@
     <li><a href="#skills" data-section="skills">Skills</a></li>
     <li><a href="#experience" data-section="experience">Tajriba</a></li>
     <li><a href="#portfolio" data-section="portfolio">Portfolio</a></li>
+    <li><a href="#gallery" data-section="gallery">Galereya</a></li>
     <li><a href="#favorites" data-section="favorites">Sevimli</a></li>
     <li><a href="#contact" data-section="contact">Kontakt</a></li>
   </ul>
@@ -73,6 +98,7 @@
     <a href="#skills">Skills</a>
     <a href="#experience">Tajriba</a>
     <a href="#portfolio">Portfolio</a>
+    <a href="#gallery">Galereya</a>
     <a href="#favorites">Sevimli</a>
     <a href="#contact">Kontakt</a>
   </div>
@@ -137,16 +163,22 @@
   <div class="grid" id="portfolioWrap"></div>
 </section>
 
+<!-- ============ FOTOGALEREYA ============ -->
+<section class="section" id="gallery">
+  <div class="shead"><span class="shead__i">05</span><h2>Fotogalereya</h2></div>
+  <div class="gallery" id="galleryWrap"></div>
+</section>
+
 <!-- ============ FAVORITES / LINKS ============ -->
 <section class="section" id="favorites">
-  <div class="shead"><span class="shead__i">05</span><h2>Sevimlilarim</h2></div>
+  <div class="shead"><span class="shead__i">06</span><h2>Sevimlilarim</h2></div>
   <p class="shead__sub">Men yoqtirgan pleylistlar, kanallar va resurslar</p>
   <div class="links" id="favoritesWrap"></div>
 </section>
 
 <!-- ============ CONTACT ============ -->
 <section class="section" id="contact">
-  <div class="shead"><span class="shead__i">06</span><h2>Bog'lanish</h2></div>
+  <div class="shead"><span class="shead__i">07</span><h2>Bog'lanish</h2></div>
   <div class="card contact">
     <div class="contact__left">
       <h3>Loyihangiz haqida gaplashaylikmi?</h3>
@@ -193,11 +225,13 @@
         <button class="admin__tab" data-tab="skills">Skills</button>
         <button class="admin__tab" data-tab="experience">Tajriba</button>
         <button class="admin__tab" data-tab="portfolio">Portfolio</button>
+        <button class="admin__tab" data-tab="gallery">Fotogalereya</button>
         <button class="admin__tab" data-tab="favorites">Sevimlilar</button>
         <button class="admin__tab" data-tab="social">Ijtimoiy tarmoq</button>
         <button class="admin__tab" data-tab="contacts">Kontakt</button>
-        <button class="admin__tab" data-tab="music">Musiqa</button>
-        <button class="admin__tab" data-tab="bgvideo">Fon video</button>
+        <button class="admin__tab" data-tab="music">Musiqalar</button>
+        <button class="admin__tab" data-tab="bgvideo">Videolar</button>
+        <button class="admin__tab" data-tab="cloud">Bulut ☁</button>
         <button class="admin__tab" data-tab="security">Maxfiylik</button>
         <button class="admin__tab admin__tab--red" data-tab="reset">Reset</button>
       </aside>
@@ -273,28 +307,80 @@
           <div class="field"><label>Website</label><input type="text" data-model="contacts.website" /></div>
         </div>
 
+        <!-- GALLERY -->
+        <div class="pane" data-pane="gallery">
+          <h3>Fotogalereya</h3>
+          <div id="syncGallery"></div>
+          <p class="hint">Rasm qo'shing, tagidagi yozuvni tahrirlang yoki o'chiring. Sudrab tartibini ham o'zgartira olasiz.</p>
+          <div class="admin__acts" style="margin:12px 0">
+            <label class="btn btn--ghost" style="cursor:pointer">🖼 Rasm qo'shish (bir nechta)
+              <input type="file" id="galleryFiles" accept="image/*" multiple hidden />
+            </label>
+            <button class="btn btn--ghost" id="galleryAddUrl">+ URL orqali qo'shish</button>
+          </div>
+          <div id="adminGallery" class="ggrid"></div>
+        </div>
+
         <!-- MUSIC -->
         <div class="pane" data-pane="music">
-          <h3>Fon musiqasi</h3>
-          <div id="musicPresets" class="mpresets"></div>
-          <div class="field"><label>Yoki URL</label><input type="text" data-model="music.src" placeholder="https://...mp3" /></div>
-          <div class="field"><label>Fayl yuklash (max 5MB)</label><input type="file" id="musicFile" accept="audio/*" /></div>
+          <h3>Musiqalar</h3>
+          <div id="syncMusic"></div>
+          <p class="hint">"Qo'yish" — shu qo'shiq saytda chalinadi. Nom va URL ni to'g'ridan-to'g'ri tahrirlang.</p>
+          <div id="adminTracks" class="list" style="margin-top:12px"></div>
+          <div class="admin__acts" style="margin:12px 0">
+            <button class="btn btn--ghost" data-add="tracks">+ URL orqali qo'shish</button>
+            <label class="btn btn--ghost" style="cursor:pointer">🎵 Fayl yuklash (max 8MB)
+              <input type="file" id="musicFile" accept="audio/*" multiple hidden />
+            </label>
+          </div>
           <div class="field"><label>Ovoz: <b id="volLabel">40</b>%</label><input type="range" id="musicVol" min="0" max="100" /></div>
           <label class="check"><input type="checkbox" data-model="music.autoplay" /> <span>Sahifa ochilganda avtomatik chalinsin</span></label>
         </div>
 
         <!-- BG VIDEO -->
         <div class="pane" data-pane="bgvideo">
-          <h3>Fon videosi</h3>
+          <h3>Fon videolari</h3>
+          <div id="syncVideos"></div>
           <label class="check"><input type="checkbox" data-model="bgVideo.enabled" /> <span>Fon videoni yoqish</span></label>
           <p class="hint" style="margin:10px 0 16px">
-            Video fonni og'irlashtiradi. O'chirilgan bo'lsa — chiroyli gradient fon ishlaydi (eng tez).
-            Yoqsang, video <b>faqat shunda</b> yuklanadi.
+            O'chirilgan bo'lsa — gradient fon ishlaydi (eng tez) va video <b>umuman yuklanmaydi</b>.
+            <b>Liquid Glass</b> temasida sayt ranglari tanlangan video rangiga moslashadi.
           </p>
-          <div id="bgVideoPresets" class="vpresets"></div>
-          <div class="field"><label>Yoki video URL (mp4)</label><input type="text" data-model="bgVideo.src" placeholder="https://...mp4" /></div>
+          <div id="adminVideos" class="list"></div>
+          <div class="admin__acts" style="margin:12px 0">
+            <button class="btn btn--ghost" data-add="videos">+ URL orqali qo'shish</button>
+            <label class="btn btn--ghost" style="cursor:pointer">🎬 Video yuklash (max 30MB)
+              <input type="file" id="videoFiles" accept="video/*" multiple hidden />
+            </label>
+          </div>
           <div class="field"><label>Ko'rinishi: <b id="bgOpLabel">70</b>%</label><input type="range" id="bgOp" min="10" max="100" /></div>
           <div class="field"><label>Qorong'ilashtirish: <b id="bgTintLabel">55</b>%</label><input type="range" id="bgTintR" min="0" max="90" /></div>
+        </div>
+
+        <!-- CLOUD -->
+        <div class="pane" data-pane="cloud">
+          <h3>Bulut (Supabase)</h3>
+          <div id="syncCloud"></div>
+          <p class="hint" style="margin-bottom:14px">
+            Bulut ulanmagan bo'lsa, o'zgarishlar <b>faqat shu brauzerda</b> saqlanadi.
+            Ulansa — telefondan tahrirlaysiz, hamma ko'radi.
+            Sozlash: <code>config.js</code> faylini to'ldiring (<code>SUPABASE.md</code> da qadamma-qadam yozilgan).
+          </p>
+          <div id="cloudAuth">
+            <div class="field"><label>Admin email</label><input type="email" id="sbEmail" placeholder="siz@example.com" autocomplete="username" /></div>
+            <div class="field"><label>Parol</label><input type="password" id="sbPass" placeholder="••••••••" autocomplete="current-password" /></div>
+            <div class="admin__acts">
+              <button class="btn btn--primary" id="sbLogin">Kirish</button>
+              <button class="btn btn--ghost" id="sbLogout">Chiqish</button>
+            </div>
+          </div>
+          <div class="admin__acts" style="margin-top:14px">
+            <button class="btn btn--primary" id="sbPush">☁ Bulutga saqlash (hamma ko'radi)</button>
+            <button class="btn btn--ghost" id="sbPull">⟳ Bulutdan yuklab olish</button>
+          </div>
+          <p class="hint" style="margin-top:12px">
+            Yuklangan rasm/musiqa/videolar Supabase Storage'ga tushadi — brauzer xotirasini to'ldirmaydi.
+          </p>
         </div>
 
         <!-- SECURITY -->
@@ -302,6 +388,10 @@
           <h3>Maxfiylik</h3>
           <p class="hint">Admin panelga kirish: sayt pastidagi <b>MKM777</b> ni bosing, so'ng kodni yozing.</p>
           <div class="field"><label>Kirish kodi</label><input type="text" data-model="publicCode" /></div>
+          <p class="hint" style="margin-top:14px">
+            Bu kod faqat panelni <b>ko'rsatadi</b> — u qulf emas, chunki barcha kod brauzerda.
+            Haqiqiy himoya bulut tomonda: Supabase'ga faqat sizning email/parolingiz bilan yozib bo'ladi.
+          </p>
         </div>
 
         <!-- RESET -->
@@ -348,9 +438,20 @@
 </div>
 <div class="hstatus" id="handStatus" role="status" aria-live="polite"></div>
 
+<!-- Lightbox -->
+<div class="lbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Rasm">
+  <button class="lbox__x" id="lbClose" aria-label="Yopish">×</button>
+  <button class="lbox__nav lbox__nav--prev" id="lbPrev" aria-label="Oldingi">‹</button>
+  <img id="lbImg" alt="" />
+  <button class="lbox__nav lbox__nav--next" id="lbNext" aria-label="Keyingi">›</button>
+  <p class="lbox__cap" id="lbCap"></p>
+</div>
+
 <div class="toast" id="toast"></div>
 
+<script src="config.js" onerror="window.__noConfig=1"></script>
 <script src="data.js"></script>
+<script src="cloud.js"></script>
 <script src="app.js"></script>
 <script src="hand-control.js" defer></script>
 </body>

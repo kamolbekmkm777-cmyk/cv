@@ -70,10 +70,23 @@ har `git push` avtomatik deploy bo'ladi.
 
 ## Admin panel — muhim
 
-Admin paneldagi o'zgarishlar **faqat sening brauzeringda** saqlanadi
-(`localStorage`). Ziyoratchilar ularni ko'rmaydi.
+Admin paneldagi o'zgarishlar sukut bo'yicha **faqat sening brauzeringda**
+saqlanadi (`localStorage`). Ziyoratchilar ularni ko'rmaydi.
 
-Hammaga ko'rsatish uchun:
+### Yo'l A — Supabase (tavsiya)
+
+Bir marta sozlaysan, keyin **telefondan ham** tahrirlaysan va deploy kerak emas:
+
+1. [SUPABASE.md](SUPABASE.md) bo'yicha loyiha och va `supabase.sql` ni ishga tushir
+2. Kalitlarni `config.js` ga yoz → `git push` (bir marta)
+3. Keyin: admin → o'zgartir → **Bulut ☁ → Bulutga saqlash** → hamma ko'radi
+
+> `config.js` brauzerga yuklanadi va **shunday bo'lishi kerak**. `anon` kaliti
+> ochiq bo'lishga mo'ljallangan; himoya `supabase.sql` dagi RLS qoidalarida —
+> anon faqat o'qiydi, yozish uchun sening emailing/parolingdan kirish kerak.
+> `service_role` kalitini u yerga **hech qachon** yozma.
+
+### Yo'l B — bulutsiz
 
 1. Saytni och → pastdagi **MKM777** ni bos → klaviaturada `mkm777` yoz
 2. Admin ochiladi → o'zgartir
@@ -81,7 +94,8 @@ Hammaga ko'rsatish uchun:
 4. Uni loyihadagi eski `data.js` o'rniga qo'y
 5. `vercel --prod` (yoki `git push`)
 
-Shundan keyin har bir ziyoratchi yangi ma'lumotni ko'radi.
+Shundan keyin har bir ziyoratchi yangi ma'lumotni ko'radi. Kamchiligi: har safar
+deploy kerak, va yuklangan fayllar base64 bo'lgani uchun ~2MB limit bor.
 
 ---
 

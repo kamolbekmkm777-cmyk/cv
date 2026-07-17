@@ -73,6 +73,70 @@ const DEFAULTS = {
     phone:   "+998 77 293 77 97",
     website: "https://kamolbek.com"
   },
+  /* Videos / tracks / gallery are plain editable lists — the admin can add,
+     rename and delete freely. They used to be frozen consts in this file. */
+  videos: [
+    /* `accent` is PRE-COMPUTED, and it has to be. archive.org 302-redirects to
+       a CDN node that sends no Access-Control-Allow-Origin, so a <video
+       crossOrigin="anonymous"> pointed at these fails to load ENTIRELY, and
+       without crossOrigin the canvas is tainted and getImageData throws. Either
+       way the browser can't read these pixels. So each value below was produced
+       by running pickAccent() over a real frame of that exact video, offline.
+       Uploaded videos (Supabase sends CORS `*`) are sampled live instead. */
+    { id:'forest',    name:"Bulutlar (yuqoridan)",      thumb:'https://archive.org/services/img/pixabay-9584',
+      url:'https://archive.org/download/pixabay-9584/video-9584_source.mp4',
+      accent:'#46a1d8', accent2:'#7e90dd' },
+    { id:'green',     name:"O'rmon ichi",               thumb:'https://archive.org/services/img/pixabay-19400',
+      url:'https://archive.org/download/pixabay-19400/video-19400_large.mp4',
+      accent:'#d98a3e', accent2:'#dbc07a' },
+    { id:'path',      name:"Sehrli o'rmon yo'li",       thumb:'https://archive.org/services/img/pixabay-19731',
+      url:'https://archive.org/download/pixabay-19731/video-19731_large.mp4',
+      accent:'#b6ff3d', accent2:'#98f881' },
+    { id:'mountains', name:"Tog' panoramasi",           thumb:'https://archive.org/services/img/pixabay-21896',
+      url:'https://archive.org/download/pixabay-21896/video-21896_source.mp4',
+      accent:'#1fabff', accent2:'#6480f7' },
+    { id:'clouds',    name:'Bulutlar va osmon',         thumb:'https://archive.org/services/img/pixabay-21285',
+      url:'https://archive.org/download/pixabay-21285/video-21285_source.mp4',
+      accent:'#e8ecf2', accent2:'#b9c2cf' },
+    { id:'fog',       name:'Quyosh tumani',             thumb:'https://archive.org/services/img/pixabay-19409',
+      url:'https://archive.org/download/pixabay-19409/video-19409_large.mp4',
+      accent:'#e8ecf2', accent2:'#b9c2cf' }
+  ],
+  tracks: [
+    { id:'song1',  name:'SoundHelix 1',  icon:'🎵', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+    { id:'song2',  name:'SoundHelix 2',  icon:'🎶', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+    { id:'song9',  name:'SoundHelix 9',  icon:'🎼', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3' },
+    { id:'song15', name:'SoundHelix 15', icon:'🎧', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3' }
+  ],
+  gallery: [
+    { id:"p01", src:"assets/gallery/photo-01.jpg", thumb:"assets/gallery/thumb/photo-01.jpg", caption:"" },
+    { id:"p02", src:"assets/gallery/photo-02.jpg", thumb:"assets/gallery/thumb/photo-02.jpg", caption:"" },
+    { id:"p03", src:"assets/gallery/photo-03.jpg", thumb:"assets/gallery/thumb/photo-03.jpg", caption:"" },
+    { id:"p04", src:"assets/gallery/photo-04.jpg", thumb:"assets/gallery/thumb/photo-04.jpg", caption:"" },
+    { id:"p05", src:"assets/gallery/photo-05.jpg", thumb:"assets/gallery/thumb/photo-05.jpg", caption:"" },
+    { id:"p06", src:"assets/gallery/photo-06.jpg", thumb:"assets/gallery/thumb/photo-06.jpg", caption:"" },
+    { id:"p07", src:"assets/gallery/photo-07.jpg", thumb:"assets/gallery/thumb/photo-07.jpg", caption:"" },
+    { id:"p08", src:"assets/gallery/photo-08.jpg", thumb:"assets/gallery/thumb/photo-08.jpg", caption:"" },
+    { id:"p09", src:"assets/gallery/photo-09.jpg", thumb:"assets/gallery/thumb/photo-09.jpg", caption:"" },
+    { id:"p10", src:"assets/gallery/photo-10.jpg", thumb:"assets/gallery/thumb/photo-10.jpg", caption:"" },
+    { id:"p11", src:"assets/gallery/photo-11.jpg", thumb:"assets/gallery/thumb/photo-11.jpg", caption:"" },
+    { id:"p12", src:"assets/gallery/photo-12.jpg", thumb:"assets/gallery/thumb/photo-12.jpg", caption:"" },
+    { id:"p13", src:"assets/gallery/photo-13.jpg", thumb:"assets/gallery/thumb/photo-13.jpg", caption:"" },
+    { id:"p14", src:"assets/gallery/photo-14.jpg", thumb:"assets/gallery/thumb/photo-14.jpg", caption:"" },
+    { id:"p15", src:"assets/gallery/photo-15.jpg", thumb:"assets/gallery/thumb/photo-15.jpg", caption:"" },
+    { id:"p16", src:"assets/gallery/photo-16.jpg", thumb:"assets/gallery/thumb/photo-16.jpg", caption:"" },
+    { id:"p17", src:"assets/gallery/photo-17.jpg", thumb:"assets/gallery/thumb/photo-17.jpg", caption:"" },
+    { id:"p18", src:"assets/gallery/photo-18.jpg", thumb:"assets/gallery/thumb/photo-18.jpg", caption:"" },
+    { id:"p19", src:"assets/gallery/photo-19.jpg", thumb:"assets/gallery/thumb/photo-19.jpg", caption:"" },
+    { id:"p20", src:"assets/gallery/photo-20.jpg", thumb:"assets/gallery/thumb/photo-20.jpg", caption:"" },
+    { id:"p21", src:"assets/gallery/photo-21.jpg", thumb:"assets/gallery/thumb/photo-21.jpg", caption:"" },
+    { id:"p22", src:"assets/gallery/photo-22.jpg", thumb:"assets/gallery/thumb/photo-22.jpg", caption:"" },
+    { id:"p23", src:"assets/gallery/photo-23.jpg", thumb:"assets/gallery/thumb/photo-23.jpg", caption:"" },
+    { id:"p24", src:"assets/gallery/photo-24.jpg", thumb:"assets/gallery/thumb/photo-24.jpg", caption:"" },
+    { id:"p25", src:"assets/gallery/photo-25.jpg", thumb:"assets/gallery/thumb/photo-25.jpg", caption:"" },
+    { id:"p26", src:"assets/gallery/photo-26.jpg", thumb:"assets/gallery/thumb/photo-26.jpg", caption:"" },
+    { id:"p27", src:"assets/gallery/photo-27.jpg", thumb:"assets/gallery/thumb/photo-27.jpg", caption:"" }
+  ],
   music: { src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
            volume: 40, autoplay: true, presetId: "song1" },
   bgVideo: { enabled: false, presetId: "forest", src: "", opacity: 70, tint: 55 },
@@ -80,31 +144,7 @@ const DEFAULTS = {
   publicCode: "mkm777"
 };
 
-const THEMES = ['liquid','classic','modern','dark'];
-
-/* Aerial nature loops — archive.org serves these with CORS and they're
-   hotlink-friendly (Mixkit/Pexels/Pixabay all 403 direct embeds). */
-const VIDEO_PRESETS = [
-  { id:'forest',    name:"Bulutlar va yashil o'rmon", thumb:'https://archive.org/services/img/pixabay-9584',
-    url:'https://archive.org/download/pixabay-9584/video-9584_source.mp4' },
-  { id:'green',     name:"Yashil o'rmon manzarasi",   thumb:'https://archive.org/services/img/pixabay-19400',
-    url:'https://archive.org/download/pixabay-19400/video-19400_large.mp4' },
-  { id:'path',      name:"Sehrli o'rmon yo'li",       thumb:'https://archive.org/services/img/pixabay-19731',
-    url:'https://archive.org/download/pixabay-19731/video-19731_large.mp4' },
-  { id:'mountains', name:"Tog' panoramasi",           thumb:'https://archive.org/services/img/pixabay-21896',
-    url:'https://archive.org/download/pixabay-21896/video-21896_source.mp4' },
-  { id:'clouds',    name:'Bulutlar va osmon',         thumb:'https://archive.org/services/img/pixabay-21285',
-    url:'https://archive.org/download/pixabay-21285/video-21285_source.mp4' },
-  { id:'fog',       name:'Quyosh tumani',             thumb:'https://archive.org/services/img/pixabay-19409',
-    url:'https://archive.org/download/pixabay-19409/video-19409_large.mp4' }
-];
-
-const MUSIC_PRESETS = [
-  { id: 'song1', name: 'SoundHelix 1', icon: '🎵', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-  { id: 'song2', name: 'SoundHelix 2', icon: '🎶', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-  { id: 'song9', name: 'SoundHelix 9', icon: '🎼', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3' },
-  { id: 'song15', name: 'SoundHelix 15', icon: '🎧', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3' }
-];
+const THEMES = ['liquid','sand'];
 
 /* Brand icons (simple-icons paths, 24×24 viewBox) */
 const ICONS = {
@@ -168,6 +208,7 @@ function set(path, val){
 const $  = (s,r=document) => r.querySelector(s);
 const $$ = (s,r=document) => Array.from(r.querySelectorAll(s));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const uid = () => Math.random().toString(36).slice(2, 9);
 const tidyUrl = u => { u=String(u||'').trim(); if(!u) return ''; return /^(https?:|mailto:|tel:|\/|\.|#)/i.test(u) ? u : 'https://'+u; };
 
 function toast(msg, ms=2200){
@@ -311,12 +352,182 @@ function renderContact(){
   }
 }
 
-/* ------------------------------------------------------- THEME + VIDEO */
+/* ================================================== THEME + VIDEO COLOUR ==
+   Two themes, and they work on opposite principles:
+
+     liquid → dark glass whose accent is SAMPLED FROM THE BACKGROUND VIDEO.
+              The lime green is only the fallback for "no video playing".
+     sand   → a closed three-ink palette (amber/navy/paper) defined in CSS.
+   ========================================================================== */
+const LIQUID_FALLBACK = { accent:'#ccff33', accent2:'#9de84a' };
+
 function applyTheme(t){
   if (!THEMES.includes(t)) t = 'liquid';
   data.theme = t;
   document.body.dataset.theme = t;
   $$('.theme').forEach(b => b.classList.toggle('active', b.dataset.themeSet === t));
+  // The sand theme owns its palette; drop any video-derived ink so switching
+  // back and forth can't leak green into it.
+  if (t === 'sand') clearAccent();
+  else resolveAccent();
+  const meta = $('meta[name="theme-color"]');
+  if (meta) meta.content = t === 'sand' ? '#FAF7F2' : '#08080a';
+}
+
+/* ---------------------------------------------------------- colour utils */
+const hex = (r,g,b) => '#' + [r,g,b].map(v => Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join('');
+
+function rgb2hsl(r,g,b){
+  r/=255; g/=255; b/=255;
+  const mx = Math.max(r,g,b), mn = Math.min(r,g,b), d = mx-mn;
+  let h = 0;
+  if (d){
+    if (mx===r) h = ((g-b)/d) % 6;
+    else if (mx===g) h = (b-r)/d + 2;
+    else h = (r-g)/d + 4;
+    h *= 60; if (h < 0) h += 360;
+  }
+  const l = (mx+mn)/2;
+  const s = d ? d / (1 - Math.abs(2*l - 1)) : 0;
+  return [h, s, l];
+}
+function hsl2rgb(h,s,l){
+  const c = (1 - Math.abs(2*l - 1)) * s;
+  const x = c * (1 - Math.abs(((h/60) % 2) - 1));
+  const m = l - c/2;
+  const [r,g,b] = h<60?[c,x,0]:h<120?[x,c,0]:h<180?[0,c,x]:h<240?[0,x,c]:h<300?[x,0,c]:[c,0,x];
+  return [(r+m)*255, (g+m)*255, (b+m)*255];
+}
+
+/* Sample one frame and pick the ink that best represents it.
+   Straight averaging turns any real footage into mud grey, so instead we
+   histogram the hues weighted by saturation — the eye reads a video by its
+   most *colourful* region, not its arithmetic mean. */
+function pickAccent(canvas){
+  const ctx = canvas.getContext('2d', { willReadFrequently:true });
+  let px;
+  try { px = ctx.getImageData(0, 0, canvas.width, canvas.height).data; }
+  catch { return null; }             // tainted canvas (video served without CORS)
+
+  const bins = new Array(24).fill(0);      // 15° per bin
+  const satOf = new Array(24).fill(0);
+  let lum = 0, n = 0;
+
+  for (let i = 0; i < px.length; i += 4){
+    const [h, s, l] = rgb2hsl(px[i], px[i+1], px[i+2]);
+    lum += l; n++;
+    if (l < 0.08 || l > 0.94) continue;    // near-black / blown-out: no hue info
+    const w = s * s;                        // saturated pixels dominate
+    const b = Math.min(23, Math.floor(h / 15));
+    bins[b] += w; satOf[b] += s * w;
+  }
+  if (!n) return null;
+
+  let best = 0;
+  for (let i = 1; i < 24; i++) if (bins[i] > bins[best]) best = i;
+  const avgLum = lum / n;
+
+  // Nothing colourful at all (grey/night footage) → a light neutral that
+  // still reads as an accent on the dark glass. The test is per-pixel, not a
+  // raw total: a flat grey frame still piles a little weight into some bin,
+  // and an absolute threshold would promote that noise to a confident hue.
+  if (bins[best] / n < 0.01) return { accent:'#e8ecf2', accent2:'#b9c2cf', from:'neutral' };
+
+  const hue = best * 15 + 7.5;
+  const sat = Math.min(1, Math.max(0.55, satOf[best] / bins[best] * 1.35));
+
+  // Fixed lightness, not the video's: the accent has to stay legible against
+  // the dark glass and behind white text. A dark video must not yield a dark
+  // accent — that's exactly what makes UI vanish.
+  const l1 = avgLum < 0.4 ? 0.62 : 0.56;
+  return {
+    accent:  hex(...hsl2rgb(hue, sat, l1)),
+    accent2: hex(...hsl2rgb((hue + 26) % 360, Math.min(1, sat * 0.9), l1 + 0.12)),
+    from: 'video'
+  };
+}
+
+const accentCache = Object.create(null);   // src → accent (resolved once per video)
+const currentVideoEntry = () => {
+  const cfg = data.bgVideo || {};
+  if (tidyUrl(cfg.src)) return { url: tidyUrl(cfg.src) };       // custom URL, no stored ink
+  return (data.videos || []).find(v => v.id === cfg.presetId) || null;
+};
+const currentVideoSrc = () => {
+  const cfg = data.bgVideo || {};
+  return tidyUrl(cfg.src) || currentVideoEntry()?.url || '';
+};
+
+function clearAccent(){
+  const r = document.documentElement.style;
+  ['--accent','--accent-dim','--accent-edge','--accent2','--accent-live','--blob2','--role-grad'].forEach(k => r.removeProperty(k));
+}
+
+function applyAccent(a){
+  if (data.theme !== 'liquid') return;
+  const use = a || LIQUID_FALLBACK;
+  const r = document.documentElement.style;
+  const n = parseInt(use.accent.slice(1), 16);
+  const [R,G,B] = [(n>>16)&255, (n>>8)&255, n&255];
+  r.setProperty('--accent', use.accent);
+  r.setProperty('--accent2', use.accent2);
+  r.setProperty('--accent-live', use.accent);        // theme swatch preview
+  r.setProperty('--accent-dim',  `rgba(${R},${G},${B},.16)`);
+  r.setProperty('--accent-edge', `rgba(${R},${G},${B},.25)`);
+  r.setProperty('--blob2', `radial-gradient(circle, rgba(${R},${G},${B},.30), transparent 68%)`);
+  r.setProperty('--role-grad', `linear-gradient(92deg, ${use.accent}, ${use.accent2} 55%, var(--violet))`);
+}
+
+/* Resolve the accent for whatever video is on. Once per src, cached — the
+   user asked for "once", and re-reading pixels every frame would cost a
+   GPU→CPU readback 60×/second for nothing.
+
+   The visible <video> deliberately has NO crossOrigin: setting it would stop
+   the archive.org presets from playing at all. So pixels are read from a
+   throwaway probe element instead, and a probe that fails costs us nothing
+   but the fallback ink. */
+function resolveAccent(){
+  const entry = currentVideoEntry();
+  const src = currentVideoSrc();
+  if (!src) return applyAccent(null);
+
+  if (accentCache[src]) return applyAccent(accentCache[src]);
+
+  // 1) Ink shipped with the entry (the built-in presets).
+  if (entry?.accent){
+    accentCache[src] = { accent: entry.accent, accent2: entry.accent2 || entry.accent, from:'preset' };
+    return applyAccent(accentCache[src]);
+  }
+
+  // 2) Sample it live. Works for anything CORS-enabled — notably every video
+  //    the admin uploads to Supabase Storage.
+  applyAccent(null);                                  // show the fallback meanwhile
+  probeAccent(src);
+}
+
+function probeAccent(src){
+  const p = document.createElement('video');
+  p.crossOrigin = 'anonymous';                        // must precede .src
+  p.muted = true; p.playsInline = true; p.preload = 'auto';
+  const done = () => { try { p.removeAttribute('src'); p.load(); } catch {} };
+
+  p.addEventListener('loadeddata', () => {
+    try {
+      const c = document.createElement('canvas');
+      c.width = 48; c.height = 27;
+      c.getContext('2d', { willReadFrequently:true }).drawImage(p, 0, 0, c.width, c.height);
+      const a = pickAccent(c);
+      if (a){ accentCache[src] = a; if (currentVideoSrc() === src) applyAccent(a); }
+    } catch(e){ /* tainted after all — fallback ink stays */ }
+    done();
+  }, { once:true });
+
+  // No CORS on that host → the probe dies here. The visible video is a
+  // separate element and is unaffected.
+  p.addEventListener('error', done, { once:true });
+  setTimeout(done, 15000);                            // never leave it downloading
+  p.src = src;
+  p.load();
 }
 
 /* The <video> has preload="none" and no src until it's switched on, so a
@@ -328,16 +539,20 @@ function applyBgVideo(){
   bg.style.setProperty('--bgv-op',   (Number(cfg.opacity ?? 70))/100);
   bg.style.setProperty('--bgv-tint', (Number(cfg.tint ?? 55))/100);
 
-  const preset = VIDEO_PRESETS.find(p => p.id === cfg.presetId);
-  const src = tidyUrl(cfg.src) || preset?.url || '';
+  const src = currentVideoSrc();
 
   if (!cfg.enabled || !src){
     v.classList.remove('on'); bg.classList.remove('video-on');
     v.pause(); v.removeAttribute('src'); v.load();
+    applyAccent(null);                               // back to the lime fallback
     return;
   }
   bg.classList.add('video-on');
+  resolveAccent();
   if (v.getAttribute('src') !== src){
+    // Deliberately NO crossOrigin here — archive.org's CDN sends no CORS
+    // header, and requesting CORS would make these videos fail to load at
+    // all. Colour comes from resolveAccent()/probeAccent() instead.
     v.src = src;
     // play() must wait for loadeddata — calling it right after load() aborts
     // the promise and the video silently never starts.
@@ -356,9 +571,71 @@ function applyBgVideo(){
   }
 }
 
+/* ------------------------------------------------------------- GALLERY */
+const galleryList = () => (data.gallery || []).filter(g => g && g.src);
+
+function renderGallery(){
+  const w = $('#galleryWrap'), sec = $('#gallery');
+  if (!w || !sec) return;
+  const list = galleryList();
+  const navLink = $('.nav__links a[data-section="gallery"]')?.parentElement;
+  const mobLink = $('#mobileMenu a[href="#gallery"]');
+  // An empty gallery hides the section AND its nav links, exactly like
+  // favorites does — the nav must never point at an empty anchor.
+  sec.hidden = !list.length;
+  if (navLink) navLink.hidden = !list.length;
+  if (mobLink) mobLink.hidden = !list.length;
+  if (!list.length){ w.innerHTML = ''; return; }
+
+  w.innerHTML = list.map((g, i) => `
+    <figure class="gphoto" data-rv data-lb="${i}">
+      <img src="${esc(g.thumb || g.src)}" alt="${esc(g.caption || 'Foto ' + (i+1))}" loading="lazy" decoding="async">
+      ${g.caption ? `<figcaption>${esc(g.caption)}</figcaption>` : ''}
+    </figure>`).join('');
+}
+
+function initLightbox(){
+  const box = $('#lightbox'), img = $('#lbImg'), cap = $('#lbCap');
+  if (!box) return;
+  let i = 0;
+
+  const show = n => {
+    const list = galleryList();
+    if (!list.length) return;
+    i = (n + list.length) % list.length;             // wrap both ways
+    img.src = list[i].src;
+    img.alt = list[i].caption || `Foto ${i+1}`;
+    cap.textContent = list[i].caption || '';
+  };
+  const open = n => {
+    show(n);
+    box.classList.add('open'); box.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    box.classList.remove('open'); box.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    img.removeAttribute('src');                      // stop holding a full-size decode
+  };
+
+  $('#galleryWrap')?.addEventListener('click', e => {
+    const f = e.target.closest('[data-lb]'); if (f) open(+f.dataset.lb);
+  });
+  $('#lbClose').onclick = close;
+  $('#lbPrev').onclick = e => { e.stopPropagation(); show(i-1); };
+  $('#lbNext').onclick = e => { e.stopPropagation(); show(i+1); };
+  box.addEventListener('click', e => { if (e.target === box || e.target === img) close(); });
+  addEventListener('keydown', e => {
+    if (!box.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft')  show(i-1);
+    if (e.key === 'ArrowRight') show(i+1);
+  });
+}
+
 function renderAll(){
   renderBindings(); renderStats(); renderSkills(); renderTimeline();
-  renderPortfolio(); renderFavorites(); renderSocial(); renderContact();
+  renderPortfolio(); renderGallery(); renderFavorites(); renderSocial(); renderContact();
   observeReveal();
 }
 
@@ -557,15 +834,52 @@ const admin = {
     if (tn){ tn.value = data.bgVideo.tint ?? 55;    $('#bgTintLabel').textContent = tn.value; }
     this.renderSkills(); this.renderExperience(); this.renderPortfolio();
     this.renderFavorites(); this.renderSocial(); this.renderMusic(); this.renderVideos();
+    this.renderGallery(); this.renderSync();
   },
 
+  /* Videos + tracks share one row shape: thumb · name · url · use/delete. */
   renderVideos(){
-    const w = $('#bgVideoPresets'); if (!w) return;
-    w.innerHTML = VIDEO_PRESETS.map(p => `
-      <div class="vpreset ${data.bgVideo.presetId===p.id?'active':''}"
-           data-vpreset="${p.id}" style="background-image:url('${esc(p.thumb)}')">
-        <b>${esc(p.name)}</b>
-      </div>`).join('');
+    const w = $('#adminVideos'); if (!w) return;
+    const active = data.bgVideo.presetId;
+    w.innerHTML = (data.videos||[]).map((v,i) => `
+      <div class="mediarow ${active===v.id?'active':''}">
+        <span class="mediarow__thumb" style="${v.thumb?`background-image:url('${esc(v.thumb)}')`:''}">${v.thumb?'':'🎬'}</span>
+        <div class="mediarow__f">
+          <input type="text" data-arr="videos.${i}.name" value="${esc(v.name)}" placeholder="Video nomi">
+          <input type="text" data-arr="videos.${i}.url" value="${esc(v.url)}" placeholder="https://...mp4">
+        </div>
+        <div class="mediarow__acts">
+          <button class="mediarow__btn ${active===v.id?'mediarow__btn--use':''}" data-usevideo="${esc(v.id)}"
+            ${active===v.id?'disabled':''}>${active===v.id?'✓ Fonda':'Qo\'yish'}</button>
+          <button class="mediarow__btn mediarow__btn--red" data-del="videos" data-i="${i}">O'chirish</button>
+        </div>
+      </div>`).join('') || `<p class="hint">Hali video yo'q — pastdan qo'shing.</p>`;
+  },
+
+  renderGallery(){
+    const w = $('#adminGallery'); if (!w) return;
+    w.innerHTML = (data.gallery||[]).map((g,i) => `
+      <div class="gcell" style="background-image:url('${esc(g.thumb || g.src)}')">
+        <button class="gcell__x" data-del="gallery" data-i="${i}" title="O'chirish">×</button>
+        <input class="gcell__cap" type="text" data-arr="gallery.${i}.caption"
+               value="${esc(g.caption)}" placeholder="izoh…">
+      </div>`).join('') || `<p class="hint">Hali rasm yo'q — tepadan qo'shing.</p>`;
+  },
+
+  /* One status strip, mirrored into every pane that can touch the cloud. */
+  renderSync(){
+    const st = window.Cloud?.status?.() || { enabled:false };
+    const cls = !st.enabled ? '' : st.signedIn ? ' syncbar--live' : ' syncbar--err';
+    const txt = !st.enabled
+      ? `Bulut ulanmagan — o'zgarishlar faqat shu brauzerda saqlanadi. <b>config.js</b> ni to'ldiring.`
+      : st.signedIn
+        ? `Bulutga ulangan: <b>${esc(st.email)}</b> — saqlagach hamma ko'radi.`
+        : `Bulut sozlangan, lekin kirmagansiz. <b>Bulut ☁</b> bo'limidan kiring.`;
+    const html = `<div class="syncbar${cls}"><i class="syncbar__dot"></i><span class="syncbar__t">${txt}</span></div>`;
+    ['#syncGallery','#syncMusic','#syncVideos','#syncCloud'].forEach(id => {
+      const el = $(id); if (el) el.innerHTML = html;
+    });
+    const au = $('#cloudAuth'); if (au) au.style.display = st.enabled ? '' : 'none';
   },
 
   renderSkills(){
@@ -628,11 +942,23 @@ const admin = {
       </div>`).join('');
   },
   renderMusic(){
-    $('#musicPresets').innerHTML = MUSIC_PRESETS.map(p => `
-      <div class="mpreset ${data.music.presetId===p.id?'active':''}" data-preset="${p.id}">
-        <span class="mpreset__i">${p.icon}</span>
-        <span><span class="mpreset__n">${esc(p.name)}</span><span class="mpreset__s">Preset</span></span>
-      </div>`).join('');
+    const w = $('#adminTracks'); if (!w) return;
+    const cur = tidyUrl(data.music.src);
+    w.innerHTML = (data.tracks||[]).map((t,i) => {
+      const on = cur && tidyUrl(t.url) === cur;
+      return `
+      <div class="mediarow ${on?'active':''}">
+        <span class="mediarow__thumb">${esc(t.icon || '🎵')}</span>
+        <div class="mediarow__f">
+          <input type="text" data-arr="tracks.${i}.name" value="${esc(t.name)}" placeholder="Qo'shiq nomi">
+          <input type="text" data-arr="tracks.${i}.url" value="${esc(t.url)}" placeholder="https://...mp3">
+        </div>
+        <div class="mediarow__acts">
+          <button class="mediarow__btn ${on?'mediarow__btn--use':''}" data-usetrack="${i}" ${on?'disabled':''}>${on?'✓ Chalinmoqda':'Qo\'yish'}</button>
+          <button class="mediarow__btn mediarow__btn--red" data-del="tracks" data-i="${i}">O'chirish</button>
+        </div>
+      </div>`;
+    }).join('') || `<p class="hint">Hali musiqa yo'q — pastdan qo'shing.</p>`;
   }
 };
 
@@ -689,13 +1015,31 @@ function initAdmin(){
     }
   });
 
-  /* Delete + add + preset clicks */
+  /* Delete + add + "use this one" clicks */
   main.addEventListener('click', e => {
     const del = e.target.closest('[data-del]');
     if (del){
-      data[del.dataset.del].splice(+del.dataset.i, 1);
+      const k = del.dataset.del, i = +del.dataset.i;
+      const gone = data[k][i];
+      if (k === 'gallery' && !confirm('Bu rasm o\'chirilsinmi?')) return;
+      data[k].splice(i, 1);
+      // Free the storage object too, if it was one we uploaded.
+      const url = gone?.src || gone?.url || '';
+      if (url) window.Cloud?.remove?.(url);
+      if (gone?.thumb && gone.thumb !== url) window.Cloud?.remove?.(gone.thumb);
+      // The playing track / background video may have just been deleted.
+      if (k === 'tracks' && tidyUrl(gone?.url) === tidyUrl(data.music.src)){
+        data.music.src = ''; data.music.presetId = '';
+        $('#bgAudio')?.pause(); window.__applyMusic?.();
+      }
+      if (k === 'videos' && gone?.id === data.bgVideo.presetId){
+        data.bgVideo.presetId = data.videos[0]?.id || '';
+        if (!data.videos.length) data.bgVideo.enabled = false;
+        applyBgVideo();
+      }
       save(); admin.fill(); renderAll(); toast('O\'chirildi'); return;
     }
+
     const add = e.target.closest('[data-add]');
     if (add){
       const k = add.dataset.add;
@@ -703,62 +1047,167 @@ function initAdmin(){
         skills:     { category:'New', name:'Yangi skill', level:50 },
         experience: { period:'2026 — Hozir', title:'Lavozim', company:'Kompaniya', description:'Tavsif...' },
         portfolio:  { title:'Yangi loyiha', description:'Tavsif', image:'', link:'', tags:[] },
-        favorites:  { icon:'🔗', title:'Yangi link', url:'' }
+        favorites:  { icon:'🔗', title:'Yangi link', url:'' },
+        videos:     { id:'v'+uid(), name:'Yangi video', url:'', thumb:'' },
+        tracks:     { id:'t'+uid(), name:'Yangi musiqa', url:'', icon:'🎵' }
       }[k];
       (k === 'skills' ? data[k].push(clone(blank)) : data[k].unshift(clone(blank)));
       save(); admin.fill(); renderAll(); return;
     }
-    const vp = e.target.closest('[data-vpreset]');
-    if (vp){
-      const p = VIDEO_PRESETS.find(x => x.id === vp.dataset.vpreset); if (!p) return;
-      data.bgVideo.presetId = p.id;
-      data.bgVideo.src = '';                 // preset wins over a custom URL
+
+    const uv = e.target.closest('[data-usevideo]');
+    if (uv){
+      const v = data.videos.find(x => x.id === uv.dataset.usevideo); if (!v) return;
+      if (!tidyUrl(v.url)) { toast('Avval video URL ni kiriting'); return; }
+      data.bgVideo.presetId = v.id;
+      data.bgVideo.src = '';                 // the list entry wins over a stale custom URL
       data.bgVideo.enabled = true;
       const chk = $('[data-model="bgVideo.enabled"]'); if (chk) chk.checked = true;
-      const url = $('[data-model="bgVideo.src"]');     if (url) url.value = '';
-      save(); admin.renderVideos(); applyBgVideo(); toast('▶ ' + p.name);
+      save(); admin.renderVideos(); applyBgVideo(); toast('▶ ' + v.name);
       return;
     }
-    const pre = e.target.closest('[data-preset]');
-    if (pre){
-      const p = MUSIC_PRESETS.find(x => x.id === pre.dataset.preset); if (!p) return;
-      data.music.presetId = p.id; data.music.src = p.url;
-      save(); admin.renderMusic();
-      const inp = $('[data-model="music.src"]'); if (inp) inp.value = p.url;
-      window.__applyMusic?.();
-      $('#bgAudio').play().then(()=>toast('▶ '+p.name)).catch(()=>toast(p.name+' tanlandi'));
+
+    const ut = e.target.closest('[data-usetrack]');
+    if (ut){
+      const t = data.tracks[+ut.dataset.usetrack]; if (!t) return;
+      if (!tidyUrl(t.url)) { toast('Avval musiqa URL ni kiriting'); return; }
+      data.music.presetId = t.id; data.music.src = t.url;
+      save(); admin.renderMusic(); window.__applyMusic?.();
+      $('#bgAudio').play().then(()=>toast('▶ '+t.name)).catch(()=>toast(t.name+' tanlandi'));
       return;
     }
   });
 
-  /* File uploads */
-  main.addEventListener('change', e => {
+  /* ------------------------------------------------------------ uploads
+     With the cloud configured, a file goes to Supabase Storage and we keep a
+     URL. Without it, we fall back to a base64 data-URL in localStorage —
+     which works, but a handful of photos will exhaust the ~5MB quota, so the
+     limits below are deliberately tight in that mode. */
+  const put = async (file, folder, limitMB) => {
+    const cloud = window.Cloud?.enabled && window.Cloud.status().signedIn;
+    const cap = cloud ? limitMB : Math.min(limitMB, 2);
+    if (file.size > cap*1024*1024){
+      toast(cloud ? `Fayl ${cap}MB dan kichik bo'lsin`
+                  : `Bulutsiz rejimda ${cap}MB gacha — bulutni ulasangiz ${limitMB}MB`);
+      return null;
+    }
+    if (cloud) return window.Cloud.upload(file, folder);
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = ev => res(ev.target.result);
+      r.onerror = () => rej(new Error('O\'qib bo\'lmadi'));
+      r.readAsDataURL(file);
+    });
+  };
+
+  main.addEventListener('change', async e => {
     const el = e.target;
-    const readAs = (file, cb, limitMB) => {
-      if (file.size > limitMB*1024*1024){ toast(`Fayl ${limitMB}MB dan kichik bo'lsin`); return; }
-      const r = new FileReader(); r.onload = ev => cb(ev.target.result); r.readAsDataURL(file);
-    };
-    if (el.id === 'avatarFile' && el.files[0]){
-      readAs(el.files[0], src => {
+    const files = Array.from(el.files || []);
+    if (!files.length) return;
+    const busy = msg => toast(msg, 60000);
+
+    try {
+      if (el.id === 'avatarFile'){
+        busy('Yuklanmoqda…');
+        const src = await put(files[0], 'avatar', 4); if (!src) return;
         data.profile.avatar = src;
-        const f = $('[data-model="profile.avatar"]'); if (f) f.value = '(yuklandi)';
+        const f = $('[data-model="profile.avatar"]'); if (f) f.value = src;
         save(); renderBindings(); toast('Rasm yuklandi');
-      }, 3);
-    }
-    if (el.dataset.img !== undefined && el.files[0]){
-      readAs(el.files[0], src => {
+      }
+      else if (el.dataset.img !== undefined){
+        busy('Yuklanmoqda…');
+        const src = await put(files[0], 'portfolio', 4); if (!src) return;
         data.portfolio[+el.dataset.img].image = src;
-        save(); renderPortfolio(); toast('Rasm yuklandi');
-      }, 2);
-    }
-    if (el.id === 'musicFile' && el.files[0]){
-      readAs(el.files[0], src => {
-        data.music.src = src; data.music.presetId = '';
-        const f = $('[data-model="music.src"]'); if (f) f.value = '(yuklandi)';
-        save(); admin.renderMusic(); window.__applyMusic?.(); toast('Musiqa yuklandi');
-      }, 5);
+        save(); admin.renderPortfolio(); renderPortfolio(); toast('Rasm yuklandi');
+      }
+      else if (el.id === 'galleryFiles'){
+        let n = 0;
+        for (const [k, f] of files.entries()){
+          busy(`Yuklanmoqda… ${k+1}/${files.length}`);
+          const src = await put(f, 'gallery', 10);
+          if (!src) continue;
+          data.gallery.push({ id:'g'+uid(), src, thumb:'', caption:'' });
+          n++;
+        }
+        save(); admin.renderGallery(); renderGallery();
+        toast(n ? `${n} ta rasm qo'shildi` : 'Hech narsa qo\'shilmadi');
+      }
+      else if (el.id === 'musicFile'){
+        let n = 0;
+        for (const [k, f] of files.entries()){
+          busy(`Yuklanmoqda… ${k+1}/${files.length}`);
+          const url = await put(f, 'audio', 12);
+          if (!url) continue;
+          data.tracks.unshift({ id:'t'+uid(), name: f.name.replace(/\.[^.]*$/,''), url, icon:'🎵' });
+          n++;
+        }
+        save(); admin.renderMusic(); toast(n ? `${n} ta musiqa qo'shildi` : 'Qo\'shilmadi');
+      }
+      else if (el.id === 'videoFiles'){
+        let n = 0;
+        for (const [k, f] of files.entries()){
+          busy(`Yuklanmoqda… ${k+1}/${files.length}`);
+          const url = await put(f, 'video', 30);
+          if (!url) continue;
+          data.videos.unshift({ id:'v'+uid(), name: f.name.replace(/\.[^.]*$/,''), url, thumb:'' });
+          n++;
+        }
+        save(); admin.renderVideos(); toast(n ? `${n} ta video qo'shildi` : 'Qo\'shilmadi');
+      }
+      else return;
+    } catch(err){
+      console.warn('upload', err);
+      toast(err?.message || 'Yuklab bo\'lmadi');
+    } finally {
+      el.value = '';                 // so re-picking the same file fires change
     }
   });
+
+  /* Gallery: add by URL */
+  $('#galleryAddUrl').onclick = () => {
+    const u = tidyUrl(prompt('Rasm URL manzili:') || '');
+    if (!u) return;
+    data.gallery.push({ id:'g'+uid(), src:u, thumb:'', caption:'' });
+    save(); admin.renderGallery(); renderGallery(); toast('Qo\'shildi');
+  };
+
+  /* ---------------------------------------------------------- cloud pane */
+  const cloudBusy = (btn, on) => { if (btn) btn.disabled = on; };
+  $('#sbLogin').onclick = async () => {
+    const b = $('#sbLogin');
+    try {
+      cloudBusy(b, true);
+      await window.Cloud.signIn($('#sbEmail').value.trim(), $('#sbPass').value);
+      $('#sbPass').value = '';
+      admin.renderSync(); toast('Bulutga kirdingiz');
+    } catch(err){ toast(err?.message || 'Kirib bo\'lmadi'); }
+    finally { cloudBusy(b, false); }
+  };
+  $('#sbLogout').onclick = async () => {
+    await window.Cloud?.signOut?.(); admin.renderSync(); toast('Chiqdingiz');
+  };
+  $('#sbPush').onclick = async () => {
+    const b = $('#sbPush');
+    try {
+      cloudBusy(b, true); toast('Saqlanmoqda…', 30000);
+      await window.Cloud.save(data);
+      toast('☁ Bulutga saqlandi — hamma ko\'radi');
+    } catch(err){ toast(err?.message || 'Saqlab bo\'lmadi'); }
+    finally { cloudBusy(b, false); }
+  };
+  $('#sbPull').onclick = async () => {
+    const b = $('#sbPull');
+    try {
+      cloudBusy(b, true);
+      const remote = await window.Cloud.load();
+      if (!remote){ toast('Bulutda hali ma\'lumot yo\'q'); return; }
+      if (!confirm('Bulutdagi nusxa shu brauzerdagi o\'zgarishlar ustiga yoziladi. Davom etilsinmi?')) return;
+      data = merge(DEFAULTS, remote);
+      save(); admin.fill(); applyTheme(data.theme); renderAll(); applyBgVideo(); window.__applyMusic?.();
+      toast('Bulutdan yuklandi');
+    } catch(err){ toast(err?.message || 'Yuklab bo\'lmadi'); }
+    finally { cloudBusy(b, false); }
+  };
 
   /* Export / import / publish / reset */
   const dl = (blob, name) => {
@@ -827,6 +1276,61 @@ function initSettings(){
     toast('Tema: ' + b.querySelector('b').textContent);
   });
   $('#downloadCv2').onclick = downloadCV;
+  initHandSettings();
+}
+
+/* ------------------------------------------------- HAND SENSITIVITY UI
+   The sliders live here, but the values live in hand-control.js — this only
+   reads/writes them, so the tuning survives the camera being off. */
+function initHandSettings(){
+  const H = () => window.__hand;
+  const rows = [
+    { el:'#hsSpeed',  lab:'#hsSpeedL',  key:'speed',  toUi:v => Math.round(v*10),  fromUi:v => v/10,   fmt:v => v.toFixed(1) },
+    { el:'#hsSmooth', lab:'#hsSmoothL', key:'smooth', toUi:v => Math.round(v*100), fromUi:v => v/100,  fmt:v => Math.round(v*100) },
+    { el:'#hsPinch',  lab:'#hsPinchL',  key:'pinch',  toUi:v => Math.round(v*100), fromUi:v => v/100,  fmt:v => Math.round(v*100) },
+    { el:'#hsScroll', lab:'#hsScrollL', key:'scroll', toUi:v => Math.round(v*10),  fromUi:v => v/10,   fmt:v => v.toFixed(1) }
+  ];
+  const paint = () => {
+    const S = H()?.settings; if (!S) return;
+    rows.forEach(r => {
+      const el = $(r.el); if (!el) return;
+      el.value = r.toUi(S[r.key]);
+      $(r.lab).textContent = r.fmt(S[r.key]);
+    });
+  };
+  rows.forEach(r => {
+    const el = $(r.el); if (!el) return;
+    el.addEventListener('input', () => {
+      const v = r.fromUi(Number(el.value));
+      H()?.set(r.key, v);
+      $(r.lab).textContent = r.fmt(v);
+    });
+  });
+  $('#handReset').onclick = () => { H()?.reset(); paint(); toast('Standart sozlamalar'); };
+  // hand-control.js is deferred, so it may not have registered yet.
+  if (H()) paint(); else addEventListener('load', paint, { once:true });
+}
+
+/* ------------------------------------------------------- CLOUD BOOTSTRAP
+   Visitors get the published copy; the admin's own browser keeps whatever it
+   was last editing. Runs after first paint so a slow/broken Supabase can
+   never delay the page — worst case the site shows local data forever. */
+async function initCloud(){
+  const C = window.Cloud;
+  if (!C?.enabled) { admin.renderSync?.(); return; }
+  C.onChange(() => admin.renderSync?.());
+  try {
+    await C.init();
+    const remote = await C.load();
+    if (!remote) return;
+    // Local edits win over the cloud only while the admin is signed in on
+    // this device; for everyone else the published copy is the truth.
+    const localEdits = (() => { try { return !!localStorage.getItem('cvData'); } catch { return false; } })();
+    if (localEdits && C.status().signedIn) return;
+    data = merge(DEFAULTS, remote);
+    applyTheme(data.theme); renderAll(); applyBgVideo(); window.__applyMusic?.();
+    admin.renderSync?.();
+  } catch(e){ console.warn('cloud:', e); admin.renderSync?.(); }
 }
 
 /* ---------------------------------------------------------------- INIT */
@@ -836,11 +1340,16 @@ function init(){
   renderAll();
   applyBgVideo();
   initNav(); initMusic(); initForm(); initAdmin(); initStealth(); initSettings();
+  initLightbox();
   $('#downloadCv').onclick = downloadCV;
 
   // Expose a tiny surface for hand-control.js + tests
   window.__cv = { get data(){ return data; }, save, renderAll, admin, DEFAULTS, toast,
-                  applyTheme, applyBgVideo, THEMES, VIDEO_PRESETS, MUSIC_PRESETS };
+                  applyTheme, applyBgVideo, THEMES, renderGallery,
+                  pickAccent, applyAccent, resolveAccent, rgb2hsl, hsl2rgb };
+
+  // Never block first paint on the network.
+  ('requestIdleCallback' in window ? requestIdleCallback : setTimeout)(() => initCloud(), 1);
 }
 
 if (document.readyState === 'loading') addEventListener('DOMContentLoaded', init);
