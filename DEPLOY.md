@@ -88,7 +88,7 @@ Bir marta sozlaysan, keyin **telefondan ham** tahrirlaysan va deploy kerak emas:
 
 ### Yo'l B — bulutsiz
 
-1. Saytni och → pastdagi **MKM777** ni bos → klaviaturada `mkm777` yoz
+1. Saytni och → pastdagi **MKM777** ni bos → admin parolini ko'r-ko'rona ter (ekranda hech narsa ko'rinmaydi, panel o'zi ochiladi)
 2. Admin ochiladi → o'zgartir
 3. **Reset** tab → **🚀 Saytga chop etish (data.js)** → fayl yuklanadi
 4. Uni loyihadagi eski `data.js` o'rniga qo'y

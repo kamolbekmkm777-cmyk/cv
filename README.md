@@ -53,8 +53,9 @@ kamera (qo'l boshqaruvi) uchun `http://localhost` kerak.
 
 ## Admin panel
 
-1. Sahifa pastidagi **MKM777** ni bos
-2. Klaviaturada kodni yoz: `mkm777` (Maxfiylik tabidan o'zgartiriladi)
+1. Sahifa pastidagi **MKM777** ni bos — ekranda hech narsa ko'rinmaydi
+2. Admin parolini ko'r-ko'rona ter — to'g'ri terilgan zahoti panel o'zi ochiladi
+   (parol repoda saqlanmaydi, kodda faqat SHA-256 xeshi bor; 5 marta xato → 5 daqiqa jim qulf)
 3. Panel ochiladi. Har bir o'zgarish **avtomatik saqlanadi**.
 
 Tablar: Profil · Statistika · Skills · Tajriba · Portfolio · **Fotogalereya** ·

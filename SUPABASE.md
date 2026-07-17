@@ -74,7 +74,7 @@ Vercel o'zi qayta deploy qiladi.
 
 ## 6. Ishlayotganini tekshiring
 
-1. Saytni oching → pastdagi **MKM777** ni bosing → kodni yozing (`mkm777`).
+1. Saytni oching → pastdagi **MKM777** ni bosing → admin parolini ko'r-ko'rona tering (panel o'zi ochiladi).
 2. **Bulut ☁** bo'limi → yashil chiziq: *"Bulut sozlangan, lekin kirmagansiz"*.
    - Kulrang chiqsa → `config.js` to'ldirilmagan yoki deploy bo'lmagan.
 3. Email/parolni yozing → **Kirish** → chiziq yashil bo'ladi.
