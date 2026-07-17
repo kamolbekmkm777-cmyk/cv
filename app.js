@@ -10,13 +10,13 @@
 const DEFAULTS = {
   profile: {
     name: "Kamolbek Muzaffarov",
-    profession: "Full-Stack Developer & AI Engineer",
-    slogan: "I build intelligent products that scale — bots, AI, and clean cloud infrastructure for modern businesses.",
-    location: "Tashkent, Uzbekistan",
-    bio: "Men Kamolbek — AI, avtomatlashtirish va dizayn kesishmasiga qiziqqan o'z-o'zini o'rgatgan muhandisman. So'nggi yillarda men siz uxlab yotganingizda lidlarni qo'lga oladigan Telegram botlarni, xona rasmlarini o'qib dizayn taklif qiladigan AI yordamchilarni va xaosni aniqlikka aylantiradigan admin paneli loyihalarini ishlab chiqdim.",
+    profession: { uz: "Full-Stack dasturchi va sunʼiy intellekt muhandisi", en: "Full-Stack Developer & AI Engineer", ru: "Full-Stack разработчик и AI-инженер" },
+    slogan: { uz: "Men miqyoslashadigan aqlli mahsulotlar yarataman — zamonaviy biznes uchun Telegram botlar, sunʼiy intellekt va bulutli infratuzilma.", en: "I build intelligent products that scale — bots, AI, and clean cloud infrastructure for modern businesses.", ru: "Я создаю умные продукты, которые масштабируются — боты, AI и чистая облачная инфраструктура для современного бизнеса." },
+    location: { uz: "Toshkent, Oʻzbekiston", en: "Tashkent, Uzbekistan", ru: "Ташкент, Узбекистан" },
+    bio: { uz: "Men Kamolbek — sunʼiy intellekt, avtomatlashtirish va dizayn kesishmasiga qiziqqan oʻz-oʻzini oʻrgatgan muhandisman. Soʻnggi yillarda men siz uxlab yotganingizda lidlarni qoʻlga oladigan Telegram botlarni, xona rasmlarini oʻqib dizayn taklif qiladigan sunʼiy intellekt yordamchilarini va xaosni aniqlikka aylantiradigan boshqaruv panellarini ishlab chiqdim.", en: "I'm Kamolbek — a self-taught engineer fascinated by the intersection of AI, automation, and design. Over the past few years, I've built Telegram bots that capture leads while you sleep, AI assistants that read a photo of a room and suggest design ideas, and admin dashboards that turn chaos into clarity.", ru: "Я Камолбек — инженер-самоучка, увлечённый всем, что рождается на стыке AI, автоматизации и дизайна. За последние годы я создавал Telegram-ботов, которые ловят лиды, пока вы спите, AI-ассистентов, которые анализируют фото комнаты и подсказывают дизайн-решения, и админ-панели, которые превращают хаос в порядок." },
     avatar: "assets/kamolbek-900.jpg"
   },
-  ui: { hero_badge: "Yangi loyihalar uchun ochiq · 2026" },
+  ui: { hero_badge: { uz: "Yangi loyihalar uchun ochiq · 2026", en: "Open to new projects · 2026", ru: "Открыт к новым проектам · 2026" } },
   stats: { years: "5+", projects: "30+", clients: "25+", uptime: "99.9%" },
   skills: [
     { category: "Languages", name: "Python", level: 95 },
@@ -37,27 +37,35 @@ const DEFAULTS = {
     { category: "DevOps", name: "CI/CD", level: 75 }
   ],
   experience: [
-    { period: "2024 — Hozir", title: "Founder & Lead Developer", company: "Independent / Freelance",
-      description: "Telegram botlari, AI integratsiyalari va cloud avtomatlashtirish loyihalari ustida ishlayman. Mijozlar uchun end-to-end yechimlar ishlab chiqaman — boshlang'ich serverdan to to'lov qiladigan mijozgacha." },
-    { period: "2022 — 2024", title: "Full-Stack Developer", company: "Tech Studio Tashkent",
-      description: "B2B SaaS mahsulotlari uchun frontend va backend ishlab chiqdim. React/Next.js asosida 10+ ta dashboard, FastAPI backend va PostgreSQL bilan ishladim." },
-    { period: "2020 — 2022", title: "Junior Developer", company: "StartupHub",
-      description: "Web ilovalar, lending sahifalar va dastlabki bot loyihalarda qatnashdim. Python, Django va REST API bilan ishladim." }
+    { period: { uz: "2024 — Hozir", en: "2024 — Present", ru: "2024 — наст. время" }, title: { uz: "Asoschi va Bosh Dasturchi", en: "Founder & Lead Developer", ru: "Основатель и ведущий разработчик" }, company: "Independent / Freelance",
+      description: { uz: "Telegram botlari, sunʼiy intellekt integratsiyalari va bulutli avtomatlashtirish loyihalari ustida ishlayman. Mijozlar uchun boshidan oxirigacha yechimlar ishlab chiqaman — boshlangʻich serverdan to toʻlov qiladigan mijozgacha.", en: "I build Telegram bots, AI integrations, and cloud automation. I deliver end-to-end solutions for clients — from the backend server to the paying customer.", ru: "Работаю над Telegram-ботами, AI-интеграциями и проектами облачной автоматизации. Разрабатываю для клиентов решения под ключ — от настройки сервера до первого платящего клиента." } },
+    { period: { uz: "2022 — 2024", en: "2022 — 2024", ru: "2022 — 2024" }, title: { uz: "Full-Stack Dasturchi", en: "Full-Stack Developer", ru: "Full-Stack разработчик" }, company: "Tech Studio Tashkent",
+      description: { uz: "B2B SaaS mahsulotlari uchun interfeys va server qismlarini ishlab chiqdim. React/Next.js asosida 10+ boshqaruv paneli yaratdim, FastAPI va PostgreSQL bilan ishladim.", en: "Built frontend and backend for B2B SaaS products. Shipped 10+ dashboards in React/Next.js, backed by FastAPI and PostgreSQL.", ru: "Разрабатывал фронтенд и бэкенд для B2B SaaS-продуктов. Создал более 10 дашбордов на React/Next.js, работал с бэкендом на FastAPI и базой PostgreSQL." } },
+    { period: { uz: "2020 — 2022", en: "2020 — 2022", ru: "2020 — 2022" }, title: { uz: "Junior Dasturchi", en: "Junior Developer", ru: "Младший разработчик" }, company: "StartupHub",
+      description: { uz: "Veb-ilovalar, bir sahifali saytlar va dastlabki bot loyihalarida qatnashdim. Python, Django va REST API bilan ishladim.", en: "Contributed to web apps, landing pages, and early bot projects. Worked with Python, Django, and REST APIs.", ru: "Участвовал в разработке веб-приложений, лендингов и первых ботов. Работал с Python, Django и REST API." } }
+  ],
+  education: [
+    { id:'school', name:{ uz:"O'rta maktab", en:"Secondary school", ru:"Средняя школа" },
+      period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] },
+    { id:'lyceum', name:{ uz:"Litsey", en:"Lyceum", ru:"Лицей" },
+      period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] },
+    { id:'university', name:{ uz:"Universitet", en:"University", ru:"Университет" },
+      period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] }
   ],
   portfolio: [
-    { title: "Chozma Shift AI Bot", description: "Stretch-ceiling biznesi uchun Telegram bot. Gemini Vision orqali xona rasmlarini tahlil qiladi, narxni hisoblaydi va lidlarni admin CRM ga uzatadi.",
-      image: "", link: "", tags: ["Aiogram 3", "Gemini Vision", "SQLite", "Oracle Cloud"] },
-    { title: "Lead Funnel Pro", description: "Telegram, Instagram DM va veb-formani birlashtirgan ko'p bosqichli lidlarni tasniflash mexanizmi. Issiq lidlarni avtomatik sotuvga yo'naltiradi.",
-      image: "", link: "", tags: ["FastAPI", "PostgreSQL", "Redis", "Next.js"] },
-    { title: "Vision Designer", description: "AI bilan interyer dizayn previewi. Foydalanuvchi xona rasmini yuklaydi, materiallar tanlaydi — tizim fotorealistik mockuplar qaytaradi.",
-      image: "", link: "", tags: ["Python", "Stable Diffusion", "React", "WebSockets"] },
-    { title: "Pulse Analytics", description: "Kichik biznes uchun real-vaqt dashboard. Telegram bot egasining savollarini oddiy tilda javob beradi — streaming data warehouse bilan.",
-      image: "", link: "", tags: ["Aiogram", "OpenAI", "ClickHouse", "D3.js"] }
+    { title: { uz: "Chozma Shift AI Bot", en: "Chozma Shift AI Bot", ru: "Chozma Shift AI Bot" }, description: { uz: "Chozma shift biznesi uchun Telegram bot. Gemini Vision orqali xona rasmlarini tahlil qiladi, narxni hisoblaydi va lidlarni CRM tizimiga uzatadi.", en: "A Telegram bot for a stretch-ceiling business. It analyzes photos of a room with Gemini Vision, calculates pricing, and pushes leads straight into the admin CRM.", ru: "Telegram-бот для бизнеса по натяжным потолкам. С помощью Gemini Vision анализирует фото комнаты, рассчитывает стоимость и передаёт лиды в CRM администратора." },
+      image: "", link: "", tags: ["Aiogram 3", "Gemini Vision", "SQLite", "Oracle Cloud"], cat: "bot" },
+    { title: { uz: "Lead Funnel Pro", en: "Lead Funnel Pro", ru: "Lead Funnel Pro" }, description: { uz: "Telegram, Instagram shaxsiy xabarlari va veb-formani birlashtirgan koʻp bosqichli lidlarni saralash tizimi. Issiq lidlarni avtomatik sotuv boʻlimiga yoʻnaltiradi.", en: "A multi-stage lead qualification engine that brings together Telegram, Instagram DMs, and a web form. It automatically routes hot leads straight to sales.", ru: "Многоступенчатый механизм квалификации лидов, объединяющий Telegram, Instagram DM и веб-форму. Горячие лиды автоматически направляются в отдел продаж." },
+      image: "", link: "", tags: ["FastAPI", "PostgreSQL", "Redis", "Next.js"], cat: "bot" },
+    { title: { uz: "Vision Designer", en: "Vision Designer", ru: "Vision Designer" }, description: { uz: "Sunʼiy intellekt bilan interyer dizaynining dastlabki koʻrinishi. Foydalanuvchi xona rasmini yuklaydi, materiallarni tanlaydi — tizim fotorealistik maketlarni qaytaradi.", en: "An AI-powered interior design preview. The user uploads a photo of a room and picks materials — the system returns photorealistic mockups.", ru: "Превью дизайна интерьера на базе AI. Пользователь загружает фото комнаты и выбирает материалы — система возвращает фотореалистичные макеты." },
+      image: "", link: "", tags: ["Python", "Stable Diffusion", "React", "WebSockets"], cat: "app" },
+    { title: { uz: "Pulse Analytics", en: "Pulse Analytics", ru: "Pulse Analytics" }, description: { uz: "Kichik biznes uchun real vaqtli boshqaruv paneli. Telegram bot egasining savollariga oddiy tilda javob beradi — oqimli maʼlumotlar ombori asosida.", en: "A real-time dashboard for small businesses. A Telegram bot answers the owner's questions in plain language — powered by a streaming data warehouse.", ru: "Дашборд в реальном времени для малого бизнеса. Telegram-бот простым языком отвечает на вопросы владельца — на основе потокового хранилища данных." },
+      image: "", link: "", tags: ["Aiogram", "OpenAI", "ClickHouse", "D3.js"], cat: "site" }
   ],
   favorites: [
-    { icon: "🎧", title: "Mening pleylistim", url: "" },
-    { icon: "📺", title: "YouTube kanalim", url: "" },
-    { icon: "📚", title: "O'qiyotgan kitoblarim", url: "" }
+    { icon: "🎧", title: { uz: "Mening pleylistim", en: "My playlist", ru: "Мой плейлист" }, url: "" },
+    { icon: "📺", title: { uz: "YouTube kanalim", en: "My YouTube channel", ru: "Мой YouTube-канал" }, url: "" },
+    { icon: "📚", title: { uz: "O'qiyotgan kitoblarim", en: "What I'm reading", ru: "Книги, которые я читаю" }, url: "" }
   ],
   social: {
     telegram:  "https://t.me/kamolbekmuzaffarov",
@@ -73,38 +81,79 @@ const DEFAULTS = {
     phone:   "+998 77 293 77 97",
     website: "https://kamolbek.com"
   },
+  /* Videos / tracks / gallery are plain editable lists — the admin can add,
+     rename and delete freely. They used to be frozen consts in this file. */
+  videos: [
+    /* `accent` is PRE-COMPUTED, and it has to be. archive.org 302-redirects to
+       a CDN node that sends no Access-Control-Allow-Origin, so a <video
+       crossOrigin="anonymous"> pointed at these fails to load ENTIRELY, and
+       without crossOrigin the canvas is tainted and getImageData throws. Either
+       way the browser can't read these pixels. So each value below was produced
+       by running pickAccent() over a real frame of that exact video, offline.
+       Uploaded videos (Supabase sends CORS `*`) are sampled live instead. */
+    { id:'forest',    name:"Bulutlar (yuqoridan)",      thumb:'https://archive.org/services/img/pixabay-9584',
+      url:'https://archive.org/download/pixabay-9584/video-9584_source.mp4',
+      accent:'#46a1d8', accent2:'#7e90dd' },
+    { id:'green',     name:"O'rmon ichi",               thumb:'https://archive.org/services/img/pixabay-19400',
+      url:'https://archive.org/download/pixabay-19400/video-19400_large.mp4',
+      accent:'#d98a3e', accent2:'#dbc07a' },
+    { id:'path',      name:"Sehrli o'rmon yo'li",       thumb:'https://archive.org/services/img/pixabay-19731',
+      url:'https://archive.org/download/pixabay-19731/video-19731_large.mp4',
+      accent:'#b6ff3d', accent2:'#98f881' },
+    { id:'mountains', name:"Tog' panoramasi",           thumb:'https://archive.org/services/img/pixabay-21896',
+      url:'https://archive.org/download/pixabay-21896/video-21896_source.mp4',
+      accent:'#1fabff', accent2:'#6480f7' },
+    { id:'clouds',    name:'Bulutlar va osmon',         thumb:'https://archive.org/services/img/pixabay-21285',
+      url:'https://archive.org/download/pixabay-21285/video-21285_source.mp4',
+      accent:'#e8ecf2', accent2:'#b9c2cf' },
+    { id:'fog',       name:'Quyosh tumani',             thumb:'https://archive.org/services/img/pixabay-19409',
+      url:'https://archive.org/download/pixabay-19409/video-19409_large.mp4',
+      accent:'#e8ecf2', accent2:'#b9c2cf' }
+  ],
+  /* url = to'g'ridan-to'g'ri audio fayl (saytda chalinadi);
+     link = tashqi sahifa (YouTube / Spotify / Yandex Music) — yangi oynada ochiladi. */
+  tracks: [
+    { id:'song1',  name:'SoundHelix 1',  icon:'🎵', link:'', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+    { id:'song2',  name:'SoundHelix 2',  icon:'🎶', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+    { id:'song9',  name:'SoundHelix 9',  icon:'🎼', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3' },
+    { id:'song15', name:'SoundHelix 15', icon:'🎧', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3' }
+  ],
+  gallery: [
+    { id:"p01", src:"assets/gallery/photo-01.jpg", thumb:"assets/gallery/thumb/photo-01.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p02", src:"assets/gallery/photo-02.jpg", thumb:"assets/gallery/thumb/photo-02.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p03", src:"assets/gallery/photo-03.jpg", thumb:"assets/gallery/thumb/photo-03.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p04", src:"assets/gallery/photo-04.jpg", thumb:"assets/gallery/thumb/photo-04.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p05", src:"assets/gallery/photo-05.jpg", thumb:"assets/gallery/thumb/photo-05.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p06", src:"assets/gallery/photo-06.jpg", thumb:"assets/gallery/thumb/photo-06.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p07", src:"assets/gallery/photo-07.jpg", thumb:"assets/gallery/thumb/photo-07.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p08", src:"assets/gallery/photo-08.jpg", thumb:"assets/gallery/thumb/photo-08.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p09", src:"assets/gallery/photo-09.jpg", thumb:"assets/gallery/thumb/photo-09.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p10", src:"assets/gallery/photo-10.jpg", thumb:"assets/gallery/thumb/photo-10.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p11", src:"assets/gallery/photo-11.jpg", thumb:"assets/gallery/thumb/photo-11.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p12", src:"assets/gallery/photo-12.jpg", thumb:"assets/gallery/thumb/photo-12.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p13", src:"assets/gallery/photo-13.jpg", thumb:"assets/gallery/thumb/photo-13.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p14", src:"assets/gallery/photo-14.jpg", thumb:"assets/gallery/thumb/photo-14.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p15", src:"assets/gallery/photo-15.jpg", thumb:"assets/gallery/thumb/photo-15.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p16", src:"assets/gallery/photo-16.jpg", thumb:"assets/gallery/thumb/photo-16.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p17", src:"assets/gallery/photo-17.jpg", thumb:"assets/gallery/thumb/photo-17.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p18", src:"assets/gallery/photo-18.jpg", thumb:"assets/gallery/thumb/photo-18.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p19", src:"assets/gallery/photo-19.jpg", thumb:"assets/gallery/thumb/photo-19.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p20", src:"assets/gallery/photo-20.jpg", thumb:"assets/gallery/thumb/photo-20.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p21", src:"assets/gallery/photo-21.jpg", thumb:"assets/gallery/thumb/photo-21.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p22", src:"assets/gallery/photo-22.jpg", thumb:"assets/gallery/thumb/photo-22.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p23", src:"assets/gallery/photo-23.jpg", thumb:"assets/gallery/thumb/photo-23.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p24", src:"assets/gallery/photo-24.jpg", thumb:"assets/gallery/thumb/photo-24.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p25", src:"assets/gallery/photo-25.jpg", thumb:"assets/gallery/thumb/photo-25.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p26", src:"assets/gallery/photo-26.jpg", thumb:"assets/gallery/thumb/photo-26.jpg", caption:{ uz:"", en:"", ru:"" } },
+    { id:"p27", src:"assets/gallery/photo-27.jpg", thumb:"assets/gallery/thumb/photo-27.jpg", caption:{ uz:"", en:"", ru:"" } }
+  ],
   music: { src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
            volume: 40, autoplay: true, presetId: "song1" },
-  bgVideo: { enabled: false, presetId: "forest", src: "", opacity: 70, tint: 55 },
-  theme: "liquid",
-  publicCode: "mkm777"
+  bgVideo: { enabled: true, presetId: "clouds", src: "", opacity: 70, tint: 55 },
+  lang: "uz",
+  theme: "liquid"
 };
-
-const THEMES = ['liquid','classic','modern','dark'];
-
-/* Aerial nature loops — archive.org serves these with CORS and they're
-   hotlink-friendly (Mixkit/Pexels/Pixabay all 403 direct embeds). */
-const VIDEO_PRESETS = [
-  { id:'forest',    name:"Bulutlar va yashil o'rmon", thumb:'https://archive.org/services/img/pixabay-9584',
-    url:'https://archive.org/download/pixabay-9584/video-9584_source.mp4' },
-  { id:'green',     name:"Yashil o'rmon manzarasi",   thumb:'https://archive.org/services/img/pixabay-19400',
-    url:'https://archive.org/download/pixabay-19400/video-19400_large.mp4' },
-  { id:'path',      name:"Sehrli o'rmon yo'li",       thumb:'https://archive.org/services/img/pixabay-19731',
-    url:'https://archive.org/download/pixabay-19731/video-19731_large.mp4' },
-  { id:'mountains', name:"Tog' panoramasi",           thumb:'https://archive.org/services/img/pixabay-21896',
-    url:'https://archive.org/download/pixabay-21896/video-21896_source.mp4' },
-  { id:'clouds',    name:'Bulutlar va osmon',         thumb:'https://archive.org/services/img/pixabay-21285',
-    url:'https://archive.org/download/pixabay-21285/video-21285_source.mp4' },
-  { id:'fog',       name:'Quyosh tumani',             thumb:'https://archive.org/services/img/pixabay-19409',
-    url:'https://archive.org/download/pixabay-19409/video-19409_large.mp4' }
-];
-
-const MUSIC_PRESETS = [
-  { id: 'song1', name: 'SoundHelix 1', icon: '🎵', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-  { id: 'song2', name: 'SoundHelix 2', icon: '🎶', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-  { id: 'song9', name: 'SoundHelix 9', icon: '🎼', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3' },
-  { id: 'song15', name: 'SoundHelix 15', icon: '🎧', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3' }
-];
+const THEMES = ['liquid','sand'];
 
 /* Brand icons (simple-icons paths, 24×24 viewBox) */
 const ICONS = {
@@ -122,6 +171,167 @@ const SOCIAL_META = {
   tiktok:{label:'TikTok',ph:'https://tiktok.com/@username'}, linkedin:{label:'LinkedIn',ph:'https://linkedin.com/in/username'},
   github:{label:'GitHub',ph:'https://github.com/username'}
 };
+
+/* ======================================================== INTERNATIONALISATION
+   The site speaks Uzbek, English and Russian. Two kinds of text:
+
+     1. CONTENT (bio, descriptions…) lives in `data` as { uz, en, ru } objects.
+        ML_FIELDS says which fields those are; L() reads the active language.
+     2. STATIC UI chrome (nav, headings, buttons) lives in STRINGS, applied to
+        any [data-i18n] element. The admin panel is deliberately Uzbek-only —
+        it's the owner's private tool, not a visitor surface.
+
+   Default language is always Uzbek; the visitor's choice is remembered per
+   browser (separate from the shared content, which is the same for everyone). */
+const LANGS = ['uz','en','ru'];
+
+const ML_FIELDS = {
+  profile:    ['profession','slogan','location','bio'],
+  ui:         ['hero_badge'],
+  experience: ['period','title','description'],
+  portfolio:  ['title','description'],
+  favorites:  ['title'],
+  education:  ['name','period','description'],
+  gallery:    ['caption']
+};
+
+let lang = (() => {
+  try { const s = localStorage.getItem('cvLang'); if (LANGS.includes(s)) return s; } catch {}
+  return 'uz';
+})();
+
+/* Read a possibly-multilingual value in the active language, falling back to
+   Uzbek, then any non-empty language, then ''. Plain strings pass through, so
+   old data and single-language fields keep working. */
+function L(v){
+  if (v == null) return '';
+  if (typeof v === 'string' || typeof v === 'number') return String(v);
+  if (typeof v === 'object'){
+    return v[lang] || v.uz || v.en || v.ru || '';
+  }
+  return '';
+}
+
+const STRINGS = {
+  nav_home:      { uz:'Bosh',      en:'Home',       ru:'Главная' },
+  nav_about:     { uz:'Haqimda',   en:'About',      ru:'Обо мне' },
+  nav_skills:    { uz:'Koʻnikmalar', en:'Skills',   ru:'Навыки' },
+  nav_exp:       { uz:'Tajriba',   en:'Experience', ru:'Опыт' },
+  nav_portfolio: { uz:'Ishlarim',  en:'Portfolio',  ru:'Портфолио' },
+  nav_fav:       { uz:'Sevimli',   en:'Favorites',  ru:'Избранное' },
+  nav_contact:   { uz:'Kontakt',   en:'Contact',    ru:'Контакты' },
+
+  settings_title:{ uz:'Til va koʻrinish', en:'Language & theme', ru:'Язык и тема' },
+  lang_label:    { uz:'Til',       en:'Language',   ru:'Язык' },
+  theme_liquid:  { uz:'Suyuq shisha', en:'Liquid Glass', ru:'Жидкое стекло' },
+  theme_sand:    { uz:'Uch rang',  en:'Three colors', ru:'Три цвета' },
+  download_cv:   { uz:'CV yuklab olish (PDF) ↓', en:'Download CV (PDF) ↓', ru:'Скачать CV (PDF) ↓' },
+
+  hand_title:    { uz:'Qoʻl bilan boshqaruv', en:'Hand control', ru:'Управление рукой' },
+  hand_reset:    { uz:'standart', en:'reset', ru:'сброс' },
+  hand_hint:     { uz:'Koʻrsatkich barmogʻingiz — sichqoncha. Bosh barmoqqa tez tekkizsangiz — bosish. Tekkizib turib qoʻlni tepa/pastga suring — sahifa aylanadi.',
+                   en:'Your index finger is the cursor. A quick tap to the thumb is a click. Hold them together and move up/down to scroll.',
+                   ru:'Указательный палец — курсор. Быстрое касание большого пальца — клик. Держите вместе и двигайте вверх/вниз — прокрутка.' },
+  hand_speed:    { uz:'Kursor sezgirligi', en:'Cursor sensitivity', ru:'Чувствительность курсора' },
+  hand_smooth:   { uz:'Silliqlash (titrashga qarshi)', en:'Smoothing (anti-jitter)', ru:'Сглаживание (против дрожания)' },
+  hand_pinch:    { uz:'Barmoq tekkizish sezgirligi', en:'Pinch sensitivity', ru:'Чувствительность щипка' },
+  hand_scroll:   { uz:'Aylantirish tezligi', en:'Scroll speed', ru:'Скорость прокрутки' },
+
+  hero_contact:  { uz:'Bogʻlanish', en:'Get in touch', ru:'Связаться' },
+  hero_cv:       { uz:'CV yuklab olish', en:'Download CV', ru:'Скачать CV' },
+  hero_available:{ uz:'Ishga tayyor', en:'Available', ru:'Доступен' },
+
+  sec_about:     { uz:'Haqimda', en:'About', ru:'Обо мне' },
+  sec_skills:    { uz:'Koʻnikmalar', en:'Skills', ru:'Навыки' },
+  sec_exp:       { uz:'Ish tajribasi', en:'Experience', ru:'Опыт работы' },
+  sec_portfolio: { uz:'Ishlarim', en:'Portfolio', ru:'Портфолио' },
+  sec_fav:       { uz:'Sevimlilarim', en:'My favorites', ru:'Избранное' },
+  sec_fav_sub:   { uz:'Men yoqtirgan pleylistlar, kanallar va resurslar',
+                   en:'Playlists, channels and resources I love',
+                   ru:'Плейлисты, каналы и ресурсы, которые я люблю' },
+  sec_contact:   { uz:'Bogʻlanish', en:'Contact', ru:'Контакты' },
+
+  stat_years:    { uz:'Yillik tajriba', en:'Years of experience', ru:'Лет опыта' },
+  stat_projects: { uz:'Loyihalar', en:'Projects', ru:'Проекты' },
+  stat_clients:  { uz:'Mijozlar', en:'Clients', ru:'Клиенты' },
+  stat_uptime:   { uz:'Ishonchlilik', en:'Uptime', ru:'Аптайм' },
+
+  contact_h:     { uz:'Loyihangiz haqida gaplashaylikmi?', en:'Let’s talk about your project', ru:'Обсудим ваш проект?' },
+  contact_sub:   { uz:'Xabar yozing — 24 soat ichida javob beraman.',
+                   en:'Drop a message — I reply within 24 hours.',
+                   ru:'Напишите — отвечаю в течение 24 часов.' },
+  form_name:     { uz:'Ismingiz', en:'Your name', ru:'Ваше имя' },
+  form_email:    { uz:'Elektron pochta', en:'Email', ru:'Эл. почта' },
+  form_subject:  { uz:'Mavzu', en:'Subject', ru:'Тема' },
+  form_message:  { uz:'Xabar', en:'Message', ru:'Сообщение' },
+  form_ph_name:  { uz:'Toʻliq ismingiz', en:'Your full name', ru:'Ваше полное имя' },
+  form_ph_subject:{ uz:'Loyiha haqida qisqacha', en:'Briefly about the project', ru:'Кратко о проекте' },
+  form_ph_msg:   { uz:'Loyihangiz haqida batafsil...', en:'Tell me about your project...', ru:'Расскажите о вашем проекте...' },
+  form_send:     { uz:'Xabar yuborish', en:'Send message', ru:'Отправить' },
+
+  photos_link:   { uz:'Rasmlarim', en:'My photos', ru:'Мои фото' },
+
+  nav_edu:       { uz:'Taʼlim', en:'Education', ru:'Образование' },
+  sec_edu:       { uz:'Taʼlim', en:'Education', ru:'Образование' },
+  edu_docs:      { uz:'Hujjatlar va rasmlar', en:'Documents & photos', ru:'Документы и фото' },
+  edu_nodocs:    { uz:'Hujjatlar tez orada qoʻshiladi', en:'Documents coming soon', ru:'Документы скоро появятся' },
+  edu_open:      { uz:'Batafsil →', en:'Details →', ru:'Подробнее →' },
+  close:         { uz:'Yopish', en:'Close', ru:'Закрыть' },
+
+  sec_playlist:  { uz:'Musiqalarim', en:'My music', ru:'Моя музыка' },
+  playlist_sub:  { uz:'Men yoqtirgan qoʻshiqlar — shu yerda tinglang yoki havolada oching',
+                   en:'Songs I love — listen right here or open the link',
+                   ru:'Песни, которые я люблю — слушайте здесь или откройте по ссылке' },
+
+  cat_all:   { uz:'Barchasi', en:'All', ru:'Все' },
+  cat_bot:   { uz:'Botlar', en:'Bots', ru:'Боты' },
+  cat_site:  { uz:'Saytlar', en:'Websites', ru:'Сайты' },
+  cat_app:   { uz:'Ilovalar', en:'Apps', ru:'Приложения' },
+  cat_esp32: { uz:'ESP32', en:'ESP32', ru:'ESP32' },
+  cat_award: { uz:'Mukofotlar', en:'Awards', ru:'Награды' },
+  cat_other: { uz:'Boshqa', en:'Other', ru:'Другое' },
+
+};
+
+/* Skill-category display names. The data keeps the original keys; only the
+   heading shown to the visitor is translated. Unknown categories (the owner
+   can invent new ones in the admin) pass through untouched. */
+const CAT_I18N = {
+  'Languages':    { uz:'Dasturlash tillari', en:'Languages', ru:'Языки программирования' },
+  'Frontend':     { uz:'Veb-interfeys', en:'Frontend', ru:'Веб-интерфейс' },
+  'Backend & AI': { uz:'Server va sunʼiy intellekt', en:'Backend & AI', ru:'Сервер и ИИ' },
+  'DevOps':       { uz:'DevOps', en:'DevOps', ru:'DevOps' }
+};
+
+/* Portfolio categories, in display order. Chips render only for categories
+   that actually contain projects (plus "all"). */
+const PORTFOLIO_CATS = ['bot','site','app','esp32','award','other'];
+
+const T = key => (STRINGS[key] ? (STRINGS[key][lang] || STRINGS[key].uz) : key);
+
+/* Walk every ML field and coerce it to a { uz, en, ru } object. This upgrades
+   old single-language data (string → {uz:string}) and repairs partial objects,
+   so render and admin can always assume the trilingual shape. */
+function normalizeML(d){
+  for (const [root, fields] of Object.entries(ML_FIELDS)){
+    const node = d[root];
+    if (!node) continue;
+    const rows = Array.isArray(node) ? node : [node];
+    for (const row of rows){
+      if (!row || typeof row !== 'object') continue;
+      for (const f of fields){
+        let v = row[f];
+        if (v == null) v = '';
+        if (typeof v === 'string' || typeof v === 'number'){
+          row[f] = { uz: String(v), en: '', ru: '' };
+        } else if (typeof v === 'object'){
+          row[f] = { uz: v.uz || '', en: v.en || '', ru: v.ru || '' };
+        }
+      }
+    }
+  }
+  return d;
+}
 
 /* ------------------------------------------------------------------ STATE */
 const clone = o => JSON.parse(JSON.stringify(o));
@@ -147,15 +357,32 @@ let data = (() => {
     const saved = localStorage.getItem('cvData');
     if (saved) d = merge(d, JSON.parse(saved));
   } catch(e){ console.warn('loadData', e); }
-  return d;
+  return normalizeML(d);
 })();
 
-let saveTimer = null;
+let saveTimer = null, cloudTimer = null;
 function save(){
-  try { localStorage.setItem('cvData', JSON.stringify(data)); flashSaved(); return true; }
-  catch(e){ console.warn('saveData', e); toast('Saqlab bo\'lmadi — xotira to\'lgan bo\'lishi mumkin'); return false; }
+  let ok = true;
+  try { localStorage.setItem('cvData', JSON.stringify(data)); flashSaved(); }
+  catch(e){ console.warn('saveData', e); toast('Saqlab bo\'lmadi — xotira to\'lgan bo\'lishi mumkin'); ok = false; }
+  // When the admin is signed into the cloud, every change is republished (a
+  // little after the last edit) so it reaches every visitor — no manual step.
+  cloudPushSoon();
+  return ok;
 }
 function saveSoon(){ clearTimeout(saveTimer); saveTimer = setTimeout(save, 250); }
+
+/* Debounced auto-publish. Only fires for a signed-in admin; for everyone else
+   Cloud.save() would be rejected by RLS anyway, so we don't even try. */
+function cloudPushSoon(){
+  const C = window.Cloud;
+  if (!C?.enabled || !C.status().signedIn) return;
+  clearTimeout(cloudTimer);
+  cloudTimer = setTimeout(async () => {
+    try { await C.save(data); admin.renderSync?.(); flashSaved(); }
+    catch(e){ console.warn('auto-publish', e); toast('Bulutga saqlanmadi — qayta urinilmoqda', 2500); }
+  }, 1400);
+}
 
 const get = (path, obj=data) => path.split('.').reduce((o,k)=>o?.[k], obj);
 function set(path, val){
@@ -168,6 +395,7 @@ function set(path, val){
 const $  = (s,r=document) => r.querySelector(s);
 const $$ = (s,r=document) => Array.from(r.querySelectorAll(s));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const uid = () => Math.random().toString(36).slice(2, 9);
 const tidyUrl = u => { u=String(u||'').trim(); if(!u) return ''; return /^(https?:|mailto:|tel:|\/|\.|#)/i.test(u) ? u : 'https://'+u; };
 
 function toast(msg, ms=2200){
@@ -183,11 +411,13 @@ function flashSaved(){
 
 /* ---------------------------------------------------------------- RENDER */
 function renderBindings(){
+  // Every data-bind value is run through L(): plain strings pass through, and
+  // multilingual { uz,en,ru } fields resolve to the active language.
   $$('[data-bind]').forEach(el => {
-    const v = get(el.dataset.bind);
+    const v = L(get(el.dataset.bind));
     if (v !== undefined && v !== null && v !== '') el.textContent = v;
   });
-  document.title = `${data.profile.name} — ${data.profile.profession}`;
+  document.title = `${data.profile.name} — ${L(data.profile.profession)}`;
   const img = $('#avatarImg');
   if (img){
     const src = data.profile.avatar || DEFAULTS.profile.avatar;
@@ -197,9 +427,9 @@ function renderBindings(){
 }
 
 function renderStats(){
-  const map = [['years','Yillik tajriba'],['projects','Loyihalar'],['clients','Mijozlar'],['uptime','Ishonchlilik']];
-  $('#statsWrap').innerHTML = map.map(([k,label]) =>
-    `<div class="stat"><b>${esc(data.stats[k])}</b><span>${label}</span></div>`).join('');
+  const map = [['years','stat_years'],['projects','stat_projects'],['clients','stat_clients'],['uptime','stat_uptime']];
+  $('#statsWrap').innerHTML = map.map(([k,skey]) =>
+    `<div class="stat"><b>${esc(data.stats[k])}</b><span>${esc(T(skey))}</span></div>`).join('');
 }
 
 function renderSkills(){
@@ -207,7 +437,7 @@ function renderSkills(){
   data.skills.forEach(s => (groups[s.category || 'Other'] ||= []).push(s));
   $('#skillsWrap').innerHTML = Object.entries(groups).map(([cat, arr]) => `
     <div class="sgroup" data-rv>
-      <h3>${esc(cat)}</h3>
+      <h3>${esc(CAT_I18N[cat]?.[lang] || cat)}</h3>
       ${arr.map(s => `
         <div class="skill">
           <div class="skill__t"><b>${esc(s.name)}</b><span>${Number(s.level)||0}%</span></div>
@@ -218,61 +448,198 @@ function renderSkills(){
 
 function renderTimeline(){
   const w = $('#timelineWrap');
-  if (!data.experience.length){ w.innerHTML = `<p class="muted">Hali tajriba qo'shilmagan.</p>`; return; }
+  const empty = { uz:'Hali tajriba qoʻshilmagan.', en:'No experience added yet.', ru:'Опыт пока не добавлен.' };
+  if (!data.experience.length){ w.innerHTML = `<p class="muted">${esc(empty[lang]||empty.uz)}</p>`; return; }
   w.innerHTML = data.experience.map(e => `
     <div class="titem" data-rv>
-      <div class="titem__p">${esc(e.period)}</div>
-      <h3 class="titem__t">${esc(e.title)}</h3>
+      <div class="titem__p">${esc(L(e.period))}</div>
+      <h3 class="titem__t">${esc(L(e.title))}</h3>
       <div class="titem__c">${esc(e.company)}</div>
-      <p class="titem__d">${esc(e.description)}</p>
+      <p class="titem__d">${esc(L(e.description))}</p>
     </div>`).join('');
 }
 
+/* ------------------------------------------------------------ EDUCATION
+   The site shows only name + years; clicking a row opens a modal with the
+   full description and the proof documents/photos. */
+function renderEducation(){
+  const w = $('#educationWrap'), sec = $('#education');
+  if (!w || !sec) return;
+  const list = (data.education || []).filter(e => L(e.name));
+  const navLink = $('.nav__links a[data-section="education"]')?.parentElement;
+  const mobLink = $('#mobileMenu a[href="#education"]');
+  sec.hidden = !list.length;
+  if (navLink) navLink.hidden = !list.length;
+  if (mobLink) mobLink.hidden = !list.length;
+  if (!list.length){ w.innerHTML=''; return; }
+  w.innerHTML = list.map((e, i) => `
+    <button class="edu" data-edu="${i}">
+      <span class="edu__b">
+        <b>${esc(L(e.name))}</b>
+        ${L(e.period) ? `<span class="edu__p">${esc(L(e.period))}</span>` : ''}
+      </span>
+      <span class="edu__go">${esc(T('edu_open'))}</span>
+    </button>`).join('');
+}
+
+let eduDocs = [], eduDocIdx = 0;
+function openEduModal(i){
+  const e = (data.education||[])[i]; if (!e) return;
+  const m = $('#eduModal'); if (!m) return;
+  $('#eduMTitle').textContent = L(e.name);
+  $('#eduMPeriod').textContent = L(e.period) || '';
+  $('#eduMDesc').textContent = L(e.description) || '';
+  const docs = (e.docs||[]).filter(d => d && d.src);
+  eduDocs = docs;
+  $('#eduMDocsH').textContent = T('edu_docs');
+  $('#eduMDocs').innerHTML = docs.length
+    ? docs.map((d,j) => `<img src="${esc(d.thumb || d.src)}" alt="doc ${j+1}" loading="lazy" data-doc="${j}">`).join('')
+    : `<p class="muted" style="font-size:13px">${esc(T('edu_nodocs'))}</p>`;
+  m.classList.add('open'); m.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeEduModal(){
+  const m = $('#eduModal'); if (!m) return;
+  m.classList.remove('open'); m.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+function showDoc(n){
+  if (!eduDocs.length) return;
+  eduDocIdx = (n + eduDocs.length) % eduDocs.length;
+  $('#dlbImg').src = eduDocs[eduDocIdx].src;
+}
+function initEducation(){
+  $('#educationWrap')?.addEventListener('click', e => {
+    const b = e.target.closest('[data-edu]'); if (b) openEduModal(+b.dataset.edu);
+  });
+  $('#eduMClose').onclick = closeEduModal;
+  $('#eduModal')?.addEventListener('click', e => { if (e.target.id === 'eduModal') closeEduModal(); });
+  // Doc lightbox on top of the modal
+  const dlb = $('#docLightbox');
+  const closeDlb = () => { dlb.classList.remove('open'); $('#dlbImg').removeAttribute('src'); };
+  $('#eduMDocs')?.addEventListener('click', e => {
+    const im = e.target.closest('[data-doc]'); if (!im) return;
+    showDoc(+im.dataset.doc); dlb.classList.add('open');
+  });
+  $('#dlbClose').onclick = closeDlb;
+  $('#dlbPrev').onclick = ev => { ev.stopPropagation(); showDoc(eduDocIdx-1); };
+  $('#dlbNext').onclick = ev => { ev.stopPropagation(); showDoc(eduDocIdx+1); };
+  dlb?.addEventListener('click', e => { if (e.target === dlb || e.target.id === 'dlbImg') closeDlb(); });
+  addEventListener('keydown', e => {
+    if (dlb?.classList.contains('open')){
+      if (e.key === 'Escape') closeDlb();
+      if (e.key === 'ArrowLeft') showDoc(eduDocIdx-1);
+      if (e.key === 'ArrowRight') showDoc(eduDocIdx+1);
+      return;
+    }
+    if (e.key === 'Escape' && $('#eduModal')?.classList.contains('open')) closeEduModal();
+  });
+}
+
+let portfolioFilter = 'all';
 function renderPortfolio(){
+  const chips = $('#portfolioCats');
+  if (chips){
+    const present = PORTFOLIO_CATS.filter(c => (data.portfolio||[]).some(p => (p.cat||'other') === c));
+    chips.innerHTML = present.length > 1
+      ? ['all', ...present].map(c =>
+          `<button class="chip ${portfolioFilter===c?'active':''}" data-cat="${c}">${esc(T('cat_'+c))}</button>`).join('')
+      : '';
+    if (portfolioFilter !== 'all' && !present.includes(portfolioFilter)) portfolioFilter = 'all';
+  }
   const w = $('#portfolioWrap');
-  if (!data.portfolio.length){ w.innerHTML = `<p class="muted">Hali loyiha qo'shilmagan.</p>`; return; }
+  const empty = { uz:'Hali loyiha qoʻshilmagan.', en:'No projects added yet.', ru:'Проекты пока не добавлены.' };
+  if (!data.portfolio.length){ w.innerHTML = `<p class="muted">${esc(empty[lang]||empty.uz)}</p>`; return; }
+  const view = { uz:"Koʻrish ↗", en:'View ↗', ru:'Открыть ↗' };
   const grads = ['linear-gradient(135deg,#ccff33,#5fbf3f)','linear-gradient(135deg,#8a6bff,#4a3fbf)','linear-gradient(135deg,#ff6bcb,#bf3f8a)'];
-  w.innerHTML = data.portfolio.map((p,i) => {
+  const shown = data.portfolio.filter(p => portfolioFilter === 'all' || (p.cat||'other') === portfolioFilter);
+  w.innerHTML = shown.map((p,i) => {
     const link = tidyUrl(p.link);
+    const title = L(p.title);
     return `
     <article class="pitem" data-rv>
       <div class="pitem__top" style="background:${grads[i%3]}">
-        ${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" decoding="async">`
-                  : `<span style="color:rgba(0,0,0,.55)">${esc((p.title||'P').charAt(0).toUpperCase())}</span>`}
+        ${p.image ? `<img src="${esc(p.image)}" alt="${esc(title)}" loading="lazy" decoding="async">`
+                  : `<span style="color:rgba(0,0,0,.55)">${esc((title||'P').charAt(0).toUpperCase())}</span>`}
       </div>
       <div class="pitem__b">
-        <h3>${esc(p.title)}</h3>
-        <p>${esc(p.description)}</p>
+        <h3>${esc(title)}</h3>
+        <p>${esc(L(p.description))}</p>
         <div class="tags">${(p.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
-        ${link ? `<a class="plink" href="${esc(link)}" target="_blank" rel="noopener">Ko'rish ↗</a>` : ''}
+        ${link ? `<a class="plink" href="${esc(link)}" target="_blank" rel="noopener">${esc(view[lang]||view.uz)}</a>` : ''}
       </div>
     </article>`;
   }).join('');
 }
 
 function renderFavorites(){
-  const list = (data.favorites||[]).filter(f => f.title && tidyUrl(f.url));
+  const list = (data.favorites||[]).filter(f => L(f.title) && tidyUrl(f.url));
   const w = $('#favoritesWrap');
   const sec = $('#favorites');
-  // Hide the section AND its nav link when there is nothing to show, so the
-  // nav never points at an empty anchor.
+  // The playlist lives inside this section too, so the section must survive
+  // when there are tracks even if every favourite link is empty. Hide the
+  // section (and its nav links) only when BOTH are empty.
+  const hasTracks = (data.tracks||[]).some(t => t.name && (tidyUrl(t.url) || tidyUrl(t.link)));
   const navLink = $('.nav__links a[data-section="favorites"]')?.parentElement;
   const mobLink = $('#mobileMenu a[href="#favorites"]');
-  if (!list.length){
-    sec.hidden = true;
-    if (navLink) navLink.hidden = true;
-    if (mobLink) mobLink.hidden = true;
-    return;
-  }
-  sec.hidden = false;
-  if (navLink) navLink.hidden = false;
-  if (mobLink) mobLink.hidden = false;
+  const show = !!(list.length || hasTracks);
+  sec.hidden = !show;
+  if (navLink) navLink.hidden = !show;
+  if (mobLink) mobLink.hidden = !show;
+  if (!list.length){ w.innerHTML = ''; return; }
   w.innerHTML = list.map(f => `
     <a class="link" href="${esc(tidyUrl(f.url))}" target="_blank" rel="noopener" data-rv>
       <span class="link__ico">${esc(f.icon || '🔗')}</span>
-      <span class="link__b"><b>${esc(f.title)}</b><span>${esc(String(f.url).replace(/^https?:\/\//,''))}</span></span>
+      <span class="link__b"><b>${esc(L(f.title))}</b><span>${esc(String(f.url).replace(/^https?:\/\//,''))}</span></span>
       <span class="link__go">↗</span>
     </a>`).join('');
+}
+
+/* ------------------------------------------------------------- PLAYLIST
+   Public list of the owner's favourite tracks. A track can be:
+     url  → a direct audio file, playable right on the site
+     link → an external page (YouTube / Spotify / Yandex Music), opens in a tab */
+function renderPlaylist(){
+  const w = $('#playlistWrap'), blk = $('#playlistBlock');
+  if (!w || !blk) return;
+  const list = (data.tracks||[]).filter(t => t.name && (tidyUrl(t.url) || tidyUrl(t.link)));
+  blk.hidden = !list.length;
+  if (!list.length){ w.innerHTML=''; return; }
+  const cur = $('#bgAudio');
+  w.innerHTML = list.map((t, i) => {
+    const playable = !!tidyUrl(t.url);
+    const playing = playable && cur && !cur.paused && cur.src === tidyUrl(t.url);
+    return `
+    <div class="trk ${playing?'trk--on':''}">
+      ${playable ? `<button class="trk__play" data-play="${i}" aria-label="Play">
+          ${playing
+            ? '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'
+            : '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>'}
+        </button>` : `<span class="trk__ico">${esc(t.icon||'🎵')}</span>`}
+      <span class="trk__n">${esc(t.name)}</span>
+      ${tidyUrl(t.link) ? `<a class="trk__ext" href="${esc(tidyUrl(t.link))}" target="_blank" rel="noopener" title="Havolada ochish">↗</a>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function initPlaylist(){
+  const audio = $('#bgAudio');
+  $('#playlistWrap')?.addEventListener('click', async e => {
+    const b = e.target.closest('[data-play]'); if (!b) return;
+    const list = (data.tracks||[]).filter(t => t.name && (tidyUrl(t.url) || tidyUrl(t.link)));
+    const t = list[+b.dataset.play]; if (!t) return;
+    const src = tidyUrl(t.url); if (!src) return;
+    if (audio.src === src && !audio.paused){ audio.pause(); }
+    else {
+      // Preview playback deliberately does NOT overwrite data.music.src — the
+      // background-music choice in the admin stays whatever the owner set.
+      audio.src = src;
+      try { await audio.play(); } catch { toast('Chalib boʻlmadi'); }
+    }
+    renderPlaylist();
+  });
+  audio?.addEventListener('play',  () => renderPlaylist());
+  audio?.addEventListener('pause', () => renderPlaylist());
 }
 
 function renderSocial(){
@@ -287,14 +654,17 @@ function renderSocial(){
 
 function renderContact(){
   const c = data.contacts;
+  const phoneLabel = { uz:'Telefon', en:'Phone', ru:'Телефон' }[lang] || 'Telefon';
+  const siteLabel  = { uz:'Veb-sayt', en:'Website', ru:'Веб-сайт' }[lang] || 'Veb-sayt';
+  const mailLabel  = { uz:'Elektron pochta', en:'Email', ru:'Эл. почта' }[lang] || 'Elektron pochta';
   const items = [
-    c.email && { l:'Email',   v:c.email, h:'mailto:'+c.email,
+    c.email && { l:mailLabel, v:c.email, h:'mailto:'+c.email,
       i:'<path d="M2 5.5h20v13H2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="m3 6 9 6 9-6" fill="none" stroke="currentColor" stroke-width="2"/>' },
-    c.phone && { l:'Telefon', v:c.phone, h:'tel:'+String(c.phone).replace(/[^\d+]/g,''),
+    c.phone && { l:phoneLabel, v:c.phone, h:'tel:'+String(c.phone).replace(/[^\d+]/g,''),
       i:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" fill="none" stroke="currentColor" stroke-width="2"/>' },
     tidyUrl(data.social?.telegram) && { l:'Telegram', v:String(data.social.telegram).replace(/^https?:\/\//,''), h:tidyUrl(data.social.telegram),
       i:`<path d="${ICONS.telegram}" fill="currentColor"/>` },
-    c.website && { l:'Website', v:String(c.website).replace(/^https?:\/\//,''), h:tidyUrl(c.website),
+    c.website && { l:siteLabel, v:String(c.website).replace(/^https?:\/\//,''), h:tidyUrl(c.website),
       i:'<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z" fill="none" stroke="currentColor" stroke-width="2"/>' }
   ].filter(Boolean);
 
@@ -311,12 +681,182 @@ function renderContact(){
   }
 }
 
-/* ------------------------------------------------------- THEME + VIDEO */
+/* ================================================== THEME + VIDEO COLOUR ==
+   Two themes, and they work on opposite principles:
+
+     liquid → dark glass whose accent is SAMPLED FROM THE BACKGROUND VIDEO.
+              The lime green is only the fallback for "no video playing".
+     sand   → a closed three-ink palette (amber/navy/paper) defined in CSS.
+   ========================================================================== */
+const LIQUID_FALLBACK = { accent:'#ccff33', accent2:'#9de84a' };
+
 function applyTheme(t){
   if (!THEMES.includes(t)) t = 'liquid';
   data.theme = t;
   document.body.dataset.theme = t;
   $$('.theme').forEach(b => b.classList.toggle('active', b.dataset.themeSet === t));
+  // The sand theme owns its palette; drop any video-derived ink so switching
+  // back and forth can't leak green into it.
+  if (t === 'sand') clearAccent();
+  else resolveAccent();
+  const meta = $('meta[name="theme-color"]');
+  if (meta) meta.content = t === 'sand' ? '#FAF7F2' : '#08080a';
+}
+
+/* ---------------------------------------------------------- colour utils */
+const hex = (r,g,b) => '#' + [r,g,b].map(v => Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join('');
+
+function rgb2hsl(r,g,b){
+  r/=255; g/=255; b/=255;
+  const mx = Math.max(r,g,b), mn = Math.min(r,g,b), d = mx-mn;
+  let h = 0;
+  if (d){
+    if (mx===r) h = ((g-b)/d) % 6;
+    else if (mx===g) h = (b-r)/d + 2;
+    else h = (r-g)/d + 4;
+    h *= 60; if (h < 0) h += 360;
+  }
+  const l = (mx+mn)/2;
+  const s = d ? d / (1 - Math.abs(2*l - 1)) : 0;
+  return [h, s, l];
+}
+function hsl2rgb(h,s,l){
+  const c = (1 - Math.abs(2*l - 1)) * s;
+  const x = c * (1 - Math.abs(((h/60) % 2) - 1));
+  const m = l - c/2;
+  const [r,g,b] = h<60?[c,x,0]:h<120?[x,c,0]:h<180?[0,c,x]:h<240?[0,x,c]:h<300?[x,0,c]:[c,0,x];
+  return [(r+m)*255, (g+m)*255, (b+m)*255];
+}
+
+/* Sample one frame and pick the ink that best represents it.
+   Straight averaging turns any real footage into mud grey, so instead we
+   histogram the hues weighted by saturation — the eye reads a video by its
+   most *colourful* region, not its arithmetic mean. */
+function pickAccent(canvas){
+  const ctx = canvas.getContext('2d', { willReadFrequently:true });
+  let px;
+  try { px = ctx.getImageData(0, 0, canvas.width, canvas.height).data; }
+  catch { return null; }             // tainted canvas (video served without CORS)
+
+  const bins = new Array(24).fill(0);      // 15° per bin
+  const satOf = new Array(24).fill(0);
+  let lum = 0, n = 0;
+
+  for (let i = 0; i < px.length; i += 4){
+    const [h, s, l] = rgb2hsl(px[i], px[i+1], px[i+2]);
+    lum += l; n++;
+    if (l < 0.08 || l > 0.94) continue;    // near-black / blown-out: no hue info
+    const w = s * s;                        // saturated pixels dominate
+    const b = Math.min(23, Math.floor(h / 15));
+    bins[b] += w; satOf[b] += s * w;
+  }
+  if (!n) return null;
+
+  let best = 0;
+  for (let i = 1; i < 24; i++) if (bins[i] > bins[best]) best = i;
+  const avgLum = lum / n;
+
+  // Nothing colourful at all (grey/night footage) → a light neutral that
+  // still reads as an accent on the dark glass. The test is per-pixel, not a
+  // raw total: a flat grey frame still piles a little weight into some bin,
+  // and an absolute threshold would promote that noise to a confident hue.
+  if (bins[best] / n < 0.01) return { accent:'#e8ecf2', accent2:'#b9c2cf', from:'neutral' };
+
+  const hue = best * 15 + 7.5;
+  const sat = Math.min(1, Math.max(0.55, satOf[best] / bins[best] * 1.35));
+
+  // Fixed lightness, not the video's: the accent has to stay legible against
+  // the dark glass and behind white text. A dark video must not yield a dark
+  // accent — that's exactly what makes UI vanish.
+  const l1 = avgLum < 0.4 ? 0.62 : 0.56;
+  return {
+    accent:  hex(...hsl2rgb(hue, sat, l1)),
+    accent2: hex(...hsl2rgb((hue + 26) % 360, Math.min(1, sat * 0.9), l1 + 0.12)),
+    from: 'video'
+  };
+}
+
+const accentCache = Object.create(null);   // src → accent (resolved once per video)
+const currentVideoEntry = () => {
+  const cfg = data.bgVideo || {};
+  if (tidyUrl(cfg.src)) return { url: tidyUrl(cfg.src) };       // custom URL, no stored ink
+  return (data.videos || []).find(v => v.id === cfg.presetId) || null;
+};
+const currentVideoSrc = () => {
+  const cfg = data.bgVideo || {};
+  return tidyUrl(cfg.src) || currentVideoEntry()?.url || '';
+};
+
+function clearAccent(){
+  const r = document.documentElement.style;
+  ['--accent','--accent-dim','--accent-edge','--accent2','--accent-live','--blob2','--role-grad'].forEach(k => r.removeProperty(k));
+}
+
+function applyAccent(a){
+  if (data.theme !== 'liquid') return;
+  const use = a || LIQUID_FALLBACK;
+  const r = document.documentElement.style;
+  const n = parseInt(use.accent.slice(1), 16);
+  const [R,G,B] = [(n>>16)&255, (n>>8)&255, n&255];
+  r.setProperty('--accent', use.accent);
+  r.setProperty('--accent2', use.accent2);
+  r.setProperty('--accent-live', use.accent);        // theme swatch preview
+  r.setProperty('--accent-dim',  `rgba(${R},${G},${B},.16)`);
+  r.setProperty('--accent-edge', `rgba(${R},${G},${B},.25)`);
+  r.setProperty('--blob2', `radial-gradient(circle, rgba(${R},${G},${B},.30), transparent 68%)`);
+  r.setProperty('--role-grad', `linear-gradient(92deg, ${use.accent}, ${use.accent2} 55%, var(--violet))`);
+}
+
+/* Resolve the accent for whatever video is on. Once per src, cached — the
+   user asked for "once", and re-reading pixels every frame would cost a
+   GPU→CPU readback 60×/second for nothing.
+
+   The visible <video> deliberately has NO crossOrigin: setting it would stop
+   the archive.org presets from playing at all. So pixels are read from a
+   throwaway probe element instead, and a probe that fails costs us nothing
+   but the fallback ink. */
+function resolveAccent(){
+  const entry = currentVideoEntry();
+  const src = currentVideoSrc();
+  if (!src) return applyAccent(null);
+
+  if (accentCache[src]) return applyAccent(accentCache[src]);
+
+  // 1) Ink shipped with the entry (the built-in presets).
+  if (entry?.accent){
+    accentCache[src] = { accent: entry.accent, accent2: entry.accent2 || entry.accent, from:'preset' };
+    return applyAccent(accentCache[src]);
+  }
+
+  // 2) Sample it live. Works for anything CORS-enabled — notably every video
+  //    the admin uploads to Supabase Storage.
+  applyAccent(null);                                  // show the fallback meanwhile
+  probeAccent(src);
+}
+
+function probeAccent(src){
+  const p = document.createElement('video');
+  p.crossOrigin = 'anonymous';                        // must precede .src
+  p.muted = true; p.playsInline = true; p.preload = 'auto';
+  const done = () => { try { p.removeAttribute('src'); p.load(); } catch {} };
+
+  p.addEventListener('loadeddata', () => {
+    try {
+      const c = document.createElement('canvas');
+      c.width = 48; c.height = 27;
+      c.getContext('2d', { willReadFrequently:true }).drawImage(p, 0, 0, c.width, c.height);
+      const a = pickAccent(c);
+      if (a){ accentCache[src] = a; if (currentVideoSrc() === src) applyAccent(a); }
+    } catch(e){ /* tainted after all — fallback ink stays */ }
+    done();
+  }, { once:true });
+
+  // No CORS on that host → the probe dies here. The visible video is a
+  // separate element and is unaffected.
+  p.addEventListener('error', done, { once:true });
+  setTimeout(done, 15000);                            // never leave it downloading
+  p.src = src;
+  p.load();
 }
 
 /* The <video> has preload="none" and no src until it's switched on, so a
@@ -328,16 +868,20 @@ function applyBgVideo(){
   bg.style.setProperty('--bgv-op',   (Number(cfg.opacity ?? 70))/100);
   bg.style.setProperty('--bgv-tint', (Number(cfg.tint ?? 55))/100);
 
-  const preset = VIDEO_PRESETS.find(p => p.id === cfg.presetId);
-  const src = tidyUrl(cfg.src) || preset?.url || '';
+  const src = currentVideoSrc();
 
   if (!cfg.enabled || !src){
     v.classList.remove('on'); bg.classList.remove('video-on');
     v.pause(); v.removeAttribute('src'); v.load();
+    applyAccent(null);                               // back to the lime fallback
     return;
   }
   bg.classList.add('video-on');
+  resolveAccent();
   if (v.getAttribute('src') !== src){
+    // Deliberately NO crossOrigin here — archive.org's CDN sends no CORS
+    // header, and requesting CORS would make these videos fail to load at
+    // all. Colour comes from resolveAccent()/probeAccent() instead.
     v.src = src;
     // play() must wait for loadeddata — calling it right after load() aborts
     // the promise and the video silently never starts.
@@ -356,9 +900,74 @@ function applyBgVideo(){
   }
 }
 
+/* ------------------------------------------------------------- GALLERY */
+const galleryList = () => (data.gallery || []).filter(g => g && g.src);
+
+function renderGallery(){
+  const w = $('#galleryWrap'), sec = $('#gallery');
+  if (!w || !sec) return;
+  const list = galleryList();
+  const navLink = $('.nav__links a[data-section="gallery"]')?.parentElement;
+  const mobLink = $('#mobileMenu a[href="#gallery"]');
+  // An empty gallery hides the section AND its nav links, exactly like
+  // favorites does — the nav must never point at an empty anchor.
+  sec.hidden = !list.length;
+  if (navLink) navLink.hidden = !list.length;
+  if (mobLink) mobLink.hidden = !list.length;
+  if (!list.length){ w.innerHTML = ''; return; }
+
+  w.innerHTML = list.map((g, i) => {
+    const cap = L(g.caption);
+    return `
+    <figure class="gphoto" data-rv data-lb="${i}">
+      <img src="${esc(g.thumb || g.src)}" alt="${esc(cap || 'Foto ' + (i+1))}" loading="lazy" decoding="async">
+      ${cap ? `<figcaption>${esc(cap)}</figcaption>` : ''}
+    </figure>`;
+  }).join('');
+}
+
+function initLightbox(){
+  const box = $('#lightbox'), img = $('#lbImg'), cap = $('#lbCap');
+  if (!box) return;
+  let i = 0;
+
+  const show = n => {
+    const list = galleryList();
+    if (!list.length) return;
+    i = (n + list.length) % list.length;             // wrap both ways
+    img.src = list[i].src;
+    img.alt = L(list[i].caption) || `Foto ${i+1}`;
+    cap.textContent = L(list[i].caption) || '';
+  };
+  const open = n => {
+    show(n);
+    box.classList.add('open'); box.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    box.classList.remove('open'); box.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    img.removeAttribute('src');                      // stop holding a full-size decode
+  };
+
+  $('#galleryWrap')?.addEventListener('click', e => {
+    const f = e.target.closest('[data-lb]'); if (f) open(+f.dataset.lb);
+  });
+  $('#lbClose').onclick = close;
+  $('#lbPrev').onclick = e => { e.stopPropagation(); show(i-1); };
+  $('#lbNext').onclick = e => { e.stopPropagation(); show(i+1); };
+  box.addEventListener('click', e => { if (e.target === box || e.target === img) close(); });
+  addEventListener('keydown', e => {
+    if (!box.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft')  show(i-1);
+    if (e.key === 'ArrowRight') show(i+1);
+  });
+}
+
 function renderAll(){
   renderBindings(); renderStats(); renderSkills(); renderTimeline();
-  renderPortfolio(); renderFavorites(); renderSocial(); renderContact();
+  renderPortfolio(); renderEducation(); renderFavorites(); renderPlaylist(); renderSocial(); renderContact();
   observeReveal();
 }
 
@@ -498,19 +1107,19 @@ function downloadCV(){
     .pt{font-weight:700;font-size:12.5px}.pd{font-size:11px;color:#555}
     .st{display:flex;gap:18px;margin-top:10px;font-size:11px}.st b{font-size:17px;display:block}
   </style></head><body>
-    <div class="h"><div class="n">${esc(data.profile.name)}</div><div class="p">${esc(data.profile.profession)}</div>
-    <div class="c">${[c.email&&'✉ '+c.email, c.phone&&'☎ '+c.phone, data.profile.location&&'📍 '+data.profile.location,
+    <div class="h"><div class="n">${esc(data.profile.name)}</div><div class="p">${esc(L(data.profile.profession))}</div>
+    <div class="c">${[c.email&&'✉ '+c.email, c.phone&&'☎ '+c.phone, L(data.profile.location)&&'📍 '+L(data.profile.location),
         data.social.telegram&&'✈ '+String(data.social.telegram).replace(/^https?:\/\//,''),
         data.social.github&&'⌥ '+String(data.social.github).replace(/^https?:\/\//,'')]
         .filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('')}</div></div>
-    ${rows('Haqimda', `<p>${esc(data.profile.bio)}</p><div class="st">
-      <div><b>${esc(data.stats.years)}</b>Yillar</div><div><b>${esc(data.stats.projects)}</b>Loyihalar</div>
-      <div><b>${esc(data.stats.clients)}</b>Mijozlar</div><div><b>${esc(data.stats.uptime)}</b>Uptime</div></div>`)}
-    ${rows('Skills', `<div class="g">${data.skills.map(s=>`<div class="sk"><b>${esc(s.name)}</b><span>${s.level}%</span></div>`).join('')}</div>`)}
-    ${rows('Ish tajribasi', data.experience.map(e=>`<div class="e"><div class="ep">${esc(e.period)}</div>
-      <div class="et">${esc(e.title)}</div><div class="ec">${esc(e.company)}</div><div class="ed">${esc(e.description)}</div></div>`).join(''))}
-    ${rows('Portfolio', data.portfolio.map(p=>`<div class="pi"><div class="pt">${esc(p.title)}</div>
-      <div class="pd">${esc(p.description)}</div><div class="pd">${(p.tags||[]).join(' · ')}</div></div>`).join(''))}
+    ${rows(T('sec_about'), `<p>${esc(L(data.profile.bio))}</p><div class="st">
+      <div><b>${esc(data.stats.years)}</b>${esc(T('stat_years'))}</div><div><b>${esc(data.stats.projects)}</b>${esc(T('stat_projects'))}</div>
+      <div><b>${esc(data.stats.clients)}</b>${esc(T('stat_clients'))}</div><div><b>${esc(data.stats.uptime)}</b>${esc(T('stat_uptime'))}</div></div>`)}
+    ${rows(T('sec_skills'), `<div class="g">${data.skills.map(s=>`<div class="sk"><b>${esc(s.name)}</b><span>${s.level}%</span></div>`).join('')}</div>`)}
+    ${rows(T('sec_exp'), data.experience.map(e=>`<div class="e"><div class="ep">${esc(L(e.period))}</div>
+      <div class="et">${esc(L(e.title))}</div><div class="ec">${esc(e.company)}</div><div class="ed">${esc(L(e.description))}</div></div>`).join(''))}
+    ${rows(T('sec_portfolio'), data.portfolio.map(p=>`<div class="pi"><div class="pt">${esc(L(p.title))}</div>
+      <div class="pd">${esc(L(p.description))}</div><div class="pd">${(p.tags||[]).join(' · ')}</div></div>`).join(''))}
     <script>onload=()=>setTimeout(print,250)<\/script></body></html>`);
   w.document.close();
 }
@@ -526,6 +1135,27 @@ function initForm(){
     location.href = url;
     setTimeout(() => { e.target.reset(); $('#formStatus').textContent = 'Tayyor! Email orqali yuboring.'; }, 700);
   });
+}
+
+/* Trilingual input group for a { uz, en, ru } content field. Shows all three
+   at once — the owner asked that new entries be filled in every language, so
+   they must all be visible. Empty languages get a red "missing" cue. */
+function mlInput(path, cur, opt){
+  opt = opt || {};
+  cur = (cur && typeof cur === 'object') ? cur : {};
+  const one = lg => {
+    const val = cur[lg] || '';
+    const miss = val.trim() ? '' : ' mlf__in--miss';
+    return opt.textarea
+      ? `<textarea rows="2" class="mlf__in${miss}" data-ml="${path}" data-lang="${lg}" placeholder="${esc(opt.ph||'')}">${esc(val)}</textarea>`
+      : `<input type="text" class="mlf__in${miss}" data-ml="${path}" data-lang="${lg}" value="${esc(val)}" placeholder="${esc(opt.ph||'')}">`;
+  };
+  return `<div class="field full mlf">
+    <label>${esc(opt.label||'')} <span class="mlf__req">3 tilda</span></label>
+    <div class="mlf__row"><span class="mlf__lg">UZ</span>${one('uz')}</div>
+    <div class="mlf__row"><span class="mlf__lg">EN</span>${one('en')}</div>
+    <div class="mlf__row"><span class="mlf__lg">RU</span>${one('ru')}</div>
+  </div>`;
 }
 
 /* ============================================================== ADMIN ==== */
@@ -548,7 +1178,12 @@ const admin = {
     $$('[data-model]').forEach(el => {
       const v = get(el.dataset.model);
       if (el.type === 'checkbox') el.checked = !!v;
-      else el.value = v ?? '';
+      else el.value = (v && typeof v === 'object') ? '' : (v ?? '');
+    });
+    // Trilingual fields: each input owns its language via data-lang.
+    $$('[data-ml]').forEach(el => {
+      const o = get(el.dataset.ml);
+      el.value = (o && typeof o === 'object') ? (o[el.dataset.lang] || '') : '';
     });
     const vol = $('#musicVol');
     if (vol){ vol.value = data.music.volume ?? 40; $('#volLabel').textContent = vol.value; }
@@ -556,16 +1191,57 @@ const admin = {
     if (op){ op.value = data.bgVideo.opacity ?? 70; $('#bgOpLabel').textContent = op.value; }
     if (tn){ tn.value = data.bgVideo.tint ?? 55;    $('#bgTintLabel').textContent = tn.value; }
     this.renderSkills(); this.renderExperience(); this.renderPortfolio();
-    this.renderFavorites(); this.renderSocial(); this.renderMusic(); this.renderVideos();
+    this.renderEducation(); this.renderFavorites(); this.renderSocial(); this.renderMusic(); this.renderVideos();
+    this.renderGallery(); this.renderSync();
   },
 
+  /* Videos + tracks share one row shape: thumb · name · url · use/delete. */
   renderVideos(){
-    const w = $('#bgVideoPresets'); if (!w) return;
-    w.innerHTML = VIDEO_PRESETS.map(p => `
-      <div class="vpreset ${data.bgVideo.presetId===p.id?'active':''}"
-           data-vpreset="${p.id}" style="background-image:url('${esc(p.thumb)}')">
-        <b>${esc(p.name)}</b>
-      </div>`).join('');
+    const w = $('#adminVideos'); if (!w) return;
+    const active = data.bgVideo.presetId;
+    w.innerHTML = (data.videos||[]).map((v,i) => `
+      <div class="mediarow ${active===v.id?'active':''}">
+        <span class="mediarow__thumb" style="${v.thumb?`background-image:url('${esc(v.thumb)}')`:''}">${v.thumb?'':'🎬'}</span>
+        <div class="mediarow__f">
+          <input type="text" data-arr="videos.${i}.name" value="${esc(v.name)}" placeholder="Video nomi">
+          <input type="text" data-arr="videos.${i}.url" value="${esc(v.url)}" placeholder="https://...mp4">
+        </div>
+        <div class="mediarow__acts">
+          <button class="mediarow__btn ${active===v.id?'mediarow__btn--use':''}" data-usevideo="${esc(v.id)}"
+            ${active===v.id?'disabled':''}>${active===v.id?'✓ Fonda':'Qo\'yish'}</button>
+          <button class="mediarow__btn mediarow__btn--red" data-del="videos" data-i="${i}">O'chirish</button>
+        </div>
+      </div>`).join('') || `<p class="hint">Hali video yo'q — pastdan qo'shing.</p>`;
+  },
+
+  renderGallery(){
+    const w = $('#adminGallery'); if (!w) return;
+    const cap = g => (g.caption && typeof g.caption === 'object') ? g.caption : {};
+    w.innerHTML = (data.gallery||[]).map((g,i) => `
+      <div class="gcell" style="background-image:url('${esc(g.thumb || g.src)}')">
+        <button class="gcell__x" data-del="gallery" data-i="${i}" title="O'chirish">×</button>
+        <div class="gcell__caps">
+          <input class="gcell__cap" type="text" data-ml="gallery.${i}.caption" data-lang="uz" value="${esc(cap(g).uz||'')}" placeholder="izoh UZ">
+          <input class="gcell__cap" type="text" data-ml="gallery.${i}.caption" data-lang="en" value="${esc(cap(g).en||'')}" placeholder="caption EN">
+          <input class="gcell__cap" type="text" data-ml="gallery.${i}.caption" data-lang="ru" value="${esc(cap(g).ru||'')}" placeholder="подпись RU">
+        </div>
+      </div>`).join('') || `<p class="hint">Hali rasm yo'q — tepadan qo'shing.</p>`;
+  },
+
+  /* One status strip, mirrored into every pane that can touch the cloud. */
+  renderSync(){
+    const st = window.Cloud?.status?.() || { enabled:false };
+    const cls = !st.enabled ? '' : st.signedIn ? ' syncbar--live' : ' syncbar--err';
+    const txt = !st.enabled
+      ? `Bulut ulanmagan — o'zgarishlar faqat shu brauzerda saqlanadi. <b>config.js</b> ni to'ldiring.`
+      : st.signedIn
+        ? `Bulutga ulangan: <b>${esc(st.email)}</b> — saqlagach hamma ko'radi.`
+        : `Bulut sozlangan, lekin kirmagansiz. <b>Bulut ☁</b> bo'limidan kiring.`;
+    const html = `<div class="syncbar${cls}"><i class="syncbar__dot"></i><span class="syncbar__t">${txt}</span></div>`;
+    ['#syncGallery','#syncMusic','#syncVideos','#syncCloud'].forEach(id => {
+      const el = $(id); if (el) el.innerHTML = html;
+    });
+    const au = $('#cloudAuth'); if (au) au.style.display = st.enabled ? '' : 'none';
   },
 
   renderSkills(){
@@ -585,10 +1261,34 @@ const admin = {
       <div class="item">
         <div class="item__h"><b>Tajriba ${i+1}</b><button class="item__x" data-del="experience" data-i="${i}">O'chirish</button></div>
         <div class="item__g">
-          <div class="field"><label>Davr</label><input type="text" data-arr="experience.${i}.period" value="${esc(e.period)}"></div>
-          <div class="field"><label>Lavozim</label><input type="text" data-arr="experience.${i}.title" value="${esc(e.title)}"></div>
           <div class="field full"><label>Kompaniya</label><input type="text" data-arr="experience.${i}.company" value="${esc(e.company)}"></div>
-          <div class="field full"><label>Tavsif</label><textarea rows="3" data-arr="experience.${i}.description">${esc(e.description)}</textarea></div>
+          ${mlInput(`experience.${i}.period`, e.period, {label:'Davr'})}
+          ${mlInput(`experience.${i}.title`, e.title, {label:'Lavozim'})}
+          ${mlInput(`experience.${i}.description`, e.description, {label:'Tavsif', textarea:true})}
+        </div>
+      </div>`).join('');
+  },
+  renderEducation(){
+    const w = $('#adminEducation'); if (!w) return;
+    w.innerHTML = (data.education||[]).map((e,i) => `
+      <div class="item">
+        <div class="item__h"><b>Taʼlim ${i+1}</b><button class="item__x" data-del="education" data-i="${i}">O'chirish</button></div>
+        <div class="item__g">
+          ${mlInput(`education.${i}.name`, e.name, {label:'Nomi (maktab/litsey/universitet)'})}
+          ${mlInput(`education.${i}.period`, e.period, {label:"Yillari (masalan: 2013 — 2022)"})}
+          ${mlInput(`education.${i}.description`, e.description, {label:"Batafsil ma'lumot", textarea:true})}
+          <div class="field full">
+            <label>Hujjatlar va rasmlar (diplom, attestat, sertifikat...)</label>
+            <div class="edudocs">
+              ${(e.docs||[]).map((d,j) => `
+                <span class="edudoc" style="background-image:url('${esc(d.thumb || d.src)}')">
+                  <button class="gcell__x" data-deldoc="${i}.${j}" title="O'chirish">×</button>
+                </span>`).join('')}
+            </div>
+            <label class="btn btn--ghost" style="cursor:pointer;margin-top:8px;display:inline-flex">📄 Hujjat/rasm qo'shish
+              <input type="file" accept="image/*" data-edudoc="${i}" multiple hidden>
+            </label>
+          </div>
         </div>
       </div>`).join('');
   },
@@ -597,10 +1297,14 @@ const admin = {
       <div class="item">
         <div class="item__h"><b>Loyiha ${i+1}</b><button class="item__x" data-del="portfolio" data-i="${i}">O'chirish</button></div>
         <div class="item__g">
-          <div class="field"><label>Nom</label><input type="text" data-arr="portfolio.${i}.title" value="${esc(p.title)}"></div>
+          <div class="field"><label>Kategoriya</label>
+            <select data-arr="portfolio.${i}.cat">
+              ${PORTFOLIO_CATS.map(c=>`<option value="${c}" ${(p.cat||'other')===c?'selected':''}>${esc(T('cat_'+c))}</option>`).join('')}
+            </select></div>
           <div class="field"><label>Link</label><input type="text" data-arr="portfolio.${i}.link" value="${esc(p.link)}" placeholder="https://..."></div>
-          <div class="field full"><label>Tavsif</label><textarea rows="2" data-arr="portfolio.${i}.description">${esc(p.description)}</textarea></div>
-          <div class="field full"><label>Tags (vergul bilan)</label><input type="text" data-tags="${i}" value="${esc((p.tags||[]).join(', '))}"></div>
+          ${mlInput(`portfolio.${i}.title`, p.title, {label:'Nom'})}
+          ${mlInput(`portfolio.${i}.description`, p.description, {label:'Tavsif', textarea:true})}
+          <div class="field"><label>Tags (vergul bilan)</label><input type="text" data-tags="${i}" value="${esc((p.tags||[]).join(', '))}"></div>
           <div class="field full"><label>Rasm URL</label><input type="text" data-arr="portfolio.${i}.image" value="${esc(p.image)}" placeholder="https://... yoki yuklang">
             <input type="file" accept="image/*" data-img="${i}"></div>
         </div>
@@ -612,8 +1316,8 @@ const admin = {
         <div class="item__h"><b>Link ${i+1}</b><button class="item__x" data-del="favorites" data-i="${i}">O'chirish</button></div>
         <div class="item__g">
           <div class="field"><label>Icon (emoji)</label><input type="text" data-arr="favorites.${i}.icon" value="${esc(f.icon)}" placeholder="🎧" maxlength="4"></div>
-          <div class="field"><label>Nom</label><input type="text" data-arr="favorites.${i}.title" value="${esc(f.title)}" placeholder="Mening pleylistim"></div>
           <div class="field full"><label>URL</label><input type="text" data-arr="favorites.${i}.url" value="${esc(f.url)}" placeholder="https://youtube.com/playlist?list=..."></div>
+          ${mlInput(`favorites.${i}.title`, f.title, {label:'Nom'})}
         </div>
       </div>`).join('');
   },
@@ -628,11 +1332,24 @@ const admin = {
       </div>`).join('');
   },
   renderMusic(){
-    $('#musicPresets').innerHTML = MUSIC_PRESETS.map(p => `
-      <div class="mpreset ${data.music.presetId===p.id?'active':''}" data-preset="${p.id}">
-        <span class="mpreset__i">${p.icon}</span>
-        <span><span class="mpreset__n">${esc(p.name)}</span><span class="mpreset__s">Preset</span></span>
-      </div>`).join('');
+    const w = $('#adminTracks'); if (!w) return;
+    const cur = tidyUrl(data.music.src);
+    w.innerHTML = (data.tracks||[]).map((t,i) => {
+      const on = cur && tidyUrl(t.url) === cur;
+      return `
+      <div class="mediarow ${on?'active':''}">
+        <span class="mediarow__thumb">${esc(t.icon || '🎵')}</span>
+        <div class="mediarow__f">
+          <input type="text" data-arr="tracks.${i}.name" value="${esc(t.name)}" placeholder="Qo'shiq nomi">
+          <input type="text" data-arr="tracks.${i}.url" value="${esc(t.url)}" placeholder="Audio fayl: https://...mp3 (saytda chalinadi)">
+          <input type="text" data-arr="tracks.${i}.link" value="${esc(t.link||'')}" placeholder="Havola: YouTube / Spotify / Yandex Music (ixtiyoriy)">
+        </div>
+        <div class="mediarow__acts">
+          <button class="mediarow__btn ${on?'mediarow__btn--use':''}" data-usetrack="${i}" ${on?'disabled':''}>${on?'✓ Chalinmoqda':'Qo\'yish'}</button>
+          <button class="mediarow__btn mediarow__btn--red" data-del="tracks" data-i="${i}">O'chirish</button>
+        </div>
+      </div>`;
+    }).join('') || `<p class="hint">Hali musiqa yo'q — pastdan qo'shing.</p>`;
   }
 };
 
@@ -677,6 +1394,15 @@ function initAdmin(){
       data[root][+i][key] = v;
       saveSoon(); renderAll(); return;
     }
+    // Trilingual field: write into the object's language subkey in place, so
+    // the other two languages are preserved.
+    if (el.dataset.ml){
+      const o = get(el.dataset.ml);
+      if (o && typeof o === 'object' && !Array.isArray(o)) o[el.dataset.lang] = el.value;
+      else set(el.dataset.ml, { uz:'', en:'', ru:'', [el.dataset.lang]: el.value });
+      el.classList.toggle('mlf__in--miss', !el.value.trim());
+      saveSoon(); renderAll(); return;
+    }
     if (el.dataset.tags !== undefined){
       data.portfolio[+el.dataset.tags].tags = el.value.split(',').map(s=>s.trim()).filter(Boolean);
       saveSoon(); renderAll(); return;
@@ -689,76 +1415,232 @@ function initAdmin(){
     }
   });
 
-  /* Delete + add + preset clicks */
+  /* Delete + add + "use this one" clicks */
   main.addEventListener('click', e => {
     const del = e.target.closest('[data-del]');
     if (del){
-      data[del.dataset.del].splice(+del.dataset.i, 1);
+      const k = del.dataset.del, i = +del.dataset.i;
+      const gone = data[k][i];
+      if (k === 'gallery' && !confirm('Bu rasm o\'chirilsinmi?')) return;
+      data[k].splice(i, 1);
+      // Free the storage object too, if it was one we uploaded.
+      const url = gone?.src || gone?.url || '';
+      if (url) window.Cloud?.remove?.(url);
+      if (gone?.thumb && gone.thumb !== url) window.Cloud?.remove?.(gone.thumb);
+      // The playing track / background video may have just been deleted.
+      if (k === 'tracks' && tidyUrl(gone?.url) === tidyUrl(data.music.src)){
+        data.music.src = ''; data.music.presetId = '';
+        $('#bgAudio')?.pause(); window.__applyMusic?.();
+      }
+      if (k === 'videos' && gone?.id === data.bgVideo.presetId){
+        data.bgVideo.presetId = data.videos[0]?.id || '';
+        if (!data.videos.length) data.bgVideo.enabled = false;
+        applyBgVideo();
+      }
       save(); admin.fill(); renderAll(); toast('O\'chirildi'); return;
+    }
+
+    const dd = e.target.closest('[data-deldoc]');
+    if (dd){
+      const [ei, dj] = dd.dataset.deldoc.split('.').map(Number);
+      const doc = data.education?.[ei]?.docs?.[dj];
+      if (!doc) return;
+      if (!confirm('Bu hujjat o\'chirilsinmi?')) return;
+      data.education[ei].docs.splice(dj, 1);
+      if (doc.src) window.Cloud?.remove?.(doc.src);
+      save(); admin.renderEducation(); renderEducation(); toast('O\'chirildi');
+      return;
     }
     const add = e.target.closest('[data-add]');
     if (add){
       const k = add.dataset.add;
+      // Trilingual content fields start as empty { uz,en,ru } objects so the
+      // admin can fill all three straight away.
+      const ml = uz => ({ uz, en:'', ru:'' });
       const blank = {
         skills:     { category:'New', name:'Yangi skill', level:50 },
-        experience: { period:'2026 — Hozir', title:'Lavozim', company:'Kompaniya', description:'Tavsif...' },
-        portfolio:  { title:'Yangi loyiha', description:'Tavsif', image:'', link:'', tags:[] },
-        favorites:  { icon:'🔗', title:'Yangi link', url:'' }
+        experience: { period:ml('2026 — Hozir'), title:ml('Lavozim'), company:'Kompaniya', description:ml('Tavsif...') },
+        portfolio:  { title:ml('Yangi loyiha'), description:ml('Tavsif'), image:'', link:'', tags:[] },
+        favorites:  { icon:'🔗', title:ml('Yangi link'), url:'' },
+        education:  { id:'e'+uid(), name:ml("Yangi ta'lim"), period:ml(''), description:ml(''), docs:[] },
+        videos:     { id:'v'+uid(), name:'Yangi video', url:'', thumb:'' },
+        tracks:     { id:'t'+uid(), name:'Yangi musiqa', url:'', link:'', icon:'🎵' }
       }[k];
       (k === 'skills' ? data[k].push(clone(blank)) : data[k].unshift(clone(blank)));
       save(); admin.fill(); renderAll(); return;
     }
-    const vp = e.target.closest('[data-vpreset]');
-    if (vp){
-      const p = VIDEO_PRESETS.find(x => x.id === vp.dataset.vpreset); if (!p) return;
-      data.bgVideo.presetId = p.id;
-      data.bgVideo.src = '';                 // preset wins over a custom URL
+
+    const uv = e.target.closest('[data-usevideo]');
+    if (uv){
+      const v = data.videos.find(x => x.id === uv.dataset.usevideo); if (!v) return;
+      if (!tidyUrl(v.url)) { toast('Avval video URL ni kiriting'); return; }
+      data.bgVideo.presetId = v.id;
+      data.bgVideo.src = '';                 // the list entry wins over a stale custom URL
       data.bgVideo.enabled = true;
       const chk = $('[data-model="bgVideo.enabled"]'); if (chk) chk.checked = true;
-      const url = $('[data-model="bgVideo.src"]');     if (url) url.value = '';
-      save(); admin.renderVideos(); applyBgVideo(); toast('▶ ' + p.name);
+      save(); admin.renderVideos(); applyBgVideo(); toast('▶ ' + v.name);
       return;
     }
-    const pre = e.target.closest('[data-preset]');
-    if (pre){
-      const p = MUSIC_PRESETS.find(x => x.id === pre.dataset.preset); if (!p) return;
-      data.music.presetId = p.id; data.music.src = p.url;
-      save(); admin.renderMusic();
-      const inp = $('[data-model="music.src"]'); if (inp) inp.value = p.url;
-      window.__applyMusic?.();
-      $('#bgAudio').play().then(()=>toast('▶ '+p.name)).catch(()=>toast(p.name+' tanlandi'));
+
+    const ut = e.target.closest('[data-usetrack]');
+    if (ut){
+      const t = data.tracks[+ut.dataset.usetrack]; if (!t) return;
+      if (!tidyUrl(t.url)) { toast('Avval musiqa URL ni kiriting'); return; }
+      data.music.presetId = t.id; data.music.src = t.url;
+      save(); admin.renderMusic(); window.__applyMusic?.();
+      $('#bgAudio').play().then(()=>toast('▶ '+t.name)).catch(()=>toast(t.name+' tanlandi'));
       return;
     }
   });
 
-  /* File uploads */
-  main.addEventListener('change', e => {
+  /* ------------------------------------------------------------ uploads
+     With the cloud configured, a file goes to Supabase Storage and we keep a
+     URL. Without it, we fall back to a base64 data-URL in localStorage —
+     which works, but a handful of photos will exhaust the ~5MB quota, so the
+     limits below are deliberately tight in that mode. */
+  const put = async (file, folder, limitMB) => {
+    const cloud = window.Cloud?.enabled && window.Cloud.status().signedIn;
+    const cap = cloud ? limitMB : Math.min(limitMB, 2);
+    if (file.size > cap*1024*1024){
+      toast(cloud ? `Fayl ${cap}MB dan kichik bo'lsin`
+                  : `Bulutsiz rejimda ${cap}MB gacha — bulutni ulasangiz ${limitMB}MB`);
+      return null;
+    }
+    if (cloud) return window.Cloud.upload(file, folder);
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = ev => res(ev.target.result);
+      r.onerror = () => rej(new Error('O\'qib bo\'lmadi'));
+      r.readAsDataURL(file);
+    });
+  };
+
+  main.addEventListener('change', async e => {
     const el = e.target;
-    const readAs = (file, cb, limitMB) => {
-      if (file.size > limitMB*1024*1024){ toast(`Fayl ${limitMB}MB dan kichik bo'lsin`); return; }
-      const r = new FileReader(); r.onload = ev => cb(ev.target.result); r.readAsDataURL(file);
-    };
-    if (el.id === 'avatarFile' && el.files[0]){
-      readAs(el.files[0], src => {
+    // <select data-arr> fires change, not input — route it to the same writer.
+    if (el.tagName === 'SELECT' && el.dataset.arr){
+      const [root, i, key] = el.dataset.arr.split('.');
+      data[root][+i][key] = el.value;
+      saveSoon(); renderAll(); return;
+    }
+    const files = Array.from(el.files || []);
+    if (!files.length) return;
+    const busy = msg => toast(msg, 60000);
+
+    try {
+      if (el.id === 'avatarFile'){
+        busy('Yuklanmoqda…');
+        const src = await put(files[0], 'avatar', 4); if (!src) return;
         data.profile.avatar = src;
-        const f = $('[data-model="profile.avatar"]'); if (f) f.value = '(yuklandi)';
+        const f = $('[data-model="profile.avatar"]'); if (f) f.value = src;
         save(); renderBindings(); toast('Rasm yuklandi');
-      }, 3);
-    }
-    if (el.dataset.img !== undefined && el.files[0]){
-      readAs(el.files[0], src => {
+      }
+      else if (el.dataset.img !== undefined){
+        busy('Yuklanmoqda…');
+        const src = await put(files[0], 'portfolio', 4); if (!src) return;
         data.portfolio[+el.dataset.img].image = src;
-        save(); renderPortfolio(); toast('Rasm yuklandi');
-      }, 2);
-    }
-    if (el.id === 'musicFile' && el.files[0]){
-      readAs(el.files[0], src => {
-        data.music.src = src; data.music.presetId = '';
-        const f = $('[data-model="music.src"]'); if (f) f.value = '(yuklandi)';
-        save(); admin.renderMusic(); window.__applyMusic?.(); toast('Musiqa yuklandi');
-      }, 5);
+        save(); admin.renderPortfolio(); renderPortfolio(); toast('Rasm yuklandi');
+      }
+      else if (el.id === 'galleryFiles'){
+        let n = 0;
+        for (const [k, f] of files.entries()){
+          busy(`Yuklanmoqda… ${k+1}/${files.length}`);
+          const src = await put(f, 'gallery', 10);
+          if (!src) continue;
+          data.gallery.push({ id:'g'+uid(), src, thumb:'', caption:{ uz:'', en:'', ru:'' } });
+          n++;
+        }
+        save(); admin.renderGallery(); renderGallery();
+        toast(n ? `${n} ta rasm qo'shildi` : 'Hech narsa qo\'shilmadi');
+      }
+      else if (el.id === 'musicFile'){
+        let n = 0;
+        for (const [k, f] of files.entries()){
+          busy(`Yuklanmoqda… ${k+1}/${files.length}`);
+          const url = await put(f, 'audio', 12);
+          if (!url) continue;
+          data.tracks.unshift({ id:'t'+uid(), name: f.name.replace(/\.[^.]*$/,''), url, icon:'🎵' });
+          n++;
+        }
+        save(); admin.renderMusic(); toast(n ? `${n} ta musiqa qo'shildi` : 'Qo\'shilmadi');
+      }
+      else if (el.dataset.edudoc !== undefined){
+        const ei = +el.dataset.edudoc; let n = 0;
+        for (const [k, f] of files.entries()){
+          busy(`Yuklanmoqda… ${k+1}/${files.length}`);
+          const src = await put(f, 'edu', 8);
+          if (!src) continue;
+          (data.education[ei].docs ||= []).push({ src });
+          n++;
+        }
+        save(); admin.renderEducation(); renderEducation();
+        toast(n ? `${n} ta hujjat qo'shildi` : 'Qo\'shilmadi');
+      }
+      else if (el.id === 'videoFiles'){
+        let n = 0;
+        for (const [k, f] of files.entries()){
+          busy(`Yuklanmoqda… ${k+1}/${files.length}`);
+          const url = await put(f, 'video', 30);
+          if (!url) continue;
+          data.videos.unshift({ id:'v'+uid(), name: f.name.replace(/\.[^.]*$/,''), url, thumb:'' });
+          n++;
+        }
+        save(); admin.renderVideos(); toast(n ? `${n} ta video qo'shildi` : 'Qo\'shilmadi');
+      }
+      else return;
+    } catch(err){
+      console.warn('upload', err);
+      toast(err?.message || 'Yuklab bo\'lmadi');
+    } finally {
+      el.value = '';                 // so re-picking the same file fires change
     }
   });
+
+  /* Gallery: add by URL */
+  $('#galleryAddUrl').onclick = () => {
+    const u = tidyUrl(prompt('Rasm URL manzili:') || '');
+    if (!u) return;
+    data.gallery.push({ id:'g'+uid(), src:u, thumb:'', caption:{ uz:'', en:'', ru:'' } });
+    save(); admin.renderGallery(); renderGallery(); toast('Qo\'shildi');
+  };
+
+  /* ---------------------------------------------------------- cloud pane */
+  const cloudBusy = (btn, on) => { if (btn) btn.disabled = on; };
+  $('#sbLogin').onclick = async () => {
+    const b = $('#sbLogin');
+    try {
+      cloudBusy(b, true);
+      await window.Cloud.signIn($('#sbEmail').value.trim(), $('#sbPass').value);
+      $('#sbPass').value = '';
+      admin.renderSync(); toast('Bulutga kirdingiz');
+    } catch(err){ toast(err?.message || 'Kirib bo\'lmadi'); }
+    finally { cloudBusy(b, false); }
+  };
+  $('#sbLogout').onclick = async () => {
+    await window.Cloud?.signOut?.(); admin.renderSync(); toast('Chiqdingiz');
+  };
+  $('#sbPush').onclick = async () => {
+    const b = $('#sbPush');
+    try {
+      cloudBusy(b, true); toast('Saqlanmoqda…', 30000);
+      await window.Cloud.save(data);
+      toast('☁ Bulutga saqlandi — hamma ko\'radi');
+    } catch(err){ toast(err?.message || 'Saqlab bo\'lmadi'); }
+    finally { cloudBusy(b, false); }
+  };
+  $('#sbPull').onclick = async () => {
+    const b = $('#sbPull');
+    try {
+      cloudBusy(b, true);
+      const remote = await window.Cloud.load();
+      if (!remote){ toast('Bulutda hali ma\'lumot yo\'q'); return; }
+      if (!confirm('Bulutdagi nusxa shu brauzerdagi o\'zgarishlar ustiga yoziladi. Davom etilsinmi?')) return;
+      data = normalizeML(merge(DEFAULTS, remote));
+      save(); admin.fill(); applyTheme(data.theme); renderAll(); applyBgVideo(); window.__applyMusic?.();
+      toast('Bulutdan yuklandi');
+    } catch(err){ toast(err?.message || 'Yuklab bo\'lmadi'); }
+    finally { cloudBusy(b, false); }
+  };
 
   /* Export / import / publish / reset */
   const dl = (blob, name) => {
@@ -778,7 +1660,7 @@ function initAdmin(){
     const f = e.target.files[0]; if (!f) return;
     const r = new FileReader();
     r.onload = ev => {
-      try { data = merge(DEFAULTS, JSON.parse(ev.target.result)); save(); admin.fill(); renderAll(); toast('Import qilindi'); }
+      try { data = normalizeML(merge(DEFAULTS, JSON.parse(ev.target.result))); save(); admin.fill(); renderAll(); toast('Import qilindi'); }
       catch { toast('JSON noto\'g\'ri'); }
     };
     r.readAsText(f);
@@ -790,27 +1672,152 @@ function initAdmin(){
 }
 
 /* ------------------------------------------------------- STEALTH ENTRY */
+/* Admin access. Two honest layers:
+
+   LAYER 1 (this function): a password gate on the panel UI. Only the SHA-256
+   hash lives in the code — the password itself appears nowhere, so reading
+   the source doesn't reveal it. Brute force is slowed by a 5-try / 5-minute
+   lockout. This keeps casual snoopers out.
+
+   LAYER 2 (the real wall): the panel only edits THIS browser's localStorage.
+   Publishing to every visitor requires Cloud.save(), which Supabase rejects
+   without the admin's email+password session (RLS). So even someone who
+   bypasses layer 1 — which is always possible in an open-source frontend —
+   can vandalise nothing but their own browser. */
+const ADMIN_HASH = '6599000f1217f89dd44441ba82e1d9ba7bac006181810c9872cae82246a91b10';
+const PWD_LOCK_KEY = 'admLock';
+
+async function sha256hex(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function pwdLockState(){
+  try {
+    const l = JSON.parse(localStorage.getItem(PWD_LOCK_KEY) || '{}');
+    if (l.until && Date.now() < l.until) return l;
+    if (l.until && Date.now() >= l.until) { localStorage.removeItem(PWD_LOCK_KEY); return { fails: 0 }; }
+    return { fails: l.fails || 0 };
+  } catch { return { fails: 0 }; }
+}
+
 function initStealth(){
   const t = $('#mkmTrigger'); if (!t) return;
-  let on = false, buf = '', timer = null;
-  const stop = () => { on = false; buf = ''; t.classList.remove('listening'); clearTimeout(timer); };
+
+  /* Fully invisible entry, as requested: clicking MKM777 shows NOTHING on the
+     page — no dialog, no indicator, no error. The visitor types the password
+     blind and presses Enter. A wrong guess fails silently; the 5-try/5-minute
+     lockout still counts underneath.
+
+     The characters land in a hidden <input> rather than a keydown buffer so
+     phones get a keyboard too (focusing an input is the only way to summon
+     one). The input is 1px, transparent, caret hidden, behind the page —
+     nothing of it can be seen. */
+  const form = document.createElement('form');
+  form.setAttribute('aria-hidden', 'true');
+  Object.assign(form.style, {
+    position:'fixed', bottom:'0', left:'0', width:'1px', height:'1px',
+    overflow:'hidden', opacity:'0', zIndex:'-1', pointerEvents:'none'
+  });
+  const inp = document.createElement('input');
+  inp.type = 'password';
+  inp.autocomplete = 'off';
+  inp.tabIndex = -1;
+  Object.assign(inp.style, {
+    width:'1px', height:'1px', border:'0', padding:'0', background:'transparent',
+    color:'transparent', caretColor:'transparent', outline:'none'
+  });
+  form.appendChild(inp);
+  document.body.appendChild(form);
+
+  let armed = false, timer = null;
+  const disarm = () => { armed = false; inp.value = ''; clearTimeout(timer); try{ inp.blur(); }catch{} };
+  const touchTimer = () => { clearTimeout(timer); timer = setTimeout(disarm, 45000); };
+
+  const attempt = async () => {
+    const val = inp.value; inp.value = '';
+    if (!val) { disarm(); return; }
+    const lock = pwdLockState();
+    if (lock.until || !crypto?.subtle){ disarm(); return; }      // silent
+    const hex = await sha256hex(val);
+    if (hex === ADMIN_HASH){
+      try { localStorage.removeItem(PWD_LOCK_KEY); } catch {}
+      disarm();
+      admin.open();
+    } else {
+      const fails = (lock.fails || 0) + 1;
+      const next = fails >= 5 ? { fails, until: Date.now() + 5*60*1000 } : { fails };
+      try { localStorage.setItem(PWD_LOCK_KEY, JSON.stringify(next)); } catch {}
+      disarm();                                                   // silent — no hint at all
+    }
+  };
 
   t.addEventListener('click', e => {
     e.stopPropagation();
-    on = true; buf = ''; t.classList.add('listening');
-    clearTimeout(timer); timer = setTimeout(stop, 8000);
+    armed = true; inp.value = '';
+    // focus() must run inside the click gesture or mobile keyboards refuse
+    inp.focus({ preventScroll: true });
+    touchTimer();
   });
-  addEventListener('keydown', e => {
-    if (!on) return;
-    if (e.key === 'Escape') return stop();
-    if (e.key.length !== 1) return;
-    buf += e.key.toLowerCase();
-    const code = String(data.publicCode || 'mkm777').toLowerCase();
-    if (buf === code) { stop(); admin.open(); return; }
-    if (!code.startsWith(buf)) stop();
+  // Enter arrives differently per platform: e.key 'Enter', legacy 'Return',
+  // keyCode 13, or (on phones) only as a form submit from the "Go" key.
+  const isEnter = e => e.key === 'Enter' || e.key === 'Return' || e.keyCode === 13 || e.code === 'Enter' || e.code === 'NumpadEnter';
+  form.addEventListener('submit', e => { e.preventDefault(); if (armed) attempt(); });
+  inp.addEventListener('keydown', e => {
+    if (!armed) return;
+    touchTimer();
+    if (isEnter(e)){ e.preventDefault(); attempt(); }
+    else if (e.key === 'Escape') disarm();
   });
-  addEventListener('scroll', () => { if (on) stop(); }, { passive:true });
-  document.addEventListener('click', e => { if (on && !e.target.closest('#mkmTrigger')) stop(); });
+  /* The main path needs no Enter at all: after every keystroke the current
+     value is hashed, and the instant it matches the panel opens. This works
+     on every keyboard and IME (some never deliver a usable Enter event) and
+     is even stealthier — the password simply "happens". Only the SUCCESS
+     case fires here; failures are counted solely on an explicit Enter, so
+     partial prefixes while typing are never punished. */
+  let checking = false;
+  const tryAuto = async () => {
+    if (!armed || checking) return;
+    const val = inp.value;
+    if (val.length < 8) return;                       // no point hashing tiny prefixes
+    const lock = pwdLockState();
+    if (lock.until || !crypto?.subtle) return;
+    checking = true;
+    try {
+      const hex = await sha256hex(val);
+      if (armed && hex === ADMIN_HASH && inp.value === val){
+        try { localStorage.removeItem(PWD_LOCK_KEY); } catch {}
+        disarm();
+        admin.open();
+      }
+    } finally { checking = false; }
+  };
+  inp.addEventListener('input', () => { if (armed){ touchTimer(); tryAuto(); } });
+  // Clicking anywhere else steals focus → silently stand down.
+  inp.addEventListener('blur', () => { if (armed) disarm(); });
+}
+
+/* ---------------------------------------------------------------- LANGUAGE */
+/* Push STRINGS into every [data-i18n] element, in every place it can appear:
+     data-i18n         → textContent
+     data-i18n-ph      → placeholder
+     data-i18n-aria    → aria-label
+   Then re-render the content (which reads L()) and re-tag <html lang>. */
+function applyStrings(){
+  $$('[data-i18n]').forEach(el => { el.textContent = T(el.dataset.i18n); });
+  $$('[data-i18n-ph]').forEach(el => { el.placeholder = T(el.dataset.i18nPh); });
+  $$('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', T(el.dataset.i18nAria)); });
+  document.documentElement.lang = lang;
+}
+
+function setLang(next){
+  if (!LANGS.includes(next)) next = 'uz';
+  lang = next;
+  data.lang = next;
+  try { localStorage.setItem('cvLang', next); } catch {}
+  $$('.lang__b').forEach(b => b.classList.toggle('active', b.dataset.lang === next));
+  applyStrings();
+  renderAll();          // content re-resolves through L()
 }
 
 /* ------------------------------------------------------------ SETTINGS */
@@ -826,21 +1833,91 @@ function initSettings(){
     save();
     toast('Tema: ' + b.querySelector('b').textContent);
   });
+  $$('.lang__b').forEach(b => b.onclick = () => { setLang(b.dataset.lang); save(); });
   $('#downloadCv2').onclick = downloadCV;
+  initHandSettings();
+}
+
+/* ------------------------------------------------- HAND SENSITIVITY UI
+   The sliders live here, but the values live in hand-control.js — this only
+   reads/writes them, so the tuning survives the camera being off. */
+function initHandSettings(){
+  const H = () => window.__hand;
+  const rows = [
+    { el:'#hsSpeed',  lab:'#hsSpeedL',  key:'speed',  toUi:v => Math.round(v*10),  fromUi:v => v/10,   fmt:v => v.toFixed(1) },
+    { el:'#hsSmooth', lab:'#hsSmoothL', key:'smooth', toUi:v => Math.round(v*100), fromUi:v => v/100,  fmt:v => Math.round(v*100) },
+    { el:'#hsPinch',  lab:'#hsPinchL',  key:'pinch',  toUi:v => Math.round(v*100), fromUi:v => v/100,  fmt:v => Math.round(v*100) },
+    { el:'#hsScroll', lab:'#hsScrollL', key:'scroll', toUi:v => Math.round(v*10),  fromUi:v => v/10,   fmt:v => v.toFixed(1) }
+  ];
+  const paint = () => {
+    const S = H()?.settings; if (!S) return;
+    rows.forEach(r => {
+      const el = $(r.el); if (!el) return;
+      el.value = r.toUi(S[r.key]);
+      $(r.lab).textContent = r.fmt(S[r.key]);
+    });
+  };
+  rows.forEach(r => {
+    const el = $(r.el); if (!el) return;
+    el.addEventListener('input', () => {
+      const v = r.fromUi(Number(el.value));
+      H()?.set(r.key, v);
+      $(r.lab).textContent = r.fmt(v);
+    });
+  });
+  $('#handReset').onclick = () => { H()?.reset(); paint(); toast('Standart sozlamalar'); };
+  // hand-control.js is deferred, so it may not have registered yet.
+  if (H()) paint(); else addEventListener('load', paint, { once:true });
+}
+
+/* ------------------------------------------------------- CLOUD BOOTSTRAP
+   Visitors get the published copy; the admin's own browser keeps whatever it
+   was last editing. Runs after first paint so a slow/broken Supabase can
+   never delay the page — worst case the site shows local data forever. */
+async function initCloud(){
+  const C = window.Cloud;
+  if (!C?.enabled) { admin.renderSync?.(); return; }
+  C.onChange(() => admin.renderSync?.());
+  try {
+    await C.init();
+    const remote = await C.load();
+    if (!remote) return;
+    // Local edits win over the cloud only while the admin is signed in on
+    // this device; for everyone else the published copy is the truth.
+    const localEdits = (() => { try { return !!localStorage.getItem('cvData'); } catch { return false; } })();
+    if (localEdits && C.status().signedIn) return;
+    data = normalizeML(merge(DEFAULTS, remote));
+    applyTheme(data.theme); renderAll(); applyBgVideo(); window.__applyMusic?.();
+    admin.renderSync?.();
+  } catch(e){ console.warn('cloud:', e); admin.renderSync?.(); }
 }
 
 /* ---------------------------------------------------------------- INIT */
 function init(){
   $('#year').textContent = new Date().getFullYear();
+  // Language before content, so the very first paint is already localised and
+  // the active pill is lit.
+  $$('.lang__b').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  applyStrings();
   applyTheme(data.theme);
   renderAll();
   applyBgVideo();
   initNav(); initMusic(); initForm(); initAdmin(); initStealth(); initSettings();
+  initEducation(); initPlaylist();
+  $('#portfolioCats')?.addEventListener('click', e => {
+    const c = e.target.closest('[data-cat]'); if (!c) return;
+    portfolioFilter = c.dataset.cat;
+    renderPortfolio(); observeReveal(); showEverything();
+  });
   $('#downloadCv').onclick = downloadCV;
 
   // Expose a tiny surface for hand-control.js + tests
   window.__cv = { get data(){ return data; }, save, renderAll, admin, DEFAULTS, toast,
-                  applyTheme, applyBgVideo, THEMES, VIDEO_PRESETS, MUSIC_PRESETS };
+                  applyTheme, applyBgVideo, THEMES, renderGallery, setLang, L, T,
+                  pickAccent, applyAccent, resolveAccent, rgb2hsl, hsl2rgb };
+
+  // Never block first paint on the network.
+  ('requestIdleCallback' in window ? requestIdleCallback : setTimeout)(() => initCloud(), 1);
 }
 
 if (document.readyState === 'loading') addEventListener('DOMContentLoaded', init);
