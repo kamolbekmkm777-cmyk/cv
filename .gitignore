@@ -4,3 +4,10 @@ node_modules/
 .claude/
 *.log
 _drafts/
+
+# Galereyaning original fayllari — saytga assets/gallery/ dagi
+# siqilgan nusxalari ketadi (50MB -> 12MB). Originallar repo'ga kerak emas.
+fotogalareya/
+
+# Shaxsiy hujjatlar (domen cheki va h.k.)
+*.pdf

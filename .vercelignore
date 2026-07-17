@@ -1,0 +1,32 @@
+# Deploy'ga TUSHMASLIGI kerak bo'lgan narsalar.
+#
+# `vercel --prod` shu papkadagi hamma narsani yuklaydi — git'ga qo'shilgan
+# yoki qo'shilmaganidan qat'i nazar. Bu ro'yxatsiz quyidagilar internetda
+# ochiq bo'lib qolardi.
+
+# --- Shaxsiy hujjatlar (kamolbek.com/... manzilida ochiq bo'lib qolardi) ---
+*.pdf
+namecheap-order-*.pdf
+
+# --- Galereyaning original fayllari (50MB) ---
+# Saytga assets/gallery/ dagi siqilgan nusxalar ishlatiladi. Originallar
+# kompyuteringizda qolsin — ular deploy'ga kerak emas.
+fotogalareya/
+
+# --- Ish fayllari ---
+.claude/
+.git/
+.DS_Store
+node_modules/
+*.log
+_drafts/
+
+# --- Hujjatlar (sayt ishlashiga kerak emas) ---
+DEPLOY.md
+SUPABASE.md
+README.md
+supabase.sql
+config.example.js
+
+# EHTIYOT BO'LING: config.js bu yerda BO'LMASLIGI kerak —
+# brauzer uni o'qishi shart, aks holda bulut ishlamaydi.
