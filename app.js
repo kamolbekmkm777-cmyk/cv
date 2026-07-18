@@ -151,6 +151,9 @@ const DEFAULTS = {
            volume: 40, autoplay: true, presetId: "song1" },
   bgVideo: { enabled: true, presetId: "clouds", src: "", opacity: 70, tint: 55 },
   lang: "uz",
+  /* «Uch rang» temasining uchta bo'yog'i. Bo'sh = standart (paper/navy/amber).
+     Butun tema shu uch rangdan hisoblanadi — boshqa hech narsa kerak emas. */
+  sandColors: { bg:'', fg:'', accent:'' },
   theme: "liquid"
 };
 const THEMES = ['liquid','sand'];
@@ -695,12 +698,12 @@ function applyTheme(t){
   data.theme = t;
   document.body.dataset.theme = t;
   $$('.theme').forEach(b => b.classList.toggle('active', b.dataset.themeSet === t));
-  // The sand theme owns its palette; drop any video-derived ink so switching
-  // back and forth can't leak green into it.
-  if (t === 'sand') clearAccent();
+  // Each theme rebuilds its palette from scratch on entry, so switching back
+  // and forth can never leak one theme's inks into the other.
+  if (t === 'sand') applySandColors();
   else resolveAccent();
   const meta = $('meta[name="theme-color"]');
-  if (meta) meta.content = t === 'sand' ? '#FAF7F2' : '#08080a';
+  if (meta && t !== 'sand') meta.content = '#08080a';
 }
 
 /* ---------------------------------------------------------- colour utils */
@@ -792,7 +795,8 @@ const currentVideoSrc = () => {
 const PALETTE_VARS = [
   '--accent','--accent-dim','--accent-edge','--accent2','--accent-live',
   '--blob1','--blob2','--role-grad','--violet','--pink','--on-accent',
-  '--bg','--bg2','--fg','--muted','--dim','--line','--line2','--surface','--surface2'
+  '--bg','--bg2','--fg','--muted','--dim','--line','--line2','--surface','--surface2',
+  '--glass-bg','--glass-line','--glass-shadow','--paper'
 ];
 
 /* The palette keys an admin can hand-edit per video, with the fallbacks the
@@ -830,15 +834,65 @@ function activeCustomColors(){
 }
 
 function clearAccent(){
-  const r = document.documentElement.style;
-  PALETTE_VARS.forEach(k => r.removeProperty(k));
+  // Liquid inks live inline on <html> (beating :root), sand inks inline on
+  // <body> (beating the [data-theme="sand"] body-level rules) — clear both.
+  for (const el of [document.documentElement, document.body])
+    PALETTE_VARS.forEach(k => el.style.removeProperty(k));
+}
+
+/* --------------------------------------------------- SAND (uch rang) ----
+   The whole three-ink theme derives from bg / fg / accent, exactly like the
+   [data-theme="sand"] CSS block — same alphas, same pairings — so a custom
+   trio looks as coherent as the shipped one. All three empty → the
+   stylesheet's own palette rules untouched. */
+const SAND_DEFAULTS = { bg:'#FAF7F2', fg:'#0F2D52', accent:'#B86B00' };
+const SAND_COLOR_KEYS = [
+  { k:'bg',     label:"Orqa fon rangi" },
+  { k:'fg',     label:"Matn rangi" },
+  { k:'accent', label:"Menyu va tugmalar rangi" }
+];
+
+function applySandColors(){
+  clearAccent();
+  if (data.theme !== 'sand') return;
+  const c = data.sandColors || {};
+  const anyCustom = SAND_COLOR_KEYS.some(({k}) => HEX_OK(c[k]));
+  const meta = $('meta[name="theme-color"]');
+  if (!anyCustom){ if (meta) meta.content = SAND_DEFAULTS.bg; return; }
+
+  const bg = HEX_OK(c.bg) ? c.bg : SAND_DEFAULTS.bg;
+  const fg = HEX_OK(c.fg) ? c.fg : SAND_DEFAULTS.fg;
+  const ac = HEX_OK(c.accent) ? c.accent : SAND_DEFAULTS.accent;
+  // The sand palette is declared on [data-theme="sand"] — i.e. on <body> —
+  // so an inline override must sit on <body> too; an inherited <html> value
+  // loses to any body-level stylesheet rule and would silently do nothing.
+  const r = document.body.style;
+
+  r.setProperty('--paper', bg);
+  r.setProperty('--bg', bg); r.setProperty('--bg2', bg);
+  r.setProperty('--fg', fg);
+  r.setProperty('--muted', rgbaOf(fg,.66)); r.setProperty('--dim', rgbaOf(fg,.45));
+  r.setProperty('--line', rgbaOf(fg,.14));  r.setProperty('--line2', rgbaOf(fg,.24));
+  r.setProperty('--surface', rgbaOf(fg,.04)); r.setProperty('--surface2', rgbaOf(fg,.08));
+  r.setProperty('--accent', ac);
+  r.setProperty('--accent-dim', rgbaOf(ac,.12)); r.setProperty('--accent-edge', rgbaOf(ac,.3));
+  r.setProperty('--accent2', fg);
+  r.setProperty('--on-accent', bg);            // uch rang qoidasi: rang ustida — fon rangi
+  r.setProperty('--violet', fg); r.setProperty('--pink', ac);
+  r.setProperty('--role-grad', `linear-gradient(92deg, ${ac}, ${fg})`);
+  r.setProperty('--glass-bg', `linear-gradient(135deg, ${rgbaOf(bg,.94)}, ${rgbaOf(bg,.74)})`);
+  r.setProperty('--glass-line', rgbaOf(fg,.14));
+  r.setProperty('--glass-shadow', `0 8px 26px ${rgbaOf(fg,.10)}, inset 0 1px 0 ${rgbaOf(bg,.9)}`);
+  r.setProperty('--blob1', `radial-gradient(circle, ${rgbaOf(ac,.22)}, transparent 68%)`);
+  r.setProperty('--blob2', `radial-gradient(circle, ${rgbaOf(fg,.18)}, transparent 68%)`);
+  if (meta) meta.content = bg;
 }
 
 function applyAccent(a){
   if (data.theme !== 'liquid') return;
   const cust = activeCustomColors() || {};
+  clearAccent();               // wipe BOTH html + body inline inks (sand leftovers too)
   const r = document.documentElement.style;
-  PALETTE_VARS.forEach(k => r.removeProperty(k));    // start from the stylesheet truth
 
   const accent  = cust.accent  || a?.accent  || LIQUID_FALLBACK.accent;
   const accent2 = cust.accent2 || a?.accent2 || (cust.accent ? cust.accent : LIQUID_FALLBACK.accent2);
@@ -1263,7 +1317,7 @@ const admin = {
     if (tn){ tn.value = data.bgVideo.tint ?? 55;    $('#bgTintLabel').textContent = tn.value; }
     this.renderSkills(); this.renderExperience(); this.renderPortfolio();
     this.renderEducation(); this.renderFavorites(); this.renderSocial(); this.renderMusic(); this.renderVideos();
-    this.renderGallery(); this.renderSync();
+    this.renderGallery(); this.renderSandTheme(); this.renderSync();
   },
 
   /* Videos + tracks share one row shape: thumb · name · url · use/delete.
@@ -1329,6 +1383,23 @@ const admin = {
           <input class="gcell__cap" type="text" data-ml="gallery.${i}.caption" data-lang="ru" value="${esc(cap(g).ru||'')}" placeholder="подпись RU">
         </div>
       </div>`).join('') || `<p class="hint">Hali rasm yo'q — tepadan qo'shing.</p>`;
+  },
+
+  renderSandTheme(){
+    const w = $('#sandPal'); if (!w) return;
+    const c = data.sandColors || {};
+    w.innerHTML = SAND_COLOR_KEYS.map(({k, label}) => {
+      const isSet = HEX_OK(c[k]);
+      return `
+      <label class="vpal__cell ${isSet?'vpal__cell--set':''}">
+        <input type="color" data-scolor="${k}" value="${esc(isSet ? c[k] : SAND_DEFAULTS[k])}">
+        <span class="vpal__l">${label}</span>
+        <button type="button" class="vpal__auto" data-sclear="${k}" title="Standart rangga qaytarish"
+          ${isSet?'':'disabled'}>${isSet?'standart ↺':'standart'}</button>
+      </label>`;
+    }).join('');
+    const b = $('#sandPreview');
+    if (b) b.textContent = data.theme === 'sand' ? '✓ Tema yoniq — o\'zgarishlar jonli' : 'Temani yoqib ko\'rish';
   },
 
   /* One status strip, mirrored into every pane that can touch the cloud. */
@@ -1476,6 +1547,19 @@ function initAdmin(){
   main.addEventListener('input', e => {
     const el = e.target;
 
+    /* Sand-theme ink. Live when the sand theme is on. */
+    if (el.dataset.scolor){
+      (data.sandColors ||= {})[el.dataset.scolor] = el.value;
+      const cell = el.closest('.vpal__cell');
+      if (cell){
+        cell.classList.add('vpal__cell--set');
+        const btn = cell.querySelector('[data-sclear]');
+        if (btn){ btn.disabled = false; btn.textContent = 'standart ↺'; }
+      }
+      applySandColors();
+      saveSoon(); return;
+    }
+
     /* Per-video palette colour. Live-applies when that video is on the
        background; no re-render here (re-rendering mid-drag would tear the
        colour picker out of the admin's hand). */
@@ -1560,6 +1644,17 @@ function initAdmin(){
       save(); admin.fill(); renderAll(); toast('O\'chirildi'); return;
     }
 
+    const sc = e.target.closest('[data-sclear]');
+    if (sc){
+      if (data.sandColors) delete data.sandColors[sc.dataset.sclear];
+      save(); admin.renderSandTheme(); applySandColors();
+      toast('Standart rangga qaytdi');
+      return;
+    }
+    if (e.target.id === 'sandPreview'){
+      if (data.theme !== 'sand'){ applyTheme('sand'); save(); admin.renderSandTheme(); toast('Uch rang temasi yoqildi'); }
+      return;
+    }
     const vc = e.target.closest('[data-vclear]');
     if (vc){
       const [i, key] = vc.dataset.vclear.split('.');

@@ -259,6 +259,7 @@
         <button class="admin__tab" data-tab="contacts">Kontakt</button>
         <button class="admin__tab" data-tab="music">Musiqalar</button>
         <button class="admin__tab" data-tab="bgvideo">Videolar</button>
+        <button class="admin__tab" data-tab="sandtheme">Uch rang 🎨</button>
         <button class="admin__tab" data-tab="cloud">Bulut ☁</button>
         <button class="admin__tab" data-tab="security">Maxfiylik</button>
         <button class="admin__tab admin__tab--red" data-tab="reset">Reset</button>
@@ -423,6 +424,20 @@
           </div>
           <div class="field"><label>Ko'rinishi: <b id="bgOpLabel">70</b>%</label><input type="range" id="bgOp" min="10" max="100" /></div>
           <div class="field"><label>Qorong'ilashtirish: <b id="bgTintLabel">55</b>%</label><input type="range" id="bgTintR" min="0" max="90" /></div>
+        </div>
+
+        <!-- SAND THEME COLORS -->
+        <div class="pane" data-pane="sandtheme">
+          <h3>«Uch rang» temasi ranglari</h3>
+          <p class="hint">
+            Ikkinchi tema faqat uchta boʻyoqdan quriladi. Shu uchtasini tanlaysiz —
+            xira matn, chiziqlar, yuzalar, gradientlar hammasi shulardan avtomatik hisoblanadi.
+            «standart ↺» — asl rangga (qogʻoz / toʻq koʻk / amber) qaytaradi.
+          </p>
+          <div class="vpal__grid" id="sandPal" style="margin-top:14px"></div>
+          <div class="admin__acts" style="margin-top:14px">
+            <button class="btn btn--ghost" id="sandPreview">Temani yoqib koʻrish</button>
+          </div>
         </div>
 
         <!-- CLOUD -->

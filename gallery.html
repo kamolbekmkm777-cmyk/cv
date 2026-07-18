@@ -179,6 +179,34 @@ function initLightbox(){
    plays here. Sand theme hides it via the shared CSS. */
 /* The same hand-picked palette the admin set for this video on the main
    site. Only the liquid theme uses it — sand owns its own closed palette. */
+/* Custom three-ink palette for the sand theme — same derivations as app.js. */
+function applySandColors(){
+  if (document.body.dataset.theme !== 'sand') return;
+  const c = data?.sandColors || {};
+  const okhex = v => /^#[0-9a-fA-F]{6}$/.test(String(v||''));
+  if (!okhex(c.bg) && !okhex(c.fg) && !okhex(c.accent)) return;
+  const bg = okhex(c.bg) ? c.bg : '#FAF7F2';
+  const fg = okhex(c.fg) ? c.fg : '#0F2D52';
+  const ac = okhex(c.accent) ? c.accent : '#B86B00';
+  // Must be inline on <body>: the sand palette rules select [data-theme="sand"].
+  const r = document.body.style;
+  const rgb = h => { const n=parseInt(h.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; };
+  const rgba = (h,a) => { const [R,G,B]=rgb(h); return `rgba(${R},${G},${B},${a})`; };
+  r.setProperty('--paper', bg);
+  r.setProperty('--bg', bg); r.setProperty('--bg2', bg);
+  r.setProperty('--fg', fg);
+  r.setProperty('--muted', rgba(fg,.66)); r.setProperty('--dim', rgba(fg,.45));
+  r.setProperty('--line', rgba(fg,.14));  r.setProperty('--line2', rgba(fg,.24));
+  r.setProperty('--surface', rgba(fg,.04)); r.setProperty('--surface2', rgba(fg,.08));
+  r.setProperty('--accent', ac);
+  r.setProperty('--accent-dim', rgba(ac,.12)); r.setProperty('--accent-edge', rgba(ac,.3));
+  r.setProperty('--accent2', fg); r.setProperty('--on-accent', bg);
+  r.setProperty('--glass-bg', `linear-gradient(135deg, ${rgba(bg,.94)}, ${rgba(bg,.74)})`);
+  r.setProperty('--glass-line', rgba(fg,.14));
+  r.setProperty('--blob1', `radial-gradient(circle, ${rgba(ac,.22)}, transparent 68%)`);
+  r.setProperty('--blob2', `radial-gradient(circle, ${rgba(fg,.18)}, transparent 68%)`);
+}
+
 function applyVideoColors(){
   if (document.body.dataset.theme !== 'liquid') return;
   const cfg = data?.bgVideo; if (!cfg?.enabled) return;
@@ -235,6 +263,7 @@ let data = null;
   initLightbox();
   applyBgVideo();
   applyVideoColors();
+  applySandColors();
 })();
 })();
 </script>
