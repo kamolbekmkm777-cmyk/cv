@@ -177,6 +177,42 @@ function initLightbox(){
 /* Background video — the same one the admin set for the main site. The
    config travels in the same data document, so whatever plays on index.html
    plays here. Sand theme hides it via the shared CSS. */
+/* The same hand-picked palette the admin set for this video on the main
+   site. Only the liquid theme uses it — sand owns its own closed palette. */
+function applyVideoColors(){
+  if (document.body.dataset.theme !== 'liquid') return;
+  const cfg = data?.bgVideo; if (!cfg?.enabled) return;
+  const entry = (data.videos||[]).find(x => x.id === cfg.presetId);
+  const c = (!String(cfg.src||'').trim() && entry?.colors) || null;
+  const okhex = v => /^#[0-9a-fA-F]{6}$/.test(String(v||''));
+  const cust = {};
+  for (const k of ['accent','accent2','violet','pink','bg','fg','onAccent']) if (okhex(c?.[k])) cust[k] = c[k];
+  const accent = cust.accent || entry?.accent || '';
+  if (!accent && !Object.keys(cust).length) return;
+  const r = document.documentElement.style;
+  const rgb = h => { const n=parseInt(h.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; };
+  const rgba = (h,a) => { const [R,G,B]=rgb(h); return `rgba(${R},${G},${B},${a})`; };
+  if (accent){
+    const a2 = cust.accent2 || entry?.accent2 || accent;
+    r.setProperty('--accent', accent);
+    r.setProperty('--accent2', a2);
+    r.setProperty('--accent-dim', rgba(accent,.16));
+    r.setProperty('--accent-edge', rgba(accent,.25));
+    const [R,G,B] = rgb(accent);
+    const lum = (0.2126*R+0.7152*G+0.0722*B)/255;
+    r.setProperty('--on-accent', cust.onAccent || (lum > .55 ? '#000000' : '#ffffff'));
+  }
+  if (cust.violet) r.setProperty('--violet', cust.violet);
+  if (cust.pink)   r.setProperty('--pink', cust.pink);
+  if (cust.bg){ r.setProperty('--bg', cust.bg); r.setProperty('--bg2', cust.bg); }
+  if (cust.fg){
+    r.setProperty('--fg', cust.fg);
+    r.setProperty('--muted', rgba(cust.fg,.64)); r.setProperty('--dim', rgba(cust.fg,.44));
+    r.setProperty('--line', rgba(cust.fg,.10));  r.setProperty('--line2', rgba(cust.fg,.16));
+    r.setProperty('--surface', rgba(cust.fg,.04)); r.setProperty('--surface2', rgba(cust.fg,.07));
+  }
+}
+
 function applyBgVideo(){
   const v = document.getElementById('bgVideo'), bg = document.querySelector('.bg');
   const cfg = data?.bgVideo; if (!v || !bg || !cfg) return;
@@ -198,6 +234,7 @@ let data = null;
   render();
   initLightbox();
   applyBgVideo();
+  applyVideoColors();
 })();
 })();
 </script>

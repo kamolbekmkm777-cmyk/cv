@@ -916,3 +916,36 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
   position:relative; width:76px; height:100px; border-radius:8px;
   background:var(--surface2) center/cover no-repeat; border:1px solid var(--line);
 }
+
+/* ===== ADMIN · per-video palette editor ===== */
+.vpal{ margin-top:2px; border-radius:9px; }
+.vpal summary{
+  cursor:pointer; font-size:11.5px; color:var(--muted); padding:5px 2px;
+  user-select:none; list-style-position:inside;
+}
+.vpal summary:hover{ color:var(--accent); }
+.vpal summary b{ color:var(--accent); font-weight:600; }
+.vpal__hint{ margin:4px 0 10px; }
+.vpal__grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(118px,1fr));
+  gap:8px; padding-bottom:6px;
+}
+.vpal__cell{
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  padding:8px 6px; border-radius:9px; text-align:center;
+  background:var(--surface); border:1px solid var(--line);
+}
+.vpal__cell--set{ border-color:var(--accent); }
+.vpal__cell input[type=color]{
+  width:100%; height:30px; padding:0; border:none; border-radius:6px;
+  background:none; cursor:pointer;
+}
+.vpal__cell input[type=color]::-webkit-color-swatch-wrapper{ padding:0; }
+.vpal__cell input[type=color]::-webkit-color-swatch{ border:1px solid var(--line2); border-radius:6px; }
+.vpal__l{ font-size:10px; color:var(--muted); line-height:1.2; }
+.vpal__auto{
+  font-size:9.5px; padding:2px 8px; border-radius:999px;
+  border:1px solid var(--line); color:var(--dim);
+}
+.vpal__auto:not([disabled]):hover{ color:var(--accent); border-color:var(--accent); }
+.vpal__auto[disabled]{ opacity:.45; cursor:default; }

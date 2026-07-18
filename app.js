@@ -787,24 +787,95 @@ const currentVideoSrc = () => {
   return tidyUrl(cfg.src) || currentVideoEntry()?.url || '';
 };
 
+/* Every CSS variable a video palette may touch. Cleared before each apply so
+   switching videos can never leak one video's inks into the next. */
+const PALETTE_VARS = [
+  '--accent','--accent-dim','--accent-edge','--accent2','--accent-live',
+  '--blob1','--blob2','--role-grad','--violet','--pink','--on-accent',
+  '--bg','--bg2','--fg','--muted','--dim','--line','--line2','--surface','--surface2'
+];
+
+/* The palette keys an admin can hand-edit per video, with the fallbacks the
+   colour input shows while a key is still on "auto". */
+const VIDEO_COLOR_KEYS = [
+  { k:'accent',   label:"Asosiy rang",        auto: () => accentCache[currentVideoSrc()]?.accent  || currentVideoEntry()?.accent  || LIQUID_FALLBACK.accent },
+  { k:'accent2',  label:"Gradient rangi",     auto: () => accentCache[currentVideoSrc()]?.accent2 || currentVideoEntry()?.accent2 || LIQUID_FALLBACK.accent2 },
+  { k:'violet',   label:"Qoʻshimcha rang 1",  auto: () => '#8a6bff' },
+  { k:'pink',     label:"Qoʻshimcha rang 2",  auto: () => '#ff6bcb' },
+  { k:'bg',       label:"Fon rangi",          auto: () => '#08080a' },
+  { k:'fg',       label:"Matn rangi",         auto: () => '#f2f2f0' },
+  { k:'onAccent', label:"Rang ustidagi matn", auto: () => onAccentFor(accentCache[currentVideoSrc()]?.accent || currentVideoEntry()?.accent || LIQUID_FALLBACK.accent) }
+];
+
+const HEX_OK = v => /^#[0-9a-fA-F]{6}$/.test(String(v||''));
+const hex2rgb = h => { const n = parseInt(h.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; };
+const rgbaOf = (h,a) => { const [R,G,B] = hex2rgb(h); return `rgba(${R},${G},${B},${a})`; };
+
+/* Black or white — whichever actually reads on top of this colour. */
+function onAccentFor(h){
+  const [R,G,B] = hex2rgb(HEX_OK(h) ? h : '#ccff33');
+  const lum = (0.2126*R + 0.7152*G + 0.0722*B) / 255;
+  return lum > 0.55 ? '#000000' : '#ffffff';
+}
+
+/* The hand-picked palette of the video currently on the background — or null
+   when the video is off / a bare custom URL is playing / nothing is set. */
+function activeCustomColors(){
+  if (!data.bgVideo?.enabled) return null;
+  const c = currentVideoEntry()?.colors;
+  if (!c) return null;
+  const out = {};
+  for (const { k } of VIDEO_COLOR_KEYS) if (HEX_OK(c[k])) out[k] = c[k];
+  return Object.keys(out).length ? out : null;
+}
+
 function clearAccent(){
   const r = document.documentElement.style;
-  ['--accent','--accent-dim','--accent-edge','--accent2','--accent-live','--blob2','--role-grad'].forEach(k => r.removeProperty(k));
+  PALETTE_VARS.forEach(k => r.removeProperty(k));
 }
 
 function applyAccent(a){
   if (data.theme !== 'liquid') return;
-  const use = a || LIQUID_FALLBACK;
+  const cust = activeCustomColors() || {};
   const r = document.documentElement.style;
-  const n = parseInt(use.accent.slice(1), 16);
-  const [R,G,B] = [(n>>16)&255, (n>>8)&255, n&255];
-  r.setProperty('--accent', use.accent);
-  r.setProperty('--accent2', use.accent2);
-  r.setProperty('--accent-live', use.accent);        // theme swatch preview
-  r.setProperty('--accent-dim',  `rgba(${R},${G},${B},.16)`);
-  r.setProperty('--accent-edge', `rgba(${R},${G},${B},.25)`);
-  r.setProperty('--blob2', `radial-gradient(circle, rgba(${R},${G},${B},.30), transparent 68%)`);
-  r.setProperty('--role-grad', `linear-gradient(92deg, ${use.accent}, ${use.accent2} 55%, var(--violet))`);
+  PALETTE_VARS.forEach(k => r.removeProperty(k));    // start from the stylesheet truth
+
+  const accent  = cust.accent  || a?.accent  || LIQUID_FALLBACK.accent;
+  const accent2 = cust.accent2 || a?.accent2 || (cust.accent ? cust.accent : LIQUID_FALLBACK.accent2);
+
+  r.setProperty('--accent', accent);
+  r.setProperty('--accent2', accent2);
+  r.setProperty('--accent-live', accent);            // theme swatch preview
+  r.setProperty('--accent-dim',  rgbaOf(accent, .16));
+  r.setProperty('--accent-edge', rgbaOf(accent, .25));
+  r.setProperty('--blob2', `radial-gradient(circle, ${rgbaOf(accent, .30)}, transparent 68%)`);
+  r.setProperty('--role-grad', `linear-gradient(92deg, ${accent}, ${accent2} 55%, var(--violet))`);
+  // Text sitting ON the accent flips black/white by contrast unless hand-set.
+  r.setProperty('--on-accent', cust.onAccent || onAccentFor(accent));
+
+  if (cust.violet){
+    r.setProperty('--violet', cust.violet);
+    r.setProperty('--blob1', `radial-gradient(circle, ${rgbaOf(cust.violet, .55)}, transparent 68%)`);
+  }
+  if (cust.pink) r.setProperty('--pink', cust.pink);
+  if (cust.bg){
+    r.setProperty('--bg', cust.bg);
+    // bg2 = the same ink nudged toward the text colour, like the stylesheet's pair
+    const [R,G,B] = hex2rgb(cust.bg);
+    const lift = v => Math.max(0, Math.min(255, v + (v > 127 ? -10 : 10)));
+    r.setProperty('--bg2', hex(lift(R), lift(G), lift(B)));
+    const meta = $('meta[name="theme-color"]'); if (meta) meta.content = cust.bg;
+  }
+  if (cust.fg){
+    // One text ink drives the whole neutral ramp, exactly like the sand theme.
+    r.setProperty('--fg', cust.fg);
+    r.setProperty('--muted', rgbaOf(cust.fg, .64));
+    r.setProperty('--dim',   rgbaOf(cust.fg, .44));
+    r.setProperty('--line',  rgbaOf(cust.fg, .10));
+    r.setProperty('--line2', rgbaOf(cust.fg, .16));
+    r.setProperty('--surface',  rgbaOf(cust.fg, .04));
+    r.setProperty('--surface2', rgbaOf(cust.fg, .07));
+  }
 }
 
 /* Resolve the accent for whatever video is on. Once per src, cached — the
@@ -1195,23 +1266,55 @@ const admin = {
     this.renderGallery(); this.renderSync();
   },
 
-  /* Videos + tracks share one row shape: thumb · name · url · use/delete. */
+  /* Videos + tracks share one row shape: thumb · name · url · use/delete.
+     Each video row also carries a fold-out palette editor: every site colour
+     used while THAT video plays, hand-tunable, empty = auto. */
   renderVideos(){
     const w = $('#adminVideos'); if (!w) return;
     const active = data.bgVideo.presetId;
-    w.innerHTML = (data.videos||[]).map((v,i) => `
-      <div class="mediarow ${active===v.id?'active':''}">
+    const openPals = new Set([...w.querySelectorAll('details[open]')].map(d => d.dataset.vpal));
+    w.innerHTML = (data.videos||[]).map((v,i) => {
+      const cols = v.colors || {};
+      const isActive = active === v.id;
+      const setCount = VIDEO_COLOR_KEYS.filter(({k}) => HEX_OK(cols[k])).length;
+      const pal = VIDEO_COLOR_KEYS.map(({k, label, auto}) => {
+        const isSet = HEX_OK(cols[k]);
+        // For the active video "auto" shows the truly resolved ink; for others
+        // fall back to the same defaults the resolver would use.
+        const val = isSet ? cols[k]
+          : (isActive ? auto()
+             : (k==='accent' ? (v.accent || LIQUID_FALLBACK.accent)
+              : k==='accent2' ? (v.accent2 || LIQUID_FALLBACK.accent2)
+              : auto()));
+        return `
+          <label class="vpal__cell ${isSet?'vpal__cell--set':''}">
+            <input type="color" data-vcolor="${i}.${k}" value="${esc(val)}">
+            <span class="vpal__l">${label}</span>
+            <button type="button" class="vpal__auto" data-vclear="${i}.${k}" title="Avtomatik rangga qaytarish"
+              ${isSet?'':'disabled'}>${isSet?'avto ↺':'avto'}</button>
+          </label>`;
+      }).join('');
+      return `
+      <div class="mediarow ${isActive?'active':''}">
         <span class="mediarow__thumb" style="${v.thumb?`background-image:url('${esc(v.thumb)}')`:''}">${v.thumb?'':'🎬'}</span>
         <div class="mediarow__f">
           <input type="text" data-arr="videos.${i}.name" value="${esc(v.name)}" placeholder="Video nomi">
           <input type="text" data-arr="videos.${i}.url" value="${esc(v.url)}" placeholder="https://...mp4">
+          <details class="vpal" data-vpal="${esc(v.id)}" ${openPals.has(v.id)?'open':''}>
+            <summary>🎨 Sayt ranglari ${setCount?`<b>(${setCount} ta qoʻlda)</b>`:'(avto)'}</summary>
+            <p class="hint vpal__hint">Shu video fonda turganda sayt qaysi ranglarda koʻrinishini belgilaydi.
+              ${isActive?'Oʻzgarishlar darhol saytda koʻrinadi.':'Koʻrish uchun avval videoni «Qoʻyish» qiling.'}
+              «avto ↺» — rang yana videodan avtomatik olinadi.</p>
+            <div class="vpal__grid">${pal}</div>
+          </details>
         </div>
         <div class="mediarow__acts">
-          <button class="mediarow__btn ${active===v.id?'mediarow__btn--use':''}" data-usevideo="${esc(v.id)}"
-            ${active===v.id?'disabled':''}>${active===v.id?'✓ Fonda':'Qo\'yish'}</button>
+          <button class="mediarow__btn ${isActive?'mediarow__btn--use':''}" data-usevideo="${esc(v.id)}"
+            ${isActive?'disabled':''}>${isActive?'✓ Fonda':'Qo\'yish'}</button>
           <button class="mediarow__btn mediarow__btn--red" data-del="videos" data-i="${i}">O'chirish</button>
         </div>
-      </div>`).join('') || `<p class="hint">Hali video yo'q — pastdan qo'shing.</p>`;
+      </div>`;
+    }).join('') || `<p class="hint">Hali video yo'q — pastdan qo'shing.</p>`;
   },
 
   renderGallery(){
@@ -1373,6 +1476,23 @@ function initAdmin(){
   main.addEventListener('input', e => {
     const el = e.target;
 
+    /* Per-video palette colour. Live-applies when that video is on the
+       background; no re-render here (re-rendering mid-drag would tear the
+       colour picker out of the admin's hand). */
+    if (el.dataset.vcolor){
+      const [i, key] = el.dataset.vcolor.split('.');
+      const v = data.videos?.[+i]; if (!v) return;
+      (v.colors ||= {})[key] = el.value;
+      const cell = el.closest('.vpal__cell');
+      if (cell){
+        cell.classList.add('vpal__cell--set');
+        const btn = cell.querySelector('[data-vclear]');
+        if (btn){ btn.disabled = false; btn.textContent = 'avto ↺'; }
+      }
+      if (data.bgVideo.enabled && data.bgVideo.presetId === v.id && !tidyUrl(data.bgVideo.src)) resolveAccent();
+      saveSoon(); return;
+    }
+
     if (el.dataset.model){
       set(el.dataset.model, el.type === 'checkbox' ? el.checked : el.value);
       if (el.dataset.model.startsWith('music.'))   window.__applyMusic?.();
@@ -1440,6 +1560,16 @@ function initAdmin(){
       save(); admin.fill(); renderAll(); toast('O\'chirildi'); return;
     }
 
+    const vc = e.target.closest('[data-vclear]');
+    if (vc){
+      const [i, key] = vc.dataset.vclear.split('.');
+      const v = data.videos?.[+i]; if (!v?.colors) return;
+      delete v.colors[key];
+      save(); admin.renderVideos();
+      if (data.bgVideo.enabled && data.bgVideo.presetId === v.id && !tidyUrl(data.bgVideo.src)) resolveAccent();
+      toast('Rang avtomatikka qaytdi');
+      return;
+    }
     const dd = e.target.closest('[data-deldoc]');
     if (dd){
       const [ei, dj] = dd.dataset.deldoc.split('.').map(Number);
@@ -1463,7 +1593,7 @@ function initAdmin(){
         portfolio:  { title:ml('Yangi loyiha'), description:ml('Tavsif'), image:'', link:'', tags:[] },
         favorites:  { icon:'🔗', title:ml('Yangi link'), url:'' },
         education:  { id:'e'+uid(), name:ml("Yangi ta'lim"), period:ml(''), description:ml(''), docs:[] },
-        videos:     { id:'v'+uid(), name:'Yangi video', url:'', thumb:'' },
+        videos:     { id:'v'+uid(), name:'Yangi video', url:'', thumb:'', colors:{} },
         tracks:     { id:'t'+uid(), name:'Yangi musiqa', url:'', link:'', icon:'🎵' }
       }[k];
       (k === 'skills' ? data[k].push(clone(blank)) : data[k].unshift(clone(blank)));
