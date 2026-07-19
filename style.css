@@ -949,3 +949,38 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
 }
 .vpal__auto:not([disabled]):hover{ color:var(--accent); border-color:var(--accent); }
 .vpal__auto[disabled]{ opacity:.45; cursor:default; }
+
+/* ==========================================================================
+   MOBILE POLISH
+   ========================================================================== */
+@media(max-width:640px){
+  /* iOS zooms the whole page when a focused input's font is under 16px —
+     the single most jarring mobile bug a form can have. */
+  input[type=text], input[type=email], input[type=password], input[type=url],
+  input[type=search], textarea, select{ font-size:16px !important; }
+
+  /* Section paddings breathe a little less on a phone. */
+  .section{ padding:64px 18px; }
+  .shead h2{ font-size:clamp(26px,8vw,34px); }
+
+  /* Education rows: keep the arrow off the text. */
+  .edu{ padding:15px 16px; gap:10px; }
+  .edu__b b{ font-size:14.5px; }
+
+  /* Playlist tracks stack single-column. */
+  .trks{ grid-template-columns:1fr; }
+
+  /* Admin palette cells: two per row instead of squeezing three. */
+  .vpal__grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+/* iPhone notch / home-indicator safe areas: fixed chrome must not sit under
+   the system UI. env() is 0 on devices without insets, so this is free. */
+@supports(padding:max(0px)){
+  .fab{ bottom:max(16px, calc(env(safe-area-inset-bottom) + 10px)); }
+  .fab--music{ left:max(16px, env(safe-area-inset-left)); }
+  .fab--hand{ right:max(16px, env(safe-area-inset-right)); }
+  @media(max-width:640px){
+    .settings{ bottom:max(74px, calc(env(safe-area-inset-bottom) + 68px)); }
+  }
+}
