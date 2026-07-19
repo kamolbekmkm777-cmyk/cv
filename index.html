@@ -312,6 +312,11 @@
             <label>Rasm (URL yoki yuklash)</label>
             <input type="text" data-model="profile.avatar" placeholder="assets/kamolbek-900.jpg" />
             <input type="file" id="avatarFile" accept="image/*" />
+            <button type="button" class="btn btn--ghost" id="avatarEdit" style="margin-top:8px">✂️ Joriy rasmni tahrirlash (kadr / kattalik)</button>
+          </div>
+          <div class="field">
+            <label>Rasmning saytdagi kattaligi: <b id="avatarSizeL">260</b> px</label>
+            <input type="range" id="avatarSizeR" min="180" max="340" step="5" />
             <p class="hint">Bo'sh qoldirsangiz — standart rasm ishlatiladi.</p>
           </div>
         </div>
@@ -549,6 +554,27 @@
   <button class="lbox__nav lbox__nav--prev" id="dlbPrev" aria-label="Oldingi">‹</button>
   <img id="dlbImg" alt="" />
   <button class="lbox__nav lbox__nav--next" id="dlbNext" aria-label="Keyingi">›</button>
+</div>
+
+<!-- Telegram-style avatar crop -->
+<div class="cropm" id="cropModal" aria-hidden="true" role="dialog" aria-label="Rasmni tahrirlash">
+  <div class="cropm__card">
+    <h3>Rasmni sozlang</h3>
+    <p class="cropm__hint">Surib joylashtiring · slayder yoki g'ildirak bilan kattalashtiring</p>
+    <div class="cropm__stage" id="cropStage">
+      <img id="cropImg" alt="" draggable="false" />
+      <span class="cropm__mask" aria-hidden="true"></span>
+    </div>
+    <div class="cropm__zoomrow">
+      <span>−</span>
+      <input type="range" id="cropZoom" min="100" max="400" step="1" value="100" />
+      <span>+</span>
+    </div>
+    <div class="cropm__acts">
+      <button class="btn btn--ghost" id="cropCancel">Bekor qilish</button>
+      <button class="btn btn--primary" id="cropSave">✓ Saqlash</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>

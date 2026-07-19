@@ -421,6 +421,11 @@ function renderBindings(){
     if (v !== undefined && v !== null && v !== '') el.textContent = v;
   });
   document.title = `${data.profile.name} — ${L(data.profile.profession)}`;
+  const photo = $('.hero__photo');
+  if (photo){
+    const sz = Number(data.profile.photoSize) || 260;
+    photo.style.width = `min(${sz}px, 62vw)`;
+  }
   const img = $('#avatarImg');
   if (img){
     const src = data.profile.avatar || DEFAULTS.profile.avatar;
@@ -1283,6 +1288,107 @@ function mlInput(path, cur, opt){
   </div>`;
 }
 
+/* ------------------------------------------------- AVATAR CROP (Telegram) ---
+   A circular crop editor exactly like Telegram's profile-photo picker: the
+   image sits under a round mask; drag to reposition, slider (or wheel/pinch)
+   to zoom. Export renders the visible square to a 900×900 JPEG. */
+const cropState = { img:null, natW:0, natH:0, base:1, zoom:1, ox:0, oy:0, size:300, cb:null, drag:null };
+
+function cropClamp(){
+  const c = cropState, k = c.base * c.zoom;
+  const w = c.natW * k, h = c.natH * k;
+  c.ox = Math.min(0, Math.max(c.size - w, c.ox));
+  c.oy = Math.min(0, Math.max(c.size - h, c.oy));
+}
+function cropPaint(){
+  const c = cropState, im = $('#cropImg'); if (!im || !c.img) return;
+  const k = c.base * c.zoom;
+  im.style.width  = (c.natW * k) + 'px';
+  im.style.height = (c.natH * k) + 'px';
+  im.style.transform = `translate(${c.ox}px, ${c.oy}px)`;
+}
+function cropSetZoom(z, cx, cy){
+  const c = cropState;
+  const old = c.base * c.zoom;
+  c.zoom = Math.min(4, Math.max(1, z));
+  const now = c.base * c.zoom;
+  // zoom toward the given stage point (default: centre) — Telegram feel
+  const px = cx ?? c.size/2, py = cy ?? c.size/2;
+  c.ox = px - (px - c.ox) * (now / old);
+  c.oy = py - (py - c.oy) * (now / old);
+  cropClamp(); cropPaint();
+  const r = $('#cropZoom'); if (r && Math.abs(+r.value - c.zoom*100) > 1) r.value = Math.round(c.zoom*100);
+}
+function openCrop(src, cb){
+  const m = $('#cropModal'); if (!m) return;
+  const c = cropState;
+  c.cb = cb; c.zoom = 1; c.drag = null;
+  c.size = $('#cropStage').clientWidth || 300;
+  const img = new Image();
+  img.crossOrigin = 'anonymous';                 // supabase/local — exportable
+  img.onload = () => {
+    c.img = img; c.natW = img.naturalWidth; c.natH = img.naturalHeight;
+    c.base = c.size / Math.min(c.natW, c.natH); // cover the stage
+    c.ox = (c.size - c.natW * c.base) / 2;      // centred
+    c.oy = (c.size - c.natH * c.base) / 2;
+    $('#cropImg').src = src;
+    $('#cropZoom').value = 100;
+    cropPaint();
+    m.classList.add('open'); m.setAttribute('aria-hidden','false');
+  };
+  img.onerror = () => toast('Rasmni ochib bo\'lmadi');
+  img.src = src;
+}
+function closeCrop(){
+  const m = $('#cropModal'); if (!m) return;
+  m.classList.remove('open'); m.setAttribute('aria-hidden','true');
+  const im = $('#cropImg'); if (im) im.removeAttribute('src');
+  cropState.img = null; cropState.cb = null;
+}
+function cropExport(){
+  const c = cropState; if (!c.img) return;
+  const OUT = 900, k2 = OUT / c.size, k = c.base * c.zoom;
+  const cv = document.createElement('canvas'); cv.width = cv.height = OUT;
+  const x = cv.getContext('2d');
+  x.fillStyle = '#111'; x.fillRect(0,0,OUT,OUT);
+  try {
+    x.drawImage(c.img, c.ox*k2, c.oy*k2, c.natW*k*k2, c.natH*k*k2);
+    cv.toBlob(b => {
+      if (!b) { toast('Saqlab bo\'lmadi'); return; }
+      const cb = c.cb; closeCrop(); cb?.(b);
+    }, 'image/jpeg', 0.88);
+  } catch(e){
+    // CORS-tainted source (an external URL) — can't read pixels back
+    toast('Bu rasmni tahrirlab bo\'lmaydi — faylni qaytadan yuklang');
+  }
+}
+function initCrop(){
+  const stage = $('#cropStage'); if (!stage) return;
+  stage.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    cropState.drag = { x: e.clientX, y: e.clientY, ox: cropState.ox, oy: cropState.oy };
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', e => {
+    const d = cropState.drag; if (!d) return;
+    cropState.ox = d.ox + (e.clientX - d.x);
+    cropState.oy = d.oy + (e.clientY - d.y);
+    cropClamp(); cropPaint();
+  });
+  const end = () => { cropState.drag = null; };
+  stage.addEventListener('pointerup', end);
+  stage.addEventListener('pointercancel', end);
+  stage.addEventListener('wheel', e => {
+    e.preventDefault();
+    const r = stage.getBoundingClientRect();
+    cropSetZoom(cropState.zoom * (e.deltaY < 0 ? 1.08 : 0.93), e.clientX - r.x, e.clientY - r.y);
+  }, { passive:false });
+  $('#cropZoom').addEventListener('input', e => cropSetZoom(Number(e.target.value)/100));
+  $('#cropSave').onclick = cropExport;
+  $('#cropCancel').onclick = closeCrop;
+  $('#cropModal').addEventListener('click', e => { if (e.target.id === 'cropModal') closeCrop(); });
+}
+
 /* ============================================================== ADMIN ==== */
 const admin = {
   open(){
@@ -1290,7 +1396,21 @@ const admin = {
     $('#adminPanel').setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
     this.fill();
-    toast('Admin panel ochildi');
+    // Cloud configured but signed out → land straight on the sign-in with
+    // the email prefilled, so publishing is one password away. Signed in
+    // (the usual case — the session persists) → normal landing.
+    const st = window.Cloud?.status?.();
+    if (st?.enabled && !st.signedIn){
+      $('.admin__tab[data-tab="cloud"]')?.click();
+      const e = $('#sbEmail');
+      if (e){
+        try { if (!e.value) e.value = localStorage.getItem('sb-last-email') || ''; } catch {}
+        setTimeout(() => e.focus({ preventScroll:true }), 80);
+      }
+      toast('Bulutga kiring — o\'zgarishlar hammaga ko\'rinishi uchun', 3200);
+    } else {
+      toast('Admin panel ochildi');
+    }
   },
   close(){
     $('#adminPanel').classList.remove('open');
@@ -1310,6 +1430,8 @@ const admin = {
       const o = get(el.dataset.ml);
       el.value = (o && typeof o === 'object') ? (o[el.dataset.lang] || '') : '';
     });
+    const asz = $('#avatarSizeR');
+    if (asz){ asz.value = Number(data.profile.photoSize) || 260; $('#avatarSizeL').textContent = asz.value; }
     const vol = $('#musicVol');
     if (vol){ vol.value = data.music.volume ?? 40; $('#volLabel').textContent = vol.value; }
     const op = $('#bgOp'), tn = $('#bgTintR');
@@ -1583,6 +1705,11 @@ function initAdmin(){
       if (el.dataset.model.startsWith('bgVideo.')) applyBgVideo();
       saveSoon(); renderAll(); return;
     }
+    if (el.id === 'avatarSizeR'){
+      data.profile.photoSize = Number(el.value);
+      $('#avatarSizeL').textContent = el.value;
+      renderBindings(); saveSoon(); return;
+    }
     if (el.id === 'bgOp'){
       data.bgVideo.opacity = Number(el.value); $('#bgOpLabel').textContent = el.value;
       applyBgVideo(); saveSoon(); return;
@@ -1644,6 +1771,22 @@ function initAdmin(){
       save(); admin.fill(); renderAll(); toast('O\'chirildi'); return;
     }
 
+    if (e.target.id === 'avatarEdit'){
+      const cur = data.profile.avatar || DEFAULTS.profile.avatar;
+      openCrop(cur, async blob => {
+        try {
+          toast('Yuklanmoqda…', 60000);
+          const put2 = window.__adminPut;
+          const file = new File([blob], 'avatar.jpg', { type:'image/jpeg' });
+          const src = put2 ? await put2(file, 'avatar', 4) : null;
+          if (!src){ toast('Yuklanmadi'); return; }
+          data.profile.avatar = src;
+          const f = $('[data-model="profile.avatar"]'); if (f) f.value = src;
+          save(); renderBindings(); toast('Rasm yangilandi');
+        } catch(err){ toast(err?.message || 'Saqlab bo\'lmadi'); }
+      });
+      return;
+    }
     const sc = e.target.closest('[data-sclear]');
     if (sc){
       if (data.sandColors) delete data.sandColors[sc.dataset.sclear];
@@ -1723,7 +1866,7 @@ function initAdmin(){
      URL. Without it, we fall back to a base64 data-URL in localStorage —
      which works, but a handful of photos will exhaust the ~5MB quota, so the
      limits below are deliberately tight in that mode. */
-  const put = async (file, folder, limitMB) => {
+  const put = window.__adminPut = async (file, folder, limitMB) => {
     const cloud = window.Cloud?.enabled && window.Cloud.status().signedIn;
     const cap = cloud ? limitMB : Math.min(limitMB, 2);
     if (file.size > cap*1024*1024){
@@ -1754,11 +1897,21 @@ function initAdmin(){
 
     try {
       if (el.id === 'avatarFile'){
-        busy('Yuklanmoqda…');
-        const src = await put(files[0], 'avatar', 4); if (!src) return;
-        data.profile.avatar = src;
-        const f = $('[data-model="profile.avatar"]'); if (f) f.value = src;
-        save(); renderBindings(); toast('Rasm yuklandi');
+        // Telegram flow: pick file → circular crop/zoom → then upload.
+        const obj = URL.createObjectURL(files[0]);
+        el.value = '';
+        openCrop(obj, async blob => {
+          URL.revokeObjectURL(obj);
+          try {
+            busy('Yuklanmoqda…');
+            const file = new File([blob], 'avatar.jpg', { type:'image/jpeg' });
+            const src = await put(file, 'avatar', 4); if (!src) { toast('Yuklanmadi'); return; }
+            data.profile.avatar = src;
+            const f = $('[data-model="profile.avatar"]'); if (f) f.value = src;
+            save(); renderBindings(); toast('Rasm yangilandi');
+          } catch(err){ toast(err?.message || 'Yuklab bo\'lmadi'); }
+        });
+        return;
       }
       else if (el.dataset.img !== undefined){
         busy('Yuklanmoqda…');
@@ -1835,7 +1988,9 @@ function initAdmin(){
     const b = $('#sbLogin');
     try {
       cloudBusy(b, true);
-      await window.Cloud.signIn($('#sbEmail').value.trim(), $('#sbPass').value);
+      const email = $('#sbEmail').value.trim();
+      await window.Cloud.signIn(email, $('#sbPass').value);
+      try { localStorage.setItem('sb-last-email', email); } catch {}
       $('#sbPass').value = '';
       admin.renderSync(); toast('Bulutga kirdingiz');
     } catch(err){ toast(err?.message || 'Kirib bo\'lmadi'); }
@@ -1956,7 +2111,7 @@ function initStealth(){
   document.body.appendChild(form);
 
   let armed = false, timer = null;
-  const disarm = () => { armed = false; inp.value = ''; clearTimeout(timer); try{ inp.blur(); }catch{} };
+  const disarm = () => { armed = false; inp.value = ''; clearTimeout(timer); t.classList.remove('listening'); try{ inp.blur(); }catch{} };
   const touchTimer = () => { clearTimeout(timer); timer = setTimeout(disarm, 45000); };
 
   const attempt = async () => {
@@ -1980,6 +2135,9 @@ function initStealth(){
   t.addEventListener('click', e => {
     e.stopPropagation();
     armed = true; inp.value = '';
+    // Glow softly in the site's current accent while listening — the owner
+    // sees it's armed; a stray visitor just sees a word pulse for a moment.
+    t.classList.add('listening');
     // focus() must run inside the click gesture or mobile keyboards refuse
     inp.focus({ preventScroll: true });
     touchTimer();
@@ -2128,7 +2286,7 @@ function init(){
   renderAll();
   applyBgVideo();
   initNav(); initMusic(); initForm(); initAdmin(); initStealth(); initSettings();
-  initEducation(); initPlaylist();
+  initEducation(); initPlaylist(); initCrop();
   $('#portfolioCats')?.addEventListener('click', e => {
     const c = e.target.closest('[data-cat]'); if (!c) return;
     portfolioFilter = c.dataset.cat;
