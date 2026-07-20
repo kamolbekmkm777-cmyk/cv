@@ -283,14 +283,9 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
   max-width:var(--maxw);margin:0 auto;padding:110px 24px 60px;
 }
 .hero__inner{
-  display:grid;grid-template-columns:1.15fr .85fr;
-  gap:14px clamp(28px,5vw,64px);
+  display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);
   align-items:center;width:100%;
 }
-/* Matn ustuni ikkala qatorni egallaydi — shior rasm ostidagi 2-qatarda.
-   Faqat keng ekranda: mobil bitta ustunda order bilan saralanadi va aniq
-   grid-row bunga xalaqit beradi. */
-@media(min-width:881px){ .hero__text{ grid-row:1 / span 2; } }
 .badge{
   display:inline-flex;align-items:center;gap:8px;
   padding:7px 15px;border-radius:999px;
@@ -371,16 +366,7 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
 }
 .lang__b:hover{ transform:translateY(-1px); color:var(--fg); }
 .lang__b.active{ color:var(--on-accent,#000); background:var(--accent); border-color:var(--accent); }
-.hero__avail{
-  position:absolute; left:50%; bottom:-8px; transform:translateX(-50%);
-  display:flex; align-items:center; gap:7px; white-space:nowrap;
-  padding:8px 15px; border-radius:999px;
-  font-size:12px; font-weight:600; color:var(--fg);
-  background:var(--glass-bg); border:1px solid var(--glass-line);
-  backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
-  box-shadow:var(--glass-shadow);
-}
-.hero__avail i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+/* (hero__avail o'chirildi — o'rnida arabcha shior turadi, pastda qarang) */
 @media(prefers-reduced-motion:reduce){ .hero__ring{ animation:none } }
 
 @media(max-width:880px){
@@ -1032,21 +1018,17 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
 
 
 /* ===== ARABCHA SHIOR (hero) =====
-   Rasm ustunining ostida, rasm markaziga tekislangan: grid'da 2-ustun
-   2-qator. Mobil bitta ustunga yig'ilganda rasmdan keyin, matndan oldin
-   turadi (order:-1 + DOM tartibi). */
+   "Ishga tayyor" belgisining aynan o'rnida: rasm doirasining pastki chetida,
+   markazda, biroz ustiga chiqib turadi. */
 .hero__motto{
-  justify-self:center; text-align:center;
+  position:absolute; left:50%; bottom:-16px; transform:translateX(-50%);
+  white-space:nowrap; text-align:center;
   font-family:'Amiri', 'Scheherazade New', serif;
-  font-size:clamp(30px, 4.8vw, 50px);
+  font-size:clamp(20px, 2vw, 26px);
   font-weight:700;
-  line-height:1.65;
-  margin-top:-6px;
+  line-height:1.5;
   color:var(--fg);
-  text-shadow:0 0 26px var(--accent-dim);   /* nozik aksent porlashi */
+  /* rasm ustida o'qilishi uchun: yumshoq qorong'i halo + aksent porlashi */
+  text-shadow:0 1px 3px rgba(0,0,0,.65), 0 0 18px rgba(0,0,0,.5), 0 0 26px var(--accent-dim);
 }
-@media(min-width:881px){ .hero__motto{ grid-column:2; grid-row:2; } }
-@media(max-width:880px){
-  /* rasm (order:-1) dan keyin, matndan oldin — DOM tartibida figure'dan keyin */
-  .hero__motto{ order:-1; margin:6px 0 -14px; font-size:clamp(26px, 8vw, 34px); }
-}
+@media(max-width:880px){ .hero__motto{ font-size:20px; bottom:-14px; } }
