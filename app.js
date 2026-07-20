@@ -687,7 +687,9 @@ function renderSocial(){
   w.innerHTML = Object.keys(SOCIAL_META).map(k => {
     const url = tidyUrl(data.social?.[k]);
     if (!url) return '';
-    return `<a class="soc" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${SOCIAL_META[k].label}" title="${SOCIAL_META[k].label}">
+    // Robot — tik figura, brend kvadratlari kabi to'lmaydi; ramkani to'ldirishi
+    // uchun kattaroq chiziladi (CSS .soc--robot).
+    return `<a class="soc${k==='channel'?' soc--robot':''}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${SOCIAL_META[k].label}" title="${SOCIAL_META[k].label}">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONS[k]}"/></svg></a>`;
   }).join('');
 }
@@ -705,14 +707,14 @@ function renderContact(){
     tidyUrl(data.social?.telegram) && { l:'Telegram', v:String(data.social.telegram).replace(/^https?:\/\//,''), h:tidyUrl(data.social.telegram),
       i:`<path d="${ICONS.telegram}" fill="currentColor"/>` },
     tidyUrl(data.social?.channel) && { l:'Telegram kanal', v:'@' + String(data.social.channel).replace(/^https?:\/\/(t\.me\/)?/,'').replace(/^@/,''), h:tidyUrl(data.social.channel),
-      i:`<path d="${ICONS.channel}" fill="currentColor"/>` },
+      robot:true, i:`<path d="${ICONS.channel}" fill="currentColor"/>` },
     c.website && { l:siteLabel, v:String(c.website).replace(/^https?:\/\//,''), h:tidyUrl(c.website),
       i:'<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z" fill="none" stroke="currentColor" stroke-width="2"/>' }
   ].filter(Boolean);
 
   $('#channelsWrap').innerHTML = items.map(it => `
     <a class="chan" href="${esc(it.h)}" target="_blank" rel="noopener">
-      <span class="chan__i"><svg viewBox="0 0 24 24">${it.i}</svg></span>
+      <span class="chan__i${it.robot?' chan__i--robot':''}"><svg viewBox="0 0 24 24">${it.i}</svg></span>
       <span class="chan__b"><b>${it.l}</b><span>${esc(it.v)}</span></span>
     </a>`).join('');
 

@@ -1033,3 +1033,7 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
 }
 @media(max-width:880px){ .hero__motto{ font-size:20px; bottom:-14px; } }
 
+
+/* Robot glifi tik/ingichka — ramkani to'ldirishi uchun kattaroq chiziladi */
+.soc--robot svg{ width:32px; height:32px; }
+.chan__i--robot svg{ width:25px; height:25px; }
