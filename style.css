@@ -138,7 +138,7 @@ input,textarea,select{font:inherit}
   transition:transform .2s var(--ease), border-color .2s, color .2s;
 }
 .brand:hover{ transform:translateY(-2px); border-color:var(--accent); color:var(--accent); }
-.brand__mk{ width:24px; height:24px; display:block; }
+.brand__mk{ width:28px; height:26px; display:block; object-fit:contain; }
 @media(max-width:640px){ .brand{ width:40px; height:40px; top:12px; left:14px } .brand__mk{ width:21px; height:21px } }
 
 /* ===== SETTINGS / THEME SWITCHER ===== */

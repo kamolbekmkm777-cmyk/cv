@@ -158,6 +158,9 @@ const DEFAULTS = {
            volume: 40, autoplay: true, presetId: "song1" },
   bgVideo: { enabled: true, presetId: "clouds", src: "", opacity: 70, tint: 55 },
   lang: "uz",
+  /* Brend: logo (chap yuqori) va favicon. Bo'sh = saytga qadalgan standart
+     metall MK. Admin'dan yuklansa — Supabase'ga tushadi, hammaga qo'llanadi. */
+  branding: { logo: '', favicon: '' },
   /* «Uch rang» temasining uchta bo'yog'i. Bo'sh = standart (paper/navy/amber).
      Butun tema shu uch rangdan hisoblanadi — boshqa hech narsa kerak emas. */
   sandColors: { bg:'', fg:'', accent:'' },
@@ -453,6 +456,19 @@ function renderBindings(){
   // SEO uchun: ism + brend (MKM777) + kasb — «Kamolbek» va «MKM777»
   // so'zlari doim sarlavhada bo'lsin.
   document.title = `${data.profile.name} (MKM777) — ${L(data.profile.profession)}`;
+  // Brend: admin yuklagan logo/favicon standartni almashtiradi
+  const b = data.branding || {};
+  const bimg = $('#brandImg');
+  if (bimg){
+    if (!bimg.dataset.def) bimg.dataset.def = bimg.getAttribute('src');   // standart nusxa
+    const target = tidyUrl(b.logo) || bimg.dataset.def;
+    if (bimg.getAttribute('src') !== target) bimg.src = target;
+  }
+  if (tidyUrl(b.favicon)){
+    $$('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(l => {
+      if (l.href !== tidyUrl(b.favicon)) l.href = tidyUrl(b.favicon);
+    });
+  }
   const photo = $('.hero__photo');
   if (photo){
     const sz = Number(data.profile.photoSize) || 260;
@@ -1957,7 +1973,21 @@ function initAdmin(){
     const busy = msg => toast(msg, 60000);
 
     try {
-      if (el.id === 'avatarFile'){
+      if (el.id === 'brandLogoFile'){
+        busy('Yuklanmoqda…');
+        const src = await put(files[0], 'brand', 2); if (!src) return;
+        data.branding.logo = src;
+        const f = $('[data-model="branding.logo"]'); if (f) f.value = src;
+        save(); renderBindings(); toast('Logo yangilandi');
+      }
+      else if (el.id === 'brandFaviconFile'){
+        busy('Yuklanmoqda…');
+        const src = await put(files[0], 'brand', 1); if (!src) return;
+        data.branding.favicon = src;
+        const f = $('[data-model="branding.favicon"]'); if (f) f.value = src;
+        save(); renderBindings(); toast('Favicon yangilandi');
+      }
+      else if (el.id === 'avatarFile'){
         // Telegram flow: pick file → circular crop/zoom → then upload.
         const obj = URL.createObjectURL(files[0]);
         el.value = '';
