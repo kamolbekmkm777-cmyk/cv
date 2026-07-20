@@ -154,7 +154,7 @@ function render(){
   $('#gEmpty').textContent = t('empty');
   const w = $('#galleryWrap');
   photos = (data?.gallery || []).filter(g => g && g.src);
-  if (data?.profile?.name) document.title = `${t('title')} — ${data.profile.name}`;
+  if (data?.profile?.name) document.title = `${t('title')} — ${data.profile.name} (MKM777)`;
   $('#gSub').textContent = photos.length ? `${photos.length} ${t('sub')}` : '';
   if (!photos.length){ w.innerHTML = ''; $('#gEmpty').hidden = false; return; }
   $('#gEmpty').hidden = true;

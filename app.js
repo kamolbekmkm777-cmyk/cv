@@ -441,7 +441,9 @@ function renderBindings(){
     const v = L(get(el.dataset.bind));
     if (v !== undefined && v !== null && v !== '') el.textContent = v;
   });
-  document.title = `${data.profile.name} — ${L(data.profile.profession)}`;
+  // SEO uchun: ism + brend (MKM777) + kasb — «Kamolbek» va «MKM777»
+  // so'zlari doim sarlavhada bo'lsin.
+  document.title = `${data.profile.name} (MKM777) — ${L(data.profile.profession)}`;
   const photo = $('.hero__photo');
   if (photo){
     const sz = Number(data.profile.photoSize) || 260;
