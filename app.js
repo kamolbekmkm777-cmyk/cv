@@ -45,7 +45,10 @@ const DEFAULTS = {
       description: { uz: "Veb-ilovalar, bir sahifali saytlar va dastlabki bot loyihalarida qatnashdim. Python, Django va REST API bilan ishladim.", en: "Contributed to web apps, landing pages, and early bot projects. Worked with Python, Django, and REST APIs.", ru: "Участвовал в разработке веб-приложений, лендингов и первых ботов. Работал с Python, Django и REST API." } }
   ],
   education: [
-    { id:'school', name:{ uz:"O'rta maktab", en:"Secondary school", ru:"Средняя школа" },
+    { id:'school',
+      name:{ uz:"19-umumiy o‘rta ta’lim maktabi — G‘ijduvon tumani, Buxoro viloyati",
+             en:"Secondary School No. 19 — G‘ijduvon district, Bukhara region",
+             ru:"Школа №19 — Гиждуванский район, Бухарская область" },
       period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] },
     { id:'lyceum', name:{ uz:"Litsey", en:"Lyceum", ru:"Лицей" },
       period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] },
