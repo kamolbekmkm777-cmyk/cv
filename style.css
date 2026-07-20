@@ -283,9 +283,14 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
   max-width:var(--maxw);margin:0 auto;padding:110px 24px 60px;
 }
 .hero__inner{
-  display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:14px clamp(28px,5vw,64px);
   align-items:center;width:100%;
 }
+/* Matn ustuni ikkala qatorni egallaydi — shior rasm ostidagi 2-qatarda.
+   Faqat keng ekranda: mobil bitta ustunda order bilan saralanadi va aniq
+   grid-row bunga xalaqit beradi. */
+@media(min-width:881px){ .hero__text{ grid-row:1 / span 2; } }
 .badge{
   display:inline-flex;align-items:center;gap:8px;
   padding:7px 15px;border-radius:999px;
@@ -1026,14 +1031,22 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
 @media(max-width:400px){ .cropm__stage{ width:100%; height:auto; aspect-ratio:1; } }
 
 
-/* ===== ARABCHA SHIOR (hero) ===== */
+/* ===== ARABCHA SHIOR (hero) =====
+   Rasm ustunining ostida, rasm markaziga tekislangan: grid'da 2-ustun
+   2-qator. Mobil bitta ustunga yig'ilganda rasmdan keyin, matndan oldin
+   turadi (order:-1 + DOM tartibi). */
 .hero__motto{
+  justify-self:center; text-align:center;
   font-family:'Amiri', 'Scheherazade New', serif;
-  font-size:clamp(26px, 4.2vw, 42px);
+  font-size:clamp(30px, 4.8vw, 50px);
   font-weight:700;
-  line-height:1.7;
-  margin:14px 0 4px;
+  line-height:1.65;
+  margin-top:-6px;
   color:var(--fg);
-  text-shadow:0 0 24px var(--accent-dim);   /* nozik aksent porlashi */
+  text-shadow:0 0 26px var(--accent-dim);   /* nozik aksent porlashi */
 }
-@media(max-width:880px){ .hero__motto{ text-align:center; } }
+@media(min-width:881px){ .hero__motto{ grid-column:2; grid-row:2; } }
+@media(max-width:880px){
+  /* rasm (order:-1) dan keyin, matndan oldin — DOM tartibida figure'dan keyin */
+  .hero__motto{ order:-1; margin:6px 0 -14px; font-size:clamp(26px, 8vw, 34px); }
+}
