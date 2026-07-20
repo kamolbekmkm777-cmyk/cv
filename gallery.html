@@ -116,9 +116,22 @@ async function loadData(){
     if (s?.theme) document.body.dataset.theme = s.theme;
   } catch {}
 
-  // 1) Supabase
+  // 1) Supabase. The cloud row is seeded as {} before the first publish — an
+  //    empty or partial document must never blank the page, so any missing
+  //    piece is filled from the shipped defaults.
   if (window.Cloud?.enabled){
-    try { await window.Cloud.init(); const r = await window.Cloud.load(); if (r) return r; } catch(e){ console.warn('cloud', e); }
+    try {
+      await window.Cloud.init();
+      const r = await window.Cloud.load();
+      if (r && typeof r === 'object' && Object.keys(r).length){
+        if (!Array.isArray(r.gallery) || !r.gallery.length) r.gallery = defaultGallery();
+        if (!r.bgVideo) r.bgVideo = { enabled:true, presetId:'clouds', src:'', opacity:70, tint:55 };
+        if (!Array.isArray(r.videos) || !r.videos.length)
+          r.videos = [{ id:'clouds', url:'https://archive.org/download/pixabay-21285/video-21285_source.mp4' }];
+        return r;
+      }
+      // {} — hali hech narsa chop etilmagan → mahalliy zanjirga o'tamiz
+    } catch(e){ console.warn('cloud', e); }
   }
   // 2) this browser's saved copy
   try { const s = JSON.parse(localStorage.getItem('cvData') || 'null'); if (s && Array.isArray(s.gallery)) return s; } catch {}

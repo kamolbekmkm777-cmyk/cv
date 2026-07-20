@@ -1984,16 +1984,29 @@ function initAdmin(){
 
   /* ---------------------------------------------------------- cloud pane */
   const cloudBusy = (btn, on) => { if (btn) btn.disabled = on; };
+  /* Supabase xatolarini odam tiliga o'girish — inglizcha xom matn o'rniga. */
+  const authErrUz = m => {
+    m = String(m || '');
+    if (/missing email|phone/i.test(m))          return 'Email kiritilmadi — tepadagi maydonni to\'ldiring';
+    if (/invalid login credentials/i.test(m))    return 'Email yoki parol noto\'g\'ri';
+    if (/email not confirmed/i.test(m))          return 'Email tasdiqlanmagan — Supabase\'da userni «Auto Confirm» bilan qayta yarating';
+    if (/rate limit/i.test(m))                   return 'Juda ko\'p urinish — birozdan so\'ng qayta urining';
+    return m || 'Kirib bo\'lmadi';
+  };
+
   $('#sbLogin').onclick = async () => {
     const b = $('#sbLogin');
     try {
-      cloudBusy(b, true);
       const email = $('#sbEmail').value.trim();
-      await window.Cloud.signIn(email, $('#sbPass').value);
+      const pass  = $('#sbPass').value;
+      if (!email){ toast('Email kiriting'); $('#sbEmail').focus(); return; }
+      if (!pass){ toast('Parolni kiriting'); $('#sbPass').focus(); return; }
+      cloudBusy(b, true);
+      await window.Cloud.signIn(email, pass);
       try { localStorage.setItem('sb-last-email', email); } catch {}
       $('#sbPass').value = '';
-      admin.renderSync(); toast('Bulutga kirdingiz');
-    } catch(err){ toast(err?.message || 'Kirib bo\'lmadi'); }
+      admin.renderSync(); toast('☁ Bulutga kirdingiz — endi har o\'zgarish hammaga chop etiladi', 3000);
+    } catch(err){ toast(authErrUz(err?.message)); }
     finally { cloudBusy(b, false); }
   };
   $('#sbLogout').onclick = async () => {
