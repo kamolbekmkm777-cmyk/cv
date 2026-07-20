@@ -1024,3 +1024,16 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
 .cropm__acts{ display:flex; gap:10px; }
 .cropm__acts .btn{ flex:1; }
 @media(max-width:400px){ .cropm__stage{ width:100%; height:auto; aspect-ratio:1; } }
+
+
+/* ===== ARABCHA SHIOR (hero) ===== */
+.hero__motto{
+  font-family:'Amiri', 'Scheherazade New', serif;
+  font-size:clamp(26px, 4.2vw, 42px);
+  font-weight:700;
+  line-height:1.7;
+  margin:14px 0 4px;
+  color:var(--fg);
+  text-shadow:0 0 24px var(--accent-dim);   /* nozik aksent porlashi */
+}
+@media(max-width:880px){ .hero__motto{ text-align:center; } }

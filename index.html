@@ -124,7 +124,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
 </head>
 <body data-theme="liquid">
@@ -231,6 +231,7 @@
       <h1 class="hero__name" data-bind="profile.name">Kamolbek Muzaffarov</h1>
       <p class="hero__role" data-bind="profile.profession">Full-Stack dasturchi va sunʼiy intellekt muhandisi</p>
       <p class="hero__slogan" data-bind="profile.slogan"></p>
+      <p class="hero__motto" dir="rtl" lang="ar" data-bind="profile.motto">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</p>
       <p class="hero__loc">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span data-bind="profile.location">Tashkent, Uzbekistan</span>
@@ -388,6 +389,10 @@
             <div class="mlf__row"><span class="mlf__lg">RU</span><input type="text" class="mlf__in" data-ml="profile.slogan" data-lang="ru" /></div>
           </div>
 
+          <div class="field">
+            <label>Shior (arabcha — bosh sahifada katta ko'rinadi)</label>
+            <input type="text" data-model="profile.motto" dir="rtl" style="font-size:18px" />
+          </div>
           <div class="mlf">
             <label>Joylashuv <span class="mlf__req">3 tilda</span></label>
             <div class="mlf__row"><span class="mlf__lg">UZ</span><input type="text" class="mlf__in" data-ml="profile.location" data-lang="uz" /></div>
