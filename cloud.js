@@ -69,6 +69,8 @@ const Cloud = {
     };
   },
   _user: null,
+  _token: null,          // keepalive-push uchun keshlangan access token
+  lastUpdatedAt: null,   // oxirgi o'qilgan qatorning updated_at qiymati
 
   onChange(fn){ listeners.add(fn); return () => listeners.delete(fn); },
 
@@ -76,8 +78,13 @@ const Cloud = {
   async init(){
     const c = await client(); if (!c) return Cloud.status();
     const { data } = await c.auth.getSession();
-    Cloud._user = data?.session?.user || null;
-    c.auth.onAuthStateChange((_e, s) => { Cloud._user = s?.user || null; emit(); });
+    Cloud._user  = data?.session?.user || null;
+    Cloud._token = data?.session?.access_token || null;
+    c.auth.onAuthStateChange((_e, s) => {
+      Cloud._user  = s?.user || null;
+      Cloud._token = s?.access_token || null;
+      emit();
+    });
     emit();
     return Cloud.status();
   },
@@ -86,7 +93,9 @@ const Cloud = {
     const c = await client(); if (!c) throw new Error('Bulut sozlanmagan');
     const { data, error } = await c.auth.signInWithPassword({ email, password });
     if (error) throw error;
-    Cloud._user = data.user; emit();
+    Cloud._user  = data.user;
+    Cloud._token = data.session?.access_token || null;
+    emit();
     return data.user;
   },
 
@@ -100,8 +109,9 @@ const Cloud = {
      stored yet (fresh project) — the caller then keeps its local copy. */
   async load(){
     const c = await client(); if (!c) return null;
-    const { data, error } = await c.from('site_data').select('data').eq('id', 1).maybeSingle();
+    const { data, error } = await c.from('site_data').select('data,updated_at').eq('id', 1).maybeSingle();
     if (error) throw error;
+    Cloud.lastUpdatedAt = data?.updated_at || null;
     return data?.data ?? null;
   },
 
@@ -126,6 +136,27 @@ const Cloud = {
     if (error) throw error;
     const { data } = c.storage.from(BUCKET).getPublicUrl(path);
     return data.publicUrl;
+  },
+
+  /* Tab yopilayotganda kutayotgan nashrni yo'qotmaslik uchun: keepalive
+     so'rov sahifa o'limidan keyin ham yetkaziladi. Token oldindan keshlangan,
+     shuning uchun bu yerda hech qanday await yo'q — pagehide ichida ishlaydi. */
+  saveBeacon(payload){
+    try {
+      if (!configured || !Cloud._token) return false;
+      fetch(URL_ + '/rest/v1/site_data?on_conflict=id', {
+        method: 'POST',
+        keepalive: true,
+        headers: {
+          apikey: KEY,
+          Authorization: 'Bearer ' + Cloud._token,
+          'Content-Type': 'application/json',
+          Prefer: 'resolution=merge-duplicates'
+        },
+        body: JSON.stringify({ id: 1, data: payload, updated_at: new Date().toISOString() })
+      }).catch(() => {});
+      return true;
+    } catch { return false; }
   },
 
   /* Best-effort cleanup when an admin deletes an item we uploaded.

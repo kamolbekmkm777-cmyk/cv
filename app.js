@@ -374,7 +374,7 @@ if (!lang) lang = LANGS.includes(data.lang) ? data.lang : 'uz';
 let saveTimer = null, cloudTimer = null;
 function save(){
   let ok = true;
-  try { localStorage.setItem('cvData', JSON.stringify(data)); flashSaved(); }
+  try { localStorage.setItem('cvData', JSON.stringify(data)); localStorage.setItem('cvSavedAt', String(Date.now())); flashSaved(); }
   catch(e){ console.warn('saveData', e); toast('Saqlab bo\'lmadi — xotira to\'lgan bo\'lishi mumkin'); ok = false; }
   // When the admin is signed into the cloud, every change is republished (a
   // little after the last edit) so it reaches every visitor — no manual step.
@@ -390,10 +390,20 @@ function cloudPushSoon(){
   if (!C?.enabled || !C.status().signedIn) return;
   clearTimeout(cloudTimer);
   cloudTimer = setTimeout(async () => {
+    cloudTimer = null;
     try { await C.save(data); admin.renderSync?.(); flashSaved(); }
     catch(e){ console.warn('auto-publish', e); toast('Bulutga saqlanmadi — qayta urinilmoqda', 2500); }
   }, 1400);
 }
+
+/* Tahrirdan 1.4s o'tmasdan tab yopilsa, kutayotgan nashr yo'qolardi.
+   pagehide'da keepalive so'rov bilan darhol jo'natamiz. */
+addEventListener('pagehide', () => {
+  if (cloudTimer){
+    clearTimeout(cloudTimer); cloudTimer = null;
+    window.Cloud?.saveBeacon?.(data);
+  }
+});
 
 const get = (path, obj=data) => path.split('.').reduce((o,k)=>o?.[k], obj);
 function set(path, val){
@@ -2287,9 +2297,12 @@ async function initCloud(){
     const remote = await C.load();
     if (!remote) return;
     // Local edits win over the cloud only while the admin is signed in on
-    // this device; for everyone else the published copy is the truth.
+    // this device AND nothing newer has been published elsewhere. Otherwise
+    // the admin's second device (phone/laptop) froze on its stale copy.
     const localEdits = (() => { try { return !!localStorage.getItem('cvData'); } catch { return false; } })();
-    if (localEdits && C.status().signedIn) return;
+    const localAt  = (() => { try { return Number(localStorage.getItem('cvSavedAt') || 0); } catch { return 0; } })();
+    const remoteAt = Date.parse(C.lastUpdatedAt || '') || 0;
+    if (localEdits && C.status().signedIn && localAt >= remoteAt - 3000) return;
     data = normalizeML(merge(DEFAULTS, remote));
     // Egasi chop etgan standart til — shaxsiy tanlovi yo'q tashrifchiga
     // qo'llanadi (cvLang yozilmaydi: egasi keyin standartni o'zgartirsa,
@@ -2329,7 +2342,11 @@ function init(){
                   pickAccent, applyAccent, resolveAccent, rgb2hsl, hsl2rgb };
 
   // Never block first paint on the network.
-  ('requestIdleCallback' in window ? requestIdleCallback : setTimeout)(() => initCloud(), 1);
+  // ODDIY setTimeout, requestIdleCallback EMAS: fon videosi kompozitorni
+  // doim band qilib turgani uchun ba'zi brauzerlar idle-callback'ni umuman
+  // otmaydi — initCloud hech qachon ishlamay, tashrifchilar bulutdagi
+  // nashrni ko'rmay qolardi (jonli saytda aynan shu kuzatildi).
+  setTimeout(initCloud, 30);
 }
 
 if (document.readyState === 'loading') addEventListener('DOMContentLoaded', init);
