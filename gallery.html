@@ -89,7 +89,7 @@
 'use strict';
 const $ = s => document.querySelector(s);
 const LANGS = ['uz','en','ru'];
-const lang = (() => { try { const s = localStorage.getItem('cvLang'); if (LANGS.includes(s)) return s; } catch {} return 'uz'; })();
+let lang = (() => { try { const s = localStorage.getItem('cvLang'); if (LANGS.includes(s)) return s; } catch {} return ''; })();
 const L = v => {
   if (v == null) return '';
   if (typeof v === 'string') return v;
@@ -278,6 +278,8 @@ function applyBgVideo(){
 let data = null;
 (async () => {
   data = await loadData();
+  // Shaxsiy til tanlovi bo'lmasa — egasi chop etgan standart til.
+  if (!lang) lang = LANGS.includes(data?.lang) ? data.lang : 'uz';
   render();
   initLightbox();
   applyBgVideo();

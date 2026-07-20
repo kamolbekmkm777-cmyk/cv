@@ -199,9 +199,14 @@ const ML_FIELDS = {
 };
 
 let lang = (() => {
+  // Faqat tashrifchining SHAXSIY tanlovi. Bo'lmasa — data tayyor bo'lgach
+  // egasi chop etgan standart til (data.lang) qo'llanadi.
   try { const s = localStorage.getItem('cvLang'); if (LANGS.includes(s)) return s; } catch {}
-  return 'uz';
+  return '';
 })();
+const hasPersonalLang = () => {
+  try { return LANGS.includes(localStorage.getItem('cvLang')); } catch { return false; }
+};
 
 /* Read a possibly-multilingual value in the active language, falling back to
    Uzbek, then any non-empty language, then ''. Plain strings pass through, so
@@ -362,6 +367,9 @@ let data = (() => {
   } catch(e){ console.warn('loadData', e); }
   return normalizeML(d);
 })();
+
+/* Til: shaxsiy tanlov yo'q bo'lsa — egasi chop etgan standart (data.lang). */
+if (!lang) lang = LANGS.includes(data.lang) ? data.lang : 'uz';
 
 let saveTimer = null, cloudTimer = null;
 function save(){
@@ -2283,6 +2291,14 @@ async function initCloud(){
     const localEdits = (() => { try { return !!localStorage.getItem('cvData'); } catch { return false; } })();
     if (localEdits && C.status().signedIn) return;
     data = normalizeML(merge(DEFAULTS, remote));
+    // Egasi chop etgan standart til — shaxsiy tanlovi yo'q tashrifchiga
+    // qo'llanadi (cvLang yozilmaydi: egasi keyin standartni o'zgartirsa,
+    // bu tashrifchiga ham yetib boradi).
+    if (!hasPersonalLang() && LANGS.includes(data.lang) && data.lang !== lang){
+      lang = data.lang;
+      $$('.lang__b').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      applyStrings();
+    }
     applyTheme(data.theme); renderAll(); applyBgVideo(); window.__applyMusic?.();
     admin.renderSync?.();
   } catch(e){ console.warn('cloud:', e); admin.renderSync?.(); }
