@@ -1217,10 +1217,18 @@ function initNav(){
 function initMusic(){
   const audio = $('#bgAudio'), btn = $('#musicBtn');
   let playing = false;
+  let userStopped = false;          // FAB bilan to'xtatgan bo'lsa, boshqa turtmaymiz
 
   const apply = () => {
     const src = tidyUrl(data.music.src);
-    if (src && audio.src !== src) audio.src = src;
+    // Manba almashganda ijro uziladi (masalan, bulut hujjati kelib boshqa
+    // qo'shiqni qo'ysa) — chalayotgan bo'lsak, yangisini davom ettiramiz.
+    const wasPlaying = !audio.paused;
+    if (src && audio.src !== src){
+      audio.src = src;
+      if (data.music.autoplay) audio.preload = 'auto';    // birinchi play tez boshlansin
+      if (wasPlaying) audio.play().catch(()=>{});
+    }
     if (!src) audio.removeAttribute('src');
     audio.volume = (Number(data.music.volume) || 40) / 100;
   };
@@ -1235,13 +1243,30 @@ function initMusic(){
 
   btn.onclick = async () => {
     if (!tidyUrl(data.music.src)) { toast('Admin paneldan musiqa tanlang'); return; }
-    if (playing) { audio.pause(); return; }
+    if (playing) { userStopped = true; audio.pause(); return; }
+    userStopped = false;
     try { await audio.play(); } catch(e){ toast('Musiqa chalinmadi'); }
   };
 
+  /* Avto-ijro. Brauzerlar tovushni foydalanuvchi biror narsa bosmaguncha
+     TAQIQLAYDI — bu siyosat, uni chetlab bo'lmaydi. Shuning uchun: darhol
+     urinamiz (bloklanadi), so'ng HAR imo-ishorada qayta urinamiz. Bir
+     martalik emas: sekin tarmoqda birinchi play uzilib qolsa ham keyingi
+     bosishda baribir boshlanadi. Ijro chindan yurganini (currentTime>0.5s)
+     ko'rgach — qurolsizlantiramiz. */
   if (data.music.autoplay && tidyUrl(data.music.src)){
-    const once = () => { audio.play().catch(()=>{}); ['click','keydown','touchstart'].forEach(t=>removeEventListener(t,once)); };
-    audio.play().catch(() => ['click','keydown','touchstart'].forEach(t=>addEventListener(t,once,{once:true,passive:true})));
+    audio.preload = 'auto';
+    const EVS = ['pointerdown','click','keydown','touchstart'];
+    const nudge = () => {
+      if (userStopped || !data.music.autoplay || !tidyUrl(data.music.src)) return disarm();
+      if (audio.paused) audio.play().catch(()=>{});
+    };
+    const disarm = () => EVS.forEach(t => removeEventListener(t, nudge));
+    audio.addEventListener('timeupdate', function ok(){
+      if (audio.currentTime > 0.5){ audio.removeEventListener('timeupdate', ok); disarm(); }
+    });
+    audio.play().catch(()=>{});
+    EVS.forEach(t => addEventListener(t, nudge, { passive:true }));
   }
   window.__applyMusic = apply;
 }
