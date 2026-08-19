@@ -1,45 +1,55 @@
 # Kamolbek Muzaffarov — CV Portfolio
 
-Vanilla HTML / CSS / JS. Build yo'q, dependency yo'q.
+Vanilla HTML / CSS / JS. Build yo'q, `node_modules` yo'q — Three.js va Lenis
+CDN'dan ES-modul sifatida yuklanadi (Supabase SDK va MediaPipe bilan bir xil uslub).
 
 ```
-index.html        struktura
-style.css         barcha stillar
-app.js            data model + render + admin panel + video→rang
+index.html        bosh sahifa: Bosh → Ishlarim → Lab → Kontakt
+work.html         case-study sahifa (/work?p=slug)
+gallery.html      fotogalereya (/gallery)
+admin.html        boshqaruv paneli (/admin) — Supabase Auth bilan
+style.css         bitta qora tema: #0A0A0B fon · #F2F0EC matn · #F0A23C amber
+core.js           ma'lumot modeli + i18n + bulut sinxroni (hamma sahifa ishlatadi)
+app.js            bosh sahifa render
+admin.js          panel logikasi (faqat /admin yuklaydi)
+particles.js      WebGL partikl maydon (Three.js, 30k nuqta, shader noise)
+fx.js             Lenis silliq scroll
 cloud.js          Supabase (ixtiyoriy — bo'lmasa localStorage)
-hand-control.js   qo'l bilan boshqarish (MediaPipe, lazy-loaded)
-config.js         Supabase kalitlari (SUPABASE.md ga qarang)
-data.js           deploy qilingan ma'lumot (admin paneldan yaratiladi)
-gallery.html      alohida fotogalereya sahifasi (yangi oynada)
-assets/logo.svg   MK logotipi (rangga moslashadi) + favicon fayllari
-assets/gallery/   fotogalereya (27 rasm + thumbnail)
-supabase.sql      baza sxemasi — Supabase SQL Editor'ga qo'ying
+hand-control.js   qo'l bilan boshqarish (MediaPipe, tugma bosilgandagina yuklanadi)
+config.js         Supabase kalitlari (SUPABASE.md)
+data.js           bulutsiz zaxira nusxa (admin → Reset → data.js)
+supabase.sql      baza sxemasi (RLS bilan)
+assets/           rasm(jpg+avif), logo, favicon
 ```
 
-## Ikkita tema
+## Dizayn
 
-| Tema | Qanday ishlaydi |
-|---|---|
-| **Liquid Glass** | Qorong'i shisha. Urg'u rangi **fon videosidan olinadi** — yashil o'rmon → yashil, ko'k osmon → ko'k, rangsiz video → nozik oq. |
-| **Uch rang** | Faqat 3 ta bo'yoq: `#B86B00` amber · `#0F2D52` navy · `#FAF7F2` paper. Bu temada fon videosi ko'rsatilmaydi — aks holda 4-rang qo'shilardi. |
+Bitta tema. Fon — jonli WebGL partikl maydon: 30 000 nuqta shader ichidagi
+simplex noise bilan oqadi, kursorga yaqin kelgani `1/d²` kuch bilan qochadi.
+Qo'l boshqaruvi yoqilsa (Lab bo'limi yoki pastki o'ngdagi ✋), partikllar
+sichqoncha o'rniga **qo'l kaftidan** qochadi.
+
+Shriftlar: **Unbounded** (sarlavhalar) + **Manrope** (matn) + Amiri (arabcha shior).
+Rasmlar AVIF (JPG zaxira bilan) — galereya 10MB → 2.9MB.
 
 ## Uch til
 
-Sayt UZ / EN / RU tillarda. Standart — **oʻzbekcha**. Til almashtirgich ⚙ sozlamalarda.
-Tarjimalar `data` ichida `{ uz, en, ru }` obyektlari sifatida saqlanadi; statik matnlar
-(menyu, tugmalar) `app.js` dagi `STRINGS` jadvalida. Admin panelda har bir matnli maydon
-**3 tilda** kiritiladi — boʻsh til qizil chiziq bilan belgilanadi.
+UZ / EN / RU. Kontent `{ uz, en, ru }` obyektlarida, statik matnlar `STRINGS`da.
+Egasi chop etgan til — yangi tashrifchi uchun standart.
 
-## Fotogalereya — alohida oyna
+## Admin — /admin
 
-Galereya asosiy sahifada koʻrinmaydi. Bosh sahifadagi **rasm ustiga bosilsa**, u yangi
-oynada (`gallery.html`) ochiladi. `gallery.html` bir xil maʼlumot manbaidan oʻqiydi
-(bulut → localStorage → data.js → standart 27 rasm) va til/temaga moslashadi.
+Bosh sahifada admin kodi **umuman yo'q** (alohida `admin.html` + `admin.js`).
+Kirish — faqat **Supabase Auth** (email + parol, server tekshiradi; kodda
+hech qanday parol/xesh saqlanmaydi). Kirgandan keyin har tahrir avtomatik
+~1.5 soniyada bulutga chop etiladi. Yozish huquqini RLS himoya qiladi:
+anon foydalanuvchi faqat o'qiy oladi.
 
-## Standart fon
+## Case-study sahifalar
 
-Bosh sahifa **osmon (bulut) videosi** bilan ochiladi. Liquid Glass temasida sayt ranglari
-shu videoning rangiga moslashadi. Uch rang temasida video koʻrsatilmaydi.
+Har loyiha `/work?p=slug` da, qat'iy tartibda: **Muammo → Nima qurdim →
+Qarorlar (3 ta «nega X emas, Y») → Raqamlar → Stack → Havolalar**.
+Raqamlar bo'sh bo'lsa, bo'lim ko'rinmaydi — faqat haqiqiy raqam yozing.
 
 ## Ishga tushirish
 
@@ -48,50 +58,10 @@ python3 -m http.server 8899
 # → http://localhost:8899
 ```
 
-Fayl sifatida ochsang ham ishlaydi (`index.html` ni brauzerga tashla) — faqat
-kamera (qo'l boshqaruvi) uchun `http://localhost` kerak.
-
-## Admin panel
-
-1. Sahifa pastidagi **MKM777** ni bos — ekranda hech narsa ko'rinmaydi
-2. Admin parolini ko'r-ko'rona ter — to'g'ri terilgan zahoti panel o'zi ochiladi
-   (parol repoda saqlanmaydi, kodda faqat SHA-256 xeshi bor; 5 marta xato → 5 daqiqa jim qulf)
-3. Panel ochiladi. Har bir o'zgarish **avtomatik saqlanadi**.
-
-Tablar: Profil · Statistika · Skills · Tajriba · Portfolio · **Fotogalereya** ·
-Sevimlilar · Ijtimoiy tarmoq · Kontakt · **Musiqalar** · **Videolar** · **Bulut ☁** ·
-Maxfiylik · Reset
-
-Fotogalereya, Musiqalar va Videolar — uchalasi ham to'liq tahrirlanadi:
-qo'shish (fayl yuklash yoki URL), nomini/izohini o'zgartirish, o'chirish.
-
-**Hammaga ko'rsatish** uchun ikki yo'l bor:
-
-| Yo'l | Qanday |
-|---|---|
-| **Bulut** (tavsiya) | **Bulut ☁ → Bulutga saqlash**. Telefondan ham tahrirlaysiz. Sozlash: [SUPABASE.md](SUPABASE.md) |
-| Bulutsiz | **Reset → 🚀 Saytga chop etish** → `data.js` ni loyihaga qo'y → deploy |
-
-> Bulutsiz rejimda o'zgarishlar `localStorage` da — faqat shu brauzerda, va
-> yuklangan fayllar base64 bo'lgani uchun ~2MB limit bor.
-
-## Qo'l bilan boshqarish
-
-Pastki o'ng burchakdagi qo'l tugmasi → kameraga ruxsat ber.
-
-| Ishora | Natija |
-|---|---|
-| Ko'rsatkich barmoq | kursor barmoq uchiga ergashadi |
-| Bosh barmoqqa **tez tekkizib qo'y** | click |
-| Tekkizib **ushlab tur** | sichqoncha bosilgan holda qoladi (drag / uzoq bosish) |
-| Tekkizib turib qo'lni **tepa/pastga** | scroll |
-
-Sezgirlik: ⚙ (o'ng yuqori) → **Qo'l bilan boshqaruv** — kursor tezligi,
-silliqlash, barmoq tekkizish sezgirligi va scroll tezligi. Sozlamalar saqlanadi.
-
-Kamera tasviri hech qachon ekranga chiqmaydi — faqat kursor. MediaPipe (~2 MB)
-**faqat tugmani bosganingda** yuklanadi; oddiy ziyoratchi uchun 0 KB.
-
 ## Deploy
 
-[DEPLOY.md](DEPLOY.md) — 3 ta buyruq.
+[DEPLOY.md](DEPLOY.md). Yangi rasm qo'shsangiz, AVIF variantini ham yarating:
+
+```bash
+avifenc -q 58 -s 7 rasm.jpg rasm.avif
+```

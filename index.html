@@ -8,7 +8,7 @@
 <meta name="keywords" content="Kamolbek, Kamolbek Muzaffarov, MKM777, Muzaffarov, dasturchi, full stack dasturchi, full-stack developer, AI muhandis, sun'iy intellekt, ixtirochi, Telegram bot, veb dasturchi, Toshkent dasturchi, O'zbekiston" />
 <meta name="author" content="Kamolbek Muzaffarov" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#08080a" />
+<meta name="theme-color" content="#0A0A0B" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="profile" />
@@ -31,9 +31,7 @@
 
 <link rel="canonical" href="https://kamolbek.com/" />
 
-<!-- Strukturaviy ma'lumot (schema.org): Person + WebSite. Google shu orqali
-     "Kamolbek", "MKM777", "Muzaffarov" so'zlarini shu shaxsga bog'laydi, va
-     19-maktab aynan G'ijduvon (Buxoro) ekanini biladi. -->
+<!-- Strukturaviy ma'lumot (schema.org): Person + WebSite. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -63,19 +61,12 @@
         "Python",
         "JavaScript",
         "React",
-        "Flutter",
+        "Three.js",
         "ESP32",
         "Cloud Automation"
       ],
-      "worksFor": {
-        "@type": "Organization",
-        "name": "MKM777"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Tashkent",
-        "addressCountry": "UZ"
-      },
+      "worksFor": { "@type": "Organization", "name": "MKM777" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Tashkent", "addressCountry": "UZ" },
       "alumniOf": [
         {
           "@type": "EducationalOrganization",
@@ -99,51 +90,37 @@
       "@id": "https://kamolbek.com/#website",
       "url": "https://kamolbek.com/",
       "name": "Kamolbek Muzaffarov — MKM777",
-      "alternateName": [
-        "Kamolbek",
-        "MKM777",
-        "kamolbek.com"
-      ],
+      "alternateName": [ "Kamolbek", "MKM777", "kamolbek.com" ],
       "inLanguage": "uz",
-      "about": {
-        "@id": "https://kamolbek.com/#kamolbek"
-      },
-      "publisher": {
-        "@id": "https://kamolbek.com/#kamolbek"
-      }
+      "about": { "@id": "https://kamolbek.com/#kamolbek" },
+      "publisher": { "@id": "https://kamolbek.com/#kamolbek" }
     }
   ]
 }
 </script>
 
-<!-- Favicons. SVG first (crisp at any size, adapts to light/dark tab bars);
-     PNG fallbacks for Safari/iOS which ignore SVG icons. -->
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260721h" />
+<!-- Unbounded (sarlavhalar) + Manrope (matn) — ikkalasida kirillcha bor,
+     Google Fonts unicode-range bilan faqat kerakli subsetni yuboradi. -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=Manrope:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20260819a" />
 </head>
-<body data-theme="liquid">
+<body>
 
-<!-- Background: gradient blobs always; video layer only if switched on in admin -->
-<div class="bg" aria-hidden="true">
-  <span class="bg__blob bg__blob--1"></span>
-  <span class="bg__blob bg__blob--2"></span>
-  <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
-  <span class="bg__tint" id="bgTint"></span>
-</div>
+<!-- Background: static floor + WebGL particle field (particles.js) -->
+<div class="bg" aria-hidden="true"><canvas id="pfield"></canvas></div>
 
-<!-- Brand mark, top-left. Inherits currentColor so it stays legible in both
-     themes (white on the dark glass, navy on the paper theme). -->
+<!-- Brand mark, top-left -->
 <a class="brand" href="#hero" aria-label="Kamolbek Muzaffarov — bosh sahifa">
-  <img class="brand__mk" id="brandImg" src="assets/logo-mk.png?v=20260721h" alt="MK" />
+  <img class="brand__mk" id="brandImg" src="assets/logo-mk.png?v=20260819a" alt="MK" />
 </a>
 
-<!-- Settings: theme switcher + CV download -->
+<!-- Settings: language + hand-control tuning + CV -->
 <div class="settings" id="settings">
   <button class="settings__btn" id="settingsBtn" aria-label="Sozlamalar" title="Sozlamalar">
     <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -151,23 +128,16 @@
     </svg>
   </button>
   <div class="settings__panel" id="settingsPanel">
-    <div class="settings__head"><h3 data-i18n="settings_title">Til va koʻrinish</h3><button class="settings__x" id="settingsClose" aria-label="Yopish">×</button></div>
+    <div class="settings__head"><h3 data-i18n="settings_title">Til va sozlamalar</h3><button class="settings__x" id="settingsClose" aria-label="Yopish">×</button></div>
 
-    <!-- Language: UZ / EN / RU. Default Uzbek. -->
     <div class="lang" role="group" aria-label="Til / Language">
       <button class="lang__b active" data-lang="uz">UZ</button>
       <button class="lang__b" data-lang="en">EN</button>
       <button class="lang__b" data-lang="ru">RU</button>
     </div>
 
-    <div class="themes">
-      <button class="theme" data-theme-set="liquid"><span class="theme__p theme__p--liquid"></span><b data-i18n="theme_liquid">Suyuq shisha</b></button>
-      <button class="theme" data-theme-set="sand"><span class="theme__p theme__p--sand"></span><b data-i18n="theme_sand">Uch rang</b></button>
-    </div>
     <button class="btn btn--ghost btn--full" id="downloadCv2" data-i18n="download_cv">CV yuklab olish (PDF) ↓</button>
 
-    <!-- Hand-control tuning. Lives here so it's reachable before the camera
-         is even switched on, and stays reachable while it's running. -->
     <div class="hset">
       <div class="hset__h"><span data-i18n="hand_title">Qoʻl bilan boshqaruv</span><button class="hset__reset" id="handReset" data-i18n="hand_reset">standart</button></div>
       <p class="hset__hint" data-i18n="hand_hint">
@@ -193,16 +163,12 @@
   </div>
 </div>
 
-<!-- ============ NAV ============ -->
+<!-- ============ NAV — 4 ta bo'lim, tamom ============ -->
 <nav class="nav" id="nav">
   <ul class="nav__links">
     <li><a href="#hero" data-section="hero" class="active" data-i18n="nav_home">Bosh</a></li>
-    <li><a href="#about" data-section="about" data-i18n="nav_about">Haqimda</a></li>
-    <li><a href="#skills" data-section="skills" data-i18n="nav_skills">Koʻnikmalar</a></li>
-    <li><a href="#experience" data-section="experience" data-i18n="nav_exp">Tajriba</a></li>
-    <li><a href="#education" data-section="education" data-i18n="nav_edu">Taʼlim</a></li>
     <li><a href="#portfolio" data-section="portfolio" data-i18n="nav_portfolio">Ishlarim</a></li>
-    <li><a href="#favorites" data-section="favorites" data-i18n="nav_fav">Sevimli</a></li>
+    <li><a href="#lab" data-section="lab" data-i18n="nav_lab">Lab</a></li>
     <li><a href="#contact" data-section="contact" data-i18n="nav_contact">Kontakt</a></li>
   </ul>
   <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -213,24 +179,22 @@
   <div class="msheet__bg" id="mobileMenuBg"></div>
   <div class="msheet__panel">
     <button class="msheet__close" id="mobileMenuClose" aria-label="Yopish">×</button>
-    <a href="#about" data-i18n="nav_about">Haqimda</a>
-    <a href="#skills" data-i18n="nav_skills">Koʻnikmalar</a>
-    <a href="#experience" data-i18n="nav_exp">Tajriba</a>
-    <a href="#education" data-i18n="nav_edu">Taʼlim</a>
+    <a href="#hero" data-i18n="nav_home">Bosh</a>
     <a href="#portfolio" data-i18n="nav_portfolio">Ishlarim</a>
-    <a href="#favorites" data-i18n="nav_fav">Sevimli</a>
+    <a href="#lab" data-i18n="nav_lab">Lab</a>
     <a href="#contact" data-i18n="nav_contact">Kontakt</a>
   </div>
 </div>
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO (Bosh + Haqimda + Ko'nikmalar bitta joyda) ============ -->
 <header class="hero" id="hero">
   <div class="hero__inner">
     <div class="hero__text">
       <span class="badge"><i class="dot"></i><span data-bind="ui.hero_badge">Yangi loyihalar uchun ochiq · 2026</span></span>
       <h1 class="hero__name" data-bind="profile.name">Kamolbek Muzaffarov</h1>
       <p class="hero__role" data-bind="profile.profession">Full-Stack dasturchi va sunʼiy intellekt muhandisi</p>
-      <p class="hero__slogan" data-bind="profile.slogan"></p>
+      <p class="hero__bio" data-bind="profile.bio"></p>
+      <p class="hero__skills" id="skillsLine"></p>
       <p class="hero__loc">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span data-bind="profile.location">Tashkent, Uzbekistan</span>
@@ -245,69 +209,61 @@
 
     <figure class="hero__photo">
       <span class="hero__ring" aria-hidden="true"></span>
-      <!-- Clicking the portrait opens the photo gallery in a new tab. -->
-      <a class="hero__disc" id="galleryOpen" href="gallery.html" target="_blank" rel="noopener"
-         aria-label="Fotogalereya" title="Fotogalereya">
-        <img id="avatarImg" src="assets/kamolbek-900.jpg" width="900" height="1124"
-             alt="Kamolbek Muzaffarov" fetchpriority="high" decoding="async" />
+      <span class="hero__disc">
+        <picture>
+          <source id="avatarAvif" type="image/avif" srcset="assets/kamolbek-900.avif" />
+          <img id="avatarImg" src="assets/kamolbek-900.jpg" width="900" height="1124"
+               alt="Kamolbek Muzaffarov" fetchpriority="high" decoding="async" />
+        </picture>
         <span class="hero__shine" aria-hidden="true"></span>
-        <span class="hero__photos"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg> <span data-i18n="photos_link">Rasmlarim</span></span>
-      </a>
+      </span>
       <figcaption class="hero__motto" dir="rtl" lang="ar" data-bind="profile.motto">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</figcaption>
     </figure>
   </div>
 </header>
 
-<!-- ============ ABOUT ============ -->
-<section class="section" id="about">
-  <div class="shead"><span class="shead__i">01</span><h2 data-i18n="sec_about">Haqimda</h2></div>
-  <div class="card about">
-    <p class="about__bio" data-bind="profile.bio"></p>
-    <div class="stats" id="statsWrap"></div>
-  </div>
-</section>
-
-<!-- ============ SKILLS ============ -->
-<section class="section" id="skills">
-  <div class="shead"><span class="shead__i">02</span><h2 data-i18n="sec_skills">Koʻnikmalar</h2></div>
-  <div class="skills" id="skillsWrap"></div>
-</section>
-
-<!-- ============ EXPERIENCE ============ -->
-<section class="section" id="experience">
-  <div class="shead"><span class="shead__i">03</span><h2 data-i18n="sec_exp">Ish tajribasi</h2></div>
-  <div class="timeline" id="timelineWrap"></div>
-</section>
-
-<!-- ============ EDUCATION ============ -->
-<section class="section" id="education">
-  <div class="shead"><span class="shead__i">04</span><h2 data-i18n="sec_edu">Taʼlim</h2></div>
-  <div class="edus" id="educationWrap"></div>
-</section>
-
-<!-- ============ PORTFOLIO ============ -->
+<!-- ============ ISHLARIM ============ -->
 <section class="section" id="portfolio">
-  <div class="shead"><span class="shead__i">05</span><h2 data-i18n="sec_portfolio">Ishlarim</h2></div>
+  <div class="shead"><span class="shead__i">01</span><h2 data-i18n="sec_portfolio">Ishlarim</h2></div>
+  <p class="shead__sub" data-i18n="sec_portfolio_sub">Har bir ish — alohida sahifa: muammo, yechim va qarorlar bilan</p>
   <div class="chips" id="portfolioCats"></div>
   <div class="grid" id="portfolioWrap"></div>
 </section>
 
-<!-- ============ FAVORITES / LINKS ============ -->
-<section class="section" id="favorites">
-  <div class="shead"><span class="shead__i">06</span><h2 data-i18n="sec_fav">Sevimlilarim</h2></div>
-  <p class="shead__sub" data-i18n="sec_fav_sub">Men yoqtirgan pleylistlar, kanallar va resurslar</p>
-  <div class="links" id="favoritesWrap"></div>
+<!-- ============ LAB ============ -->
+<section class="section" id="lab">
+  <div class="shead"><span class="shead__i">02</span><h2 data-i18n="sec_lab">Lab</h2></div>
+  <p class="shead__sub" data-i18n="sec_lab_sub">Tajribalar maydoni — sinab koʻring</p>
+
+  <div class="card lab__hand" data-rv>
+    <div>
+      <h3 data-i18n="lab_hand_h">Qoʻl bilan boshqarish</h3>
+      <p data-i18n="lab_hand_p">Kamerani yoqing-da, sichqonchani unuting: kursor barmogʻingizga ergashadi, fon zarralari esa qoʻlingizdan qochadi. Hech narsa yozib olinmaydi — tasvir brauzerdan chiqmaydi.</p>
+    </div>
+    <button class="btn btn--primary" id="labHandBtn" data-i18n="lab_hand_btn">✋ Qoʻl bilan boshqarishni yoqish</button>
+  </div>
 
   <div class="playlist" id="playlistBlock" hidden>
     <h3 class="playlist__h" data-i18n="sec_playlist">Musiqalarim</h3>
     <p class="shead__sub" data-i18n="playlist_sub">Men yoqtirgan qoʻshiqlar — shu yerda tinglang yoki havolada oching</p>
     <div class="trks" id="playlistWrap"></div>
   </div>
+
+  <div class="favblock" id="favBlock" hidden>
+    <h3 data-i18n="sec_fav">Sevimlilarim</h3>
+    <div class="links" id="favoritesWrap"></div>
+  </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
+<!-- ============ KONTAKT (tepasida bitta qator Ta'lim) ============ -->
 <section class="section" id="contact">
-  <div class="shead"><span class="shead__i">07</span><h2 data-i18n="sec_contact">Bogʻlanish</h2></div>
+  <div class="shead"><span class="shead__i">03</span><h2 data-i18n="sec_contact">Bogʻlanish</h2></div>
+
+  <div class="edublock" id="eduBlock" hidden>
+    <h3 data-i18n="sec_edu">Taʼlim</h3>
+    <div class="edurow" id="eduRow"></div>
+  </div>
+
   <div class="card contact">
     <div class="contact__left">
       <h3 data-i18n="contact_h">Loyihangiz haqida gaplashaylikmi?</h3>
@@ -330,307 +286,14 @@
   <div class="footer__social" id="socialWrap"></div>
   <div class="footer__meta">
     <span><span data-bind="profile.name">Kamolbek Muzaffarov</span> · <span data-bind="profile.profession"></span></span>
+    <a href="gallery" data-i18n="footer_gallery">Fotogalereya</a>
     <a id="footerPhone" href="#"></a>
     <span>© <span id="year">2026</span></span>
   </div>
-  <div class="footer__mkm"><span id="mkmTrigger" title=" ">MKM777</span></div>
+  <div class="footer__mkm"><span>MKM777</span></div>
 </footer>
 
-<!-- ============ ADMIN PANEL ============ -->
-<div class="admin" id="adminPanel" aria-hidden="true">
-  <div class="admin__bg" id="adminBg"></div>
-  <div class="admin__sheet" role="dialog" aria-label="Admin panel">
-    <div class="admin__head">
-      <h2>Admin Panel</h2>
-      <div class="admin__headr">
-        <span class="admin__saved" id="adminSaved">✓ saqlandi</span>
-        <button class="admin__x" id="adminClose" aria-label="Yopish">×</button>
-      </div>
-    </div>
-    <div class="admin__body">
-      <aside class="admin__nav" id="adminNav">
-        <button class="admin__tab active" data-tab="profile">Profil</button>
-        <button class="admin__tab" data-tab="stats">Statistika</button>
-        <button class="admin__tab" data-tab="skills">Skills</button>
-        <button class="admin__tab" data-tab="experience">Tajriba</button>
-        <button class="admin__tab" data-tab="portfolio">Portfolio</button>
-        <button class="admin__tab" data-tab="education">Taʼlim</button>
-        <button class="admin__tab" data-tab="gallery">Fotogalereya</button>
-        <button class="admin__tab" data-tab="favorites">Sevimlilar</button>
-        <button class="admin__tab" data-tab="social">Ijtimoiy tarmoq</button>
-        <button class="admin__tab" data-tab="contacts">Kontakt</button>
-        <button class="admin__tab" data-tab="music">Musiqalar</button>
-        <button class="admin__tab" data-tab="bgvideo">Videolar</button>
-        <button class="admin__tab" data-tab="sandtheme">Uch rang 🎨</button>
-        <button class="admin__tab" data-tab="cloud">Bulut ☁</button>
-        <button class="admin__tab" data-tab="security">Maxfiylik</button>
-        <button class="admin__tab admin__tab--red" data-tab="reset">Reset</button>
-      </aside>
-
-      <div class="admin__main">
-        <!-- PROFILE -->
-        <div class="pane active" data-pane="profile">
-          <h3>Profil</h3>
-          <p class="hint" style="margin-bottom:14px">Matnli maydonlar 3 tilda — <b>UZ / EN / RU</b>. Bo'sh til qizil chiziq bilan belgilanadi.</p>
-          <div class="field"><label>To'liq ism (barcha tillar uchun bir xil)</label><input type="text" data-model="profile.name" /></div>
-
-          <div class="mlf">
-            <label>Kasb <span class="mlf__req">3 tilda</span></label>
-            <div class="mlf__row"><span class="mlf__lg">UZ</span><input type="text" class="mlf__in" data-ml="profile.profession" data-lang="uz" /></div>
-            <div class="mlf__row"><span class="mlf__lg">EN</span><input type="text" class="mlf__in" data-ml="profile.profession" data-lang="en" /></div>
-            <div class="mlf__row"><span class="mlf__lg">RU</span><input type="text" class="mlf__in" data-ml="profile.profession" data-lang="ru" /></div>
-          </div>
-
-          <div class="mlf">
-            <label>Slogan <span class="mlf__req">3 tilda</span></label>
-            <div class="mlf__row"><span class="mlf__lg">UZ</span><input type="text" class="mlf__in" data-ml="profile.slogan" data-lang="uz" /></div>
-            <div class="mlf__row"><span class="mlf__lg">EN</span><input type="text" class="mlf__in" data-ml="profile.slogan" data-lang="en" /></div>
-            <div class="mlf__row"><span class="mlf__lg">RU</span><input type="text" class="mlf__in" data-ml="profile.slogan" data-lang="ru" /></div>
-          </div>
-
-          <div class="field">
-            <label>Shior (arabcha — bosh sahifada katta ko'rinadi)</label>
-            <input type="text" data-model="profile.motto" dir="rtl" style="font-size:18px" />
-          </div>
-          <div class="field">
-            <label>Logo (chap yuqori burchak)</label>
-            <input type="text" data-model="branding.logo" placeholder="bo'sh = standart MK" />
-            <input type="file" id="brandLogoFile" accept="image/*" />
-          </div>
-          <div class="field">
-            <label>Favicon (brauzer tab belgisi)</label>
-            <input type="text" data-model="branding.favicon" placeholder="bo'sh = standart MK" />
-            <input type="file" id="brandFaviconFile" accept="image/*" />
-            <p class="hint">Kvadrat rasm bering — 64×64 va kattaroq yetarli.</p>
-          </div>
-          <div class="mlf">
-            <label>Joylashuv <span class="mlf__req">3 tilda</span></label>
-            <div class="mlf__row"><span class="mlf__lg">UZ</span><input type="text" class="mlf__in" data-ml="profile.location" data-lang="uz" /></div>
-            <div class="mlf__row"><span class="mlf__lg">EN</span><input type="text" class="mlf__in" data-ml="profile.location" data-lang="en" /></div>
-            <div class="mlf__row"><span class="mlf__lg">RU</span><input type="text" class="mlf__in" data-ml="profile.location" data-lang="ru" /></div>
-          </div>
-
-          <div class="mlf">
-            <label>Bio <span class="mlf__req">3 tilda</span></label>
-            <div class="mlf__row"><span class="mlf__lg">UZ</span><textarea rows="4" class="mlf__in" data-ml="profile.bio" data-lang="uz"></textarea></div>
-            <div class="mlf__row"><span class="mlf__lg">EN</span><textarea rows="4" class="mlf__in" data-ml="profile.bio" data-lang="en"></textarea></div>
-            <div class="mlf__row"><span class="mlf__lg">RU</span><textarea rows="4" class="mlf__in" data-ml="profile.bio" data-lang="ru"></textarea></div>
-          </div>
-
-          <div class="mlf">
-            <label>Hero badge matni <span class="mlf__req">3 tilda</span></label>
-            <div class="mlf__row"><span class="mlf__lg">UZ</span><input type="text" class="mlf__in" data-ml="ui.hero_badge" data-lang="uz" /></div>
-            <div class="mlf__row"><span class="mlf__lg">EN</span><input type="text" class="mlf__in" data-ml="ui.hero_badge" data-lang="en" /></div>
-            <div class="mlf__row"><span class="mlf__lg">RU</span><input type="text" class="mlf__in" data-ml="ui.hero_badge" data-lang="ru" /></div>
-          </div>
-
-          <div class="field">
-            <label>Rasm (URL yoki yuklash)</label>
-            <input type="text" data-model="profile.avatar" placeholder="assets/kamolbek-900.jpg" />
-            <input type="file" id="avatarFile" accept="image/*" />
-            <button type="button" class="btn btn--ghost" id="avatarEdit" style="margin-top:8px">✂️ Joriy rasmni tahrirlash (kadr / kattalik)</button>
-          </div>
-          <div class="field">
-            <label>Rasmning saytdagi kattaligi: <b id="avatarSizeL">260</b> px</label>
-            <input type="range" id="avatarSizeR" min="180" max="340" step="5" />
-            <p class="hint">Bo'sh qoldirsangiz — standart rasm ishlatiladi.</p>
-          </div>
-        </div>
-
-        <!-- STATS -->
-        <div class="pane" data-pane="stats">
-          <h3>Statistika</h3>
-          <div class="field"><label>Yillik tajriba</label><input type="text" data-model="stats.years" /></div>
-          <div class="field"><label>Loyihalar</label><input type="text" data-model="stats.projects" /></div>
-          <div class="field"><label>Mijozlar</label><input type="text" data-model="stats.clients" /></div>
-          <div class="field"><label>Ishonchlilik</label><input type="text" data-model="stats.uptime" /></div>
-        </div>
-
-        <!-- SKILLS -->
-        <div class="pane" data-pane="skills">
-          <h3>Skills</h3>
-          <div id="adminSkills" class="list"></div>
-          <button class="btn btn--ghost" data-add="skills">+ Skill qo'shish</button>
-        </div>
-
-        <!-- EXPERIENCE -->
-        <div class="pane" data-pane="experience">
-          <h3>Ish tajribasi</h3>
-          <div id="adminExperience" class="list"></div>
-          <button class="btn btn--ghost" data-add="experience">+ Tajriba qo'shish</button>
-        </div>
-
-        <!-- PORTFOLIO -->
-        <div class="pane" data-pane="portfolio">
-          <h3>Portfolio</h3>
-          <div id="adminPortfolio" class="list"></div>
-          <button class="btn btn--ghost" data-add="portfolio">+ Loyiha qo'shish</button>
-        </div>
-
-        <!-- FAVORITES -->
-        <div class="pane" data-pane="favorites">
-          <h3>Sevimlilar (linklar)</h3>
-          <p class="hint">YouTube pleylist, Yandex Music, kanallar, maqolalar — xohlagan linkingizni qo'shing.</p>
-          <div id="adminFavorites" class="list"></div>
-          <button class="btn btn--ghost" data-add="favorites">+ Link qo'shish</button>
-        </div>
-
-        <!-- SOCIAL -->
-        <div class="pane" data-pane="social">
-          <h3>Ijtimoiy tarmoqlar</h3>
-          <p class="hint">Bo'sh qoldirilgan tarmoq sayt pastida ko'rsatilmaydi.</p>
-          <div id="adminSocial" class="list"></div>
-        </div>
-
-        <!-- CONTACTS -->
-        <div class="pane" data-pane="contacts">
-          <h3>Kontakt</h3>
-          <div class="field"><label>Email</label><input type="email" data-model="contacts.email" /></div>
-          <div class="field"><label>Telefon</label><input type="text" data-model="contacts.phone" /></div>
-          <div class="field"><label>Website</label><input type="text" data-model="contacts.website" /></div>
-        </div>
-
-        <!-- EDUCATION -->
-        <div class="pane" data-pane="education">
-          <h3>Taʼlim</h3>
-          <p class="hint">Saytda faqat nomi va yillari koʻrinadi. Ustiga bosilganda — toʻliq maʼlumot va hujjatlar (diplom, attestat, rasmlar).</p>
-          <div id="adminEducation" class="list" style="margin-top:12px"></div>
-          <button class="btn btn--ghost" data-add="education">+ Taʼlim qo'shish</button>
-        </div>
-
-        <!-- GALLERY -->
-        <div class="pane" data-pane="gallery">
-          <h3>Fotogalereya</h3>
-          <div id="syncGallery"></div>
-          <p class="hint">Rasm qo'shing, tagidagi yozuvni tahrirlang yoki o'chiring. Sudrab tartibini ham o'zgartira olasiz.</p>
-          <div class="admin__acts" style="margin:12px 0">
-            <label class="btn btn--ghost" style="cursor:pointer">🖼 Rasm qo'shish (bir nechta)
-              <input type="file" id="galleryFiles" accept="image/*" multiple hidden />
-            </label>
-            <button class="btn btn--ghost" id="galleryAddUrl">+ URL orqali qo'shish</button>
-          </div>
-          <div id="adminGallery" class="ggrid"></div>
-        </div>
-
-        <!-- MUSIC -->
-        <div class="pane" data-pane="music">
-          <h3>Musiqalar</h3>
-          <div id="syncMusic"></div>
-          <p class="hint">"Qo'yish" — shu qo'shiq saytda chalinadi. Nom va URL ni to'g'ridan-to'g'ri tahrirlang.</p>
-          <div id="adminTracks" class="list" style="margin-top:12px"></div>
-          <div class="admin__acts" style="margin:12px 0">
-            <button class="btn btn--ghost" data-add="tracks">+ URL orqali qo'shish</button>
-            <label class="btn btn--ghost" style="cursor:pointer">🎵 Fayl yuklash (max 8MB)
-              <input type="file" id="musicFile" accept="audio/*" multiple hidden />
-            </label>
-          </div>
-          <div class="field"><label>Ovoz: <b id="volLabel">40</b>%</label><input type="range" id="musicVol" min="0" max="100" /></div>
-          <label class="check"><input type="checkbox" data-model="music.autoplay" /> <span>Sahifa ochilganda avtomatik chalinsin</span></label>
-        </div>
-
-        <!-- BG VIDEO -->
-        <div class="pane" data-pane="bgvideo">
-          <h3>Fon videolari</h3>
-          <div id="syncVideos"></div>
-          <label class="check"><input type="checkbox" data-model="bgVideo.enabled" /> <span>Fon videoni yoqish</span></label>
-          <p class="hint" style="margin:10px 0 16px">
-            O'chirilgan bo'lsa — gradient fon ishlaydi (eng tez) va video <b>umuman yuklanmaydi</b>.
-            <b>Liquid Glass</b> temasida sayt ranglari tanlangan video rangiga moslashadi.
-          </p>
-          <div id="adminVideos" class="list"></div>
-          <div class="admin__acts" style="margin:12px 0">
-            <button class="btn btn--ghost" data-add="videos">+ URL orqali qo'shish</button>
-            <label class="btn btn--ghost" style="cursor:pointer">🎬 Video yuklash (max 30MB)
-              <input type="file" id="videoFiles" accept="video/*" multiple hidden />
-            </label>
-          </div>
-          <div class="field"><label>Ko'rinishi: <b id="bgOpLabel">70</b>%</label><input type="range" id="bgOp" min="10" max="100" /></div>
-          <div class="field"><label>Qorong'ilashtirish: <b id="bgTintLabel">55</b>%</label><input type="range" id="bgTintR" min="0" max="90" /></div>
-        </div>
-
-        <!-- SAND THEME COLORS -->
-        <div class="pane" data-pane="sandtheme">
-          <h3>«Uch rang» temasi ranglari</h3>
-          <p class="hint">
-            Ikkinchi tema faqat uchta boʻyoqdan quriladi. Shu uchtasini tanlaysiz —
-            xira matn, chiziqlar, yuzalar, gradientlar hammasi shulardan avtomatik hisoblanadi.
-            «standart ↺» — asl rangga (qogʻoz / toʻq koʻk / amber) qaytaradi.
-          </p>
-          <div class="vpal__grid" id="sandPal" style="margin-top:14px"></div>
-          <div class="admin__acts" style="margin-top:14px">
-            <button class="btn btn--ghost" id="sandPreview">Temani yoqib koʻrish</button>
-          </div>
-        </div>
-
-        <!-- CLOUD -->
-        <div class="pane" data-pane="cloud">
-          <h3>Bulut (Supabase)</h3>
-          <div id="syncCloud"></div>
-          <p class="hint" style="margin-bottom:14px">
-            Bulut ulanmagan bo'lsa, o'zgarishlar <b>faqat shu brauzerda</b> saqlanadi.
-            Ulansa — telefondan tahrirlaysiz, hamma ko'radi.
-            Sozlash: <code>config.js</code> faylini to'ldiring (<code>SUPABASE.md</code> da qadamma-qadam yozilgan).
-          </p>
-          <div id="cloudAuth">
-            <div class="field"><label>Admin email</label><input type="email" id="sbEmail" placeholder="siz@example.com" autocomplete="username" /></div>
-            <div class="field"><label>Parol</label><input type="password" id="sbPass" placeholder="••••••••" autocomplete="current-password" /></div>
-            <div class="admin__acts">
-              <button class="btn btn--primary" id="sbLogin">Kirish</button>
-              <button class="btn btn--ghost" id="sbLogout">Chiqish</button>
-            </div>
-          </div>
-          <div class="admin__acts" style="margin-top:14px">
-            <button class="btn btn--primary" id="sbPush">☁ Bulutga saqlash (hamma ko'radi)</button>
-            <button class="btn btn--ghost" id="sbPull">⟳ Bulutdan yuklab olish</button>
-          </div>
-          <p class="hint" style="margin-top:12px">
-            Yuklangan rasm/musiqa/videolar Supabase Storage'ga tushadi — brauzer xotirasini to'ldirmaydi.
-          </p>
-        </div>
-
-        <!-- SECURITY -->
-        <div class="pane" data-pane="security">
-          <h3>Maxfiylik</h3>
-          <p class="hint">
-            Panelga kirish: sayt pastidagi <b>MKM777</b> ni bosing, soʻng parolni
-            <b>koʻr-koʻrona</b> terib <b>Enter</b> bosing — ekranda hech narsa koʻrinmaydi,
-            xato terilsa ham hech qanday belgi chiqmaydi. Parol kodda saqlanmaydi —
-            faqat SHA-256 xeshi bor; 5 marta xato terilsa 5 daqiqa jim qulflanadi.
-          </p>
-          <p class="hint" style="margin-top:14px">
-            <b>Asosiy himoya bulutda:</b> panelni qanday ochishdan qatʼi nazar, saytni hammaga
-            oʻzgartirish uchun Supabase email/parol kerak (Bulut ☁ boʻlimi). Usiz oʻzgarishlar
-            faqat oʻsha brauzerning oʻzida qoladi.
-          </p>
-          <p class="hint" style="margin-top:14px">
-            Parolni oʻzgartirish: yangi parolning SHA-256 xeshini <code>app.js</code> dagi
-            <code>ADMIN_HASH</code> ga yozib deploy qilinadi.
-          </p>
-        </div>
-
-        <!-- RESET -->
-        <div class="pane" data-pane="reset">
-          <h3>Reset / Eksport</h3>
-          <div class="admin__acts">
-            <button class="btn btn--ghost" id="exportData">📥 Eksport (JSON)</button>
-            <label class="btn btn--ghost" style="cursor:pointer">📤 Import (JSON)
-              <input type="file" id="importData" accept="application/json" hidden />
-            </label>
-            <button class="btn btn--ghost" id="publishData">🚀 Saytga chop etish (data.js)</button>
-            <button class="btn btn--red" id="resetData">⚠ Standart holatga qaytarish</button>
-          </div>
-          <p class="hint" style="margin-top:16px">
-            <b>Saytga chop etish</b> — o'zgarishlaringizni <code>data.js</code> fayliga yuklab beradi.
-            Uni loyiha papkasiga qo'yib deploy qilsangiz, hamma ziyoratchi ko'radi.
-            (Aks holda o'zgarishlar faqat shu brauzerda saqlanadi.)
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Music -->
+<!-- Music (autoplay yo'q — faqat tugma bilan) -->
 <audio id="bgAudio" loop preload="none"></audio>
 <button class="fab fab--music" id="musicBtn" aria-label="Musiqa" title="Musiqa">
   <svg class="ico-off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
@@ -664,7 +327,7 @@
   </div>
 </div>
 
-<!-- Education doc lightbox (sits above the modal) -->
+<!-- Education doc lightbox -->
 <div class="lbox" id="docLightbox" aria-hidden="true" role="dialog" style="z-index:1200">
   <button class="lbox__x" id="dlbClose" aria-label="Yopish">×</button>
   <button class="lbox__nav lbox__nav--prev" id="dlbPrev" aria-label="Oldingi">‹</button>
@@ -672,33 +335,17 @@
   <button class="lbox__nav lbox__nav--next" id="dlbNext" aria-label="Keyingi">›</button>
 </div>
 
-<!-- Telegram-style avatar crop -->
-<div class="cropm" id="cropModal" aria-hidden="true" role="dialog" aria-label="Rasmni tahrirlash">
-  <div class="cropm__card">
-    <h3>Rasmni sozlang</h3>
-    <p class="cropm__hint">Surib joylashtiring · slayder yoki g'ildirak bilan kattalashtiring</p>
-    <div class="cropm__stage" id="cropStage">
-      <img id="cropImg" alt="" draggable="false" />
-      <span class="cropm__mask" aria-hidden="true"></span>
-    </div>
-    <div class="cropm__zoomrow">
-      <span>−</span>
-      <input type="range" id="cropZoom" min="100" max="400" step="1" value="100" />
-      <span>+</span>
-    </div>
-    <div class="cropm__acts">
-      <button class="btn btn--ghost" id="cropCancel">Bekor qilish</button>
-      <button class="btn btn--primary" id="cropSave">✓ Saqlash</button>
-    </div>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
-<script src="config.js?v=20260721h" onerror="window.__noConfig=1"></script>
-<script src="data.js?v=20260721h"></script>
-<script src="cloud.js?v=20260721h"></script>
-<script src="app.js?v=20260721h"></script>
-<script src="hand-control.js?v=20260721h" defer></script>
+<script src="config.js?v=20260819a" onerror="window.__noConfig=1"></script>
+<script src="data.js?v=20260819a"></script>
+<script src="cloud.js?v=20260819a"></script>
+<script src="core.js?v=20260819a"></script>
+<script src="app.js?v=20260819a"></script>
+<script src="hand-control.js?v=20260819a" defer></script>
+<!-- Silliq scroll (Lenis) + partikl maydon (Three.js) — CDN ESM, build yo'q.
+     Modul yuklanmasa sayt oddiy scroll bilan ishlayveradi. -->
+<script type="module" src="fx.js?v=20260819a"></script>
+<script type="module" src="particles.js?v=20260819a"></script>
 </body>
 </html>

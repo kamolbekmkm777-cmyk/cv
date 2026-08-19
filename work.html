@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Ish — Kamolbek Muzaffarov (MKM777)</title>
+<meta name="description" content="Kamolbek Muzaffarov (MKM777) loyihasi — muammo, yechim va muhandislik qarorlari." />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0A0A0B" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Kamolbek Muzaffarov — MKM777" />
+<meta property="og:image" content="https://kamolbek.com/assets/kamolbek-900.jpg" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20260819a" />
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"></div>
+
+<a class="brand" href="/" aria-label="Bosh sahifa">
+  <img class="brand__mk" id="brandImg" src="assets/logo-mk.png?v=20260819a" alt="MK" />
+</a>
+
+<main class="case" id="caseWrap"></main>
+
+<div class="toast" id="toast"></div>
+
+<script src="config.js?v=20260819a" onerror="window.__noConfig=1"></script>
+<script src="data.js?v=20260819a"></script>
+<script src="cloud.js?v=20260819a"></script>
+<script src="core.js?v=20260819a"></script>
+<script>
+/* Case-study page. Reads the same data chain as the main site (cloud →
+   localStorage → data.js → defaults) via core.js, then renders the project
+   whose slug arrives in ?p=. Layout is fixed:
+     Muammo → Nima qurdim → Qarorlar → Raqamlar → Stack → Havolalar */
+(() => {
+'use strict';
+const CV = window.CV;
+const { $, esc, tidyUrl, L } = CV;
+
+const STR = {
+  back:      { uz:'← Barcha ishlar', en:'← All work', ru:'← Все работы' },
+  problem:   { uz:'Muammo', en:'The problem', ru:'Проблема' },
+  built:     { uz:'Nima qurdim', en:'What I built', ru:'Что я построил' },
+  decisions: { uz:'Qarorlar', en:'Key decisions', ru:'Ключевые решения' },
+  numbers:   { uz:'Raqamlar', en:'The numbers', ru:'Цифры' },
+  stack:     { uz:'Stack', en:'Stack', ru:'Стек' },
+  links:     { uz:'Havolalar', en:'Links', ru:'Ссылки' },
+  live:      { uz:'Jonli ko‘rish ↗', en:'View live ↗', ru:'Открыть ↗' },
+  code:      { uz:'Kod (GitHub) ↗', en:'Source (GitHub) ↗', ru:'Код (GitHub) ↗' },
+  next:      { uz:'Keyingi ish', en:'Next project', ru:'Следующий проект' },
+  notfound:  { uz:'Bunday ish topilmadi.', en:'Project not found.', ru:'Проект не найден.' }
+};
+const t = k => STR[k][CV.lang] || STR[k].uz;
+
+function render(){
+  document.documentElement.lang = CV.lang;
+  CV.applyBranding();
+  const w = $('#caseWrap');
+  const slug = new URLSearchParams(location.search).get('p') || '';
+  const list = CV.data.portfolio || [];
+  const idx = list.findIndex(p => p.slug === slug);
+  const p = list[idx];
+
+  if (!p){
+    document.title = 'MKM777 — 404';
+    w.innerHTML = `<a class="case__back" href="/#portfolio">${esc(t('back'))}</a>
+      <div class="case__notfound"><h1>404</h1><p>${esc(t('notfound'))}</p></div>`;
+    return;
+  }
+
+  document.title = `${L(p.title)} — ${CV.data.profile.name} (MKM777)`;
+  const desc = L(p.description);
+  const q = document.querySelector('meta[name="description"]');
+  if (q && desc) q.content = desc;
+
+  const nums = (p.numbers||[]).filter(n => String(n.v||'').trim());
+  const decs = (p.decisions||[]).filter(d => L(d).trim());
+  const next = list[(idx + 1) % list.length];
+
+  w.innerHTML = `
+    <a class="case__back" href="/#portfolio">${esc(t('back'))}</a>
+    <h1>${esc(L(p.title))}</h1>
+    <p class="case__sub">${esc(desc)}</p>
+    ${p.image ? `<div class="case__hero"><img src="${esc(p.image)}" alt="${esc(L(p.title))}" onerror="this.parentElement.remove()"></div>` : ''}
+
+    ${L(p.problem).trim() ? `<section><h2>${esc(t('problem'))}</h2><p>${esc(L(p.problem))}</p></section>` : ''}
+    ${L(p.built).trim() ? `<section><h2>${esc(t('built'))}</h2><p>${esc(L(p.built))}</p></section>` : ''}
+
+    ${decs.length ? `<section><h2>${esc(t('decisions'))}</h2>
+      <div class="case__decisions">
+        ${decs.map((d,i) => `<div class="case__decision"><b>0${i+1}</b>${esc(L(d))}</div>`).join('')}
+      </div></section>` : ''}
+
+    ${nums.length ? `<section><h2>${esc(t('numbers'))}</h2>
+      <div class="case__nums">
+        ${nums.map(n => `<div class="case__num"><b>${esc(n.v)}</b><span>${esc(L(n.l))}</span></div>`).join('')}
+      </div></section>` : ''}
+
+    ${(p.tags||[]).length ? `<section><h2>${esc(t('stack'))}</h2>
+      <div class="tags">${p.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div></section>` : ''}
+
+    ${(tidyUrl(p.link) || tidyUrl(p.repo)) ? `<section><h2>${esc(t('links'))}</h2>
+      <div class="case__links">
+        ${tidyUrl(p.link) ? `<a class="btn btn--primary" href="${esc(tidyUrl(p.link))}" target="_blank" rel="noopener">${esc(t('live'))}</a>` : ''}
+        ${tidyUrl(p.repo) ? `<a class="btn btn--ghost" href="${esc(tidyUrl(p.repo))}" target="_blank" rel="noopener">${esc(t('code'))}</a>` : ''}
+      </div></section>` : ''}
+
+    ${next && next !== p ? `<div class="case__next">
+      <span class="muted">${esc(t('next'))}</span>
+      <a href="work?p=${encodeURIComponent(next.slug)}">${esc(L(next.title))} →</a>
+    </div>` : ''}`;
+}
+
+(async () => {
+  // Bulutda yangi qo'shilgan ish lokal zanjirda hali bo'lmasligi mumkin —
+  // topilgan bo'lsagina darhol chizamiz, aks holda 404 ni bulutdan KEYIN
+  // aytamiz (bir lahzalik yolg'on 404 ko'rinmasin).
+  const slug = new URLSearchParams(location.search).get('p') || '';
+  if ((CV.data.portfolio || []).some(p => p.slug === slug)) render();
+  try { await CV.loadCloud(); }
+  catch(e){ console.warn('cloud', e); }
+  render();
+})();
+})();
+</script>
+</body>
+</html>

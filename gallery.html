@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Fotogalereya — Kamolbek Muzaffarov</title>
-<meta name="theme-color" content="#08080a" />
+<meta name="theme-color" content="#0A0A0B" />
 <meta name="description" content="Kamolbek Muzaffarov — fotogalereya." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Fotogalereya — Kamolbek Muzaffarov" />
@@ -16,16 +16,15 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260721h" />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20260819a" />
 <style>
-  /* Page-specific chrome; the gallery/lightbox styles come from style.css. */
   .gwrap{ max-width:var(--maxw); margin:0 auto; padding:96px 22px 80px; }
   .ghead{
     display:flex; align-items:center; justify-content:space-between; gap:16px;
     margin-bottom:28px; flex-wrap:wrap;
   }
-  .ghead__t h1{ font-family:var(--disp); font-size:clamp(26px,5vw,42px); font-weight:800; line-height:1.05; }
+  .ghead__t h1{ font-family:var(--disp); font-size:clamp(24px,5vw,40px); font-weight:800; line-height:1.05; }
   .ghead__t p{ color:var(--muted); font-size:14px; margin-top:4px; }
   .gback{
     display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px;
@@ -37,17 +36,12 @@
   .gempty{ color:var(--muted); padding:40px 0; text-align:center; }
 </style>
 </head>
-<body data-theme="liquid">
+<body>
 
-<div class="bg" aria-hidden="true">
-  <span class="bg__blob bg__blob--1"></span>
-  <span class="bg__blob bg__blob--2"></span>
-  <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
-  <span class="bg__tint"></span>
-</div>
+<div class="bg" aria-hidden="true"></div>
 
-<a class="brand" href="index.html" aria-label="Bosh sahifa">
-  <img class="brand__mk" id="brandImg" src="assets/logo-mk.png?v=20260721h" alt="MK" />
+<a class="brand" href="/" aria-label="Bosh sahifa">
+  <img class="brand__mk" id="brandImg" src="assets/logo-mk.png?v=20260819a" alt="MK" />
 </a>
 
 <main class="gwrap">
@@ -56,7 +50,7 @@
       <h1 id="gTitle">Fotogalereya</h1>
       <p id="gSub"></p>
     </div>
-    <a class="gback" href="index.html">
+    <a class="gback" href="/">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
       <span id="gBack">Saytga qaytish</span>
     </a>
@@ -74,100 +68,55 @@
   <p class="lbox__cap" id="lbCap"></p>
 </div>
 
-<script src="config.js?v=20260721h" onerror="window.__noConfig=1"></script>
-<script src="data.js?v=20260721h"></script>
-<script src="cloud.js?v=20260721h"></script>
+<div class="toast" id="toast"></div>
+
+<script src="config.js?v=20260819a" onerror="window.__noConfig=1"></script>
+<script src="data.js?v=20260819a"></script>
+<script src="cloud.js?v=20260819a"></script>
+<script src="core.js?v=20260819a"></script>
 <script>
-/* Standalone gallery page. It reuses the SAME data sources as the main site so
-   whatever the admin publishes shows up here too, with no build step:
-     1. Supabase (if configured)   — authoritative, shared by everyone
-     2. localStorage 'cvData'      — this browser's copy (set by index.html)
-     3. window.DEPLOYED_DATA        — data.js baked at deploy time
-     4. built-in photo-01..27       — the shipped default set
-   Language + theme mirror the main site via localStorage. */
+/* Standalone gallery page — same data chain as the main site via core.js. */
 (() => {
 'use strict';
-const $ = s => document.querySelector(s);
-const LANGS = ['uz','en','ru'];
-let lang = (() => { try { const s = localStorage.getItem('cvLang'); if (LANGS.includes(s)) return s; } catch {} return ''; })();
-const L = v => {
-  if (v == null) return '';
-  if (typeof v === 'string') return v;
-  if (typeof v === 'object') return v[lang] || v.uz || v.en || v.ru || '';
-  return String(v);
-};
+const CV = window.CV;
+const { $, esc, L } = CV;
+
 const STR = {
   title:{ uz:'Fotogalereya', en:'Photo gallery', ru:'Фотогалерея' },
   back: { uz:'Saytga qaytish', en:'Back to site', ru:'На сайт' },
   empty:{ uz:'Hali rasm yoʻq.', en:'No photos yet.', ru:'Фото пока нет.' },
   sub:  { uz:'rasm', en:'photos', ru:'фото' }
 };
-const t = k => STR[k][lang] || STR[k].uz;
-
-const defaultGallery = () => Array.from({ length: 27 }, (_, i) => {
-  const n = String(i + 1).padStart(2, '0');
-  return { id: 'p' + n, src: `assets/gallery/photo-${n}.jpg`, thumb: `assets/gallery/thumb/photo-${n}.jpg`, caption: '' };
-});
-
-async function loadData(){
-  // Theme first (cheap, from localStorage) so the page doesn't flash.
-  try {
-    const s = JSON.parse(localStorage.getItem('cvData') || 'null');
-    if (s?.theme) document.body.dataset.theme = s.theme;
-  } catch {}
-
-  // 1) Supabase. The cloud row is seeded as {} before the first publish — an
-  //    empty or partial document must never blank the page, so any missing
-  //    piece is filled from the shipped defaults.
-  if (window.Cloud?.enabled){
-    try {
-      await window.Cloud.init();
-      const r = await window.Cloud.load();
-      if (r && typeof r === 'object' && Object.keys(r).length){
-        if (!Array.isArray(r.gallery) || !r.gallery.length) r.gallery = defaultGallery();
-        if (!r.bgVideo) r.bgVideo = { enabled:true, presetId:'clouds', src:'', opacity:70, tint:55 };
-        if (!Array.isArray(r.videos) || !r.videos.length)
-          r.videos = [{ id:'clouds', url:'https://archive.org/download/pixabay-21285/video-21285_source.mp4' }];
-        return r;
-      }
-      // {} — hali hech narsa chop etilmagan → mahalliy zanjirga o'tamiz
-    } catch(e){ console.warn('cloud', e); }
-  }
-  // 2) this browser's saved copy
-  try { const s = JSON.parse(localStorage.getItem('cvData') || 'null'); if (s && Array.isArray(s.gallery)) return s; } catch {}
-  // 3) deploy-time data.js
-  if (window.DEPLOYED_DATA && Array.isArray(window.DEPLOYED_DATA.gallery)) return window.DEPLOYED_DATA;
-  // 4) shipped defaults — including the default sky video, so a visitor who
-  //    lands here first still gets the same background as the main page
-  return {
-    gallery: defaultGallery(),
-    bgVideo: { enabled:true, presetId:'clouds', src:'', opacity:70, tint:55 },
-    videos: [{ id:'clouds', url:'https://archive.org/download/pixabay-21285/video-21285_source.mp4' }]
-  };
-}
+const t = k => STR[k][CV.lang] || STR[k].uz;
 
 let photos = [];
 function render(){
-  document.documentElement.lang = lang;
+  document.documentElement.lang = CV.lang;
+  CV.applyBranding();
   $('#gTitle').textContent = t('title');
   $('#gBack').textContent = t('back');
   $('#gEmpty').textContent = t('empty');
   const w = $('#galleryWrap');
-  photos = (data?.gallery || []).filter(g => g && g.src);
-  if (data?.profile?.name) document.title = `${t('title')} — ${data.profile.name} (MKM777)`;
+  photos = (CV.data.gallery || []).filter(g => g && g.src);
+  document.title = `${t('title')} — ${CV.data.profile.name} (MKM777)`;
   $('#gSub').textContent = photos.length ? `${photos.length} ${t('sub')}` : '';
   if (!photos.length){ w.innerHTML = ''; $('#gEmpty').hidden = false; return; }
   $('#gEmpty').hidden = true;
+  // Lokal jpg'lar uchun AVIF variantlar deploy'da yonma-yon yotadi (~3x kichik).
+  const avif = s => /^assets\/.+\.jpe?g$/i.test(s) ? s.replace(/\.jpe?g$/i, '.avif') : '';
   w.innerHTML = photos.map((g, i) => {
     const cap = L(g.caption);
+    const src = g.thumb || g.src, av = avif(src);
     return `<figure class="gphoto" data-lb="${i}">
-      <img src="${(g.thumb || g.src)}" alt="${cap || 'Foto ' + (i+1)}" loading="lazy" decoding="async">
-      ${cap ? `<figcaption>${cap}</figcaption>` : ''}
+      <picture>
+        ${av ? `<source type="image/avif" srcset="${esc(av)}">` : ''}
+        <img src="${esc(src)}" alt="${esc(cap || 'Foto ' + (i+1))}" loading="lazy" decoding="async">
+      </picture>
+      ${cap ? `<figcaption>${esc(cap)}</figcaption>` : ''}
     </figure>`;
   }).join('');
 }
 
-/* Lightbox */
 function initLightbox(){
   const box = $('#lightbox'), img = $('#lbImg'), cap = $('#lbCap');
   let i = 0;
@@ -193,102 +142,11 @@ function initLightbox(){
   });
 }
 
-/* Background video — the same one the admin set for the main site. The
-   config travels in the same data document, so whatever plays on index.html
-   plays here. Sand theme hides it via the shared CSS. */
-/* The same hand-picked palette the admin set for this video on the main
-   site. Only the liquid theme uses it — sand owns its own closed palette. */
-/* Custom three-ink palette for the sand theme — same derivations as app.js. */
-function applySandColors(){
-  if (document.body.dataset.theme !== 'sand') return;
-  const c = data?.sandColors || {};
-  const okhex = v => /^#[0-9a-fA-F]{6}$/.test(String(v||''));
-  if (!okhex(c.bg) && !okhex(c.fg) && !okhex(c.accent)) return;
-  const bg = okhex(c.bg) ? c.bg : '#FAF7F2';
-  const fg = okhex(c.fg) ? c.fg : '#0F2D52';
-  const ac = okhex(c.accent) ? c.accent : '#B86B00';
-  // Must be inline on <body>: the sand palette rules select [data-theme="sand"].
-  const r = document.body.style;
-  const rgb = h => { const n=parseInt(h.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; };
-  const rgba = (h,a) => { const [R,G,B]=rgb(h); return `rgba(${R},${G},${B},${a})`; };
-  r.setProperty('--paper', bg);
-  r.setProperty('--bg', bg); r.setProperty('--bg2', bg);
-  r.setProperty('--fg', fg);
-  r.setProperty('--muted', rgba(fg,.66)); r.setProperty('--dim', rgba(fg,.45));
-  r.setProperty('--line', rgba(fg,.14));  r.setProperty('--line2', rgba(fg,.24));
-  r.setProperty('--surface', rgba(fg,.04)); r.setProperty('--surface2', rgba(fg,.08));
-  r.setProperty('--accent', ac);
-  r.setProperty('--accent-dim', rgba(ac,.12)); r.setProperty('--accent-edge', rgba(ac,.3));
-  r.setProperty('--accent2', fg); r.setProperty('--on-accent', bg);
-  r.setProperty('--glass-bg', `linear-gradient(135deg, ${rgba(bg,.94)}, ${rgba(bg,.74)})`);
-  r.setProperty('--glass-line', rgba(fg,.14));
-  r.setProperty('--blob1', `radial-gradient(circle, ${rgba(ac,.22)}, transparent 68%)`);
-  r.setProperty('--blob2', `radial-gradient(circle, ${rgba(fg,.18)}, transparent 68%)`);
-}
-
-function applyVideoColors(){
-  if (document.body.dataset.theme !== 'liquid') return;
-  const cfg = data?.bgVideo; if (!cfg?.enabled) return;
-  const entry = (data.videos||[]).find(x => x.id === cfg.presetId);
-  const c = (!String(cfg.src||'').trim() && entry?.colors) || null;
-  const okhex = v => /^#[0-9a-fA-F]{6}$/.test(String(v||''));
-  const cust = {};
-  for (const k of ['accent','accent2','violet','pink','bg','fg','onAccent']) if (okhex(c?.[k])) cust[k] = c[k];
-  const accent = cust.accent || entry?.accent || '';
-  if (!accent && !Object.keys(cust).length) return;
-  const r = document.documentElement.style;
-  const rgb = h => { const n=parseInt(h.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; };
-  const rgba = (h,a) => { const [R,G,B]=rgb(h); return `rgba(${R},${G},${B},${a})`; };
-  if (accent){
-    const a2 = cust.accent2 || entry?.accent2 || accent;
-    r.setProperty('--accent', accent);
-    r.setProperty('--accent2', a2);
-    r.setProperty('--accent-dim', rgba(accent,.16));
-    r.setProperty('--accent-edge', rgba(accent,.25));
-    const [R,G,B] = rgb(accent);
-    const lum = (0.2126*R+0.7152*G+0.0722*B)/255;
-    r.setProperty('--on-accent', cust.onAccent || (lum > .55 ? '#000000' : '#ffffff'));
-  }
-  if (cust.violet) r.setProperty('--violet', cust.violet);
-  if (cust.pink)   r.setProperty('--pink', cust.pink);
-  if (cust.bg){ r.setProperty('--bg', cust.bg); r.setProperty('--bg2', cust.bg); }
-  if (cust.fg){
-    r.setProperty('--fg', cust.fg);
-    r.setProperty('--muted', rgba(cust.fg,.64)); r.setProperty('--dim', rgba(cust.fg,.44));
-    r.setProperty('--line', rgba(cust.fg,.10));  r.setProperty('--line2', rgba(cust.fg,.16));
-    r.setProperty('--surface', rgba(cust.fg,.04)); r.setProperty('--surface2', rgba(cust.fg,.07));
-  }
-}
-
-function applyBgVideo(){
-  const v = document.getElementById('bgVideo'), bg = document.querySelector('.bg');
-  const cfg = data?.bgVideo; if (!v || !bg || !cfg) return;
-  bg.style.setProperty('--bgv-op',   (Number(cfg.opacity ?? 70))/100);
-  bg.style.setProperty('--bgv-tint', (Number(cfg.tint ?? 55))/100);
-  const custom = String(cfg.src||'').trim();
-  const preset = (data.videos||[]).find(x => x.id === cfg.presetId);
-  const src = custom || preset?.url || '';
-  if (!cfg.enabled || !src) return;
-  bg.classList.add('video-on');
-  v.src = src;
-  v.addEventListener('loadeddata', () => { v.classList.add('on'); v.play().catch(()=>{}); }, { once:true });
-  v.load();
-}
-
-let data = null;
 (async () => {
-  data = await loadData();
-  // Shaxsiy til tanlovi bo'lmasa — egasi chop etgan standart til.
-  if (!lang) lang = LANGS.includes(data?.lang) ? data.lang : 'uz';
-  // Admin yuklagan brend (logo/favicon) bu sahifada ham
-  const br = data?.branding || {};
-  if (br.logo){ const bi = document.getElementById('brandImg'); if (bi) bi.src = br.logo; }
-  if (br.favicon){ document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(l => l.href = br.favicon); }
   render();
   initLightbox();
-  applyBgVideo();
-  applyVideoColors();
-  applySandColors();
+  try { if (await CV.loadCloud()) render(); }
+  catch(e){ console.warn('cloud', e); }
 })();
 })();
 </script>

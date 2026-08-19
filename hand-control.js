@@ -196,6 +196,7 @@ function onResults(r){
     if (S.pinch) releasePinch(true);   // hand vanished → release cleanly
     S.pinch = false;
     cursor.classList.remove('on');
+    window.ParticleField?.clearPointer();
     fx.reset(); fy.reset();
     return;
   }
@@ -320,6 +321,8 @@ function step(){
     S.y = clamp(S.ty, 0, innerHeight - 1);
     cursor.style.transform = `translate3d(${S.x}px, ${S.y}px, 0)`;
     cursor.classList.add('on');
+    // Fon zarralari qo'ldan qochadi: virtual kursor partikl maydonga ham boradi.
+    window.ParticleField?.setPointer(S.x, S.y);
 
     if (S.holding){
       const moved = Math.hypot(S.x - S.downX, S.y - S.downY);
