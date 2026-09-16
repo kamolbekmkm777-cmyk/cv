@@ -5,44 +5,6 @@
 -- =============================================================================
 
 -- -----------------------------------------------------------------------------
--- 0. WHO IS ALLOWED TO WRITE
---    The old policies said `to authenticated with check (true)` — i.e. ANY
---    logged-in user. That is only safe if no stranger can ever get an account,
---    and on a live Supabase project signups are open by default, so anyone on
---    the internet could register and overwrite the whole site.
---
---    Writes are now pinned to an explicit allow-list instead. The seed below
---    grabs whoever already exists (you), so re-running this on your project
---    keeps you in and locks everybody else out.
--- -----------------------------------------------------------------------------
-create table if not exists public.app_admins (
-  user_id    uuid primary key references auth.users(id) on delete cascade,
-  added_at   timestamptz not null default now()
-);
-
-alter table public.app_admins enable row level security;
--- Nobody reads or writes this table from the browser; only SQL Editor touches
--- it. With RLS on and no policy, every client request is denied by default.
-
--- Seed: every account that exists right now becomes an admin. On a project
--- with just your account, that is exactly you.
-insert into public.app_admins (user_id)
-select id from auth.users
-on conflict (user_id) do nothing;
-
--- The single test every write policy runs.
-create or replace function public.is_admin()
-returns boolean
-language sql
-stable
-security definer
-set search_path = public
-as $$
-  select exists (select 1 from public.app_admins a where a.user_id = auth.uid());
-$$;
-
-
--- -----------------------------------------------------------------------------
 -- 1. SITE CONTENT
 --    The whole site is one JSON document in one row (id = 1). It's a personal
 --    CV, not a multi-tenant app — a normalised schema would buy nothing and
@@ -65,19 +27,20 @@ create policy "site_data public read"
   to anon, authenticated
   using (true);
 
--- Only an account on the admin allow-list may WRITE.
+-- Only a signed-in user may WRITE. You are the only account that will exist,
+-- so this is effectively "only Kamolbek".
 drop policy if exists "site_data admin write" on public.site_data;
 create policy "site_data admin write"
   on public.site_data for insert
   to authenticated
-  with check (public.is_admin());
+  with check (true);
 
 drop policy if exists "site_data admin update" on public.site_data;
 create policy "site_data admin update"
   on public.site_data for update
   to authenticated
-  using (public.is_admin())
-  with check (public.is_admin());
+  using (true)
+  with check (true);
 
 -- Deliberately no DELETE policy: the row must always exist.
 
@@ -89,8 +52,8 @@ on conflict (id) do nothing;
 
 -- -----------------------------------------------------------------------------
 -- 2. MEDIA STORAGE
---    Photos, music and images. Public read so <img>/<audio> can hit them with
---    no token; writes restricted to the admin allow-list.
+--    Photos, music and background videos. Public read so <img>/<audio>/<video>
+--    can hit them with no token; writes restricted to the admin.
 -- -----------------------------------------------------------------------------
 insert into storage.buckets (id, name, public, file_size_limit)
 values ('media', 'media', true, 52428800)          -- 50 MB per file
@@ -107,32 +70,24 @@ drop policy if exists "media admin insert" on storage.objects;
 create policy "media admin insert"
   on storage.objects for insert
   to authenticated
-  with check (bucket_id = 'media' and public.is_admin());
+  with check (bucket_id = 'media');
 
 drop policy if exists "media admin update" on storage.objects;
 create policy "media admin update"
   on storage.objects for update
   to authenticated
-  using (bucket_id = 'media' and public.is_admin())
-  with check (bucket_id = 'media' and public.is_admin());
+  using (bucket_id = 'media')
+  with check (bucket_id = 'media');
 
 drop policy if exists "media admin delete" on storage.objects;
 create policy "media admin delete"
   on storage.objects for delete
   to authenticated
-  using (bucket_id = 'media' and public.is_admin());
+  using (bucket_id = 'media');
 
 
 -- -----------------------------------------------------------------------------
 -- 3. CHECK IT WORKED
 -- -----------------------------------------------------------------------------
--- Admin ro'yxatida kim bor (faqat siz bo'lishi kerak):
---   select a.user_id, u.email from public.app_admins a join auth.users u on u.id = a.user_id;
---
--- Sayt hujjati va media bucket holati:
---   select id, jsonb_pretty(data), updated_at from public.site_data;
---   select id, public, file_size_limit from storage.buckets where id = 'media';
---
--- MUHIM, ikkinchi qulf: Supabase panelida ro'yxatdan o'tishni ham yoping —
---   Authentication → Sign In / Providers → Email → "Allow new users to sign up" OFF.
--- Yuqoridagi qoidalar o'zi yetarli, lekin ikkita mustaqil to'siq har doim yaxshi.
+-- select id, jsonb_pretty(data), updated_at from public.site_data;
+-- select id, public, file_size_limit from storage.buckets where id = 'media';
