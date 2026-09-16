@@ -30,3 +30,6 @@ config.example.js
 
 # EHTIYOT BO'LING: config.js bu yerda BO'LMASLIGI kerak —
 # brauzer uni o'qishi shart, aks holda bulut ishlamaydi.
+
+# Bir martalik import fayli — saytga kerak emas
+loyihalar-import.json

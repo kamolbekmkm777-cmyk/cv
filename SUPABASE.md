@@ -74,10 +74,9 @@ Vercel o'zi qayta deploy qiladi.
 
 ## 6. Ishlayotganini tekshiring
 
-1. Saytni oching → pastdagi **MKM777** ni bosing → admin parolini ko'r-ko'rona tering (panel o'zi ochiladi).
-2. **Bulut ☁** bo'limi → yashil chiziq: *"Bulut sozlangan, lekin kirmagansiz"*.
-   - Kulrang chiqsa → `config.js` to'ldirilmagan yoki deploy bo'lmagan.
-3. Email/parolni yozing → **Kirish** → chiziq yashil bo'ladi.
+1. **kamolbek.com/admin** ni oching — login sahifasi chiqadi.
+2. Supabase admin email/parolingizni yozing → **Kirish**.
+3. Tepada yashil chiziq: *"Bulutga ulangan"* — tayyor.
 4. **Fotogalereya** → rasm qo'shing.
 5. **Bulut ☁** → **☁ Bulutga saqlash**.
 6. Boshqa brauzerda (yoki telefonda) saytni oching — rasm turibdi. ✅

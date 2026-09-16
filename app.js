@@ -149,11 +149,13 @@ function openEduModal(i){
     : `<p class="muted" style="font-size:13px">${esc(T('edu_nodocs'))}</p>`;
   m.classList.add('open'); m.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
+  window.__lenis?.stop();          // modal ochiqda Lenis fonni aylantirmasin
 }
 function closeEduModal(){
   const m = $('#eduModal'); if (!m) return;
   m.classList.remove('open'); m.setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
+  window.__lenis?.start();
 }
 function showDoc(n){
   if (!eduDocs.length) return;

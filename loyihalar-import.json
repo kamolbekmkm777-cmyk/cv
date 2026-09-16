@@ -1,0 +1,1045 @@
+{
+  "ui": {
+    "hero_badge": {
+      "en": "Open to New Projects · 2026",
+      "ru": "Открыт для новых проектов · 2026",
+      "uz": "Yangi loyihalar uchun ochiq · 2026"
+    }
+  },
+  "lang": "ru",
+  "music": {
+    "src": "https://ocbkxquwqwypjoweveyf.supabase.co/storage/v1/object/public/media/audio/mrx1u5c9-3g45nu-the-mountain-ambient-technology-133250.mp3",
+    "volume": 77,
+    "presetId": "tgvxhpom"
+  },
+  "skills": "Python · JavaScript / TypeScript · SQL · Bash · React / Next.js · HTML / CSS · Flutter · TailwindCSS · FastAPI / Aiogram · OpenAI / Gemini · PostgreSQL / Redis · Vector DBs (RAG) · Linux / systemd · Docker · Oracle Cloud / AWS · CI/CD",
+  "social": {
+    "x": "https://",
+    "github": "https://github.com/KamolbekMuzaffarov",
+    "tiktok": "htpps://",
+    "channel": "https://t.me/ITECN0",
+    "youtube": "https://",
+    "linkedin": "https://",
+    "telegram": "https://t.me/kamolbekmuzaffarov",
+    "instagram": "https://instagram.com/mkm777_mkm777"
+  },
+  "tracks": [
+    {
+      "id": "tgvxhpom",
+      "url": "https://ocbkxquwqwypjoweveyf.supabase.co/storage/v1/object/public/media/audio/mrx1u5c9-3g45nu-the-mountain-ambient-technology-133250.mp3",
+      "icon": "🎵",
+      "name": "the_mountain-ambient-technology-133250"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "p01",
+      "src": "assets/gallery/photo-01.jpg",
+      "thumb": "assets/gallery/thumb/photo-01.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p02",
+      "src": "assets/gallery/photo-02.jpg",
+      "thumb": "assets/gallery/thumb/photo-02.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p03",
+      "src": "assets/gallery/photo-03.jpg",
+      "thumb": "assets/gallery/thumb/photo-03.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p04",
+      "src": "assets/gallery/photo-04.jpg",
+      "thumb": "assets/gallery/thumb/photo-04.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p05",
+      "src": "assets/gallery/photo-05.jpg",
+      "thumb": "assets/gallery/thumb/photo-05.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p06",
+      "src": "assets/gallery/photo-06.jpg",
+      "thumb": "assets/gallery/thumb/photo-06.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p07",
+      "src": "assets/gallery/photo-07.jpg",
+      "thumb": "assets/gallery/thumb/photo-07.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p08",
+      "src": "assets/gallery/photo-08.jpg",
+      "thumb": "assets/gallery/thumb/photo-08.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p09",
+      "src": "assets/gallery/photo-09.jpg",
+      "thumb": "assets/gallery/thumb/photo-09.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p10",
+      "src": "assets/gallery/photo-10.jpg",
+      "thumb": "assets/gallery/thumb/photo-10.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p11",
+      "src": "assets/gallery/photo-11.jpg",
+      "thumb": "assets/gallery/thumb/photo-11.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p12",
+      "src": "assets/gallery/photo-12.jpg",
+      "thumb": "assets/gallery/thumb/photo-12.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p13",
+      "src": "assets/gallery/photo-13.jpg",
+      "thumb": "assets/gallery/thumb/photo-13.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p14",
+      "src": "assets/gallery/photo-14.jpg",
+      "thumb": "assets/gallery/thumb/photo-14.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p15",
+      "src": "assets/gallery/photo-15.jpg",
+      "thumb": "assets/gallery/thumb/photo-15.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p16",
+      "src": "assets/gallery/photo-16.jpg",
+      "thumb": "assets/gallery/thumb/photo-16.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p17",
+      "src": "assets/gallery/photo-17.jpg",
+      "thumb": "assets/gallery/thumb/photo-17.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p18",
+      "src": "assets/gallery/photo-18.jpg",
+      "thumb": "assets/gallery/thumb/photo-18.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p19",
+      "src": "assets/gallery/photo-19.jpg",
+      "thumb": "assets/gallery/thumb/photo-19.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p20",
+      "src": "assets/gallery/photo-20.jpg",
+      "thumb": "assets/gallery/thumb/photo-20.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p21",
+      "src": "assets/gallery/photo-21.jpg",
+      "thumb": "assets/gallery/thumb/photo-21.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p22",
+      "src": "assets/gallery/photo-22.jpg",
+      "thumb": "assets/gallery/thumb/photo-22.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p23",
+      "src": "assets/gallery/photo-23.jpg",
+      "thumb": "assets/gallery/thumb/photo-23.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p24",
+      "src": "assets/gallery/photo-24.jpg",
+      "thumb": "assets/gallery/thumb/photo-24.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p25",
+      "src": "assets/gallery/photo-25.jpg",
+      "thumb": "assets/gallery/thumb/photo-25.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p26",
+      "src": "assets/gallery/photo-26.jpg",
+      "thumb": "assets/gallery/thumb/photo-26.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p27",
+      "src": "assets/gallery/photo-27.jpg",
+      "thumb": "assets/gallery/thumb/photo-27.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    }
+  ],
+  "profile": {
+    "bio": {
+      "en": "I'm Kamolbek — a self-taught Full-Stack Developer & AI Engineer passionate about the intersection of artificial intelligence, automation, and design. Over the past few years, I've published mobile applications on Google Play, built lead-generating Telegram bots, developed AI assistants that analyze room photos and suggest interior designs, and created admin dashboards that transform complex workflows into clear, efficient systems.\n\nMy goal is to build intelligent, scalable digital solutions that help modern businesses grow.",
+      "ru": "Меня зовут Камолбек — я Full-Stack разработчик и AI-инженер, самостоятельно освоивший профессию и увлечённый пересечением искусственного интеллекта, автоматизации и дизайна. За последние годы я опубликовал мобильные приложения в Google Play, разработал Telegram-ботов для привлечения клиентов, AI-помощников, анализирующих фотографии помещений и предлагающих варианты дизайна интерьера, а также административные панели, превращающие сложные рабочие процессы в понятные и эффективные системы.\n\nМоя цель — создавать интеллектуальные, масштабируемые цифровые решения, которые помогают современному бизнесу развиваться.",
+      "uz": "Men Kamolbek — AI, avtomatlashtirish va dizayn kesishmasiga qiziqqan o'zi mustaqil o'rgangan injiner. So'nggi yillarda men mobil ilovalar yaratib play storega joylab, lidlarni qo'lga oladigan Telegram botlarni, xona rasmlarini o'qib dizayn taklif qiladigan AI yordamchilarni va xaosni aniqlikka aylantiradigan admin paneli loyihalarini ishlab chiqdim.\nMaqsadim — zamonaviy bizneslar uchun aqlli, tezkor va kengaytirilishi mumkin bo'lgan raqamli yechimlarni yaratish."
+    },
+    "name": "Kamolbek Muzaffarov",
+    "motto": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
+    "avatar": "assets/kamolbek-900.jpg",
+    "slogan": {
+      "en": "I build scalable digital products for modern businesses — bots, websites, mobile applications, AI agents, and reliable, well-architected cloud infrastructure.",
+      "ru": "Я разрабатываю масштабируемые цифровые продукты для современного бизнеса — ботов, веб-сайты, мобильные приложения, AI-агентов и надёжную, хорошо спроектированную облачную инфраструктуру.",
+      "uz": "Men zamonaviy bizneslar uchun kengaytirilishi mumkin bo'lgan raqamli mahsulotlar yarataman — botlar, web saytlar, mobil ilovalar, sun'iy intellekt agentlari va ishonchli, tartibli bulut infratuzilmalarini yarata olaman"
+    },
+    "location": {
+      "en": "Tashkent, Uzbekistan",
+      "ru": "Ташкент, Узбекистан",
+      "uz": "Toshkent, O'zbekiston"
+    },
+    "photoSize": 280,
+    "profession": {
+      "en": "Full-Stack Developer & AI Engineer",
+      "ru": "Фуллстек-разработчик и инженер по искусственному интеллекту",
+      "uz": "To'liq veb dasturchi va sun'iy intellekt injineri"
+    }
+  },
+  "branding": {
+    "logo": "https://ocbkxquwqwypjoweveyf.supabase.co/storage/v1/object/public/media/brand/ms4479ex-xkkwnb-d8c011af-bdf1-47e2-bc17-f7e507878fc1.png",
+    "favicon": "https://ocbkxquwqwypjoweveyf.supabase.co/storage/v1/object/public/media/brand/ms4453a6-l7uuvq-6691ad3e-684e-43f6-8f36-0bcf83cf6b7a.png"
+  },
+  "contacts": {
+    "email": "kamolbekmkm777@gmail.com",
+    "phone": "+998 77 293 77 97",
+    "website": "https://kamolbek.com"
+  },
+  "education": [
+    {
+      "id": "school",
+      "docs": [],
+      "name": {
+        "en": "Secondary education school No. 19, Gijduvan district, Bukhara region",
+        "ru": "Средняя школа № 19, район Гиждуван, Бухарская область",
+        "uz": "Buxoro viloyati, G'ijduvon tumani 19-sonli o'rta ta'lim matabi"
+      },
+      "period": {
+        "en": "2013-2022",
+        "ru": "2013-2022",
+        "uz": "2013-2022"
+      },
+      "description": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "lyceum",
+      "docs": [],
+      "name": {
+        "en": "Fergana \"Temurbeklar Maktabi\" Military Academic Lyceum",
+        "ru": "Ферганский военно-академический лицей «Темурбеклар Мактаби»",
+        "uz": "Farg'ona \"Temurbeklar maktabi\" harbiy akademik litseyi"
+      },
+      "period": {
+        "en": "2022-2024",
+        "ru": "2022-2024",
+        "uz": "2022-2024"
+      },
+      "description": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "university",
+      "docs": [],
+      "name": {
+        "en": "Tashkent University of Information Technologies",
+        "ru": "Ташкентский университет информационных технологий",
+        "uz": "Toshkent Axborot Texnologiyalari Universiteti"
+      },
+      "period": {
+        "en": "2024-present",
+        "ru": "2024 – настоящее время",
+        "uz": "2024-hozir"
+      },
+      "description": {
+        "en": "3rd year student of the Faculty of Software Engineering",
+        "ru": "Студент 3-го курса факультета программной инженерии",
+        "uz": "Dasturiy Injinering fakulteti 3 kurs talabasi"
+      }
+    }
+  ],
+  "favorites": [
+    {
+      "url": "https://youtube.com/playlist?list=PLOWb49VFKHW0&si=B70JpnMIh7xc4a1m",
+      "icon": "🔗",
+      "title": {
+        "en": "плейлист",
+        "ru": "playlist",
+        "uz": "Pleylist"
+      }
+    }
+  ],
+  "portfolio": [
+    {
+      "cat": "app",
+      "link": "https://play.google.com/store/apps/details?id=com.mkm777.tasbih",
+      "tags": [
+        "Flutter",
+        "Play Console"
+      ],
+      "image": "https://play-lh.googleusercontent.com/cRVXCgWimaQTQmXXUDbE-3JmWXe5YgfxVZGR16zp6Hb6lrPNkZv2BqZ1pmMgj6lRKd4EBi5AwbyRcL7JHPwPWi4=w480-h960-rw",
+      "title": {
+        "en": "tasbih app",
+        "ru": "приложение тасбих",
+        "uz": "Tasbih ilovasi"
+      },
+      "description": {
+        "en": "A modern digital tasbih application designed to make your daily dhikr count conveniently and easily. Thanks to its simple design and fast operation, you can dhikr anywhere and anytime.",
+        "ru": "Современное цифровое приложение для тасбиха, разработанное для удобного и простого подсчета ежедневного зикра. Благодаря простому дизайну и быстрой работе вы можете совершать зикр где угодно и когда угодно.",
+        "uz": "kundalik zikrlaringizni qulay va oson sanash uchun yaratilgan zamonaviy raqamli tasbih ilovasi. Sodda dizayn va tezkor ishlashi tufayli istalgan joyda va istalgan vaqtda zikr qilishingiz mumkin."
+      },
+      "slug": "tasbih-ilovasi",
+      "problem": {
+        "uz": "",
+        "en": "",
+        "ru": ""
+      },
+      "built": {
+        "uz": "",
+        "en": "",
+        "ru": ""
+      },
+      "decisions": [],
+      "numbers": [],
+      "repo": ""
+    },
+    {
+      "cat": "site",
+      "link": "https://kinofond.uz/",
+      "tags": [
+        "Figma",
+        "Python",
+        "Next.js",
+        "Tailwind CSS",
+        "PostgreSQL",
+        "Django",
+        "Git",
+        "Cloudflare",
+        "UZcloud",
+        "Clerk",
+        "Resend",
+        "Google Analytics",
+        "Google Search Console",
+        "Sentry",
+        "Swagger",
+        "Docker",
+        "Qnap server"
+      ],
+      "image": "https://kinofond.uz/static/img/kinofond-logo.png?v=1",
+      "title": {
+        "en": "Film fund",
+        "ru": "Kинофонд",
+        "uz": "Kinofond"
+      },
+      "description": {
+        "en": "A modern online platform created for Uzbek movie lovers. Through the site, you can watch Uzbek films, TV series, and other video content through a convenient interface.",
+        "ru": "Современная онлайн-платформа, созданная для любителей узбекского кино. На сайте вы можете смотреть узбекские фильмы, сериалы и другой видеоконтент через удобный интерфейс.",
+        "uz": "O'zbek kino ixlosmandlari uchun yaratilgan zamonaviy onlayn platforma. Sayt orqali o'zbek filmlari, seriallari va boshqa videokontentlarni qulay interfeys orqali tomosha qilishingiz mumkin."
+      },
+      "slug": "kinofond",
+      "problem": {
+        "uz": "",
+        "en": "",
+        "ru": ""
+      },
+      "built": {
+        "uz": "",
+        "en": "",
+        "ru": ""
+      },
+      "decisions": [],
+      "numbers": [],
+      "repo": ""
+    },
+    {
+      "link": "",
+      "tags": [
+        "Python",
+        "Stable Diffusion",
+        "React",
+        "WebSockets"
+      ],
+      "image": "",
+      "title": {
+        "en": "",
+        "ru": "",
+        "uz": "Vision Designer"
+      },
+      "description": {
+        "en": "",
+        "ru": "",
+        "uz": "AI bilan interyer dizayn previewi. Foydalanuvchi xona rasmini yuklaydi, materiallar tanlaydi — tizim fotorealistik mockuplar qaytaradi."
+      },
+      "slug": "vision-designer",
+      "problem": {
+        "uz": "",
+        "en": "",
+        "ru": ""
+      },
+      "built": {
+        "uz": "",
+        "en": "",
+        "ru": ""
+      },
+      "decisions": [],
+      "numbers": [],
+      "repo": "",
+      "cat": "other"
+    },
+    {
+      "link": "",
+      "tags": [
+        "Aiogram",
+        "OpenAI",
+        "ClickHouse",
+        "D3.js"
+      ],
+      "image": "",
+      "title": {
+        "en": "",
+        "ru": "",
+        "uz": "Pulse Analytics"
+      },
+      "description": {
+        "en": "",
+        "ru": "",
+        "uz": "Kichik biznes uchun real-vaqt dashboard. Telegram bot egasining savollarini oddiy tilda javob beradi — streaming data warehouse bilan."
+      },
+      "slug": "pulse-analytics",
+      "problem": {
+        "uz": "",
+        "en": "",
+        "ru": ""
+      },
+      "built": {
+        "uz": "",
+        "en": "",
+        "ru": ""
+      },
+      "decisions": [],
+      "numbers": [],
+      "repo": "",
+      "cat": "other"
+    },
+    {
+      "slug": "aurora-academy-lms",
+      "cat": "site",
+      "title": {
+        "uz": "Aurora Academy — o‘quv markazi LMS",
+        "en": "Aurora Academy — learning platform",
+        "ru": "Aurora Academy — образовательная платформа"
+      },
+      "description": {
+        "uz": "IELTS, ingliz tili, dasturlash va dizayn bo‘yicha o‘quv markazi uchun to‘liq platforma: jonli darslar, AI yordamchi va sertifikat.",
+        "en": "A full platform for a training centre teaching IELTS, English, programming and design: live classes, an AI assistant and certificates.",
+        "ru": "Полная платформа для учебного центра: IELTS, английский, программирование и дизайн — живые занятия, AI-ассистент и сертификаты."
+      },
+      "problem": {
+        "uz": "O‘quv markazi guruhlarni, davomatni, to‘lovlarni va uy vazifalarini bir nechta jadval va chatda yuritardi. O‘qituvchi ham, o‘quvchi ham kerakli narsani topolmasdi.",
+        "en": "The centre ran its groups, attendance, payments and homework across several spreadsheets and chats. Neither teachers nor students could find what they needed.",
+        "ru": "Центр вёл группы, посещаемость, оплаты и домашние задания в нескольких таблицах и чатах. Ни преподаватели, ни ученики не находили нужное."
+      },
+      "built": {
+        "uz": "Next.js 15 va React 19 asosida bitta platforma qurdim: o‘quvchi, o‘qituvchi va administrator uchun alohida kabinetlar. Ma’lumotlar Supabase (Postgres) da, kirish va huquqlar RLS bilan boshqariladi. Interfeys Tailwind va Framer Motion bilan «liquid glass» uslubida, animatsiyalar sahifani sekinlashtirmaydigan darajada saqlangan.",
+        "en": "I built one platform on Next.js 15 and React 19, with separate dashboards for students, teachers and administrators. Data lives in Supabase (Postgres), with access governed by row-level security. The interface uses Tailwind and Framer Motion in a liquid-glass style, with animation kept light enough not to slow the page.",
+        "ru": "Я построил единую платформу на Next.js 15 и React 19 с отдельными кабинетами для учеников, преподавателей и администраторов. Данные в Supabase (Postgres), доступ — через RLS. Интерфейс на Tailwind и Framer Motion в стиле liquid glass, анимация не тормозит страницу."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Supabase",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "link": "https://lm-system-psi.vercel.app",
+      "repo": "https://github.com/KamolbekMuzaffarov/LMSystem",
+      "image": ""
+    },
+    {
+      "slug": "natyajnoy-potolok",
+      "cat": "site",
+      "title": {
+        "uz": "Natyajnoy Potolok — biznes sayti",
+        "en": "Natyajnoy Potolok — business site",
+        "ru": "Натяжные потолки — сайт бизнеса"
+      },
+      "description": {
+        "uz": "Buxoro va Navoiy uchun chozma shift biznesining sayti: ishlar galereyasi, narx hisoblagich va to‘g‘ridan-to‘g‘ri buyurtma.",
+        "en": "A stretch-ceiling business site for Bukhara and Navoiy: a gallery of work, a price estimator and direct ordering.",
+        "ru": "Сайт бизнеса натяжных потолков для Бухары и Навои: галерея работ, расчёт цены и прямой заказ."
+      },
+      "problem": {
+        "uz": "Mijozlar narxni bilish uchun qo‘ng‘iroq qilishi kerak edi, usta esa har safar bir xil savollarga javob berardi. Kechqurun kelgan so‘rovlar javobsiz qolardi.",
+        "en": "Customers had to call to learn a price, and the fitter answered the same questions every time. Enquiries that arrived in the evening went unanswered.",
+        "ru": "Клиентам приходилось звонить, чтобы узнать цену, а мастер каждый раз отвечал на одни и те же вопросы. Вечерние заявки оставались без ответа."
+      },
+      "built": {
+        "uz": "Statik, juda tez ochiladigan sayt qurdim: ishlar galereyasi, xona o‘lchamiga qarab narxni o‘zi hisoblaydigan kalkulyator va bir bosishda Telegramga tushadigan buyurtma tugmasi. Vercel’da joylashgan — server ham, oylik to‘lov ham yo‘q.",
+        "en": "I built a static, very fast site: a gallery of past work, a calculator that prices a room from its dimensions, and an order button that drops straight into Telegram. It is hosted on Vercel, so there is no server and no monthly bill.",
+        "ru": "Я сделал статичный, очень быстрый сайт: галерея работ, калькулятор цены по размерам комнаты и кнопка заказа, попадающая прямо в Telegram. Хостинг на Vercel — ни сервера, ни ежемесячной платы."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vercel"
+      ],
+      "link": "https://premium-potolok.vercel.app",
+      "repo": "",
+      "image": ""
+    },
+    {
+      "slug": "sino-uz-pharma",
+      "cat": "site",
+      "title": {
+        "uz": "Sino-Uz Pharma Bridge",
+        "en": "Sino-Uz Pharma Bridge",
+        "ru": "Sino-Uz Pharma Bridge"
+      },
+      "description": {
+        "uz": "Xitoy farmatsevtika ishlab chiqaruvchilarini Markaziy Osiyo bozoriga bog‘lovchi B2B platforma sayti.",
+        "en": "A B2B platform site connecting Chinese pharmaceutical manufacturers to the Central Asian market.",
+        "ru": "Сайт B2B-платформы, связывающей китайских фармпроизводителей с рынком Центральной Азии."
+      },
+      "problem": {
+        "uz": "Chet ellik ishlab chiqaruvchi uchun O‘zbekiston bozoriga kirish yo‘li — ro‘yxatdan o‘tish, hujjat, distribyutor — tashqaridan umuman ko‘rinmaydi.",
+        "en": "For a foreign manufacturer, the route into the Uzbek market — registration, paperwork, distributors — is invisible from the outside.",
+        "ru": "Для зарубежного производителя путь на рынок Узбекистана — регистрация, документы, дистрибьюторы — снаружи совершенно не виден."
+      },
+      "built": {
+        "uz": "Ikki tomonni bir joyga to‘playdigan ko‘p tilli B2B sahifa qurdim: xizmatlar, jarayon bosqichlari va so‘rov formasi. Sayt statik va Vercel’ning global CDN’ida turadi — Xitoydan ham, O‘zbekistondan ham bir xil tez ochiladi.",
+        "en": "I built a multilingual B2B page that brings both sides together: services, the stages of the process, and an enquiry form. The site is static and sits on Vercel's global CDN, so it opens equally fast from China and from Uzbekistan.",
+        "ru": "Я построил многоязычную B2B-страницу, объединяющую обе стороны: услуги, этапы процесса и форма запроса. Сайт статичный и размещён на глобальном CDN Vercel — одинаково быстро открывается и из Китая, и из Узбекистана."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vercel"
+      ],
+      "link": "https://sino-uz-pharma.vercel.app",
+      "repo": "",
+      "image": ""
+    },
+    {
+      "slug": "keyboard-ai",
+      "cat": "app",
+      "title": {
+        "uz": "Keyboard AI — telefon kompyuter pulti",
+        "en": "Keyboard AI — phone as PC remote",
+        "ru": "Keyboard AI — телефон как пульт для ПК"
+      },
+      "description": {
+        "uz": "Telefonni kompyuter uchun simsiz trackpad, klaviatura va boshqaruv pultiga aylantiradigan Android ilova.",
+        "en": "An Android app that turns a phone into a wireless trackpad, keyboard and remote for a computer.",
+        "ru": "Android-приложение, превращающее телефон в беспроводной трекпад, клавиатуру и пульт для компьютера."
+      },
+      "problem": {
+        "uz": "Divanda o‘tirib kompyuterdagi kinoni boshqarish uchun turib borish kerak. Bor yechimlar kompyuterga qo‘shimcha dastur o‘rnatishni yoki kabelni talab qiladi.",
+        "en": "Controlling a film on the computer from the sofa means getting up. Existing solutions need extra software installed on the computer, or a cable.",
+        "ru": "Чтобы управлять фильмом на компьютере с дивана, нужно вставать. Существующие решения требуют установки программы на компьютер или кабеля."
+      },
+      "built": {
+        "uz": "Telefonni Bluetooth HID qurilmasi sifatida ko‘rsatadigan Android ilova yozdim — kompyuter uni oddiy simsiz klaviatura va sichqoncha deb biladi, shuning uchun hech qanday drayver yoki qo‘shimcha dastur kerak emas. Kotlin’da, Gradle bilan yig‘iladi; Google Play uchun imzolangan AAB, do‘kon sahifasi matni va skrinshotlar tayyor.",
+        "en": "I wrote an Android app that presents the phone as a Bluetooth HID device — the computer sees an ordinary wireless keyboard and mouse, so no driver or extra software is needed. It is written in Kotlin and built with Gradle; the signed AAB, store listing copy and screenshots are ready for Google Play.",
+        "ru": "Я написал Android-приложение, представляющее телефон как Bluetooth HID-устройство — компьютер видит обычную беспроводную клавиатуру и мышь, поэтому драйверы и дополнительные программы не нужны. Kotlin, сборка через Gradle; подписанный AAB, тексты для магазина и скриншоты готовы для Google Play."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "Kotlin",
+        "Android",
+        "Bluetooth HID",
+        "Gradle"
+      ],
+      "link": "",
+      "repo": "",
+      "image": ""
+    },
+    {
+      "slug": "tugilgan-kunlar",
+      "cat": "app",
+      "title": {
+        "uz": "Tug‘ilgan kunlar eslatmasi",
+        "en": "Birthday reminder",
+        "ru": "Напоминание о днях рождения"
+      },
+      "description": {
+        "uz": "Tug‘ilgan kunlarni saqlab, sana yaqinlashganda eslatma yuboradigan Flutter ilova — ro‘yxatni do‘stlar bilan ulashish imkoni bilan.",
+        "en": "A Flutter app that stores birthdays and sends a notification as the date approaches — with a way to share the list with friends.",
+        "ru": "Flutter-приложение, которое хранит дни рождения и присылает уведомление к дате — со способом поделиться списком с друзьями."
+      },
+      "problem": {
+        "uz": "Tug‘ilgan kunlar telefon eslatmasida, boshqasi bosh miyada, yana bittasi eski chatda qoladi — va har yili kimnidir esdan chiqarasan.",
+        "en": "Birthdays live half in a phone reminder, half in your head and half in an old chat — and every year someone gets forgotten.",
+        "ru": "Дни рождения живут наполовину в напоминаниях телефона, наполовину в голове, наполовину в старом чате — и каждый год кого-то забывают."
+      },
+      "built": {
+        "uz": "Flutter’da ilova yozdim: ism, sana, telefon va izoh bilan yozuv qo‘shiladi, ro‘yxat eng yaqin sana bo‘yicha o‘zi tartiblanadi. Eslatma vaqti va necha kun oldin kelishi sozlanadi (o‘sha kuni, 1 kun, 1 hafta, 1 oygacha) va telefon qayta yoqilsa ham saqlanib qoladi. Ro‘yxatni Telegram yoki WhatsApp orqali matn sifatida ulashish mumkin — do‘st uni ilovaga yopishtirsa, yozuvlar dublikatsiz import bo‘ladi. Zaxira nusxa .json faylga olinadi.",
+        "en": "I wrote the app in Flutter: each entry holds a name, date, phone and note, and the list sorts itself by the nearest date. Reminder time and lead time are configurable (same day, 1 day, a week, up to a month) and survive a phone restart. The list can be shared as text over Telegram or WhatsApp — a friend pastes it into the app and the entries import without duplicates. Backups export to a .json file.",
+        "ru": "Я написал приложение на Flutter: запись содержит имя, дату, телефон и заметку, список сам сортируется по ближайшей дате. Время напоминания и за сколько дней — настраиваются (в день, за 1 день, за неделю, до месяца) и переживают перезагрузку телефона. Список можно отправить текстом через Telegram или WhatsApp — друг вставляет его в приложение, и записи импортируются без дубликатов. Резервная копия выгружается в .json."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Android",
+        "Local notifications"
+      ],
+      "link": "",
+      "repo": "",
+      "image": ""
+    },
+    {
+      "slug": "jarvis-native",
+      "cat": "app",
+      "title": {
+        "uz": "JARVIS — Mac uchun ovozli yordamchi",
+        "en": "JARVIS — a voice assistant for the Mac",
+        "ru": "JARVIS — голосовой ассистент для Mac"
+      },
+      "description": {
+        "uz": "Mac’ning o‘zida orqa fonda ishlaydigan, o‘zbekcha gapiradigan va audio’ni kompyuterdan chiqarmaydigan ovozli yordamchi.",
+        "en": "A voice assistant that runs natively in the background on a Mac, speaks Uzbek, and never sends audio off the machine.",
+        "ru": "Голосовой ассистент, работающий в фоне прямо на Mac, говорит по-узбекски и не отправляет аудио за пределы компьютера."
+      },
+      "problem": {
+        "uz": "Mavjud ovozli yordamchilar o‘zbek tilini deyarli tushunmaydi, va tushunganlari ham har bir gapni chet eldagi serverga yuboradi.",
+        "en": "Existing voice assistants barely understand Uzbek, and the ones that do send every sentence to a server abroad.",
+        "ru": "Существующие голосовые ассистенты почти не понимают узбекский, а те, что понимают, отправляют каждую фразу на зарубежный сервер."
+      },
+      "built": {
+        "uz": "Mac’da doimiy ishlaydigan Python xizmati yozdim: ekran burchagida kichik HUD turadi, mikrofonni bosish shart emas — «Jarvis» so‘zi eshitilganda uyg‘onadi. Nutqni Whisper matnga o‘giradi, buyruq bo‘lsa bajaradi (ilova ochish, ovoz, screenshot), buyruq bo‘lmasa Ollama’dagi lokal model bilan suhbatlashadi. Butun tanib olish va o‘ylash kompyuterning o‘zida ketadi — audio tashqariga chiqmaydi. launchd orqali tizim bilan birga ishga tushadi.",
+        "en": "I wrote a Python service that runs permanently on the Mac: a small HUD sits in the corner of the screen, and there is no button to press — it wakes on the word \"Jarvis\". Whisper turns speech into text; if it is a command it runs it (open an app, change volume, take a screenshot), and if not, it talks back through a local Ollama model. All recognition and reasoning happen on the machine — the audio never leaves it. It starts with the system through launchd.",
+        "ru": "Я написал Python-службу, постоянно работающую на Mac: в углу экрана небольшой HUD, кнопку нажимать не нужно — просыпается на слово «Jarvis». Whisper переводит речь в текст; если это команда — выполняет (открыть приложение, громкость, скриншот), если нет — отвечает через локальную модель в Ollama. Всё распознавание и рассуждение идут на самой машине — аудио её не покидает. Запускается вместе с системой через launchd."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "Python",
+        "Whisper",
+        "Ollama",
+        "Edge TTS",
+        "macOS",
+        "launchd"
+      ],
+      "link": "",
+      "repo": "",
+      "image": ""
+    },
+    {
+      "slug": "esp32-rgb-web",
+      "cat": "esp32",
+      "title": {
+        "uz": "ESP32-S3 — brauzerdan RGB boshqaruv",
+        "en": "ESP32-S3 — RGB control from a browser",
+        "ru": "ESP32-S3 — управление RGB из браузера"
+      },
+      "description": {
+        "uz": "ESP32-S3 Wi-Fi tarmoqqa ulanib, o‘zining veb sahifasini ochadi va plata LED’ini brauzerdan boshqarish imkonini beradi.",
+        "en": "The ESP32-S3 joins a Wi-Fi network, serves its own web page, and lets the board's LED be controlled from a browser.",
+        "ru": "ESP32-S3 подключается к Wi-Fi, поднимает собственную веб-страницу и позволяет управлять светодиодом платы из браузера."
+      },
+      "problem": {
+        "uz": "Mikrokontrollerni boshqarish odatda kabel va kompyuterdagi maxsus dasturni talab qiladi — telefondan turib rangni o‘zgartirib bo‘lmaydi.",
+        "en": "Controlling a microcontroller usually needs a cable and special software on a computer — you cannot just change a colour from your phone.",
+        "ru": "Управление микроконтроллером обычно требует кабеля и специальной программы на компьютере — с телефона цвет не поменяешь."
+      },
+      "built": {
+        "uz": "ESP-IDF’da platani Wi-Fi’ga ulab, uning ustida kichik HTTP server ko‘tardim: `/api/state` joriy holatni qaytaradi, `/api/color` esa yangi rangni qabul qiladi. Boshqaruv sahifasi platani o‘zida saqlanadi, shuning uchun tarmoqdagi istalgan telefon yoki noutbukdan hech narsa o‘rnatmasdan ochiladi.",
+        "en": "Using ESP-IDF I put the board on Wi-Fi and raised a small HTTP server on it: `/api/state` returns the current state and `/api/color` accepts a new colour. The control page is stored on the board itself, so any phone or laptop on the network opens it with nothing to install.",
+        "ru": "На ESP-IDF я подключил плату к Wi-Fi и поднял на ней небольшой HTTP-сервер: `/api/state` возвращает текущее состояние, `/api/color` принимает новый цвет. Страница управления хранится на самой плате, поэтому открывается с любого телефона или ноутбука в сети без установки."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "ESP32-S3",
+        "ESP-IDF",
+        "C",
+        "Wi-Fi",
+        "HTTP API"
+      ],
+      "link": "",
+      "repo": "https://github.com/KamolbekMuzaffarov/esp32-relay-server",
+      "image": ""
+    },
+    {
+      "slug": "esp32-keyboard",
+      "cat": "esp32",
+      "title": {
+        "uz": "ESP32 — simsiz klaviatura moduli",
+        "en": "ESP32 — wireless keyboard module",
+        "ru": "ESP32 — модуль беспроводной клавиатуры"
+      },
+      "description": {
+        "uz": "ESP32 platasini kompyuter uchun simsiz klaviatura qurilmasiga aylantiruvchi ESP-IDF loyihasi.",
+        "en": "An ESP-IDF project that turns an ESP32 board into a wireless keyboard device for a computer.",
+        "ru": "Проект на ESP-IDF, превращающий плату ESP32 в беспроводное клавиатурное устройство для компьютера."
+      },
+      "problem": {
+        "uz": "Maxsus tugmalar paneli (masalan studiya yoki ustaxona uchun) kerak bo‘lganda, tayyor klaviaturani o‘zgartirib bo‘lmaydi — har bir tugmaga o‘z vazifasini berish kerak.",
+        "en": "When you need a purpose-built key panel — for a studio or a workshop — an off-the-shelf keyboard cannot be repurposed: every key needs its own job.",
+        "ru": "Когда нужна специальная панель клавиш — для студии или мастерской — готовую клавиатуру не переделать: каждой клавише нужна своя задача."
+      },
+      "built": {
+        "uz": "ESP-IDF’da platani standart klaviatura qurilmasi sifatida e’lon qiladigan firmware yozdim, shuning uchun kompyuter uni drayversiz taniydi. Tugmalar va ular yuboradigan kodlar firmware ichida belgilanadi — panelni ish jarayoniga moslab qayta dasturlash mumkin.",
+        "en": "In ESP-IDF I wrote firmware that declares the board as a standard keyboard device, so the computer recognises it without a driver. The keys and the codes they send are defined in the firmware, so the panel can be reprogrammed to fit a workflow.",
+        "ru": "На ESP-IDF я написал прошивку, объявляющую плату стандартным клавиатурным устройством, поэтому компьютер распознаёт её без драйвера. Клавиши и отправляемые ими коды задаются в прошивке — панель можно перепрограммировать под рабочий процесс."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "ESP32",
+        "ESP-IDF",
+        "C",
+        "HID"
+      ],
+      "link": "",
+      "repo": "",
+      "image": ""
+    },
+    {
+      "slug": "raqamli-elektronika",
+      "cat": "site",
+      "title": {
+        "uz": "Raqamli elektronika simulyatori",
+        "en": "Digital electronics simulator",
+        "ru": "Симулятор цифровой электроники"
+      },
+      "description": {
+        "uz": "Shifrator va deshifrator sxemalarini brauzerda yig‘ib, jonli sinab ko‘rish mumkin bo‘lgan o‘quv simulyatori.",
+        "en": "A teaching simulator where encoder and decoder circuits can be assembled and tested live in the browser.",
+        "ru": "Учебный симулятор, где схемы шифратора и дешифратора собираются и проверяются вживую в браузере."
+      },
+      "problem": {
+        "uz": "Raqamli elektronikani daftarda o‘rganish qiyin: kirishni o‘zgartirsang chiqish qanday o‘zgarishini faqat tasavvur qilasan, ko‘rmaysan.",
+        "en": "Digital electronics is hard to learn on paper: when you change an input you can only imagine how the output changes — you never see it.",
+        "ru": "Цифровую электронику трудно учить на бумаге: меняя вход, вы лишь представляете, как меняется выход, но не видите этого."
+      },
+      "built": {
+        "uz": "Brauzerda ishlaydigan interaktiv simulyator qurdim: talaba kirish signallarini bosadi va sxema bo‘ylab chiqish qanday hisoblanishini darhol ko‘radi. Sof HTML, CSS va JavaScript — o‘rnatish ham, ro‘yxatdan o‘tish ham kerak emas, sinf kompyuterida ham, telefonda ham ochiladi.",
+        "en": "I built an interactive simulator that runs in the browser: the student flips input signals and immediately sees how the output is computed across the circuit. It is plain HTML, CSS and JavaScript — nothing to install, nothing to sign up for, and it opens on a classroom PC or a phone alike.",
+        "ru": "Я построил интерактивный симулятор в браузере: студент переключает входные сигналы и сразу видит, как по схеме вычисляется выход. Чистые HTML, CSS и JavaScript — ничего не нужно устанавливать и регистрироваться, открывается и на школьном ПК, и на телефоне."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Pages"
+      ],
+      "link": "https://kamolbekmuzaffarov.github.io/SHIFRATOR-DESHIFRATOR/",
+      "repo": "https://github.com/KamolbekMuzaffarov/SHIFRATOR-DESHIFRATOR",
+      "image": ""
+    },
+    {
+      "slug": "tranzistor",
+      "cat": "site",
+      "title": {
+        "uz": "Tranzistor — interaktiv darslik",
+        "en": "Transistor — an interactive lesson",
+        "ru": "Транзистор — интерактивный урок"
+      },
+      "description": {
+        "uz": "Tranzistorning ishlash printsipini brauzerda jonli ko‘rsatadigan o‘quv sahifasi.",
+        "en": "A teaching page that demonstrates how a transistor works, live in the browser.",
+        "ru": "Учебная страница, наглядно показывающая работу транзистора прямо в браузере."
+      },
+      "problem": {
+        "uz": "Tranzistor — elektronikaning asosi, lekin darslikdagi statik sxema uni tushuntirmaydi: kuchlanish o‘zgarganda nima bo‘lishini ko‘rish kerak.",
+        "en": "The transistor is the foundation of electronics, but a static textbook diagram does not explain it: you need to see what happens as the voltage changes.",
+        "ru": "Транзистор — основа электроники, но статичная схема в учебнике его не объясняет: нужно видеть, что происходит при изменении напряжения."
+      },
+      "built": {
+        "uz": "Tranzistorni interaktiv ko‘rsatadigan sahifa qurdim — foydalanuvchi qiymatlarni o‘zgartiradi va natijani darhol ko‘radi. Sahifa GitHub Pages’da bepul turadi va havola orqali ulashiladi, shuning uchun o‘qituvchi uni darsda to‘g‘ridan-to‘g‘ri ochishi mumkin.",
+        "en": "I built a page that shows the transistor interactively — the user changes the values and sees the result at once. The page is hosted free on GitHub Pages and shared by link, so a teacher can open it directly in class.",
+        "ru": "Я построил страницу, показывающую транзистор интерактивно — пользователь меняет значения и сразу видит результат. Страница бесплатно размещена на GitHub Pages и передаётся ссылкой, так что преподаватель откроет её прямо на уроке."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Pages"
+      ],
+      "link": "https://kamolbekmuzaffarov.github.io/TRANZISTOR/",
+      "repo": "https://github.com/KamolbekMuzaffarov/TRANZISTOR",
+      "image": ""
+    },
+    {
+      "slug": "differensial-test",
+      "cat": "site",
+      "title": {
+        "uz": "Differensial tenglamalar — onlayn test",
+        "en": "Differential equations — online test",
+        "ru": "Дифференциальные уравнения — онлайн-тест"
+      },
+      "description": {
+        "uz": "Differensial tenglamalar bo‘yicha sessiyaga tayyorlanish uchun onlayn test tizimi.",
+        "en": "An online test system for preparing for a differential-equations exam.",
+        "ru": "Онлайн-тест для подготовки к экзамену по дифференциальным уравнениям."
+      },
+      "problem": {
+        "uz": "Sessiya oldidan talabaning bilimini tekshirish yo‘li yo‘q: javoblar kitobning oxirida, lekin qayerda xato qilganini hech kim aytmaydi.",
+        "en": "Before an exam a student has no way to check what they know: the answers sit at the back of the book, but nothing tells them where they went wrong.",
+        "ru": "Перед сессией студенту негде проверить себя: ответы в конце книги, но никто не говорит, где именно ошибка."
+      },
+      "built": {
+        "uz": "Brauzerda ishlaydigan test tizimi qurdim: savollar beriladi, javob tanlanadi va natija darhol ko‘rinadi. Server kerak emas — butun mantiq sahifaning o‘zida, shuning uchun sekin internetda ham ishlaydi va havolani guruhga tashlash kifoya.",
+        "en": "I built a test system that runs in the browser: questions are asked, an answer is chosen, and the result appears immediately. No server is needed — all the logic lives in the page itself, so it works on a slow connection and the link alone is enough to share with a group.",
+        "ru": "Я построил тестовую систему в браузере: задаются вопросы, выбирается ответ, результат виден сразу. Сервер не нужен — вся логика в самой странице, поэтому работает и на медленном интернете, а для группы достаточно ссылки."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Pages"
+      ],
+      "link": "https://kamolbekmuzaffarov.github.io/Differensial/",
+      "repo": "https://github.com/KamolbekMuzaffarov/Differensial",
+      "image": ""
+    },
+    {
+      "slug": "mkm777-math",
+      "cat": "site",
+      "title": {
+        "uz": "MKM777 Math — matematika vositasi",
+        "en": "MKM777 Math — a maths tool",
+        "ru": "MKM777 Math — математический инструмент"
+      },
+      "description": {
+        "uz": "Matematik masalalarni brauzerda yechish va tekshirish uchun veb vosita.",
+        "en": "A web tool for solving and checking maths problems in the browser.",
+        "ru": "Веб-инструмент для решения и проверки математических задач в браузере."
+      },
+      "problem": {
+        "uz": "Bir xil turdagi hisob-kitoblarni qo‘lda takrorlash vaqt oladi va har safar xato qilish ehtimoli bor.",
+        "en": "Repeating the same kind of calculation by hand takes time, and every repetition is another chance to slip.",
+        "ru": "Повторять однотипные расчёты вручную долго, и каждый раз есть шанс ошибиться."
+      },
+      "built": {
+        "uz": "JavaScript’da hisoblashni o‘z zimmasiga oladigan sahifa yozdim: kirish qiymatlari beriladi, natija bosqichma-bosqich chiqadi. GitHub Pages’da turadi — telefonda ham, kompyuterda ham bir xil ishlaydi.",
+        "en": "I wrote a page in JavaScript that takes the calculation off your hands: you give the inputs and the result comes out step by step. It is hosted on GitHub Pages and behaves the same on a phone and on a computer.",
+        "ru": "Я написал страницу на JavaScript, берущую расчёт на себя: задаются входные значения, результат выводится пошагово. Размещена на GitHub Pages, одинаково работает на телефоне и компьютере."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "GitHub Pages"
+      ],
+      "link": "https://kamolbekmuzaffarov.github.io/MKM777_MATH/",
+      "repo": "https://github.com/KamolbekMuzaffarov/MKM777_MATH",
+      "image": ""
+    },
+    {
+      "slug": "proxmedia",
+      "cat": "site",
+      "title": {
+        "uz": "ProxMedia — media sayti",
+        "en": "ProxMedia — media site",
+        "ru": "ProxMedia — медиа-сайт"
+      },
+      "description": {
+        "uz": "Media va kontent xizmatlari uchun taqdimot sayti.",
+        "en": "A presentation site for media and content services.",
+        "ru": "Презентационный сайт для медиа- и контент-услуг."
+      },
+      "problem": {
+        "uz": "Media xizmati ko‘rsatadigan jamoaning ishlari ijtimoiy tarmoqlarda tarqalib ketgan — mijozga bir joyda ko‘rsatadigan manzil yo‘q edi.",
+        "en": "The team's work was scattered across social networks — there was no single address to show a client.",
+        "ru": "Работы команды были разбросаны по соцсетям — не было единого адреса, чтобы показать клиенту."
+      },
+      "built": {
+        "uz": "Xizmatlar va ishlarni bir sahifaga yig‘adigan sayt qurdim. Statik va GitHub Pages’da turadi, shuning uchun hosting to‘lovi yo‘q va sahifa bir zumda ochiladi.",
+        "en": "I built a site that gathers the services and the work onto one page. It is static and hosted on GitHub Pages, so there is no hosting bill and the page opens instantly.",
+        "ru": "Я построил сайт, собирающий услуги и работы на одну страницу. Статичный, на GitHub Pages — нет платы за хостинг, страница открывается мгновенно."
+      },
+      "decisions": [],
+      "numbers": [],
+      "tags": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "GitHub Pages"
+      ],
+      "link": "https://kamolbekmuzaffarov.github.io/ProXmedia/",
+      "repo": "https://github.com/KamolbekMuzaffarov/ProXmedia",
+      "image": ""
+    }
+  ],
+  "experience": [
+    {
+      "title": {
+        "en": "Web developer",
+        "ru": "Веб-разработчик",
+        "uz": "Veb dasturchi"
+      },
+      "period": {
+        "en": "2026 — Now",
+        "ru": "2026 — Сейчас",
+        "uz": "2026 — Hozir"
+      },
+      "company": "O'zbekiston Milliy Kinofondi",
+      "description": {
+        "en": "We created an official website for the Film Fund organization.",
+        "ru": "Мы создали официальный сайт для организации Film Fund.",
+        "uz": "Kinofond tashkiloti uchun o'zining rasmiy veb sahifasini yaratdik"
+      }
+    }
+  ],
+  "publicCode": "mkm777"
+}
