@@ -11,3 +11,6 @@ fotogalareya/
 
 # Shaxsiy hujjatlar (domen cheki va h.k.)
 *.pdf
+
+# APK fayllari GitHub Releases da turadi — repoda emas
+assets/apk/

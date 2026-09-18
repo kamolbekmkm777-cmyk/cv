@@ -58,15 +58,124 @@ const DEFAULTS = {
     { id:'university', name:{ uz:"Universitet", en:"University", ru:"Университет" },
       period:{ uz:"", en:"", ru:"" }, description:{ uz:"", en:"", ru:"" }, docs: [] }
   ],
+  /* Ishlarim. Hammasi haqiqiy loyihalar — kompyuterdagi papkalar, ikkala
+     GitHub akkaunt (kamolbekmkm777-cmyk va KamolbekMuzaffarov), Vercel va
+     GitHub Pages dan yig'ilgan; har bir havola tekshirilgan.
+       iconImage — kvadrat ilova ikonkasi   icon — glif (PICONS)
+       link — jonli sayt                     repo — kod */
+  /* Ishlarim — faqat ko'rsatishga arziydiganlari.
+       icon       — PICONS dagi glif kaliti (ikonka bo'lmaganda ishlatiladi)
+       iconImage  — kvadrat ilova ikonkasi
+       image      — tayyor logo (Play Store / sayt logosi)
+       apk        — yuklab olinadigan fayl
+       shots      — skrinshotlar, bosilganda kattalashadi
+       link/repo  — jonli sayt va kod */
+  /* Sertifikatlar. Nomlari kurs nomlari — atoqli ot, shuning uchun tarjima
+     qilinmaydi. Har birida Coursera'ning rasmiy tekshirish havolasi bor:
+     ishonch ana shundan keladi, "16 ta sertifikatim bor" degan gapdan emas. */
+  certificates: [
+    { file:"cert-01", kind:"pro",     title:"Google Cybersecurity", issuer:"Google", courses:8,
+      date:"2025-05-12", verify:"https://coursera.org/verify/professional-cert/OECIKJRRZ6Z2" },
+    { file:"cert-07", kind:"course",  title:"Foundations of Cybersecurity", issuer:"Google",
+      date:"2025-04-11", verify:"https://coursera.org/verify/ZAY7GZ4H15R2" },
+    { file:"cert-04", kind:"course",  title:"Play It Safe: Manage Security Risks", issuer:"Google",
+      date:"2025-04-11", verify:"https://coursera.org/verify/27HOJBSIWPK2" },
+    { file:"cert-06", kind:"course",  title:"Connect and Protect: Networks and Network Security", issuer:"Google",
+      date:"2025-05-02", verify:"https://coursera.org/verify/BOA4QVHSIIWY" },
+    { file:"cert-09", kind:"course",  title:"Tools of the Trade: Linux and SQL", issuer:"Google",
+      date:"2025-05-02", verify:"https://coursera.org/verify/4KXMOYUDJPQ3" },
+    { file:"cert-05", kind:"course",  title:"Assets, Threats, and Vulnerabilities", issuer:"Google",
+      date:"2025-05-11", verify:"https://coursera.org/verify/B86GW4NSPD7V" },
+    { file:"cert-02", kind:"course",  title:"Sound the Alarm: Detection and Response", issuer:"Google",
+      date:"2025-05-12", verify:"https://coursera.org/verify/4U5MXPSB6SZW" },
+    { file:"cert-08", kind:"course",  title:"Automate Cybersecurity Tasks with Python", issuer:"Google",
+      date:"2025-05-12", verify:"https://coursera.org/verify/EB89934JS22G" },
+    { file:"cert-03", kind:"course",  title:"Put It to Work: Prepare for Cybersecurity Jobs", issuer:"Google",
+      date:"2025-05-12", verify:"https://coursera.org/verify/6RRCEQTJ5M3G" },
+    { file:"cert-10", kind:"course",  title:"VR and 360 Video Production", issuer:"Google AR & VR",
+      date:"2025-04-14", verify:"https://coursera.org/verify/CP7IPLYI55S4" },
+    { file:"cert-13", kind:"course",  title:"Designing User Interfaces and Experiences (UI/UX)", issuer:"IBM",
+      date:"2025-04-04", verify:"https://coursera.org/verify/RE3JEJ8DBHBG" },
+    { file:"cert-15", kind:"course",  title:"Introduction to Mobile App Development", issuer:"IBM",
+      date:"2025-01-31", verify:"https://coursera.org/verify/FMXEZOL1P1RF" },
+    { file:"cert-12", kind:"course",  title:"Get Started with iOS App Development", issuer:"SkillUp",
+      date:"2025-04-05", verify:"https://coursera.org/verify/B5LF5VQXG0Z9" },
+    { file:"cert-14", kind:"course",  title:"Get Started with Android App Development", issuer:"SkillUp",
+      date:"2025-04-04", verify:"https://coursera.org/verify/U43F3FPR1SJ2" },
+    { file:"cert-11", kind:"project", title:"Design a Professional Business Card with QR Code using Canva", issuer:"Coursera",
+      date:"2025-01-31", verify:"https://coursera.org/verify/AGNZ4AJYFZ9L" },
+    { file:"cert-16", kind:"project", title:"Building a Business Presence With Facebook Marketing", issuer:"Coursera",
+      date:"2025-01-31", verify:"https://coursera.org/verify/JSIIEHH4JWM9" }
+  ],
   portfolio: [
-    { title: { uz: "Chozma Shift AI Bot", en: "Chozma Shift AI Bot", ru: "Chozma Shift AI Bot" }, description: { uz: "Chozma shift biznesi uchun Telegram bot. Gemini Vision orqali xona rasmlarini tahlil qiladi, narxni hisoblaydi va lidlarni CRM tizimiga uzatadi.", en: "A Telegram bot for a stretch-ceiling business. It analyzes photos of a room with Gemini Vision, calculates pricing, and pushes leads straight into the admin CRM.", ru: "Telegram-бот для бизнеса по натяжным потолкам. С помощью Gemini Vision анализирует фото комнаты, рассчитывает стоимость и передаёт лиды в CRM администратора." },
-      image: "", link: "", tags: ["Aiogram 3", "Gemini Vision", "SQLite", "Oracle Cloud"], cat: "bot" },
-    { title: { uz: "Lead Funnel Pro", en: "Lead Funnel Pro", ru: "Lead Funnel Pro" }, description: { uz: "Telegram, Instagram shaxsiy xabarlari va veb-formani birlashtirgan koʻp bosqichli lidlarni saralash tizimi. Issiq lidlarni avtomatik sotuv boʻlimiga yoʻnaltiradi.", en: "A multi-stage lead qualification engine that brings together Telegram, Instagram DMs, and a web form. It automatically routes hot leads straight to sales.", ru: "Многоступенчатый механизм квалификации лидов, объединяющий Telegram, Instagram DM и веб-форму. Горячие лиды автоматически направляются в отдел продаж." },
-      image: "", link: "", tags: ["FastAPI", "PostgreSQL", "Redis", "Next.js"], cat: "bot" },
-    { title: { uz: "Vision Designer", en: "Vision Designer", ru: "Vision Designer" }, description: { uz: "Sunʼiy intellekt bilan interyer dizaynining dastlabki koʻrinishi. Foydalanuvchi xona rasmini yuklaydi, materiallarni tanlaydi — tizim fotorealistik maketlarni qaytaradi.", en: "An AI-powered interior design preview. The user uploads a photo of a room and picks materials — the system returns photorealistic mockups.", ru: "Превью дизайна интерьера на базе AI. Пользователь загружает фото комнаты и выбирает материалы — система возвращает фотореалистичные макеты." },
-      image: "", link: "", tags: ["Python", "Stable Diffusion", "React", "WebSockets"], cat: "app" },
-    { title: { uz: "Pulse Analytics", en: "Pulse Analytics", ru: "Pulse Analytics" }, description: { uz: "Kichik biznes uchun real vaqtli boshqaruv paneli. Telegram bot egasining savollariga oddiy tilda javob beradi — oqimli maʼlumotlar ombori asosida.", en: "A real-time dashboard for small businesses. A Telegram bot answers the owner's questions in plain language — powered by a streaming data warehouse.", ru: "Дашборд в реальном времени для малого бизнеса. Telegram-бот простым языком отвечает на вопросы владельца — на основе потокового хранилища данных." },
-      image: "", link: "", tags: ["Aiogram", "OpenAI", "ClickHouse", "D3.js"], cat: "site" }
+    { title: { uz:"Aurora Academy — o‘quv markazi LMS", en:"Aurora Academy — learning platform", ru:"Aurora Academy — образовательная платформа" },
+      description: { uz:"IELTS, ingliz tili, dasturlash va dizayn bo‘yicha o‘quv markazi platformasi: o‘quvchi, o‘qituvchi va administrator uchun alohida kabinetlar.", en:"A platform for a training centre teaching IELTS, English, programming and design, with separate dashboards for students, teachers and admins.", ru:"Платформа учебного центра (IELTS, английский, программирование, дизайн) с отдельными кабинетами для учеников, преподавателей и администраторов." },
+      icon:"lms", iconImage:"assets/projects/aurora-academy.svg", image:"", apk:"", shots:[],
+      link:"https://lm-system-psi.vercel.app", repo:"https://github.com/KamolbekMuzaffarov/LMSystem",
+      tags:["Next.js 15","React 19","TypeScript","Supabase","Tailwind CSS"], cat:"site" },
+
+    { title: { uz:"Natyajnoy Potolok — biznes sayti", en:"Natyajnoy Potolok — business site", ru:"Натяжные потолки — сайт бизнеса" },
+      description: { uz:"Buxoro va Navoiy uchun chozma shift biznesining sayti: ishlar galereyasi, xona o‘lchamiga qarab narx hisoblagich va Telegramga tushadigan buyurtma.", en:"A stretch-ceiling business site for Bukhara and Navoiy: a gallery of work, a price calculator based on room size, and orders that land in Telegram.", ru:"Сайт бизнеса натяжных потолков для Бухары и Навои: галерея работ, расчёт цены по размерам комнаты и заказы, попадающие в Telegram." },
+      icon:"ceiling", iconImage:"assets/projects/natyajnoy.svg", image:"", apk:"", shots:[],
+      link:"https://premium-potolok.vercel.app", repo:"",
+      tags:["HTML","CSS","JavaScript","Vercel"], cat:"site" },
+
+    { title: { uz:"Sino-Uz Pharma Bridge", en:"Sino-Uz Pharma Bridge", ru:"Sino-Uz Pharma Bridge" },
+      description: { uz:"Xitoy farmatsevtika ishlab chiqaruvchilarini Markaziy Osiyo bozoriga bog‘lovchi ko‘p tilli B2B platforma sayti.", en:"A multilingual B2B platform site connecting Chinese pharmaceutical manufacturers to the Central Asian market.", ru:"Многоязычный сайт B2B-платформы, связывающей китайских фармпроизводителей с рынком Центральной Азии." },
+      icon:"pharma", iconImage:"assets/projects/sino-uz-pharma.svg", image:"", apk:"", shots:[],
+      link:"https://sino-uz-pharma.vercel.app", repo:"",
+      tags:["HTML","CSS","JavaScript","Vercel"], cat:"site" },
+
+    { title: { uz:"Keyboard AI — telefon kompyuter pulti", en:"Keyboard AI — phone as a PC remote", ru:"Keyboard AI — телефон как пульт для ПК" },
+      description: { uz:"Telefonni Bluetooth HID qurilmasi sifatida ko‘rsatadi — kompyuter uni oddiy simsiz klaviatura va sichqoncha deb biladi, drayver kerak emas.", en:"Presents the phone as a Bluetooth HID device — the computer sees an ordinary wireless keyboard and mouse, with no driver needed.", ru:"Представляет телефон как Bluetooth HID-устройство — компьютер видит обычную беспроводную клавиатуру и мышь, драйверы не нужны." },
+      icon:"keyboard", iconImage:"assets/projects/keyboard-ai.png", image:"",
+      apk:"https://github.com/kamolbekmkm777-cmyk/cv/releases/download/apps-v1/keyboard-ai.apk",
+      shots:["assets/shots/keyboard-ai-1.png","assets/shots/keyboard-ai-2.png"],
+      link:"", repo:"",
+      tags:["Kotlin","Android","Bluetooth HID","Gradle"], cat:"app" },
+
+    { title: { uz:"Tug‘ilgan kunlar eslatmasi", en:"Birthday reminder", ru:"Напоминание о днях рождения" },
+      description: { uz:"Tug‘ilgan kunlarni saqlaydi va sana yaqinlashganda eslatadi. Ro‘yxatni Telegram orqali ulashsa, do‘st uni dublikatsiz import qiladi.", en:"Stores birthdays and reminds you as the date nears. Share the list over Telegram and a friend imports it without duplicates.", ru:"Хранит дни рождения и напоминает к дате. Список можно отправить в Telegram — друг импортирует его без дубликатов." },
+      icon:"cake", iconImage:"assets/projects/tugilgan-kunlar.png", image:"",
+      apk:"https://github.com/kamolbekmkm777-cmyk/cv/releases/download/apps-v1/tugilgan-kunlar.apk", shots:[],
+      link:"", repo:"",
+      tags:["Flutter","Dart","Android","Local notifications"], cat:"app" },
+
+    { title: { uz:"JARVIS — Mac uchun ovozli yordamchi", en:"JARVIS — a voice assistant for the Mac", ru:"JARVIS — голосовой ассистент для Mac" },
+      description: { uz:"“Jarvis” so‘zida uyg‘onadi, o‘zbekcha gapiradi. Whisper va Ollama Mac’ning o‘zida ishlaydi — audio kompyuterdan chiqmaydi.", en:"Wakes on the word “Jarvis” and speaks Uzbek. Whisper and Ollama run on the Mac itself — the audio never leaves the machine.", ru:"Просыпается на слово «Jarvis», говорит по-узбекски. Whisper и Ollama работают на самом Mac — аудио не покидает компьютер." },
+      icon:"mic", iconImage:"assets/projects/jarvis.svg", image:"", apk:"", shots:[],
+      link:"", repo:"",
+      tags:["Python","Whisper","Ollama","Edge TTS","macOS"], cat:"app" },
+
+    { title: { uz:"Anonim savollar boti", en:"Anonymous questions bot", ru:"Бот анонимных вопросов" },
+      description: { uz:"Har foydalanuvchiga shaxsiy havola beradi; havola orqali kelgan xabar egasiga anonim yetadi, egasi javob berishi yoki bloklashi mumkin.", en:"Gives each user a personal link; messages sent through it reach the owner anonymously, who can reply or block the sender.", ru:"Выдаёт каждому пользователю личную ссылку; сообщения через неё приходят владельцу анонимно, он может ответить или заблокировать." },
+      icon:"bot", iconImage:"assets/projects/anonim-bot.svg", image:"", apk:"", shots:[],
+      link:"", repo:"",
+      tags:["Python","python-telegram-bot","Telegram Bot API"], cat:"bot" },
+
+    { title: { uz:"Tasbih ilovasi", en:"Tasbih app", ru:"Приложение тасбих" },
+      description: { uz:"Kundalik zikrlarni qulay va oson sanash uchun yaratilgan zamonaviy raqamli tasbih. Sodda dizayn, istalgan joyda ishlatiladi.", en:"A modern digital tasbih for counting daily dhikr simply and comfortably. A plain design that works anywhere.", ru:"Современный цифровой тасбих для удобного счёта ежедневных зикров. Простой дизайн, работает где угодно." },
+      icon:"beads", iconImage:"", image:"https://play-lh.googleusercontent.com/cRVXCgWimaQTQmXXUDbE-3JmWXe5YgfxVZGR16zp6Hb6lrPNkZv2BqZ1pmMgj6lRKd4EBi5AwbyRcL7JHPwPWi4=w480-h960-rw", apk:"", shots:[],
+      link:"https://play.google.com/store/apps/details?id=com.mkm777.tasbih", repo:"",
+      tags:["Flutter","Play Console"], cat:"app" },
+
+    { title: { uz:"Kinofond", en:"Kinofond", ru:"Кинофонд" },
+      description: { uz:"O‘zbek kino xazinasi uchun onlayn platforma: filmlar, seriallar va boshqa videokontentni qulay interfeysda tomosha qilish.", en:"An online platform for the Uzbek film archive: watching films, series and other video content through a comfortable interface.", ru:"Онлайн-платформа для узбекского кинофонда: просмотр фильмов, сериалов и другого видеоконтента в удобном интерфейсе." },
+      icon:"film", iconImage:"assets/projects/kinofond.svg", image:"", apk:"", shots:[],
+      link:"https://kinofond.uz/", repo:"https://github.com/kamolbekmkm777-cmyk/kinofond",
+      tags:["HTML","JavaScript","PostgreSQL","Docker"], cat:"site" },
+
+    { title: { uz:"ProxMedia — media sayti", en:"ProxMedia — media site", ru:"ProxMedia — медиа-сайт" },
+      description: { uz:"Media va kontent xizmatlarini bir sahifaga yig‘adigan taqdimot sayti — mijozga ko‘rsatish uchun yagona manzil.", en:"A presentation site gathering media and content services onto one page — a single address to show a client.", ru:"Презентационный сайт, собирающий медиа- и контент-услуги на одну страницу — единый адрес, чтобы показать клиенту." },
+      icon:"media", iconImage:"assets/projects/proxmedia.svg", image:"", apk:"", shots:[],
+      link:"https://kamolbekmuzaffarov.github.io/ProXmedia/", repo:"https://github.com/KamolbekMuzaffarov/ProXmedia",
+      tags:["JavaScript","HTML","CSS","GitHub Pages"], cat:"site" },
+
+    { title: { uz:"SV — Django veb ilova", en:"SV — Django web app", ru:"SV — веб-приложение на Django" },
+      description: { uz:"Django asosidagi server ilovasi: admin paneli, ma’lumotlar bazasi va media fayllar bilan. O‘z domeni uchun sozlangan.", en:"A server application built on Django, with an admin panel, a database and media files. Configured for its own domain.", ru:"Серверное приложение на Django: админ-панель, база данных и медиафайлы. Настроено под собственный домен." },
+      icon:"server", iconImage:"assets/projects/sv-django.svg", image:"", apk:"", shots:[],
+      link:"", repo:"https://github.com/KamolbekMuzaffarov/SV",
+      tags:["Python","Django","SQLite"], cat:"site" }
   ],
   favorites: [
     { icon: "🎧", title: { uz: "Mening pleylistim", en: "My playlist", ru: "Мой плейлист" }, url: "" },
@@ -164,7 +273,14 @@ const DEFAULTS = {
   /* «Uch rang» temasining uchta bo'yog'i. Bo'sh = standart (paper/navy/amber).
      Butun tema shu uch rangdan hisoblanadi — boshqa hech narsa kerak emas. */
   sandColors: { bg:'', fg:'', accent:'' },
-  theme: "liquid"
+  theme: "liquid",
+  /* Ishlar katalogining versiyasi. Bulutda saqlangan hujjatda bu raqam
+     kichik (yoki umuman yo'q) bo'lsa, u eskirgan nashr hisoblanadi va
+     ishlar ro'yxati koddagisi bilan BIR MARTA yangilanadi — qarang
+     upgradeCatalog(). Egasi admin paneldan biror narsa saqlagach hujjat
+     shu raqamni oladi va bundan keyin har doim bulut g'olib bo'ladi.
+     Ishlar ro'yxatini qo'lda o'zgartirganda bu raqamni oshiring. */
+  catalogVersion: 2
 };
 const THEMES = ['liquid','sand'];
 
@@ -181,6 +297,39 @@ const ICONS = {
   linkedin:  'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z',
   github:    'M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'
 };
+/* ---------------------------------------------------- PROJECT GLYPHS
+   Loyiha kartochkasidagi ikonka. Uch xil manba, shu tartibda:
+     iconImage → kvadrat ilova ikonkasi (dumaloq burchakli plitka)
+     image     → keng skrinshot (kartochka tepasini to'liq egallaydi)
+     icon      → quyidagi gliflardan biri, aksent rangida
+   Hech biri bo'lmasa — kategoriya glifi, u ham bo'lmasa nom harfi.
+   Barchasi 24×24, faqat chiziq (fill yo'q) — sayt ikonkalari bilan bir uslubda. */
+const PICONS = {
+  lms:      '<path d="M12 4 2 9l10 5 10-5-10-5Z"/><path d="M5 11.5V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-5.5"/><path d="M22 9v6"/>',
+  ceiling:  '<path d="M3 9.5 12 3l9 6.5"/><path d="M5 9.5V20h14V9.5"/><path d="M7.5 13h9"/>',
+  pharma:   '<path d="M14.5 3.5a5 5 0 0 1 7 7l-11 11a5 5 0 0 1-7-7Z"/><path d="M8 8l8 8"/>',
+  mic:      '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v4"/><path d="M8.5 22h7"/>',
+  chip:     '<rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 7V3M14 7V3M10 21v-4M14 21v-4M7 10H3M7 14H3M21 10h-4M21 14h-4"/>',
+  keyboard: '<rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/>',
+  circuit:  '<path d="M3 12h5M16 12h5"/><rect x="8" y="8" width="8" height="8" rx="1.5"/><path d="M12 3v5M12 16v5"/>',
+  resistor: '<path d="M2 12h4l2-5 3 10 3-10 2 5h6"/>',
+  math:     '<path d="M6 4h12l-8 8 8 8H6"/>',
+  quiz:     '<path d="M10 6h10M10 12h10M10 18h10"/><path d="m3 6 1.6 1.6L7.5 4.5M3 12l1.6 1.6L7.5 10.5M3 18l1.6 1.6L7.5 16.5"/>',
+  media:    '<circle cx="12" cy="12" r="9"/><path d="m10 8.5 6 3.5-6 3.5Z"/>',
+  film:     '<rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M7.5 4v16M16.5 4v16M2 9.5h5.5M2 14.5h5.5M16.5 9.5H22M16.5 14.5H22"/>',
+  cake:     '<path d="M4 21h16"/><path d="M5 21v-6.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2V21"/><path d="M12 12.5V9"/><path d="M12 6.6c.9-.6 1.2-1.4.9-2.3-.2-.6-.6-1-.9-1.3-.3.3-.7.7-.9 1.3-.3.9 0 1.7.9 2.3Z"/><path d="M5 17c1.6 0 1.6-1.4 3.2-1.4S9.8 17 11.4 17s1.6-1.4 3.2-1.4S16.2 17 17.8 17"/>',
+  beads:    '<circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="4.5" r="1.6"/><circle cx="19.5" cy="12" r="1.6"/><circle cx="12" cy="19.5" r="1.6"/><circle cx="4.5" cy="12" r="1.6"/>',
+  chart:    '<path d="M3 20h18"/><path d="M6 20v-6M11 20V7M16 20v-9M21 20V4"/>',
+  bot:      '<rect x="3.5" y="8" width="17" height="12" rx="3.5"/><path d="M12 8V4.5M9.5 4.5h5"/><path d="M8.5 13h.01M15.5 13h.01"/><path d="M9.5 16.5h5"/>',
+  server:   '<rect x="3" y="4" width="18" height="6.5" rx="2"/><rect x="3" y="13.5" width="18" height="6.5" rx="2"/><path d="M7 7.25h.01M7 16.75h.01"/>',
+  flow:     '<circle cx="4.5" cy="12" r="2"/><circle cx="12" cy="5.5" r="2"/><circle cx="12" cy="18.5" r="2"/><circle cx="19.5" cy="12" r="2"/><path d="M6.2 11 10.3 6.6M6.2 13l4.1 4.4M13.7 6.6 17.8 11M13.7 17.4 17.8 13"/>',
+  globe:    '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/>',
+  award:    '<circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-2.5 5 2.5-1.5-7"/>'
+};
+
+/* Loyihada `icon` ko'rsatilmagan bo'lsa — kategoriyaning o'z glifi. */
+const CAT_ICON = Object.assign(Object.create(null), { bot:'bot', site:'globe', app:'chip', esp32:'chip', award:'award', other:'globe' });
+
 const SOCIAL_META = {
   telegram:{label:'Telegram',ph:'https://t.me/username'}, instagram:{label:'Instagram',ph:'https://instagram.com/username'},
   youtube:{label:'YouTube',ph:'https://youtube.com/@channel'}, x:{label:'X (Twitter)',ph:'https://x.com/username'},
@@ -294,6 +443,17 @@ const STRINGS = {
 
   photos_link:   { uz:'Rasmlarim', en:'My photos', ru:'Мои фото' },
 
+  nav_certs:     { uz:'Sertifikat', en:'Certificates', ru:'Сертификаты' },
+  sec_certs:     { uz:'Sertifikatlar', en:'Certificates', ru:'Сертификаты' },
+  sec_certs_sub: { uz:"Har biri Coursera'da rasmiy tekshiriladi — havolani bosing",
+                   en:'Every one is officially verifiable on Coursera — follow the link',
+                   ru:'Каждый официально проверяется на Coursera — перейдите по ссылке' },
+  cert_verify:   { uz:'Tekshirish ↗', en:'Verify ↗', ru:'Проверить ↗' },
+  cert_pro:      { uz:'Kasbiy sertifikat', en:'Professional Certificate', ru:'Профессиональный сертификат' },
+  cert_course:   { uz:'Kurs', en:'Course', ru:'Курс' },
+  cert_project:  { uz:'Loyiha', en:'Project', ru:'Проект' },
+  cert_courses:  { uz:'ta kurs', en:'courses', ru:'курсов' },
+
   nav_edu:       { uz:'Taʼlim', en:'Education', ru:'Образование' },
   sec_edu:       { uz:'Taʼlim', en:'Education', ru:'Образование' },
   edu_docs:      { uz:'Hujjatlar va rasmlar', en:'Documents & photos', ru:'Документы и фото' },
@@ -372,15 +532,50 @@ function merge(base, over){
   return out;
 }
 
+/* Eskirgan nashrni bir marta yangilaydi.
+
+   Muammo: merge() massivlarni butunlay almashtiradi, shuning uchun bulutdagi
+   (yoki localStorage'dagi) eski ishlar ro'yxati koddagi yangi katalogning
+   ustidan yozardi — saytga qo'shilgan yangi loyihalar hech qachon
+   ko'rinmasdi. Sana bo'yicha solishtirish ham yordam bermaydi: eski hujjat
+   "yangiroq" saqlangan bo'lishi mumkin.
+
+   Yechim: hujjatga katalog versiyasi qo'yiladi. Versiya eskisi bo'lsa,
+   ishlar ro'yxati koddagisi bilan almashtiriladi — lekin egasi yuklagan
+   rasmlar nomi bo'yicha moslab ko'chiriladi, ya'ni hech narsa yo'qolmaydi.
+   Bir marta saqlangach hujjat yangi versiyani oladi va boshqa aralashmaymiz. */
+function upgradeCatalog(d, incoming){
+  // DIQQAT: versiyani KIRUVCHI hujjatdan olamiz, birlashtirilganidan emas.
+  // merge(DEFAULTS, remote) bulut hujjatiga DEFAULTS'dagi catalogVersion ni
+  // qo'shib qo'yadi, natijada eski nashr "yangi"dek ko'rinib qoladi.
+  const src = (incoming && typeof incoming === 'object') ? incoming : d;
+  if (!d || Number(src?.catalogVersion || 0) >= Number(DEFAULTS.catalogVersion)) return d;
+  const key = p => String((p?.title?.uz || p?.title?.en || p?.title || '')).trim().toLowerCase();
+  const oldImg = new Map();
+  for (const p of (Array.isArray(d.portfolio) ? d.portfolio : [])){
+    if (p?.image) oldImg.set(key(p), p.image);
+  }
+  d.portfolio = clone(DEFAULTS.portfolio).map(p => {
+    const img = oldImg.get(key(p));
+    if (img && !p.image) p.image = img;      // egasi yuklagan rasm saqlanadi
+    return p;
+  });
+  d.catalogVersion = DEFAULTS.catalogVersion;
+  return d;
+}
+
 let data = (() => {
   // 1) start from defaults, 2) layer the deployed data.js, 3) layer this browser's edits
   let d = clone(DEFAULTS);
-  if (typeof window !== 'undefined' && window.DEPLOYED_DATA) d = merge(d, window.DEPLOYED_DATA);
+  let incoming = null;                 // eng ustki qatlam — versiyasi shundan olinadi
+  if (typeof window !== 'undefined' && window.DEPLOYED_DATA){
+    incoming = window.DEPLOYED_DATA; d = merge(d, incoming);
+  }
   try {
     const saved = localStorage.getItem('cvData');
-    if (saved) d = merge(d, JSON.parse(saved));
+    if (saved){ incoming = JSON.parse(saved); d = merge(d, incoming); }
   } catch(e){ console.warn('loadData', e); }
-  return normalizeML(d);
+  return normalizeML(upgradeCatalog(d, incoming));
 })();
 
 /* Til: shaxsiy tanlov yo'q bo'lsa — egasi chop etgan standart (data.lang). */
@@ -592,6 +787,59 @@ function initEducation(){
   });
 }
 
+/* ------------------------------------------------------- CERTIFICATES
+   Sertifikat kartochkasi: rasm (bosilsa kattalashadi) + nomi, bergan
+   tashkilot, sana va rasmiy tekshirish havolasi. Tekshirish havolasi
+   eng muhimi — u sertifikatni haqiqiy qiladi. */
+function renderCertificates(){
+  const w = $('#certsWrap'), sec = $('#certs');
+  if (!w || !sec) return;
+  const list = (data.certificates || []).filter(c => c && c.file);
+  const navLink = $('.nav__links a[data-section="certs"]')?.parentElement;
+  const mobLink = $('#mobileMenu a[href="#certs"]');
+  sec.hidden = !list.length;
+  if (navLink) navLink.hidden = !list.length;
+  if (mobLink) mobLink.hidden = !list.length;
+  if (!list.length){ w.innerHTML = ''; return; }
+
+  const kindT = { pro:'cert_pro', course:'cert_course', project:'cert_project' };
+  const months = {
+    uz:['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr'],
+    en:['January','February','March','April','May','June','July','August','September','October','November','December'],
+    ru:['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря']
+  };
+  // Sana "2025-05-12" ko'rinishida saqlanadi — Date() ishlatilmaydi, chunki
+  // u vaqt mintaqasiga qarab kunni bir kun surib yuborishi mumkin.
+  const fmtDate = s => {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||''));
+    if (!m) return String(s||'');
+    const mo = (months[lang] || months.uz)[+m[2] - 1] || '';
+    // Defis faqat o'zbekchada ("12-may"); ruschada oddiy bo'shliq.
+    if (lang === 'en') return `${mo} ${+m[3]}, ${m[1]}`;
+    if (lang === 'ru') return `${+m[3]} ${mo} ${m[1]}`;
+    return `${+m[3]}-${mo} ${m[1]}`;
+  };
+
+  w.innerHTML = list.map((c, i) => {
+    const thumb = `assets/certs/thumb/${esc(c.file)}.jpg`;
+    const badge = T(kindT[c.kind] || 'cert_course');
+    const courses = Number(c.courses) > 0 ? ` · ${c.courses} ${esc(T('cert_courses'))}` : '';
+    const v = tidyUrl(c.verify);
+    return `
+    <article class="cert ${c.kind === 'pro' ? 'cert--pro' : ''}" data-rv>
+      <button class="cert__shot" data-cert="${i}" aria-label="${esc(c.title)}">
+        <img src="${thumb}" alt="${esc(c.title)}" loading="lazy" decoding="async" onerror="this.remove()">
+      </button>
+      <div class="cert__b">
+        <span class="cert__badge">${esc(badge)}${courses}</span>
+        <h3>${esc(c.title)}</h3>
+        <p class="cert__meta">${esc(c.issuer || '')}${c.date ? ' · ' + esc(fmtDate(c.date)) : ''}</p>
+        ${v ? `<a class="cert__v" href="${esc(v)}" target="_blank" rel="noopener">${esc(T('cert_verify'))}</a>` : ''}
+      </div>
+    </article>`;
+  }).join('');
+}
+
 let portfolioFilter = 'all';
 function renderPortfolio(){
   const chips = $('#portfolioCats');
@@ -607,22 +855,53 @@ function renderPortfolio(){
   const empty = { uz:'Hali loyiha qoʻshilmagan.', en:'No projects added yet.', ru:'Проекты пока не добавлены.' };
   if (!data.portfolio.length){ w.innerHTML = `<p class="muted">${esc(empty[lang]||empty.uz)}</p>`; return; }
   const view = { uz:"Koʻrish ↗", en:'View ↗', ru:'Открыть ↗' };
-  const grads = ['linear-gradient(135deg,#ccff33,#5fbf3f)','linear-gradient(135deg,#8a6bff,#4a3fbf)','linear-gradient(135deg,#ff6bcb,#bf3f8a)'];
+  const code = { uz:"Kod ↗", en:'Code ↗', ru:'Код ↗' };
+  const apkT = { uz:"APK yuklab olish ↓", en:'Download APK ↓', ru:'Скачать APK ↓' };
+  const shotT= { uz:"Skrinshotlar", en:'Screenshots', ru:'Скриншоты' };
   const shown = data.portfolio.filter(p => portfolioFilter === 'all' || (p.cat||'other') === portfolioFilter);
-  w.innerHTML = shown.map((p,i) => {
-    const link = tidyUrl(p.link);
+  // Faqat PICONS ning O'Z kaliti qabul qilinadi: "constructor" kabi qiymat
+  // Object.prototype dan funksiya qaytarib, HTML ga quyilib ketardi.
+  const pick = k => (Object.prototype.hasOwnProperty.call(PICONS, k) ? PICONS[k] : '');
+
+  w.innerHTML = shown.map(p => {
+    // DIQQAT: filtrlangan ro'yxatning emas, UMUMIY ro'yxatning indeksi —
+    // lightbox skrinshotlarni data.portfolio dan qidiradi.
+    const pi = data.portfolio.indexOf(p);
+    const link = tidyUrl(p.link), repo = tidyUrl(p.repo);
     const title = L(p.title);
+    // Rasm yo'llari tidyUrl'dan O'TKAZILMAYDI — u "assets/..." ni
+    // "https://assets/..." ga aylantirib rasmni yo'q qiladi.
+    const pic = String(p.iconImage || p.image || '').trim();
+    const glyph = pick(p.icon) || pick(CAT_ICON[p.cat] || 'globe') || pick('globe');
+    const shots = (p.shots || []).map(s => String(s||'').trim()).filter(Boolean);
+    const apk = String(p.apk || '').trim();
+
+    // Bitta shisha plitka. Glif doim ichida turadi; rasm uning ustiga
+    // qo'yiladi va yuklanmasa onerror olib tashlaydi — plitka bo'sh qolmaydi.
+    const tile = `<span class="pitem__tile">
+        ${glyph ? `<svg class="pitem__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${glyph}</svg>`
+                : `<span class="pitem__letter">${esc((title||'P').charAt(0).toUpperCase())}</span>`}
+        ${pic ? `<img class="pitem__img" src="${esc(pic)}" alt="" loading="lazy" decoding="async"
+             onload="this.closest('.pitem__tile')?.classList.add('has-img')"
+             onerror="this.remove()">` : ''}
+      </span>`;
+
     return `
     <article class="pitem" data-rv>
-      <div class="pitem__top" style="background:${grads[i%3]}">
-        ${p.image ? `<img src="${esc(p.image)}" alt="${esc(title)}" loading="lazy" decoding="async">`
-                  : `<span style="color:rgba(0,0,0,.55)">${esc((title||'P').charAt(0).toUpperCase())}</span>`}
-      </div>
+      <div class="pitem__top">${tile}</div>
       <div class="pitem__b">
         <h3>${esc(title)}</h3>
         <p>${esc(L(p.description))}</p>
         <div class="tags">${(p.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
-        ${link ? `<a class="plink" href="${esc(link)}" target="_blank" rel="noopener">${esc(view[lang]||view.uz)}</a>` : ''}
+        ${shots.length ? `<div class="pshots" aria-label="${esc(shotT[lang]||shotT.uz)}">
+          ${shots.map((s,si)=>`<img src="${esc(s)}" alt="${esc(title)} ${si+1}" loading="lazy" decoding="async"
+             data-shot="${pi}.${si}" onerror="this.remove()">`).join('')}
+        </div>` : ''}
+        <div class="plinks">
+          ${link ? `<a class="plink" href="${esc(link)}" target="_blank" rel="noopener">${esc(view[lang]||view.uz)}</a>` : ''}
+          ${apk ? `<a class="plink plink--apk" href="${esc(apk)}" target="_blank" rel="noopener">${esc(apkT[lang]||apkT.uz)}</a>` : ''}
+          ${repo ? `<a class="plink plink--ghost" href="${esc(repo)}" target="_blank" rel="noopener">${esc(code[lang]||code.uz)}</a>` : ''}
+        </div>
       </div>
     </article>`;
   }).join('');
@@ -1149,7 +1428,7 @@ function initLightbox(){
 
 function renderAll(){
   renderBindings(); renderStats(); renderSkills(); renderTimeline();
-  renderPortfolio(); renderEducation(); renderFavorites(); renderPlaylist(); renderSocial(); renderContact();
+  renderPortfolio(); renderEducation(); renderCertificates(); renderFavorites(); renderPlaylist(); renderSocial(); renderContact();
   observeReveal();
 }
 
@@ -1322,11 +1601,11 @@ function downloadCV(){
     ${rows(T('sec_about'), `<p>${esc(L(data.profile.bio))}</p><div class="st">
       <div><b>${esc(data.stats.years)}</b>${esc(T('stat_years'))}</div><div><b>${esc(data.stats.projects)}</b>${esc(T('stat_projects'))}</div>
       <div><b>${esc(data.stats.clients)}</b>${esc(T('stat_clients'))}</div><div><b>${esc(data.stats.uptime)}</b>${esc(T('stat_uptime'))}</div></div>`)}
-    ${rows(T('sec_skills'), `<div class="g">${data.skills.map(s=>`<div class="sk"><b>${esc(s.name)}</b><span>${s.level}%</span></div>`).join('')}</div>`)}
+    ${rows(T('sec_skills'), `<div class="g">${data.skills.map(s=>`<div class="sk"><b>${esc(s.name)}</b><span>${Number(s.level)||0}%</span></div>`).join('')}</div>`)}
     ${rows(T('sec_exp'), data.experience.map(e=>`<div class="e"><div class="ep">${esc(L(e.period))}</div>
       <div class="et">${esc(L(e.title))}</div><div class="ec">${esc(e.company)}</div><div class="ed">${esc(L(e.description))}</div></div>`).join(''))}
     ${rows(T('sec_portfolio'), data.portfolio.map(p=>`<div class="pi"><div class="pt">${esc(L(p.title))}</div>
-      <div class="pd">${esc(L(p.description))}</div><div class="pd">${(p.tags||[]).join(' · ')}</div></div>`).join(''))}
+      <div class="pd">${esc(L(p.description))}</div><div class="pd">${esc((p.tags||[]).join(' · '))}</div></div>`).join(''))}
     <script>onload=()=>setTimeout(print,250)<\/script></body></html>`);
   w.document.close();
 }
@@ -1674,7 +1953,14 @@ const admin = {
             <select data-arr="portfolio.${i}.cat">
               ${PORTFOLIO_CATS.map(c=>`<option value="${c}" ${(p.cat||'other')===c?'selected':''}>${esc(T('cat_'+c))}</option>`).join('')}
             </select></div>
-          <div class="field"><label>Link</label><input type="text" data-arr="portfolio.${i}.link" value="${esc(p.link)}" placeholder="https://..."></div>
+          <div class="field"><label>Jonli havola</label><input type="text" data-arr="portfolio.${i}.link" value="${esc(p.link)}" placeholder="https://..."></div>
+          <div class="field"><label>Kod (GitHub)</label><input type="text" data-arr="portfolio.${i}.repo" value="${esc(p.repo || '')}" placeholder="https://github.com/..."></div>
+          <div class="field"><label>Ikonka (glif)</label>
+            <select data-arr="portfolio.${i}.icon">
+              <option value="">— kategoriya bo'yicha avtomatik —</option>
+              ${Object.keys(PICONS).map(k=>`<option value="${k}" ${p.icon===k?'selected':''}>${k}</option>`).join('')}
+            </select></div>
+          <div class="field"><label>Ilova ikonkasi (kvadrat rasm)</label><input type="text" data-arr="portfolio.${i}.iconImage" value="${esc(p.iconImage || '')}" placeholder="assets/projects/nom.png"></div>
           ${mlInput(`portfolio.${i}.title`, p.title, {label:'Nom'})}
           ${mlInput(`portfolio.${i}.description`, p.description, {label:'Tavsif', textarea:true})}
           <div class="field"><label>Tags (vergul bilan)</label><input type="text" data-tags="${i}" value="${esc((p.tags||[]).join(', '))}"></div>
@@ -2119,7 +2405,7 @@ function initAdmin(){
       const remote = await window.Cloud.load();
       if (!remote){ toast('Bulutda hali ma\'lumot yo\'q'); return; }
       if (!confirm('Bulutdagi nusxa shu brauzerdagi o\'zgarishlar ustiga yoziladi. Davom etilsinmi?')) return;
-      data = normalizeML(merge(DEFAULTS, remote));
+      data = normalizeML(upgradeCatalog(merge(DEFAULTS, remote), remote));
       save(); admin.fill(); applyTheme(data.theme); renderAll(); applyBgVideo(); window.__applyMusic?.();
       toast('Bulutdan yuklandi');
     } catch(err){ toast(err?.message || 'Yuklab bo\'lmadi'); }
@@ -2376,7 +2662,7 @@ async function initCloud(){
     const localAt  = (() => { try { return Number(localStorage.getItem('cvSavedAt') || 0); } catch { return 0; } })();
     const remoteAt = Date.parse(C.lastUpdatedAt || '') || 0;
     if (localEdits && C.status().signedIn && localAt >= remoteAt - 3000) return;
-    data = normalizeML(merge(DEFAULTS, remote));
+    data = normalizeML(upgradeCatalog(merge(DEFAULTS, remote), remote));
     // Egasi chop etgan standart til — shaxsiy tanlovi yo'q tashrifchiga
     // qo'llanadi (cvLang yozilmaydi: egasi keyin standartni o'zgartirsa,
     // bu tashrifchiga ham yetib boradi).
@@ -2407,6 +2693,30 @@ function init(){
     portfolioFilter = c.dataset.cat;
     renderPortfolio(); observeReveal(); showEverything();
   });
+  /* Skrinshot bosilsa — mavjud lightbox'da kattalashadi. Ta'lim hujjatlari
+     bilan bir xil oyna ishlatiladi (#docLightbox), shuning uchun eduDocs
+     ro'yxati vaqtincha shu loyihaning skrinshotlariga almashtiriladi. */
+  $('#portfolioWrap')?.addEventListener('click', e => {
+    const im = e.target.closest('[data-shot]'); if (!im) return;
+    const [pi, si] = im.dataset.shot.split('.').map(Number);
+    const shots = (data.portfolio?.[pi]?.shots || []).map(s => ({ src: String(s||'').trim() })).filter(x => x.src);
+    if (!shots.length) return;
+    eduDocs = shots;
+    showDoc(si);
+    $('#docLightbox')?.classList.add('open');
+  });
+
+  /* Sertifikat bosilsa to'liq hajmda ochiladi — skrinshotlar bilan bir xil
+     oyna (#docLightbox), o'ng/chap tugmalar bilan varaqlanadi. */
+  $('#certsWrap')?.addEventListener('click', e => {
+    const b = e.target.closest('[data-cert]'); if (!b) return;
+    const list = (data.certificates || []).filter(c => c && c.file);
+    if (!list.length) return;
+    eduDocs = list.map(c => ({ src: `assets/certs/${c.file}.jpg` }));
+    showDoc(+b.dataset.cert);
+    $('#docLightbox')?.classList.add('open');
+  });
+
   $('#downloadCv').onclick = downloadCV;
 
   // Expose a tiny surface for hand-control.js + tests

@@ -417,9 +417,69 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
   transition:transform .22s var(--ease), border-color .22s;
 }
 .pitem:hover{transform:translateY(-4px);border-color:var(--line2)}
-.pitem__top{height:130px;display:flex;align-items:center;justify-content:center;
-  font-family:Syne,sans-serif;font-size:40px;font-weight:800;color:rgba(255,255,255,.9)}
-.pitem__top img{width:100%;height:100%;object-fit:cover}
+/* ===== KARTOCHKA IKONKASI — LIQUID GLASS =====
+   Bitta shisha plitka: ichida yo chiziqli glif, yo loyihaning o'z logosi.
+   Rang qattiq yozilmagan — aksent va shisha o'zgaruvchilaridan olinadi,
+   shuning uchun ikkala temada ham, video rangi o'zgarganda ham moslashadi.
+   Rasm `contain` bilan joylashadi: kesilmaydi va plitkadan CHIQMAYDI —
+   avval keng logolar butun maydonni egallab, kartochkani buzardi. */
+.pitem__top{
+  position:relative; height:146px;
+  display:flex; align-items:center; justify-content:center;
+  background:
+    radial-gradient(130% 140% at 30% 0%, var(--accent-dim), transparent 70%),
+    var(--surface);
+  border-bottom:1px solid var(--line);
+}
+.pitem__tile{
+  position:relative; width:86px; height:86px; border-radius:24px;
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  background:var(--glass-bg);
+  border:1px solid var(--glass-line);
+  backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
+  box-shadow:var(--glass-shadow);
+  transition:transform .28s var(--ease), border-color .28s;
+}
+/* Shishaning tepasidagi nozik yorug'lik — haqiqiy liquid glass hissi */
+.pitem__tile::after{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:linear-gradient(150deg, rgba(255,255,255,.22), transparent 46%);
+}
+.pitem__glyph{ width:38px; height:38px; color:var(--accent); }
+.pitem__letter{ font-family:Syne,sans-serif; font-size:34px; font-weight:800; color:var(--accent); }
+/* Logo/ikonka plitka ichida, chetidan biroz ichkarida */
+.pitem__img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:contain; border-radius:inherit;
+}
+/* Rasm yuklangach ostidagi glif OLIB TASHLANADI. Aks holda shaffof joyi
+   bo'lgan logo ostidan ikkinchi ikonka ko'rinib qolardi. */
+.pitem__tile.has-img .pitem__glyph,
+.pitem__tile.has-img .pitem__letter{ display:none; }
+/* Ikonka o'zi shisha bo'lgani uchun plitka faqat ramka va soya bo'lib qoladi */
+.pitem__tile.has-img{ background:transparent; border-color:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; }
+.pitem__tile.has-img::after{ display:none; }
+.pitem:hover .pitem__tile{ transform:translateY(-3px) scale(1.04); border-color:var(--accent-edge); }
+@media(prefers-reduced-motion:reduce){ .pitem:hover .pitem__tile{ transform:none } }
+
+/* ===== SKRINSHOTLAR ===== */
+.pshots{ display:flex; gap:8px; margin:0 0 14px; flex-wrap:wrap; }
+.pshots img{
+  width:56px; height:auto; aspect-ratio:9/19.5; object-fit:cover;
+  border-radius:9px; cursor:pointer;
+  border:1px solid var(--line); background:var(--bg2);
+  transition:transform .2s var(--ease), border-color .2s;
+}
+.pshots img:hover{ transform:translateY(-2px); border-color:var(--accent); }
+
+/* ===== KARTOCHKA HAVOLALARI ===== */
+.plinks{ display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; }
+.plink--apk{ color:var(--accent); }
+/* .plink dan KEYIN kelmasa ham yutishi uchun ikki klassli selektor:
+   bitta klass bilan yozilsa og'irlik teng bo'lib, faylda keyinroq turgan
+   .plink g'olib chiqadi va ikkinchi havola ham aksent rangda ko'rinadi. */
+.plink.plink--ghost{ color:var(--muted); font-weight:600; }
+.plink.plink--ghost:hover{ color:var(--accent); }
 .pitem__b{padding:20px}
 .pitem__b h3{font-family:Syne,sans-serif;font-size:17px;font-weight:700;margin-bottom:7px}
 .pitem__b p{font-size:13.5px;color:var(--muted);margin-bottom:12px}
@@ -1037,3 +1097,64 @@ body.scrolling .link, body.scrolling .stat, body.scrolling .chan{
 /* Robot glifi tik/ingichka — ramkani to'ldirishi uchun kattaroq chiziladi */
 .soc--robot svg{ width:32px; height:32px; }
 .chan__i--robot svg{ width:25px; height:25px; }
+
+/* ==========================================================================
+   SERTIFIKATLAR
+   Kartochka: sertifikat rasmi (bosilsa kattalashadi) + nomi, tashkilot,
+   sana va rasmiy tekshirish havolasi. Kasbiy sertifikat (8 kursli) butun
+   qatorni egallaydi va aksent bilan ajratiladi — u eng qimmatlisi.
+   ========================================================================== */
+.certs{ display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:16px; margin-top:26px; }
+
+.cert{
+  display:flex; flex-direction:column; overflow:hidden;
+  border-radius:var(--radius);
+  background:var(--glass-bg); border:1px solid var(--glass-line);
+  box-shadow:var(--glass-shadow);
+  backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
+  transition:transform .22s var(--ease), border-color .22s;
+}
+.cert:hover{ transform:translateY(-4px); border-color:var(--accent-edge); }
+body.scrolling .cert{ backdrop-filter:none; -webkit-backdrop-filter:none; }
+
+/* Kasbiy sertifikat butun qatorni oladi va yonma-yon joylashadi */
+.cert--pro{ grid-column:1 / -1; }
+.cert--pro .cert__shot{ aspect-ratio:auto; }
+@media(min-width:820px){
+  .cert--pro{ flex-direction:row; align-items:stretch; }
+  .cert--pro .cert__shot{ flex:0 0 46%; }
+  .cert--pro .cert__b{ flex:1; display:flex; flex-direction:column; justify-content:center; }
+  .cert--pro h3{ font-size:20px; }
+}
+
+.cert__shot{
+  display:block; width:100%; padding:0; border:0; cursor:zoom-in;
+  background:#fff;                       /* sertifikat oq qog'oz — ramka ham oq */
+  border-bottom:1px solid var(--line);
+  line-height:0;
+}
+.cert__shot img{ width:100%; height:auto; display:block; transition:transform .3s var(--ease); }
+.cert:hover .cert__shot img{ transform:scale(1.03); }
+
+.cert__b{ padding:16px 18px 18px; }
+.cert__badge{
+  display:inline-block; margin-bottom:9px;
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); background:var(--accent-dim);
+  border:1px solid var(--accent-edge); border-radius:999px; padding:3px 10px;
+}
+.cert__b h3{ font-family:Syne,sans-serif; font-size:15px; font-weight:700; line-height:1.3; }
+.cert__meta{ font-size:12.5px; color:var(--muted); margin-top:6px; }
+.cert__v{
+  display:inline-block; margin-top:12px;
+  font-size:12.5px; font-weight:700; color:var(--accent);
+}
+.cert__v:hover{ text-decoration:underline; }
+
+@media(prefers-reduced-motion:reduce){
+  .cert:hover{ transform:none }
+  .cert:hover .cert__shot img{ transform:none }
+}
+@media(max-width:640px){
+  .certs{ grid-template-columns:1fr; }
+}

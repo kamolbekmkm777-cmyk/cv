@@ -1,0 +1,1004 @@
+{
+  "ui": {
+    "hero_badge": {
+      "en": "Open to New Projects · 2026",
+      "ru": "Открыт для новых проектов · 2026",
+      "uz": "Yangi loyihalar uchun ochiq · 2026"
+    }
+  },
+  "lang": "ru",
+  "music": {
+    "src": "https://ocbkxquwqwypjoweveyf.supabase.co/storage/v1/object/public/media/audio/mrx1u5c9-3g45nu-the-mountain-ambient-technology-133250.mp3",
+    "volume": 77,
+    "autoplay": true,
+    "presetId": "tgvxhpom"
+  },
+  "stats": {
+    "years": "3+",
+    "uptime": "99%",
+    "clients": "50+",
+    "projects": "50+"
+  },
+  "theme": "liquid",
+  "skills": [
+    {
+      "name": "Python",
+      "level": 90,
+      "category": "Languages"
+    },
+    {
+      "name": "JavaScript / TypeScript",
+      "level": 75,
+      "category": "Languages"
+    },
+    {
+      "name": "SQL",
+      "level": 90,
+      "category": "Languages"
+    },
+    {
+      "name": "Bash",
+      "level": 70,
+      "category": "Languages"
+    },
+    {
+      "name": "React / Next.js",
+      "level": 90,
+      "category": "Frontend"
+    },
+    {
+      "name": "HTML / CSS",
+      "level": 95,
+      "category": "Frontend"
+    },
+    {
+      "name": "Flutter",
+      "level": 100,
+      "category": "Frontend"
+    },
+    {
+      "name": "TailwindCSS",
+      "level": 90,
+      "category": "Frontend"
+    },
+    {
+      "name": "FastAPI / Aiogram",
+      "level": 90,
+      "category": "Backend & AI"
+    },
+    {
+      "name": "OpenAI / Gemini",
+      "level": 90,
+      "category": "Backend & AI"
+    },
+    {
+      "name": "PostgreSQL / Redis",
+      "level": 85,
+      "category": "Backend & AI"
+    },
+    {
+      "name": "Vector DBs (RAG)",
+      "level": 80,
+      "category": "Backend & AI"
+    },
+    {
+      "name": "Linux / systemd",
+      "level": 70,
+      "category": "DevOps"
+    },
+    {
+      "name": "Docker",
+      "level": 80,
+      "category": "DevOps"
+    },
+    {
+      "name": "Oracle Cloud / AWS",
+      "level": 75,
+      "category": "DevOps"
+    },
+    {
+      "name": "CI/CD",
+      "level": 75,
+      "category": "DevOps"
+    }
+  ],
+  "social": {
+    "x": "https://",
+    "github": "https://github.com/KamolbekMuzaffarov",
+    "tiktok": "htpps://",
+    "channel": "https://t.me/ITECN0",
+    "youtube": "https://",
+    "linkedin": "https://",
+    "telegram": "https://t.me/kamolbekmuzaffarov",
+    "instagram": "https://instagram.com/mkm777_mkm777"
+  },
+  "tracks": [
+    {
+      "id": "tgvxhpom",
+      "url": "https://ocbkxquwqwypjoweveyf.supabase.co/storage/v1/object/public/media/audio/mrx1u5c9-3g45nu-the-mountain-ambient-technology-133250.mp3",
+      "icon": "🎵",
+      "name": "the_mountain-ambient-technology-133250"
+    }
+  ],
+  "videos": [
+    {
+      "id": "forest",
+      "url": "https://archive.org/download/pixabay-9584/video-9584_source.mp4",
+      "name": "Bulutlar (yuqoridan)",
+      "thumb": "https://archive.org/services/img/pixabay-9584",
+      "accent": "#46a1d8",
+      "accent2": "#7e90dd"
+    },
+    {
+      "id": "green",
+      "url": "https://archive.org/download/pixabay-19400/video-19400_large.mp4",
+      "name": "O'rmon ichi",
+      "thumb": "https://archive.org/services/img/pixabay-19400",
+      "accent": "#d98a3e",
+      "accent2": "#dbc07a"
+    },
+    {
+      "id": "path",
+      "url": "https://archive.org/download/pixabay-19731/video-19731_large.mp4",
+      "name": "Sehrli o'rmon yo'li",
+      "thumb": "https://archive.org/services/img/pixabay-19731",
+      "accent": "#b6ff3d",
+      "accent2": "#98f881"
+    },
+    {
+      "id": "mountains",
+      "url": "https://archive.org/download/pixabay-21896/video-21896_source.mp4",
+      "name": "Tog' panoramasi",
+      "thumb": "https://archive.org/services/img/pixabay-21896",
+      "accent": "#1fabff",
+      "accent2": "#6480f7"
+    },
+    {
+      "id": "clouds",
+      "url": "https://archive.org/download/pixabay-21285/video-21285_source.mp4",
+      "name": "Bulutlar va osmon",
+      "thumb": "https://archive.org/services/img/pixabay-21285",
+      "accent": "#e8ecf2",
+      "accent2": "#b9c2cf"
+    },
+    {
+      "id": "fog",
+      "url": "https://archive.org/download/pixabay-19409/video-19409_large.mp4",
+      "name": "Quyosh tumani",
+      "thumb": "https://archive.org/services/img/pixabay-19409",
+      "accent": "#e8ecf2",
+      "accent2": "#b9c2cf"
+    }
+  ],
+  "bgVideo": {
+    "src": "",
+    "tint": 0,
+    "enabled": true,
+    "opacity": 70,
+    "presetId": "forest"
+  },
+  "gallery": [
+    {
+      "id": "p01",
+      "src": "assets/gallery/photo-01.jpg",
+      "thumb": "assets/gallery/thumb/photo-01.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p02",
+      "src": "assets/gallery/photo-02.jpg",
+      "thumb": "assets/gallery/thumb/photo-02.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p03",
+      "src": "assets/gallery/photo-03.jpg",
+      "thumb": "assets/gallery/thumb/photo-03.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p04",
+      "src": "assets/gallery/photo-04.jpg",
+      "thumb": "assets/gallery/thumb/photo-04.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p05",
+      "src": "assets/gallery/photo-05.jpg",
+      "thumb": "assets/gallery/thumb/photo-05.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p06",
+      "src": "assets/gallery/photo-06.jpg",
+      "thumb": "assets/gallery/thumb/photo-06.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p07",
+      "src": "assets/gallery/photo-07.jpg",
+      "thumb": "assets/gallery/thumb/photo-07.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p08",
+      "src": "assets/gallery/photo-08.jpg",
+      "thumb": "assets/gallery/thumb/photo-08.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p09",
+      "src": "assets/gallery/photo-09.jpg",
+      "thumb": "assets/gallery/thumb/photo-09.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p10",
+      "src": "assets/gallery/photo-10.jpg",
+      "thumb": "assets/gallery/thumb/photo-10.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p11",
+      "src": "assets/gallery/photo-11.jpg",
+      "thumb": "assets/gallery/thumb/photo-11.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p12",
+      "src": "assets/gallery/photo-12.jpg",
+      "thumb": "assets/gallery/thumb/photo-12.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p13",
+      "src": "assets/gallery/photo-13.jpg",
+      "thumb": "assets/gallery/thumb/photo-13.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p14",
+      "src": "assets/gallery/photo-14.jpg",
+      "thumb": "assets/gallery/thumb/photo-14.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p15",
+      "src": "assets/gallery/photo-15.jpg",
+      "thumb": "assets/gallery/thumb/photo-15.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p16",
+      "src": "assets/gallery/photo-16.jpg",
+      "thumb": "assets/gallery/thumb/photo-16.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p17",
+      "src": "assets/gallery/photo-17.jpg",
+      "thumb": "assets/gallery/thumb/photo-17.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p18",
+      "src": "assets/gallery/photo-18.jpg",
+      "thumb": "assets/gallery/thumb/photo-18.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p19",
+      "src": "assets/gallery/photo-19.jpg",
+      "thumb": "assets/gallery/thumb/photo-19.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p20",
+      "src": "assets/gallery/photo-20.jpg",
+      "thumb": "assets/gallery/thumb/photo-20.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p21",
+      "src": "assets/gallery/photo-21.jpg",
+      "thumb": "assets/gallery/thumb/photo-21.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p22",
+      "src": "assets/gallery/photo-22.jpg",
+      "thumb": "assets/gallery/thumb/photo-22.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p23",
+      "src": "assets/gallery/photo-23.jpg",
+      "thumb": "assets/gallery/thumb/photo-23.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p24",
+      "src": "assets/gallery/photo-24.jpg",
+      "thumb": "assets/gallery/thumb/photo-24.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p25",
+      "src": "assets/gallery/photo-25.jpg",
+      "thumb": "assets/gallery/thumb/photo-25.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p26",
+      "src": "assets/gallery/photo-26.jpg",
+      "thumb": "assets/gallery/thumb/photo-26.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "p27",
+      "src": "assets/gallery/photo-27.jpg",
+      "thumb": "assets/gallery/thumb/photo-27.jpg",
+      "caption": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    }
+  ],
+  "profile": {
+    "bio": {
+      "en": "I'm Kamolbek — a self-taught Full-Stack Developer & AI Engineer passionate about the intersection of artificial intelligence, automation, and design. Over the past few years, I've published mobile applications on Google Play, built lead-generating Telegram bots, developed AI assistants that analyze room photos and suggest interior designs, and created admin dashboards that transform complex workflows into clear, efficient systems.\n\nMy goal is to build intelligent, scalable digital solutions that help modern businesses grow.",
+      "ru": "Меня зовут Камолбек — я Full-Stack разработчик и AI-инженер, самостоятельно освоивший профессию и увлечённый пересечением искусственного интеллекта, автоматизации и дизайна. За последние годы я опубликовал мобильные приложения в Google Play, разработал Telegram-ботов для привлечения клиентов, AI-помощников, анализирующих фотографии помещений и предлагающих варианты дизайна интерьера, а также административные панели, превращающие сложные рабочие процессы в понятные и эффективные системы.\n\nМоя цель — создавать интеллектуальные, масштабируемые цифровые решения, которые помогают современному бизнесу развиваться.",
+      "uz": "Men Kamolbek — AI, avtomatlashtirish va dizayn kesishmasiga qiziqqan o'zi mustaqil o'rgangan injiner. So'nggi yillarda men mobil ilovalar yaratib play storega joylab, lidlarni qo'lga oladigan Telegram botlarni, xona rasmlarini o'qib dizayn taklif qiladigan AI yordamchilarni va xaosni aniqlikka aylantiradigan admin paneli loyihalarini ishlab chiqdim.\nMaqsadim — zamonaviy bizneslar uchun aqlli, tezkor va kengaytirilishi mumkin bo'lgan raqamli yechimlarni yaratish."
+    },
+    "name": "Kamolbek Muzaffarov",
+    "motto": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
+    "avatar": "assets/kamolbek-900.jpg",
+    "slogan": {
+      "en": "I build scalable digital products for modern businesses — bots, websites, mobile applications, AI agents, and reliable, well-architected cloud infrastructure.",
+      "ru": "Я разрабатываю масштабируемые цифровые продукты для современного бизнеса — ботов, веб-сайты, мобильные приложения, AI-агентов и надёжную, хорошо спроектированную облачную инфраструктуру.",
+      "uz": "Men zamonaviy bizneslar uchun kengaytirilishi mumkin bo'lgan raqamli mahsulotlar yarataman — botlar, web saytlar, mobil ilovalar, sun'iy intellekt agentlari va ishonchli, tartibli bulut infratuzilmalarini yarata olaman"
+    },
+    "location": {
+      "en": "Tashkent, Uzbekistan",
+      "ru": "Ташкент, Узбекистан",
+      "uz": "Toshkent, O'zbekiston"
+    },
+    "photoSize": 280,
+    "profession": {
+      "en": "Full-Stack Developer & AI Engineer",
+      "ru": "Фуллстек-разработчик и инженер по искусственному интеллекту",
+      "uz": "To'liq veb dasturchi va sun'iy intellekt injineri"
+    }
+  },
+  "branding": {
+    "logo": "https://ocbkxquwqwypjoweveyf.supabase.co/storage/v1/object/public/media/brand/ms4479ex-xkkwnb-d8c011af-bdf1-47e2-bc17-f7e507878fc1.png",
+    "favicon": "https://ocbkxquwqwypjoweveyf.supabase.co/storage/v1/object/public/media/brand/ms4453a6-l7uuvq-6691ad3e-684e-43f6-8f36-0bcf83cf6b7a.png"
+  },
+  "contacts": {
+    "email": "kamolbekmkm777@gmail.com",
+    "phone": "+998 77 293 77 97",
+    "website": "https://kamolbek.com"
+  },
+  "education": [
+    {
+      "id": "school",
+      "docs": [],
+      "name": {
+        "en": "Secondary education school No. 19, Gijduvan district, Bukhara region",
+        "ru": "Средняя школа № 19, район Гиждуван, Бухарская область",
+        "uz": "Buxoro viloyati, G'ijduvon tumani 19-sonli o'rta ta'lim matabi"
+      },
+      "period": {
+        "en": "2013-2022",
+        "ru": "2013-2022",
+        "uz": "2013-2022"
+      },
+      "description": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "lyceum",
+      "docs": [],
+      "name": {
+        "en": "Fergana \"Temurbeklar Maktabi\" Military Academic Lyceum",
+        "ru": "Ферганский военно-академический лицей «Темурбеклар Мактаби»",
+        "uz": "Farg'ona \"Temurbeklar maktabi\" harbiy akademik litseyi"
+      },
+      "period": {
+        "en": "2022-2024",
+        "ru": "2022-2024",
+        "uz": "2022-2024"
+      },
+      "description": {
+        "en": "",
+        "ru": "",
+        "uz": ""
+      }
+    },
+    {
+      "id": "university",
+      "docs": [],
+      "name": {
+        "en": "Tashkent University of Information Technologies",
+        "ru": "Ташкентский университет информационных технологий",
+        "uz": "Toshkent Axborot Texnologiyalari Universiteti"
+      },
+      "period": {
+        "en": "2024-present",
+        "ru": "2024 – настоящее время",
+        "uz": "2024-hozir"
+      },
+      "description": {
+        "en": "3rd year student of the Faculty of Software Engineering",
+        "ru": "Студент 3-го курса факультета программной инженерии",
+        "uz": "Dasturiy Injinering fakulteti 3 kurs talabasi"
+      }
+    }
+  ],
+  "favorites": [
+    {
+      "url": "https://youtube.com/playlist?list=PLOWb49VFKHW0&si=B70JpnMIh7xc4a1m",
+      "icon": "🔗",
+      "title": {
+        "en": "плейлист",
+        "ru": "playlist",
+        "uz": "Pleylist"
+      }
+    }
+  ],
+  "portfolio": [
+    {
+      "title": {
+        "uz": "Aurora Academy — o‘quv markazi LMS",
+        "en": "Aurora Academy — learning platform",
+        "ru": "Aurora Academy — образовательная платформа"
+      },
+      "description": {
+        "uz": "IELTS, ingliz tili, dasturlash va dizayn bo‘yicha o‘quv markazi platformasi: o‘quvchi, o‘qituvchi va administrator uchun alohida kabinetlar.",
+        "en": "A platform for a training centre teaching IELTS, English, programming and design, with separate dashboards for students, teachers and admins.",
+        "ru": "Платформа учебного центра (IELTS, английский, программирование, дизайн) с отдельными кабинетами для учеников, преподавателей и администраторов."
+      },
+      "icon": "lms",
+      "iconImage": "assets/projects/aurora-academy.svg",
+      "image": "",
+      "apk": "",
+      "shots": [],
+      "link": "https://lm-system-psi.vercel.app",
+      "repo": "https://github.com/KamolbekMuzaffarov/LMSystem",
+      "tags": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Supabase",
+        "Tailwind CSS"
+      ],
+      "cat": "site"
+    },
+    {
+      "title": {
+        "uz": "Natyajnoy Potolok — biznes sayti",
+        "en": "Natyajnoy Potolok — business site",
+        "ru": "Натяжные потолки — сайт бизнеса"
+      },
+      "description": {
+        "uz": "Buxoro va Navoiy uchun chozma shift biznesining sayti: ishlar galereyasi, xona o‘lchamiga qarab narx hisoblagich va Telegramga tushadigan buyurtma.",
+        "en": "A stretch-ceiling business site for Bukhara and Navoiy: a gallery of work, a price calculator based on room size, and orders that land in Telegram.",
+        "ru": "Сайт бизнеса натяжных потолков для Бухары и Навои: галерея работ, расчёт цены по размерам комнаты и заказы, попадающие в Telegram."
+      },
+      "icon": "ceiling",
+      "iconImage": "assets/projects/natyajnoy.svg",
+      "image": "",
+      "apk": "",
+      "shots": [],
+      "link": "https://premium-potolok.vercel.app",
+      "repo": "",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vercel"
+      ],
+      "cat": "site"
+    },
+    {
+      "title": {
+        "uz": "Sino-Uz Pharma Bridge",
+        "en": "Sino-Uz Pharma Bridge",
+        "ru": "Sino-Uz Pharma Bridge"
+      },
+      "description": {
+        "uz": "Xitoy farmatsevtika ishlab chiqaruvchilarini Markaziy Osiyo bozoriga bog‘lovchi ko‘p tilli B2B platforma sayti.",
+        "en": "A multilingual B2B platform site connecting Chinese pharmaceutical manufacturers to the Central Asian market.",
+        "ru": "Многоязычный сайт B2B-платформы, связывающей китайских фармпроизводителей с рынком Центральной Азии."
+      },
+      "icon": "pharma",
+      "iconImage": "assets/projects/sino-uz-pharma.svg",
+      "image": "",
+      "apk": "",
+      "shots": [],
+      "link": "https://sino-uz-pharma.vercel.app",
+      "repo": "",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vercel"
+      ],
+      "cat": "site"
+    },
+    {
+      "title": {
+        "uz": "Keyboard AI — telefon kompyuter pulti",
+        "en": "Keyboard AI — phone as a PC remote",
+        "ru": "Keyboard AI — телефон как пульт для ПК"
+      },
+      "description": {
+        "uz": "Telefonni Bluetooth HID qurilmasi sifatida ko‘rsatadi — kompyuter uni oddiy simsiz klaviatura va sichqoncha deb biladi, drayver kerak emas.",
+        "en": "Presents the phone as a Bluetooth HID device — the computer sees an ordinary wireless keyboard and mouse, with no driver needed.",
+        "ru": "Представляет телефон как Bluetooth HID-устройство — компьютер видит обычную беспроводную клавиатуру и мышь, драйверы не нужны."
+      },
+      "icon": "keyboard",
+      "iconImage": "assets/projects/keyboard-ai.png",
+      "image": "",
+      "apk": "assets/apk/keyboard-ai.apk",
+      "shots": [
+        "assets/shots/keyboard-ai-1.png",
+        "assets/shots/keyboard-ai-2.png"
+      ],
+      "link": "",
+      "repo": "",
+      "tags": [
+        "Kotlin",
+        "Android",
+        "Bluetooth HID",
+        "Gradle"
+      ],
+      "cat": "app"
+    },
+    {
+      "title": {
+        "uz": "Tug‘ilgan kunlar eslatmasi",
+        "en": "Birthday reminder",
+        "ru": "Напоминание о днях рождения"
+      },
+      "description": {
+        "uz": "Tug‘ilgan kunlarni saqlaydi va sana yaqinlashganda eslatadi. Ro‘yxatni Telegram orqali ulashsa, do‘st uni dublikatsiz import qiladi.",
+        "en": "Stores birthdays and reminds you as the date nears. Share the list over Telegram and a friend imports it without duplicates.",
+        "ru": "Хранит дни рождения и напоминает к дате. Список можно отправить в Telegram — друг импортирует его без дубликатов."
+      },
+      "icon": "cake",
+      "iconImage": "assets/projects/tugilgan-kunlar.png",
+      "image": "",
+      "apk": "assets/apk/tugilgan-kunlar.apk",
+      "shots": [],
+      "link": "",
+      "repo": "",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Android",
+        "Local notifications"
+      ],
+      "cat": "app"
+    },
+    {
+      "title": {
+        "uz": "JARVIS — Mac uchun ovozli yordamchi",
+        "en": "JARVIS — a voice assistant for the Mac",
+        "ru": "JARVIS — голосовой ассистент для Mac"
+      },
+      "description": {
+        "uz": "“Jarvis” so‘zida uyg‘onadi, o‘zbekcha gapiradi. Whisper va Ollama Mac’ning o‘zida ishlaydi — audio kompyuterdan chiqmaydi.",
+        "en": "Wakes on the word “Jarvis” and speaks Uzbek. Whisper and Ollama run on the Mac itself — the audio never leaves the machine.",
+        "ru": "Просыпается на слово «Jarvis», говорит по-узбекски. Whisper и Ollama работают на самом Mac — аудио не покидает компьютер."
+      },
+      "icon": "mic",
+      "iconImage": "assets/projects/jarvis.svg",
+      "image": "",
+      "apk": "",
+      "shots": [],
+      "link": "",
+      "repo": "",
+      "tags": [
+        "Python",
+        "Whisper",
+        "Ollama",
+        "Edge TTS",
+        "macOS"
+      ],
+      "cat": "app"
+    },
+    {
+      "title": {
+        "uz": "Anonim savollar boti",
+        "en": "Anonymous questions bot",
+        "ru": "Бот анонимных вопросов"
+      },
+      "description": {
+        "uz": "Har foydalanuvchiga shaxsiy havola beradi; havola orqali kelgan xabar egasiga anonim yetadi, egasi javob berishi yoki bloklashi mumkin.",
+        "en": "Gives each user a personal link; messages sent through it reach the owner anonymously, who can reply or block the sender.",
+        "ru": "Выдаёт каждому пользователю личную ссылку; сообщения через неё приходят владельцу анонимно, он может ответить или заблокировать."
+      },
+      "icon": "bot",
+      "iconImage": "assets/projects/anonim-bot.svg",
+      "image": "",
+      "apk": "",
+      "shots": [],
+      "link": "",
+      "repo": "",
+      "tags": [
+        "Python",
+        "python-telegram-bot",
+        "Telegram Bot API"
+      ],
+      "cat": "bot"
+    },
+    {
+      "title": {
+        "uz": "Tasbih ilovasi",
+        "en": "Tasbih app",
+        "ru": "Приложение тасбих"
+      },
+      "description": {
+        "uz": "Kundalik zikrlarni qulay va oson sanash uchun yaratilgan zamonaviy raqamli tasbih. Sodda dizayn, istalgan joyda ishlatiladi.",
+        "en": "A modern digital tasbih for counting daily dhikr simply and comfortably. A plain design that works anywhere.",
+        "ru": "Современный цифровой тасбих для удобного счёта ежедневных зикров. Простой дизайн, работает где угодно."
+      },
+      "icon": "beads",
+      "iconImage": "",
+      "image": "https://play-lh.googleusercontent.com/cRVXCgWimaQTQmXXUDbE-3JmWXe5YgfxVZGR16zp6Hb6lrPNkZv2BqZ1pmMgj6lRKd4EBi5AwbyRcL7JHPwPWi4=w480-h960-rw",
+      "apk": "",
+      "shots": [],
+      "link": "https://play.google.com/store/apps/details?id=com.mkm777.tasbih",
+      "repo": "",
+      "tags": [
+        "Flutter",
+        "Play Console"
+      ],
+      "cat": "app"
+    },
+    {
+      "title": {
+        "uz": "Kinofond",
+        "en": "Kinofond",
+        "ru": "Кинофонд"
+      },
+      "description": {
+        "uz": "O‘zbek kino xazinasi uchun onlayn platforma: filmlar, seriallar va boshqa videokontentni qulay interfeysda tomosha qilish.",
+        "en": "An online platform for the Uzbek film archive: watching films, series and other video content through a comfortable interface.",
+        "ru": "Онлайн-платформа для узбекского кинофонда: просмотр фильмов, сериалов и другого видеоконтента в удобном интерфейсе."
+      },
+      "icon": "film",
+      "iconImage": "assets/projects/kinofond.svg",
+      "image": "",
+      "apk": "",
+      "shots": [],
+      "link": "https://kinofond.uz/",
+      "repo": "https://github.com/kamolbekmkm777-cmyk/kinofond",
+      "tags": [
+        "HTML",
+        "JavaScript",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "cat": "site"
+    },
+    {
+      "title": {
+        "uz": "ProxMedia — media sayti",
+        "en": "ProxMedia — media site",
+        "ru": "ProxMedia — медиа-сайт"
+      },
+      "description": {
+        "uz": "Media va kontent xizmatlarini bir sahifaga yig‘adigan taqdimot sayti — mijozga ko‘rsatish uchun yagona manzil.",
+        "en": "A presentation site gathering media and content services onto one page — a single address to show a client.",
+        "ru": "Презентационный сайт, собирающий медиа- и контент-услуги на одну страницу — единый адрес, чтобы показать клиенту."
+      },
+      "icon": "media",
+      "iconImage": "assets/projects/proxmedia.svg",
+      "image": "",
+      "apk": "",
+      "shots": [],
+      "link": "https://kamolbekmuzaffarov.github.io/ProXmedia/",
+      "repo": "https://github.com/KamolbekMuzaffarov/ProXmedia",
+      "tags": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "GitHub Pages"
+      ],
+      "cat": "site"
+    },
+    {
+      "title": {
+        "uz": "SV — Django veb ilova",
+        "en": "SV — Django web app",
+        "ru": "SV — веб-приложение на Django"
+      },
+      "description": {
+        "uz": "Django asosidagi server ilovasi: admin paneli, ma’lumotlar bazasi va media fayllar bilan. O‘z domeni uchun sozlangan.",
+        "en": "A server application built on Django, with an admin panel, a database and media files. Configured for its own domain.",
+        "ru": "Серверное приложение на Django: админ-панель, база данных и медиафайлы. Настроено под собственный домен."
+      },
+      "icon": "server",
+      "iconImage": "assets/projects/sv-django.svg",
+      "image": "",
+      "apk": "",
+      "shots": [],
+      "link": "",
+      "repo": "https://github.com/KamolbekMuzaffarov/SV",
+      "tags": [
+        "Python",
+        "Django",
+        "SQLite"
+      ],
+      "cat": "site"
+    }
+  ],
+  "experience": [
+    {
+      "title": {
+        "en": "Web developer",
+        "ru": "Веб-разработчик",
+        "uz": "Veb dasturchi"
+      },
+      "period": {
+        "en": "2026 — Now",
+        "ru": "2026 — Сейчас",
+        "uz": "2026 — Hozir"
+      },
+      "company": "O'zbekiston Milliy Kinofondi",
+      "description": {
+        "en": "We created an official website for the Film Fund organization.",
+        "ru": "Мы создали официальный сайт для организации Film Fund.",
+        "uz": "Kinofond tashkiloti uchun o'zining rasmiy veb sahifasini yaratdik"
+      }
+    }
+  ],
+  "publicCode": "mkm777",
+  "sandColors": {
+    "bg": "#091a2f",
+    "fg": "#d3d6d9",
+    "accent": ""
+  },
+  "catalogVersion": 2,
+  "certificates": [
+    {
+      "file": "cert-01",
+      "kind": "pro",
+      "title": "Google Cybersecurity",
+      "issuer": "Google",
+      "courses": 8,
+      "date": "2025-05-12",
+      "verify": "https://coursera.org/verify/professional-cert/OECIKJRRZ6Z2"
+    },
+    {
+      "file": "cert-07",
+      "kind": "course",
+      "title": "Foundations of Cybersecurity",
+      "issuer": "Google",
+      "date": "2025-04-11",
+      "verify": "https://coursera.org/verify/ZAY7GZ4H15R2"
+    },
+    {
+      "file": "cert-04",
+      "kind": "course",
+      "title": "Play It Safe: Manage Security Risks",
+      "issuer": "Google",
+      "date": "2025-04-11",
+      "verify": "https://coursera.org/verify/27HOJBSIWPK2"
+    },
+    {
+      "file": "cert-06",
+      "kind": "course",
+      "title": "Connect and Protect: Networks and Network Security",
+      "issuer": "Google",
+      "date": "2025-05-02",
+      "verify": "https://coursera.org/verify/BOA4QVHSIIWY"
+    },
+    {
+      "file": "cert-09",
+      "kind": "course",
+      "title": "Tools of the Trade: Linux and SQL",
+      "issuer": "Google",
+      "date": "2025-05-02",
+      "verify": "https://coursera.org/verify/4KXMOYUDJPQ3"
+    },
+    {
+      "file": "cert-05",
+      "kind": "course",
+      "title": "Assets, Threats, and Vulnerabilities",
+      "issuer": "Google",
+      "date": "2025-05-11",
+      "verify": "https://coursera.org/verify/B86GW4NSPD7V"
+    },
+    {
+      "file": "cert-02",
+      "kind": "course",
+      "title": "Sound the Alarm: Detection and Response",
+      "issuer": "Google",
+      "date": "2025-05-12",
+      "verify": "https://coursera.org/verify/4U5MXPSB6SZW"
+    },
+    {
+      "file": "cert-08",
+      "kind": "course",
+      "title": "Automate Cybersecurity Tasks with Python",
+      "issuer": "Google",
+      "date": "2025-05-12",
+      "verify": "https://coursera.org/verify/EB89934JS22G"
+    },
+    {
+      "file": "cert-03",
+      "kind": "course",
+      "title": "Put It to Work: Prepare for Cybersecurity Jobs",
+      "issuer": "Google",
+      "date": "2025-05-12",
+      "verify": "https://coursera.org/verify/6RRCEQTJ5M3G"
+    },
+    {
+      "file": "cert-10",
+      "kind": "course",
+      "title": "VR and 360 Video Production",
+      "issuer": "Google AR & VR",
+      "date": "2025-04-14",
+      "verify": "https://coursera.org/verify/CP7IPLYI55S4"
+    },
+    {
+      "file": "cert-13",
+      "kind": "course",
+      "title": "Designing User Interfaces and Experiences (UI/UX)",
+      "issuer": "IBM",
+      "date": "2025-04-04",
+      "verify": "https://coursera.org/verify/RE3JEJ8DBHBG"
+    },
+    {
+      "file": "cert-15",
+      "kind": "course",
+      "title": "Introduction to Mobile App Development",
+      "issuer": "IBM",
+      "date": "2025-01-31",
+      "verify": "https://coursera.org/verify/FMXEZOL1P1RF"
+    },
+    {
+      "file": "cert-12",
+      "kind": "course",
+      "title": "Get Started with iOS App Development",
+      "issuer": "SkillUp",
+      "date": "2025-04-05",
+      "verify": "https://coursera.org/verify/B5LF5VQXG0Z9"
+    },
+    {
+      "file": "cert-14",
+      "kind": "course",
+      "title": "Get Started with Android App Development",
+      "issuer": "SkillUp",
+      "date": "2025-04-04",
+      "verify": "https://coursera.org/verify/U43F3FPR1SJ2"
+    },
+    {
+      "file": "cert-11",
+      "kind": "project",
+      "title": "Design a Professional Business Card with QR Code using Canva",
+      "issuer": "Coursera",
+      "date": "2025-01-31",
+      "verify": "https://coursera.org/verify/AGNZ4AJYFZ9L"
+    },
+    {
+      "file": "cert-16",
+      "kind": "project",
+      "title": "Building a Business Presence With Facebook Marketing",
+      "issuer": "Coursera",
+      "date": "2025-01-31",
+      "verify": "https://coursera.org/verify/JSIIEHH4JWM9"
+    }
+  ]
+}

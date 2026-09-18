@@ -30,3 +30,9 @@ config.example.js
 
 # EHTIYOT BO'LING: config.js bu yerda BO'LMASLIGI kerak —
 # brauzer uni o'qishi shart, aks holda bulut ishlamaydi.
+
+# Bir martalik import fayli — saytga chiqmaydi
+loyihalar-import.json
+
+# APK fayllari GitHub Releases da
+assets/apk/
