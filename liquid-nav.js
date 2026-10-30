@@ -246,6 +246,8 @@ function mount(nav, opts) {
     if (s.raf) return
     s.last = performance.now()
     const tick = now => {
+      // The theme can hide the water (plain buttons): then stop drawing entirely.
+      if (canvas && !canvas.offsetParent && nav.dataset.gl !== 'off') { s.raf = 0; return }
       const busy = s.moving || s.rips.length || s.sats.length || s.mouse.s > 0.01
       // Idle water only needs a slow ambient swell: every other frame is plenty,
       // and it keeps the GPU free for the page while scrolling.

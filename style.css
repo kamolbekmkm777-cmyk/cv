@@ -2063,3 +2063,45 @@ html.lowfx .fwin, html.lowfx .gtile, html.lowfx .psheet{ -webkit-backdrop-filter
 .wbead:hover{ box-shadow:none; }
 .fab--music.on.wbead, .fab--hand.on.wbead{ background:rgba(255,255,255,.16); }
 [data-theme="sculpt"] .wbead{ background:rgba(255,255,255,.25); box-shadow:none; }
+
+/* ==========================================================================
+   THEME 2 «Haykal» — plain, solid buttons instead of liquid glass.
+   Primary / active = ink pill with white text; secondary = white pill.
+   The water canvases are hidden (and stop drawing).
+   ========================================================================== */
+[data-theme="sculpt"] .nimbus-water,
+[data-theme="sculpt"] .nimbus-drop,
+[data-theme="sculpt"] .wbead-water{ display:none !important; }
+[data-theme="sculpt"] .nimbus-item{ transition:color .2s, background-color .2s; }
+[data-theme="sculpt"] .nimbus-item:hover{ background:rgba(21,21,20,.06); }
+[data-theme="sculpt"] .nimbus-item[aria-current="page"]{ background:#151514; color:#F3F1EC; }
+
+[data-theme="sculpt"] .fab, [data-theme="sculpt"] .fab.wbead,
+[data-theme="sculpt"] .btn--primary, [data-theme="sculpt"] .btn--primary.wbead,
+[data-theme="sculpt"] .contact__form .btn--primary, [data-theme="sculpt"] .contact__form .btn--primary.wbead,
+[data-theme="sculpt"] .nav .lang__b.active, [data-theme="sculpt"] .chip.active,
+[data-theme="sculpt"] .folder-all.on, [data-theme="sculpt"] .chan__i{
+  background:#151514; color:#F3F1EC; border:1px solid #151514; text-shadow:none;
+  box-shadow:0 8px 20px -10px rgba(21,21,20,.45);
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+}
+[data-theme="sculpt"] .chan__i svg{ color:#F3F1EC; filter:none; }
+[data-theme="sculpt"] .fab svg{ filter:none; }
+[data-theme="sculpt"] .fab:hover, [data-theme="sculpt"] .btn--primary:hover{ background:#2b2b28; filter:none; }
+[data-theme="sculpt"] .fab--music.on, [data-theme="sculpt"] .fab--hand.on,
+[data-theme="sculpt"] .fab--music.on.wbead, [data-theme="sculpt"] .fab--hand.on.wbead{
+  background:#F3F1EC; color:#151514; border-color:#151514;
+}
+[data-theme="sculpt"] .fab::before, [data-theme="sculpt"] .btn--primary::before,
+[data-theme="sculpt"] .chan__i::before{ display:none; }
+
+[data-theme="sculpt"] .btn--ghost, [data-theme="sculpt"] .nav__icon, [data-theme="sculpt"] .chip,
+[data-theme="sculpt"] .folder-all, [data-theme="sculpt"] .fwin__x, [data-theme="sculpt"] .gf-key--more{
+  background:#ffffff; color:#151514; border:1px solid rgba(21,21,20,.12);
+  box-shadow:0 6px 16px -10px rgba(21,21,20,.3);
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+}
+[data-theme="sculpt"] .btn--ghost:hover, [data-theme="sculpt"] .chip:hover,
+[data-theme="sculpt"] .folder-all:hover, [data-theme="sculpt"] .nav__icon:hover{ background:#f1efea; }
+[data-theme="sculpt"] .folder-all.on b{ background:rgba(255,255,255,.16); color:#F3F1EC; }
+[data-theme="sculpt"] .nav .lang{ background:#ffffff; box-shadow:0 0 0 1px rgba(21,21,20,.1); }
