@@ -1152,13 +1152,15 @@ function applyTheme(t){
   }
   liquidNav?.setTone(t === 'sculpt' ? 'light' : 'dark');
   beads.forEach(b => b.setTone(t === 'sculpt' ? 'light' : 'dark'));
+  if (t === 'sculpt'){ gtext?.destroy(); gtext = null; }
+  else if (prev === 'sculpt') mountGlassText();
   if (prev && prev !== t){ renderWorks(); mountSignature(); }
 }
 
 /* ---------------------------------------------------- LAZY MODULES
    Og'ir qismlar (WebGL haykal, shisha logo) faqat kerak bo'lganda yuklanadi.
    Sahifa ochilishini hech qachon kutdirmaydi. */
-const ASSET_V = '20261031n';
+const ASSET_V = '20261031p';
 const OFFLINE = location.protocol === 'file:';
 const scriptCache = Object.create(null);
 function loadScript(src){
@@ -1187,6 +1189,19 @@ function loadSculptFonts(){
 let sculpt = null, sculptToken = 0;
 let liquidNav = null;
 let beads = [];
+/* Hero name as liquid glass (theme 1 only). Loaded after the page, so the
+   plain text paints first; the glass takes over without moving a pixel. */
+let gtext = null;
+function mountGlassText(){
+  if (data.theme === 'sculpt' || gtext) return;
+  const go = () => loadScript('glass-text.js?v=' + ASSET_V).then(() => {
+    const el = $('.hero__name');
+    if (data.theme === 'sculpt' || gtext || !el || !window.GlassText) return;
+    gtext = window.GlassText.mount(el, { media: $('.bg__media'), video: $('#bgVideo'), poster: 'assets/bg/forest.jpg' });
+    if (!gtext) el.classList.add('gtext-css');
+  }).catch(e => console.warn('glass text', e));
+  if (document.readyState === 'complete') go(); else addEventListener('load', go, { once:true });
+}
 /* The four call-to-action buttons are drawn with the app bar's own water
    shader, so they are exactly the drop the bar shows on its active item. */
 function initBeads(){
@@ -3080,6 +3095,7 @@ function init(){
   initNav(); initMusic(); initForm(); initAdmin(); initStealth(); initSettings();
   initEducation(); initPlaylist(); initCrop(); initWorks(); initDock();
   initBeads();
+  mountGlassText();
   mountSignature();
   // Yashirin tabda video aylanmaydi — batareya va CPU tejaladi.
   document.addEventListener('visibilitychange', () => {

@@ -2105,3 +2105,18 @@ html.lowfx .fwin, html.lowfx .gtile, html.lowfx .psheet{ -webkit-backdrop-filter
 [data-theme="sculpt"] .folder-all:hover, [data-theme="sculpt"] .nav__icon:hover{ background:#f1efea; }
 [data-theme="sculpt"] .folder-all.on b{ background:rgba(255,255,255,.16); color:#F3F1EC; }
 [data-theme="sculpt"] .nav .lang{ background:#ffffff; box-shadow:0 0 0 1px rgba(21,21,20,.1); }
+
+/* ---------- hero name as liquid glass (glass-text.js) ---------------
+   The DOM text stays for selection and screen readers; it goes transparent
+   while the WebGL glass is drawn over it. .gtext-css is the no-WebGL look. */
+.hero__text{ position:relative; }
+.gtext-canvas{ position:absolute; pointer-events:none; z-index:1; }
+.hero__name.gtext-on{ color:transparent; text-shadow:none; }
+.hero__name.gtext-on::selection{ color:#fff; }
+.hero__name.gtext-css{
+  color:rgba(255,255,255,.14);
+  -webkit-text-stroke:1.4px rgba(255,255,255,.85);
+  background:linear-gradient(180deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,.06) 45%, rgba(255,255,255,.22) 100%);
+  -webkit-background-clip:text; background-clip:text;
+  text-shadow:0 6px 24px rgba(0,0,0,.25);
+}
