@@ -1160,7 +1160,7 @@ function applyTheme(t){
 /* ---------------------------------------------------- LAZY MODULES
    Og'ir qismlar (WebGL haykal, shisha logo) faqat kerak bo'lganda yuklanadi.
    Sahifa ochilishini hech qachon kutdirmaydi. */
-const ASSET_V = '20261031r';
+const ASSET_V = '20261031t';
 const OFFLINE = location.protocol === 'file:';
 const scriptCache = Object.create(null);
 function loadScript(src){
@@ -3130,6 +3130,7 @@ function init(){
   });
 
   $('#downloadCv').onclick = downloadCV;
+  const cv3 = $('#downloadCv3'); if (cv3) cv3.onclick = downloadCV;
 
   // Expose a tiny surface for hand-control.js + tests
   window.__cv = { get data(){ return data; }, save, renderAll, admin, DEFAULTS, toast,

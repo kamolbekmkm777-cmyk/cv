@@ -2121,3 +2121,18 @@ html.lowfx .fwin, html.lowfx .gtile, html.lowfx .psheet{ -webkit-backdrop-filter
   filter:drop-shadow(0 1px 0 rgba(255,255,255,.55)) drop-shadow(0 6px 14px rgba(0,0,0,.35));
 }
 [data-theme="sculpt"] .gtext-canvas{ display:none; }
+
+/* Clearer beads: less frost in the middle — the rim and light carry the glass. */
+.fab, .contact__form .btn--primary, .hero__cta .btn--primary, .chan__i{
+  -webkit-backdrop-filter:blur(2px) saturate(1.4); backdrop-filter:blur(2px) saturate(1.4);
+}
+.chan__i{
+  background:
+    radial-gradient(120% 70% at 30% 0%, rgba(255,255,255,.34), rgba(255,255,255,0) 50%),
+    rgba(255,255,255,.03);
+}
+.wbead, .fab.wbead, .contact__form .btn--primary.wbead, .hero__cta .btn--primary.wbead{ background:rgba(255,255,255,.015); }
+.fab--music.on.wbead, .fab--hand.on.wbead{ background:rgba(255,255,255,.08); }
+.sh-btn{ border:0; cursor:pointer; font-family:inherit; }
+/* the hero now has a single button (CV); don't let it stretch across tablets */
+@media(max-width:880px){ .hero__cta .btn{ flex:0 1 340px; } }

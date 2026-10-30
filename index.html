@@ -148,8 +148,8 @@ html:not(.css) .section{max-width:1180px;margin:0 auto;padding:96px 24px 0}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Fonts and the main stylesheet never block the first paint. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Amiri:wght@700&display=swap" media="print" onload="this.media='all'">
-<link rel="preload" href="style.css?v=20261031r" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('css')" />
-<noscript><link rel="stylesheet" href="style.css?v=20261031r" /><style>html .nav *{display:revert}</style></noscript>
+<link rel="preload" href="style.css?v=20261031t" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('css')" />
+<noscript><link rel="stylesheet" href="style.css?v=20261031t" /><style>html .nav *{display:revert}</style></noscript>
 </head>
 <body data-theme="liquid">
 <script>/* the visitor's own theme, before first paint — no flash, no video download */
@@ -267,8 +267,7 @@ if((navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=2)documen
         <span data-bind="profile.location">Tashkent, Uzbekistan</span>
       </p>
       <div class="hero__cta">
-        <a href="#contact" class="btn btn--primary"><span data-i18n="hero_contact">Bogʻlanish</span> <span>→</span></a>
-        <button class="btn btn--ghost" id="downloadCv"><span data-i18n="hero_cv">CV yuklab olish</span>
+        <button class="btn btn--primary" id="downloadCv"><span data-i18n="hero_cv">CV yuklab olish</span>
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </button>
       </div>
@@ -307,7 +306,7 @@ if((navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=2)documen
         <p class="sh-role" data-bind="profile.profession">Full-Stack dasturchi va sunʼiy intellekt muhandisi</p>
         <p class="sh-body" data-bind="profile.slogan"></p>
         <div class="sh-ctas">
-          <a class="sh-btn" href="#contact"><span data-i18n="hero_contact">Bogʻlanish</span><svg viewBox="0 0 14 14" width="14" height="14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <button class="sh-btn" type="button" id="downloadCv3"><span data-i18n="hero_cv">CV yuklab olish</span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
           <a class="sh-txt" href="#works"><span data-i18n="nav_works">Ishlarim</span><svg viewBox="0 0 14 14" width="14" height="14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
@@ -766,12 +765,12 @@ if((navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=2)documen
 
 <div class="toast" id="toast"></div>
 
-<script src="config.js?v=20261031r" onerror="window.__noConfig=1"></script>
-<script src="data.js?v=20261031r" defer></script>
-<script src="cloud.js?v=20261031r" defer></script>
-<script src="liquid-nav.js?v=20261031r" defer></script>
-<script src="folders.js?v=20261031r" defer></script>
-<script src="app.js?v=20261031r" defer></script>
-<script src="hand-control.js?v=20261031r" defer></script>
+<script src="config.js?v=20261031t" onerror="window.__noConfig=1"></script>
+<script src="data.js?v=20261031t" defer></script>
+<script src="cloud.js?v=20261031t" defer></script>
+<script src="liquid-nav.js?v=20261031t" defer></script>
+<script src="folders.js?v=20261031t" defer></script>
+<script src="app.js?v=20261031t" defer></script>
+<script src="hand-control.js?v=20261031t" defer></script>
 </body>
 </html>
