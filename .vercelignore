@@ -36,3 +36,6 @@ loyihalar-import.json
 
 # APK fayllari GitHub Releases da
 assets/apk/
+
+# file:// fallback (data: URLs for WebGL) — never used online
+assets/offline-data.js

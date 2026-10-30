@@ -11,13 +11,13 @@
 <meta property="og:image" content="https://kamolbek.com/assets/kamolbek-900.jpg" />
 <meta property="og:url" content="https://kamolbek.com/gallery" />
 <link rel="canonical" href="https://kamolbek.com/gallery" />
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-k-64.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260918c" />
+<link rel="stylesheet" href="style.css?v=20261031d" />
 <style>
   /* Page-specific chrome; the gallery/lightbox styles come from style.css. */
   .gwrap{ max-width:var(--maxw); margin:0 auto; padding:96px 22px 80px; }
@@ -40,14 +40,13 @@
 <body data-theme="liquid">
 
 <div class="bg" aria-hidden="true">
-  <span class="bg__blob bg__blob--1"></span>
-  <span class="bg__blob bg__blob--2"></span>
+  <span class="bg__poster"></span>
   <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
   <span class="bg__tint"></span>
 </div>
 
 <a class="brand" href="index.html" aria-label="Bosh sahifa">
-  <img class="brand__mk" id="brandImg" src="assets/logo-mk.png?v=20260918c" alt="MK" />
+  <img class="brand__mk" id="brandImg" src="assets/logo-k.webp" alt="K" />
 </a>
 
 <main class="gwrap">
@@ -74,9 +73,9 @@
   <p class="lbox__cap" id="lbCap"></p>
 </div>
 
-<script src="config.js?v=20260918c" onerror="window.__noConfig=1"></script>
-<script src="data.js?v=20260918c"></script>
-<script src="cloud.js?v=20260918c"></script>
+<script src="config.js?v=20261031d" onerror="window.__noConfig=1"></script>
+<script src="data.js?v=20261031d"></script>
+<script src="cloud.js?v=20261031d"></script>
 <script>
 /* Standalone gallery page. It reuses the SAME data sources as the main site so
    whatever the admin publishes shows up here too, with no build step:
@@ -112,8 +111,10 @@ const defaultGallery = () => Array.from({ length: 27 }, (_, i) => {
 async function loadData(){
   // Theme first (cheap, from localStorage) so the page doesn't flash.
   try {
+    const own = localStorage.getItem('cvTheme');
     const s = JSON.parse(localStorage.getItem('cvData') || 'null');
-    if (s?.theme) document.body.dataset.theme = s.theme;
+    const th = own || s?.theme;
+    document.body.dataset.theme = th === 'sculpt' ? 'sculpt' : 'liquid';
   } catch {}
 
   // 1) Supabase. The cloud row is seeded as {} before the first publish — an
@@ -267,8 +268,9 @@ function applyBgVideo(){
   bg.style.setProperty('--bgv-tint', (Number(cfg.tint ?? 55))/100);
   const custom = String(cfg.src||'').trim();
   const preset = (data.videos||[]).find(x => x.id === cfg.presetId);
-  const src = custom || preset?.url || '';
-  if (!cfg.enabled || !src) return;
+  const local = !custom && cfg.presetId === 'forest' ? 'assets/bg/forest.mp4' : '';
+  const src = custom || local || preset?.url || '';
+  if (document.body.dataset.theme === 'sculpt' || !cfg.enabled || !src) return;
   bg.classList.add('video-on');
   v.src = src;
   v.addEventListener('loadeddata', () => { v.classList.add('on'); v.play().catch(()=>{}); }, { once:true });
@@ -279,11 +281,12 @@ let data = null;
 (async () => {
   data = await loadData();
   // Shaxsiy til tanlovi bo'lmasa — egasi chop etgan standart til.
-  if (!lang) lang = LANGS.includes(data?.lang) ? data.lang : 'uz';
+  if (!lang) lang = 'uz';
   // Admin yuklagan brend (logo/favicon) bu sahifada ham
   const br = data?.branding || {};
-  if (br.logo){ const bi = document.getElementById('brandImg'); if (bi) bi.src = br.logo; }
-  if (br.favicon){ document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(l => l.href = br.favicon); }
+  const heavy = u => String(u||'').includes('c9b68212');       // 740 KB original → local 9 KB copy
+  if (br.logo && !heavy(br.logo)){ const bi = document.getElementById('brandImg'); if (bi) bi.src = br.logo; }
+  if (br.favicon && !heavy(br.favicon)){ document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(l => l.href = br.favicon); }
   render();
   initLightbox();
   applyBgVideo();

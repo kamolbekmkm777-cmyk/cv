@@ -14,7 +14,7 @@ const DEFAULTS = {
     slogan: { uz: "Men miqyoslashadigan aqlli mahsulotlar yarataman — zamonaviy biznes uchun Telegram botlar, sunʼiy intellekt va bulutli infratuzilma.", en: "I build intelligent products that scale — bots, AI, and clean cloud infrastructure for modern businesses.", ru: "Я создаю умные продукты, которые масштабируются — боты, AI и чистая облачная инфраструктура для современного бизнеса." },
     location: { uz: "Toshkent, Oʻzbekiston", en: "Tashkent, Uzbekistan", ru: "Ташкент, Узбекистан" },
     bio: { uz: "Men Kamolbek — sunʼiy intellekt, avtomatlashtirish va dizayn kesishmasiga qiziqqan oʻz-oʻzini oʻrgatgan muhandisman. Soʻnggi yillarda men siz uxlab yotganingizda lidlarni qoʻlga oladigan Telegram botlarni, xona rasmlarini oʻqib dizayn taklif qiladigan sunʼiy intellekt yordamchilarini va xaosni aniqlikka aylantiradigan boshqaruv panellarini ishlab chiqdim.", en: "I'm Kamolbek — a self-taught engineer fascinated by the intersection of AI, automation, and design. Over the past few years, I've built Telegram bots that capture leads while you sleep, AI assistants that read a photo of a room and suggest design ideas, and admin dashboards that turn chaos into clarity.", ru: "Я Камолбек — инженер-самоучка, увлечённый всем, что рождается на стыке AI, автоматизации и дизайна. За последние годы я создавал Telegram-ботов, которые ловят лиды, пока вы спите, AI-ассистентов, которые анализируют фото комнаты и подсказывают дизайн-решения, и админ-панели, которые превращают хаос в порядок." },
-    avatar: "assets/kamolbek-900.jpg",
+    avatar: "assets/kamolbek-640.jpg",
     /* Arabcha shior — hadis: "Amallar niyatlarga bog'liq". Bosh sahifada
        katta ko'rinadi; barcha tillarda bir xil (arabcha matn). */
     motto: "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ"
@@ -110,25 +110,25 @@ const DEFAULTS = {
   portfolio: [
     { title: { uz:"Aurora Academy — o‘quv markazi LMS", en:"Aurora Academy — learning platform", ru:"Aurora Academy — образовательная платформа" },
       description: { uz:"IELTS, ingliz tili, dasturlash va dizayn bo‘yicha o‘quv markazi platformasi: o‘quvchi, o‘qituvchi va administrator uchun alohida kabinetlar.", en:"A platform for a training centre teaching IELTS, English, programming and design, with separate dashboards for students, teachers and admins.", ru:"Платформа учебного центра (IELTS, английский, программирование, дизайн) с отдельными кабинетами для учеников, преподавателей и администраторов." },
-      icon:"lms", iconImage:"assets/projects/aurora-academy.svg", image:"", apk:"", shots:[],
+      icon:"sparkles", glyph:"", tint:["#8b6cff","#1fb6e0"], iconImage:"assets/projects/aurora-academy.svg", image:"", apk:"", shots:[],
       link:"https://lm-system-psi.vercel.app", repo:"https://github.com/KamolbekMuzaffarov/LMSystem",
       tags:["Next.js 15","React 19","TypeScript","Supabase","Tailwind CSS"], cat:"site" },
 
     { title: { uz:"Natyajnoy Potolok — biznes sayti", en:"Natyajnoy Potolok — business site", ru:"Натяжные потолки — сайт бизнеса" },
       description: { uz:"Buxoro va Navoiy uchun chozma shift biznesining sayti: ishlar galereyasi, xona o‘lchamiga qarab narx hisoblagich va Telegramga tushadigan buyurtma.", en:"A stretch-ceiling business site for Bukhara and Navoiy: a gallery of work, a price calculator based on room size, and orders that land in Telegram.", ru:"Сайт бизнеса натяжных потолков для Бухары и Навои: галерея работ, расчёт цены по размерам комнаты и заказы, попадающие в Telegram." },
-      icon:"ceiling", iconImage:"assets/projects/natyajnoy.svg", image:"", apk:"", shots:[],
+      icon:"gem", glyph:"", tint:["#e9c46a","#8a5a12"], iconImage:"assets/projects/natyajnoy.svg", image:"", apk:"", shots:[],
       link:"https://premium-potolok.vercel.app", repo:"",
       tags:["HTML","CSS","JavaScript","Vercel"], cat:"site" },
 
     { title: { uz:"Sino-Uz Pharma Bridge", en:"Sino-Uz Pharma Bridge", ru:"Sino-Uz Pharma Bridge" },
       description: { uz:"Xitoy farmatsevtika ishlab chiqaruvchilarini Markaziy Osiyo bozoriga bog‘lovchi ko‘p tilli B2B platforma sayti.", en:"A multilingual B2B platform site connecting Chinese pharmaceutical manufacturers to the Central Asian market.", ru:"Многоязычный сайт B2B-платформы, связывающей китайских фармпроизводителей с рынком Центральной Азии." },
-      icon:"pharma", iconImage:"assets/projects/sino-uz-pharma.svg", image:"", apk:"", shots:[],
+      icon:"pharma", glyph:"", tint:["#f45b69","#2459d6"], iconImage:"assets/projects/sino-uz-pharma.svg", image:"", apk:"", shots:[],
       link:"https://sino-uz-pharma.vercel.app", repo:"",
       tags:["HTML","CSS","JavaScript","Vercel"], cat:"site" },
 
     { title: { uz:"Keyboard AI — telefon kompyuter pulti", en:"Keyboard AI — phone as a PC remote", ru:"Keyboard AI — телефон как пульт для ПК" },
       description: { uz:"Telefonni Bluetooth HID qurilmasi sifatida ko‘rsatadi — kompyuter uni oddiy simsiz klaviatura va sichqoncha deb biladi, drayver kerak emas.", en:"Presents the phone as a Bluetooth HID device — the computer sees an ordinary wireless keyboard and mouse, with no driver needed.", ru:"Представляет телефон как Bluetooth HID-устройство — компьютер видит обычную беспроводную клавиатуру и мышь, драйверы не нужны." },
-      icon:"keyboard", iconImage:"assets/projects/keyboard-ai.png", image:"",
+      icon:"keyboard", glyph:"assets/projects/glass/keyboard-ai.png", tint:["#4f8cff","#8b5cf6"], iconImage:"assets/projects/keyboard-ai.png", image:"",
       apk:"https://github.com/kamolbekmkm777-cmyk/cv/releases/download/apps-v1/keyboard-ai.apk",
       shots:["assets/shots/keyboard-ai-1.png","assets/shots/keyboard-ai-2.png"],
       link:"", repo:"",
@@ -136,44 +136,44 @@ const DEFAULTS = {
 
     { title: { uz:"Tug‘ilgan kunlar eslatmasi", en:"Birthday reminder", ru:"Напоминание о днях рождения" },
       description: { uz:"Tug‘ilgan kunlarni saqlaydi va sana yaqinlashganda eslatadi. Ro‘yxatni Telegram orqali ulashsa, do‘st uni dublikatsiz import qiladi.", en:"Stores birthdays and reminds you as the date nears. Share the list over Telegram and a friend imports it without duplicates.", ru:"Хранит дни рождения и напоминает к дате. Список можно отправить в Telegram — друг импортирует его без дубликатов." },
-      icon:"cake", iconImage:"assets/projects/tugilgan-kunlar.png", image:"",
+      icon:"cake", glyph:"assets/projects/glass/tugilgan-kunlar.png", tint:["#34d399","#065f46"], iconImage:"assets/projects/tugilgan-kunlar.png", image:"",
       apk:"https://github.com/kamolbekmkm777-cmyk/cv/releases/download/apps-v1/tugilgan-kunlar.apk", shots:[],
       link:"", repo:"",
       tags:["Flutter","Dart","Android","Local notifications"], cat:"app" },
 
     { title: { uz:"JARVIS — Mac uchun ovozli yordamchi", en:"JARVIS — a voice assistant for the Mac", ru:"JARVIS — голосовой ассистент для Mac" },
       description: { uz:"“Jarvis” so‘zida uyg‘onadi, o‘zbekcha gapiradi. Whisper va Ollama Mac’ning o‘zida ishlaydi — audio kompyuterdan chiqmaydi.", en:"Wakes on the word “Jarvis” and speaks Uzbek. Whisper and Ollama run on the Mac itself — the audio never leaves the machine.", ru:"Просыпается на слово «Jarvis», говорит по-узбекски. Whisper и Ollama работают на самом Mac — аудио не покидает компьютер." },
-      icon:"mic", iconImage:"assets/projects/jarvis.svg", image:"", apk:"", shots:[],
+      icon:"mic", glyph:"", tint:["#22d3ee","#1e3a8a"], iconImage:"assets/projects/jarvis.svg", image:"", apk:"", shots:[],
       link:"", repo:"",
       tags:["Python","Whisper","Ollama","Edge TTS","macOS"], cat:"app" },
 
     { title: { uz:"Anonim savollar boti", en:"Anonymous questions bot", ru:"Бот анонимных вопросов" },
       description: { uz:"Har foydalanuvchiga shaxsiy havola beradi; havola orqali kelgan xabar egasiga anonim yetadi, egasi javob berishi yoki bloklashi mumkin.", en:"Gives each user a personal link; messages sent through it reach the owner anonymously, who can reply or block the sender.", ru:"Выдаёт каждому пользователю личную ссылку; сообщения через неё приходят владельцу анонимно, он может ответить или заблокировать." },
-      icon:"bot", iconImage:"assets/projects/anonim-bot.svg", image:"", apk:"", shots:[],
+      icon:"bot", glyph:"", tint:["#38bdf8","#1d4ed8"], iconImage:"assets/projects/anonim-bot.svg", image:"", apk:"", shots:[],
       link:"", repo:"",
       tags:["Python","python-telegram-bot","Telegram Bot API"], cat:"bot" },
 
     { title: { uz:"Tasbih ilovasi", en:"Tasbih app", ru:"Приложение тасбих" },
       description: { uz:"Kundalik zikrlarni qulay va oson sanash uchun yaratilgan zamonaviy raqamli tasbih. Sodda dizayn, istalgan joyda ishlatiladi.", en:"A modern digital tasbih for counting daily dhikr simply and comfortably. A plain design that works anywhere.", ru:"Современный цифровой тасбих для удобного счёта ежедневных зикров. Простой дизайн, работает где угодно." },
-      icon:"beads", iconImage:"", image:"https://play-lh.googleusercontent.com/cRVXCgWimaQTQmXXUDbE-3JmWXe5YgfxVZGR16zp6Hb6lrPNkZv2BqZ1pmMgj6lRKd4EBi5AwbyRcL7JHPwPWi4=w480-h960-rw", apk:"", shots:[],
+      icon:"beads", glyph:"assets/projects/glass/tasbih.png", tint:["#ff7a3d","#b8340b"], iconImage:"", image:"https://play-lh.googleusercontent.com/cRVXCgWimaQTQmXXUDbE-3JmWXe5YgfxVZGR16zp6Hb6lrPNkZv2BqZ1pmMgj6lRKd4EBi5AwbyRcL7JHPwPWi4=w480-h960-rw", apk:"", shots:[],
       link:"https://play.google.com/store/apps/details?id=com.mkm777.tasbih", repo:"",
       tags:["Flutter","Play Console"], cat:"app" },
 
     { title: { uz:"Kinofond", en:"Kinofond", ru:"Кинофонд" },
       description: { uz:"O‘zbek kino xazinasi uchun onlayn platforma: filmlar, seriallar va boshqa videokontentni qulay interfeysda tomosha qilish.", en:"An online platform for the Uzbek film archive: watching films, series and other video content through a comfortable interface.", ru:"Онлайн-платформа для узбекского кинофонда: просмотр фильмов, сериалов и другого видеоконтента в удобном интерфейсе." },
-      icon:"film", iconImage:"assets/projects/kinofond.svg", image:"", apk:"", shots:[],
+      icon:"film", glyph:"assets/projects/glass/kinofond.png", tint:["#2bb3c0","#0b4a5a"], iconImage:"assets/projects/kinofond.svg", image:"", apk:"", shots:[],
       link:"https://kinofond.uz/", repo:"https://github.com/kamolbekmkm777-cmyk/kinofond",
       tags:["HTML","JavaScript","PostgreSQL","Docker"], cat:"site" },
 
     { title: { uz:"ProxMedia — media sayti", en:"ProxMedia — media site", ru:"ProxMedia — медиа-сайт" },
       description: { uz:"Media va kontent xizmatlarini bir sahifaga yig‘adigan taqdimot sayti — mijozga ko‘rsatish uchun yagona manzil.", en:"A presentation site gathering media and content services onto one page — a single address to show a client.", ru:"Презентационный сайт, собирающий медиа- и контент-услуги на одну страницу — единый адрес, чтобы показать клиенту." },
-      icon:"media", iconImage:"assets/projects/proxmedia.svg", image:"", apk:"", shots:[],
+      icon:"media", glyph:"assets/projects/glass/proxmedia.png", tint:["#3b8cf5","#a12fc8"], iconImage:"assets/projects/proxmedia.svg", image:"", apk:"", shots:[],
       link:"https://kamolbekmuzaffarov.github.io/ProXmedia/", repo:"https://github.com/KamolbekMuzaffarov/ProXmedia",
       tags:["JavaScript","HTML","CSS","GitHub Pages"], cat:"site" },
 
     { title: { uz:"SV — Django veb ilova", en:"SV — Django web app", ru:"SV — веб-приложение на Django" },
       description: { uz:"Django asosidagi server ilovasi: admin paneli, ma’lumotlar bazasi va media fayllar bilan. O‘z domeni uchun sozlangan.", en:"A server application built on Django, with an admin panel, a database and media files. Configured for its own domain.", ru:"Серверное приложение на Django: админ-панель, база данных и медиафайлы. Настроено под собственный домен." },
-      icon:"server", iconImage:"assets/projects/sv-django.svg", image:"", apk:"", shots:[],
+      icon:"server", glyph:"", tint:["#44b78b","#0c4b33"], iconImage:"assets/projects/sv-django.svg", image:"", apk:"", shots:[],
       link:"", repo:"https://github.com/KamolbekMuzaffarov/SV",
       tags:["Python","Django","SQLite"], cat:"site" }
   ],
@@ -280,9 +280,9 @@ const DEFAULTS = {
      upgradeCatalog(). Egasi admin paneldan biror narsa saqlagach hujjat
      shu raqamni oladi va bundan keyin har doim bulut g'olib bo'ladi.
      Ishlar ro'yxatini qo'lda o'zgartirganda bu raqamni oshiring. */
-  catalogVersion: 2
+  catalogVersion: 3
 };
-const THEMES = ['liquid','sand'];
+const THEMES = ['liquid','sculpt'];
 
 /* Brand icons (simple-icons paths, 24×24 viewBox) */
 const ICONS = {
@@ -324,7 +324,9 @@ const PICONS = {
   server:   '<rect x="3" y="4" width="18" height="6.5" rx="2"/><rect x="3" y="13.5" width="18" height="6.5" rx="2"/><path d="M7 7.25h.01M7 16.75h.01"/>',
   flow:     '<circle cx="4.5" cy="12" r="2"/><circle cx="12" cy="5.5" r="2"/><circle cx="12" cy="18.5" r="2"/><circle cx="19.5" cy="12" r="2"/><path d="M6.2 11 10.3 6.6M6.2 13l4.1 4.4M13.7 6.6 17.8 11M13.7 17.4 17.8 13"/>',
   globe:    '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/>',
-  award:    '<circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-2.5 5 2.5-1.5-7"/>'
+  award:    '<circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-2.5 5 2.5-1.5-7"/>',
+  sparkles: '<path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.13a.5.5 0 0 1 .96 0l1.58 6.13A2 2 0 0 0 15.5 9.94l6.13 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0Z"/><path d="M20 3v4M22 5h-4"/>',
+  gem:      '<path d="M6 3h12l4 6-10 12L2 9Z"/><path d="M2 9h20M11 3 8 9l4 12 4-12-3-6"/>'
 };
 
 /* Loyihada `icon` ko'rsatilmagan bo'lsa — kategoriyaning o'z glifi. */
@@ -368,9 +370,6 @@ let lang = (() => {
   try { const s = localStorage.getItem('cvLang'); if (LANGS.includes(s)) return s; } catch {}
   return '';
 })();
-const hasPersonalLang = () => {
-  try { return LANGS.includes(localStorage.getItem('cvLang')); } catch { return false; }
-};
 
 /* Read a possibly-multilingual value in the active language, falling back to
    Uzbek, then any non-empty language, then ''. Plain strings pass through, so
@@ -392,11 +391,25 @@ const STRINGS = {
   nav_portfolio: { uz:'Ishlarim',  en:'Portfolio',  ru:'Портфолио' },
   nav_fav:       { uz:'Sevimli',   en:'Favorites',  ru:'Избранное' },
   nav_contact:   { uz:'Kontakt',   en:'Contact',    ru:'Контакты' },
+  nav_works:     { uz:'Ishlarim',  en:'Work',       ru:'Работы' },
+  sec_works:     { uz:'Ishlarim',  en:'My work',    ru:'Мои работы' },
+  sec_works_sub: { uz:'Papkani bosing — ichidagi fayllar chiqadi', en:'Click a folder — its files fan out', ru:'Нажмите на папку — файлы раскроются' },
+  folder_projects:{ uz:'Loyihalar', en:'Projects', ru:'Проекты' },
+  folder_certs:  { uz:'Sertifikatlar', en:'Certificates', ru:'Сертификаты' },
+  folder_all_projects:{ uz:'Barcha loyihalar', en:'All projects', ru:'Все проекты' },
+  folder_all_certs:{ uz:'Barcha sertifikatlar', en:'All certificates', ru:'Все сертификаты' },
+  folder_all:    { uz:'Hammasini koʻrish', en:'View all', ru:'Показать все' },
+  folder_open:   { uz:'Ochish: ', en:'Open ', ru:'Открыть: ' },
+  folder_close:  { uz:'Yopish: ', en:'Close ', ru:'Закрыть: ' },
+  n_projects:    { uz:'{n} ta loyiha', en:'{n} projects', ru:'Проектов: {n}' },
+  n_certs:       { uz:'{n} ta · Coursera', en:'{n} · Coursera', ru:'{n} · Coursera' },
 
-  settings_title:{ uz:'Til va koʻrinish', en:'Language & theme', ru:'Язык и тема' },
+  settings_title:{ uz:'Koʻrinish', en:'Appearance', ru:'Внешний вид' },
   lang_label:    { uz:'Til',       en:'Language',   ru:'Язык' },
   theme_liquid:  { uz:'Suyuq shisha', en:'Liquid Glass', ru:'Жидкое стекло' },
-  theme_sand:    { uz:'Uch rang',  en:'Three colors', ru:'Три цвета' },
+  theme_sculpt:  { uz:'Haykal', en:'Sculpture', ru:'Скульптура' },
+  sh_hint:       { uz:'Shaklni silang', en:'Move across the form', ru:'Проведите по форме' },
+  sh_hint_touch: { uz:'Shaklga teging', en:'Touch the form', ru:'Коснитесь формы' },
   download_cv:   { uz:'CV yuklab olish (PDF) ↓', en:'Download CV (PDF) ↓', ru:'Скачать CV (PDF) ↓' },
 
   hand_title:    { uz:'Qoʻl bilan boshqaruv', en:'Hand control', ru:'Управление рукой' },
@@ -560,6 +573,10 @@ function upgradeCatalog(d, incoming){
     if (img && !p.image) p.image = img;      // egasi yuklagan rasm saqlanadi
     return p;
   });
+  // v3: yangi asosiy rasm. Bulutdagi eski avatar shu bir marta almashtiriladi;
+  // egasi keyin admin'dan boshqasini yuklasa — o'shanisi qoladi.
+  if (d.profile) d.profile.avatar = DEFAULTS.profile.avatar;
+  if (!THEMES.includes(d.theme)) d.theme = 'liquid';
   d.catalogVersion = DEFAULTS.catalogVersion;
   return d;
 }
@@ -578,8 +595,9 @@ let data = (() => {
   return normalizeML(upgradeCatalog(d, incoming));
 })();
 
-/* Til: shaxsiy tanlov yo'q bo'lsa — egasi chop etgan standart (data.lang). */
-if (!lang) lang = LANGS.includes(data.lang) ? data.lang : 'uz';
+/* Til: standart har doim o'zbekcha. Faqat tashrifchining o'z tanlovi
+   (cvLang) uni o'zgartiradi — bulutdagi data.lang endi ta'sir qilmaydi. */
+if (!lang) lang = 'uz';
 
 let saveTimer = null, cloudTimer = null;
 function save(){
@@ -656,13 +674,19 @@ function renderBindings(){
   const bimg = $('#brandImg');
   if (bimg){
     if (!bimg.dataset.def) bimg.dataset.def = bimg.getAttribute('src');   // standart nusxa
-    const target = tidyUrl(b.logo) || bimg.dataset.def;
+    const target = localBrand(b.logo) || bimg.dataset.def;
     if (bimg.getAttribute('src') !== target) bimg.src = target;
   }
-  if (tidyUrl(b.favicon)){
+  if (tidyUrl(b.favicon) && !localBrand(b.favicon)){
     $$('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(l => {
       if (l.href !== tidyUrl(b.favicon)) l.href = tidyUrl(b.favicon);
     });
+  }
+  // Ism ikkinchi hero'da ikki qatorda: ism + kursiv familiya.
+  const sh = $('#shName');
+  if (sh){
+    const [first, ...rest] = String(data.profile.name || '').trim().split(/\s+/);
+    sh.innerHTML = `<span class="sh-line">${esc(first || '')}</span><span class="sh-line sh-accent">${esc(rest.join(' '))}</span>`;
   }
   const photo = $('.hero__photo');
   if (photo){
@@ -672,9 +696,22 @@ function renderBindings(){
   const img = $('#avatarImg');
   if (img){
     const src = data.profile.avatar || DEFAULTS.profile.avatar;
+    // srcset faqat standart rasm uchun; boshqa rasm yuklangan bo'lsa olib
+    // tashlanadi, aks holda brauzer src'ni e'tiborsiz qoldiradi.
+    if (src !== DEFAULTS.profile.avatar) img.removeAttribute('srcset');
     if (img.getAttribute('src') !== src) img.src = src;
     img.alt = data.profile.name;
   }
+}
+
+/* Bulutdagi logo — 1254px, 740 KB PNG. Aynan shu fayl bo'lsa, uning 9 KB
+   lik nusxasi ishlatiladi: 34px belgi uchun 740 KB yuklash shart emas. */
+const BRAND_LOCAL = [['c9b68212-d0ea-407f-bc4b-50d434b35f3e', 'assets/logo-k.webp']];
+function localBrand(url){
+  const u = tidyUrl(url);
+  if (!u) return '';
+  const hit = BRAND_LOCAL.find(([k]) => u.includes(k));
+  return hit ? hit[1] : u;
 }
 
 function renderStats(){
@@ -792,14 +829,9 @@ function initEducation(){
    tashkilot, sana va rasmiy tekshirish havolasi. Tekshirish havolasi
    eng muhimi — u sertifikatni haqiqiy qiladi. */
 function renderCertificates(){
-  const w = $('#certsWrap'), sec = $('#certs');
-  if (!w || !sec) return;
+  const w = $('#certsWrap');
+  if (!w) return;
   const list = (data.certificates || []).filter(c => c && c.file);
-  const navLink = $('.nav__links a[data-section="certs"]')?.parentElement;
-  const mobLink = $('#mobileMenu a[href="#certs"]');
-  sec.hidden = !list.length;
-  if (navLink) navLink.hidden = !list.length;
-  if (mobLink) mobLink.hidden = !list.length;
   if (!list.length){ w.innerHTML = ''; return; }
 
   const kindT = { pro:'cert_pro', course:'cert_course', project:'cert_project' };
@@ -840,6 +872,41 @@ function renderCertificates(){
   }).join('');
 }
 
+/* --------------------------------------------------- LIQUID-GLASS ICON
+   Har bir loyiha ikonkasi — o'z rangidagi tiniq shisha plitka. Ichida
+   loyihaning haqiqiy logosidan kesib olingan oq shisha belgi (glyph PNG),
+   u bo'lmasa — chiziqli glif. Plitka o'zi CSS: rang aralashmasi, ichki
+   yorug'lik, chekka va soya; hech qanday og'ir rasm yo'q. */
+const pickGlyph = k => (Object.prototype.hasOwnProperty.call(PICONS, k) ? PICONS[k] : '');
+function projectTint(p){
+  const t = Array.isArray(p?.tint) ? p.tint.filter(HEX_OK) : [];
+  return t.length ? [t[0], t[1] || t[0]] : ['#5b8cff', '#7a5cff'];
+}
+function tintVars(p){
+  const [a, b] = projectTint(p);
+  return `--t1:${a};--t2:${b}`;
+}
+function glassTile(p, extra = ''){
+  const title = L(p.title);
+  const glyphImg = String(p.glyph || '').trim();
+  const pic = String(p.iconImage || p.image || '').trim();
+  const glyph = pickGlyph(p.icon) || pickGlyph(CAT_ICON[p.cat] || 'globe') || pickGlyph('globe');
+  let inner;
+  if (glyphImg){
+    inner = `<img class="gtile__img" src="${esc(glyphImg)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">`;
+  } else if (Array.isArray(p.tint) && p.tint.length && glyph){
+    inner = `<svg class="gtile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${glyph}</svg>`;
+  } else if (pic){
+    // Egasi admin'dan qo'shgan, rangi yo'q loyiha — o'z rasmi plitka ichida.
+    inner = `<img class="gtile__pic" src="${esc(pic)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">`;
+  } else if (glyph){
+    inner = `<svg class="gtile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${glyph}</svg>`;
+  } else {
+    inner = `<span class="gtile__letter">${esc((title || 'P').charAt(0).toUpperCase())}</span>`;
+  }
+  return `<span class="gtile ${extra}" style="${tintVars(p)}" aria-hidden="true">${inner}</span>`;
+}
+
 let portfolioFilter = 'all';
 function renderPortfolio(){
   const chips = $('#portfolioCats');
@@ -859,9 +926,6 @@ function renderPortfolio(){
   const apkT = { uz:"APK yuklab olish ↓", en:'Download APK ↓', ru:'Скачать APK ↓' };
   const shotT= { uz:"Skrinshotlar", en:'Screenshots', ru:'Скриншоты' };
   const shown = data.portfolio.filter(p => portfolioFilter === 'all' || (p.cat||'other') === portfolioFilter);
-  // Faqat PICONS ning O'Z kaliti qabul qilinadi: "constructor" kabi qiymat
-  // Object.prototype dan funksiya qaytarib, HTML ga quyilib ketardi.
-  const pick = k => (Object.prototype.hasOwnProperty.call(PICONS, k) ? PICONS[k] : '');
 
   w.innerHTML = shown.map(p => {
     // DIQQAT: filtrlangan ro'yxatning emas, UMUMIY ro'yxatning indeksi —
@@ -871,24 +935,12 @@ function renderPortfolio(){
     const title = L(p.title);
     // Rasm yo'llari tidyUrl'dan O'TKAZILMAYDI — u "assets/..." ni
     // "https://assets/..." ga aylantirib rasmni yo'q qiladi.
-    const pic = String(p.iconImage || p.image || '').trim();
-    const glyph = pick(p.icon) || pick(CAT_ICON[p.cat] || 'globe') || pick('globe');
     const shots = (p.shots || []).map(s => String(s||'').trim()).filter(Boolean);
     const apk = String(p.apk || '').trim();
 
-    // Bitta shisha plitka. Glif doim ichida turadi; rasm uning ustiga
-    // qo'yiladi va yuklanmasa onerror olib tashlaydi — plitka bo'sh qolmaydi.
-    const tile = `<span class="pitem__tile">
-        ${glyph ? `<svg class="pitem__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${glyph}</svg>`
-                : `<span class="pitem__letter">${esc((title||'P').charAt(0).toUpperCase())}</span>`}
-        ${pic ? `<img class="pitem__img" src="${esc(pic)}" alt="" loading="lazy" decoding="async"
-             onload="this.closest('.pitem__tile')?.classList.add('has-img')"
-             onerror="this.remove()">` : ''}
-      </span>`;
-
     return `
-    <article class="pitem" data-rv>
-      <div class="pitem__top">${tile}</div>
+    <article class="pitem" data-rv data-pi="${pi}" style="${tintVars(p)}">
+      <div class="pitem__top">${glassTile(p)}</div>
       <div class="pitem__b">
         <h3>${esc(title)}</h3>
         <p>${esc(L(p.description))}</p>
@@ -908,6 +960,7 @@ function renderPortfolio(){
 }
 
 function renderFavorites(){
+  if (!$('#favorites')) return;      // bo'lim saytdan olib tashlangan
   const list = (data.favorites||[]).filter(f => L(f.title) && tidyUrl(f.url));
   const w = $('#favoritesWrap');
   const sec = $('#favorites');
@@ -977,16 +1030,57 @@ function initPlaylist(){
   audio?.addEventListener('pause', () => renderPlaylist());
 }
 
+/* Pastdagi ijtimoiy tarmoqlar — macOS Dock kabi: kursor yaqinlashgan ikonka
+   kattalashadi, qo'shnilari ham biroz. Har biri o'z brend rangidagi
+   tiniq shisha. */
+const SOCIAL_TINT = {
+  telegram:['#3fb8f0','#1679c9'], instagram:['#fdc35a','#e1306c'], youtube:['#ff5a5a','#c40000'],
+  x:['#55595f','#0b0b0c'], tiktok:['#25f4ee','#fe2c55'], linkedin:['#3b9be8','#0a5aa8'],
+  github:['#6e7681','#161b22'], channel:['#36d1c4','#0e7490']
+};
 function renderSocial(){
   const w = $('#socialWrap');
   w.innerHTML = Object.keys(SOCIAL_META).map(k => {
     const url = tidyUrl(data.social?.[k]);
     if (!url) return '';
-    // Robot — tik figura, brend kvadratlari kabi to'lmaydi; ramkani to'ldirishi
-    // uchun kattaroq chiziladi (CSS .soc--robot).
-    return `<a class="soc${k==='channel'?' soc--robot':''}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${SOCIAL_META[k].label}" title="${SOCIAL_META[k].label}">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONS[k]}"/></svg></a>`;
+    const [a, b] = SOCIAL_TINT[k] || ['#5b8cff','#3b5bdb'];
+    return `<a class="dock__i${k==='channel'?' dock__i--robot':''}" href="${esc(url)}" target="_blank" rel="noopener"
+       aria-label="${SOCIAL_META[k].label}" title="${SOCIAL_META[k].label}" style="--t1:${a};--t2:${b}">
+      <span class="dock__g"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONS[k]}"/></svg></span></a>`;
   }).join('');
+}
+
+function initDock(){
+  const dock = $('#socialWrap');
+  if (!dock || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const BASE = matchMedia('(max-width:420px)').matches ? 42 : 48, MAG = 72, DIST = 150;
+  let mouseX = Infinity, raf = 0;
+  const state = new Map();                    // el → { size, vel }
+  const step = () => {
+    raf = 0;
+    let moving = false;
+    for (const el of dock.children){
+      const st = state.get(el) || { size: BASE, vel: 0 };
+      const r = el.getBoundingClientRect();
+      const d = mouseX - (r.left + r.width / 2);
+      const t = Math.abs(d) < DIST ? (Math.cos((d / DIST) * Math.PI) + 1) / 2 : 0;
+      const target = BASE + (MAG - BASE) * t;
+      // Spring (stiffness 150, damping 12, mass .1 — the original's feel),
+      // integrated in 4 ms sub-steps: one 16 ms Euler step is unstable here.
+      for (let k = 0; k < 4; k++){
+        const acc = 1500 * (target - st.size) - 120 * st.vel;     // px/s²
+        st.vel += acc * 0.004; st.size += st.vel * 0.004;
+      }
+      if (Math.abs(target - st.size) > .1 || Math.abs(st.vel) > .5) moving = true;
+      else { st.size = target; st.vel = 0; }
+      state.set(el, st);
+      el.style.setProperty('--sz', st.size.toFixed(2) + 'px');
+    }
+    if (moving) raf = requestAnimationFrame(step);
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(step); };
+  dock.addEventListener('pointermove', e => { if (e.pointerType === 'touch') return; mouseX = e.clientX; kick(); });
+  dock.addEventListener('pointerleave', () => { mouseX = Infinity; kick(); });
 }
 
 function renderContact(){
@@ -1029,17 +1123,115 @@ function renderContact(){
    ========================================================================== */
 const LIQUID_FALLBACK = { accent:'#ccff33', accent2:'#9de84a' };
 
+/* Tema — tilga o'xshab tashrifchining shaxsiy tanlovi (cvTheme). Tanlamagan
+   bo'lsa egasi chop etgan tema qo'llanadi. */
+function preferredTheme(){
+  try { const t = localStorage.getItem('cvTheme'); if (THEMES.includes(t)) return t; } catch {}
+  return data.theme;
+}
 function applyTheme(t){
   if (!THEMES.includes(t)) t = 'liquid';
+  const prev = document.body.dataset.theme;
   data.theme = t;
   document.body.dataset.theme = t;
   $$('.theme').forEach(b => b.classList.toggle('active', b.dataset.themeSet === t));
+  const meta = $('meta[name="theme-color"]');
   // Each theme rebuilds its palette from scratch on entry, so switching back
   // and forth can never leak one theme's inks into the other.
-  if (t === 'sand') applySandColors();
-  else resolveAccent();
-  const meta = $('meta[name="theme-color"]');
-  if (meta && t !== 'sand') meta.content = '#08080a';
+  if (t === 'sculpt'){
+    clearAccent();
+    if (meta) meta.content = '#EBE9E5';
+    loadSculptFonts();
+    stopBgVideo();
+    mountSculpture();
+  } else {
+    unmountSculpture();
+    if (meta) meta.content = '#0b0f14';
+    resolveAccent();
+    if (prev === 'sculpt') applyBgVideo();
+  }
+  if (prev && prev !== t){ renderWorks(); mountSignature(); }
+}
+
+/* ---------------------------------------------------- LAZY MODULES
+   Og'ir qismlar (WebGL haykal, shisha logo) faqat kerak bo'lganda yuklanadi.
+   Sahifa ochilishini hech qachon kutdirmaydi. */
+const ASSET_V = '20261031d';
+const OFFLINE = location.protocol === 'file:';
+const scriptCache = Object.create(null);
+function loadScript(src){
+  return scriptCache[src] ||= new Promise((res, rej) => {
+    const el = document.createElement('script');
+    el.src = src; el.async = true;
+    el.onload = res;
+    el.onerror = () => { delete scriptCache[src]; rej(new Error('load ' + src)); };
+    document.head.appendChild(el);
+  });
+}
+/* Diskdan (file://) ochilganda Chrome rasmlarni WebGL'ga bermaydi —
+   o'shanda rasmlar data: URL ko'rinishida alohida fayldan olinadi. */
+const offlineData = () => OFFLINE
+  ? loadScript('assets/offline-data.js?v=' + ASSET_V).then(() => window.__OFFLINE || {}).catch(() => ({}))
+  : Promise.resolve({});
+
+function loadSculptFonts(){
+  if ($('#sculptFonts')) return;
+  const l = document.createElement('link');
+  l.id = 'sculptFonts'; l.rel = 'stylesheet';
+  l.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap';
+  document.head.appendChild(l);
+}
+
+let sculpt = null, sculptToken = 0;
+async function mountSculpture(){
+  const root = $('#shero');
+  if (!root || sculpt) return;
+  const token = ++sculptToken;
+  try {
+    const [, off] = await Promise.all([loadScript('sculpture.js?v=' + ASSET_V), offlineData()]);
+    if (token !== sculptToken || data.theme !== 'sculpt' || !window.SculptureHero) return;
+    sculpt = window.SculptureHero.mount(root, {
+      src: off.sculpt || 'assets/sculpture/light.webp',
+      mobileSrc: off.sculptMobile || 'assets/sculpture/m-light.webp',
+      background: '#EBE9E5', imageBackground: '#EAE9E7',
+      nav: $('#nav')
+    });
+    const hint = $('.sh-hint', root);
+    if (hint && matchMedia('(hover: none), (pointer: coarse)').matches) hint.dataset.i18n = 'sh_hint_touch', hint.textContent = T('sh_hint_touch');
+  } catch (e){ console.warn('sculpture', e); }
+}
+function unmountSculpture(){
+  sculptToken++;
+  sculpt?.destroy(); sculpt = null;
+}
+
+/* Footer: K belgisi shisha plitka ichidan "chiqib keladi". Dvigatel faqat
+   plitka ko'rinishga yaqinlashganda yuklanadi. */
+let sig = null, sigLook = '', sigWait = null;
+function mountSignature(){
+  const tile = $('#sigTile');
+  if (!tile) return;
+  const look = data.theme === 'sculpt' ? 'light' : 'dark';
+  const go = async () => {
+    try {
+      const [, off] = await Promise.all([loadScript('glass-reveal.js?v=' + ASSET_V), offlineData()]);
+      if (!window.GlassReveal || (sig && sigLook === look)) return;
+      sig?.destroy();
+      const logo = off.logo || 'assets/logo-k-512.webp';
+      sig = window.GlassReveal.mount(tile, look === 'dark'
+        ? { logo, look: 'dark', originalColors: true, background: '#0c1117', plateColor: '#0a0e14', loop: true, hold: 3.5, label: 'MKM777', fallback: 'assets/logo-k.webp' }
+        : { logo, look: 'light', originalColors: true, background: '#EBE9E5', loop: true, hold: 3.5, label: 'MKM777', fallback: 'assets/logo-k.webp' });
+      sigLook = look;
+    } catch (e){ console.warn('glass reveal', e); }
+  };
+  if (sig){ if (sigLook !== look) go(); return; }
+  if (sigWait) return;
+  if (!('IntersectionObserver' in window)){ go(); return; }
+  sigWait = new IntersectionObserver(es => {
+    if (!es.some(e => e.isIntersecting)) return;
+    sigWait.disconnect(); sigWait = null; go();
+  }, { rootMargin: '500px 0px' });
+  sigWait.observe(tile);
 }
 
 /* ---------------------------------------------------------- colour utils */
@@ -1121,9 +1313,15 @@ const currentVideoEntry = () => {
   if (tidyUrl(cfg.src)) return { url: tidyUrl(cfg.src) };       // custom URL, no stored ink
   return (data.videos || []).find(v => v.id === cfg.presetId) || null;
 };
+/* Tayyor fon videolarining saytning o'zida turgan, siqilgan nusxasi:
+   archive.org dagi 21 MB / 1080p fayl o'rniga 0,6 MB / 720p, 12 soniyalik
+   choksiz halqa. Sahifa shu nusxani o'qiydi; rang (accent) baribir
+   videoning o'z yozuvidan olinadi. */
+const LOCAL_VIDEO = { forest: { url:'assets/bg/forest.mp4', poster:'assets/bg/forest.jpg' } };
 const currentVideoSrc = () => {
   const cfg = data.bgVideo || {};
-  return tidyUrl(cfg.src) || currentVideoEntry()?.url || '';
+  if (tidyUrl(cfg.src)) return tidyUrl(cfg.src);
+  return LOCAL_VIDEO[cfg.presetId]?.url || currentVideoEntry()?.url || '';
 };
 
 /* Every CSS variable a video palette may touch. Cleared before each apply so
@@ -1322,12 +1520,39 @@ function probeAccent(src){
 
 /* The <video> has preload="none" and no src until it's switched on, so a
    visitor who never enables it downloads exactly 0 bytes of video. */
+function stopBgVideo(){
+  const v = $('#bgVideo'), bg = $('.bg');
+  if (!v || !bg) return;
+  v.classList.remove('on'); bg.classList.remove('video-on');
+  v.pause();
+}
+
+/* Video sahifa to'liq yuklangandan KEYIN yuklanadi: avval matn, rasm va
+   poster chiqadi, video esa ustidan sekin paydo bo'ladi. Ma'lumot tejash
+   rejimida va "kamroq harakat" sozlamasida umuman yuklanmaydi — poster qoladi. */
+let bgVideoArmed = false;
 function applyBgVideo(){
   const v = $('#bgVideo'), bg = $('.bg');
   if (!v || !bg) return;
+  if (data.theme === 'sculpt'){ stopBgVideo(); return; }
   const cfg = data.bgVideo || {};
   bg.style.setProperty('--bgv-op',   (Number(cfg.opacity ?? 70))/100);
   bg.style.setProperty('--bgv-tint', (Number(cfg.tint ?? 55))/100);
+
+  const local = !tidyUrl(cfg.src) && LOCAL_VIDEO[cfg.presetId];
+  const poster = local?.poster || (!tidyUrl(cfg.src) && currentVideoEntry()?.thumb) || '';
+  const pEl = $('.bg__poster');
+  if (pEl) pEl.style.backgroundImage = poster ? `url("${poster}")` : '';
+
+  if (!bgVideoArmed && document.readyState !== 'complete'){
+    bgVideoArmed = true;
+    addEventListener('load', () => setTimeout(applyBgVideo, 350), { once:true });
+    return;
+  }
+  bgVideoArmed = true;
+  if (navigator.connection?.saveData || matchMedia('(prefers-reduced-motion: reduce)').matches){
+    resolveAccent(); return;
+  }
 
   const src = currentVideoSrc();
 
@@ -1428,8 +1653,135 @@ function initLightbox(){
 
 function renderAll(){
   renderBindings(); renderStats(); renderSkills(); renderTimeline();
-  renderPortfolio(); renderEducation(); renderCertificates(); renderFavorites(); renderPlaylist(); renderSocial(); renderContact();
+  renderPortfolio(); renderEducation(); renderCertificates(); renderSocial(); renderContact();
+  renderWorks();
   observeReveal();
+}
+
+
+/* =============================================================== WORKS ==
+   Loyihalar va sertifikatlar — har biri bitta liquid-glass papkada.
+   Papka bosilsa fayllar yelpig'ich bo'lib chiqadi; fayl bosilsa — loyiha
+   ro'yxatda ko'rsatiladi yoki sertifikat to'liq ochiladi. "Hammasini
+   ko'rish" papka ostidagi shisha oynada butun ro'yxatni ochadi. */
+const folders = { projects: null, certs: null };
+let fwinKind = '';
+const certList = () => (data.certificates || []).filter(c => c && c.file);
+const nT = (key, n) => T(key).replace('{n}', n);
+
+function folderLook(kind){
+  const sculpt = data.theme === 'sculpt';
+  if (kind === 'projects'){
+    return { tone: sculpt ? 'light' : 'dark', seed: 3,
+      art: sculpt ? 'aurora' : { style:'marble', colors:['#04070b','#0d2033','#2a5b80','#091119','#3f98d0','#a6d8f2','#eaf6fc'],
+                                 scale:.62, warp:3.1, angle:-.5, gloss:.55, veins:.45 } };
+  }
+  return { tone: sculpt ? 'light' : 'dark', seed: 11, art: sculpt ? 'glacier' : 'dusk' };
+}
+
+function projectFiles(){
+  const list = data.portfolio || [];
+  // Oldinda — haqiqiy logosi bor loyihalar; eng oxirgisi papkada eng oldinda turadi.
+  const pick = [...list].sort((a, b) => (b.glyph ? 1 : 0) - (a.glyph ? 1 : 0)).slice(0, 4).reverse();
+  return pick.map(p => ({
+    name: L(p.title).split(' — ')[0],
+    meta: T('cat_' + (p.cat || 'other')),
+    html: `<span class="psheet" style="${tintVars(p)}">${glassTile(p, 'gtile--sheet')}</span>`,
+    cls: 'gf-sheet--proj',
+    idx: list.indexOf(p)
+  }));
+}
+function certFiles(){
+  const list = certList();
+  return list.slice(0, 4).reverse().map(c => ({
+    name: c.title, meta: c.issuer || '',
+    image: `assets/certs/thumb/${c.file}.jpg`,
+    idx: list.indexOf(c)
+  }));
+}
+
+function openCert(i){
+  const list = certList();
+  if (!list.length) return;
+  eduDocs = list.map(c => ({ src: `assets/certs/${c.file}.jpg` }));
+  showDoc(i);
+  $('#docLightbox')?.classList.add('open');
+}
+
+function openWin(kind, focusIdx){
+  const win = $('#fwin');
+  if (!win) return;
+  fwinKind = kind;
+  win.hidden = false;
+  $$('[data-pane-win]', win).forEach(p => { p.hidden = p.dataset.paneWin !== kind; });
+  paintWinHead();
+  $$('.folder-all').forEach(b => b.classList.toggle('on', b.dataset.win === kind));
+  observeReveal(); showEverything();
+  requestAnimationFrame(() => {
+    let target = win;
+    if (kind === 'projects' && focusIdx != null){
+      if (portfolioFilter !== 'all'){ portfolioFilter = 'all'; renderPortfolio(); showEverything(); }
+      const card = $(`#portfolioWrap [data-pi="${focusIdx}"]`);
+      if (card){
+        target = card;
+        card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+      }
+    }
+    target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: target === win ? 'start' : 'center' });
+  });
+}
+function closeWin(){
+  const win = $('#fwin');
+  if (!win || win.hidden) return;
+  win.hidden = true; fwinKind = '';
+  $$('.folder-all').forEach(b => b.classList.remove('on'));
+}
+function paintWinHead(){
+  if (!fwinKind) return;
+  const isP = fwinKind === 'projects';
+  $('#fwinTitle').textContent = T(isP ? 'folder_projects' : 'folder_certs');
+  $('#fwinMeta').textContent = isP ? nT('n_projects', (data.portfolio || []).length) : nT('n_certs', certList().length);
+}
+
+function renderWorks(){
+  const nP = (data.portfolio || []).length, nC = certList().length;
+  const cP = $('#countProjects'), cC = $('#countCerts');
+  if (cP) cP.textContent = nP;
+  if (cC) cC.textContent = nC;
+  paintWinHead();
+  const GF = window.GlassFolder;
+  const specs = {
+    projects: { slot: '#folderProjects', label: T('folder_projects'), meta: nT('n_projects', nP), files: projectFiles(),
+                onSelect: (i, f) => openWin('projects', f.idx), onMore: () => openWin('projects') },
+    certs:    { slot: '#folderCerts', label: T('folder_certs'), meta: nT('n_certs', nC), files: certFiles(),
+                onSelect: (i, f) => openCert(f.idx), onMore: () => openWin('certs') }
+  };
+  for (const kind of ['projects', 'certs']){
+    const sp = specs[kind], slot = $(sp.slot);
+    if (!slot) continue;
+    const cell = slot.closest('.folder-cell');
+    if (cell) cell.hidden = !sp.files.length;
+    if (!GF){ slot.innerHTML = ''; continue; }            // folders.js yuklanmadi — ro'yxat tugmasi qoladi
+    const look = folderLook(kind);
+    const opts = { label: sp.label, meta: sp.meta, files: sp.files, moreLabel: T('folder_all'),
+                   openLabel: T('folder_open'), closeLabel: T('folder_close'), ...look };
+    if (!folders[kind]){
+      slot.innerHTML = '';
+      folders[kind] = GF.create(slot, { ...opts, onSelect: sp.onSelect, onMore: sp.onMore,
+        labelPlacement: kind === 'projects' ? 'bottom-left' : 'top-left',
+        appearDelay: kind === 'projects' ? 0 : 160, maxWidth: 380 });
+    } else folders[kind].update(opts);
+  }
+}
+
+function initWorks(){
+  $$('.folder-all').forEach(b => b.addEventListener('click', () => {
+    if (fwinKind === b.dataset.win) closeWin(); else openWin(b.dataset.win);
+  }));
+  $('#fwinClose')?.addEventListener('click', () => {
+    const kind = fwinKind; closeWin();
+    $(`.folder-all[data-win="${kind}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  });
 }
 
 /* --------------------------------------------------------- SCROLL REVEAL */
@@ -1479,28 +1831,31 @@ addEventListener('pageshow', e => { if (e.persisted) showEverything(); });
 
 /* ------------------------------------------------------------ ACTIVE NAV */
 function initNav(){
-  const links = $$('.nav__links a[data-section]');
-  const secs  = links.map(a => $('#'+a.dataset.section)).filter(Boolean);
-  let raf = null;
+  /* Menyuda 5 ta band; bir nechta bo'lim bitta bandga tegishli
+     (Haqimda = haqimda + ko'nikmalar, Tajriba = tajriba + ta'lim). Har bir
+     bo'limda data-nav — u qaysi bandni yoqishini aytadi. */
+  const nav = $('#nav');
+  const links = $$('.nav__links a[data-nav]');
+  const secs = $$('[data-nav]:not(a)');
+  let raf = null, cur = '', scrolled = null;
   const update = () => {
     raf = null;
     const y = innerHeight * 0.34;
-    let cur = secs[0]?.id;
+    let next = 'hero';
     for (const s of secs){
-      // A hidden section reports top:0, which would always win. Skip those.
-      if (s.hidden || !s.offsetParent) continue;
-      if (s.getBoundingClientRect().top <= y) cur = s.id;
+      if (s.hidden) continue;
+      if (s.getBoundingClientRect().top <= y) next = s.dataset.nav;
     }
-    links.forEach(a => a.classList.toggle('active', a.dataset.section === cur));
+    if (next !== cur){
+      cur = next;
+      links.forEach(a => a.classList.toggle('active', a.dataset.nav === cur));
+    }
+    // Faqat holat o'zgarganda klass yoziladi — har kadrda emas.
+    const sc = scrollY > 24;
+    if (sc !== scrolled){ scrolled = sc; nav?.classList.toggle('nav--scrolled', sc); }
   };
-  // Tag the body while scrolling so CSS can drop blur mid-scroll.
-  let stop = null;
-  addEventListener('scroll', () => {
-    raf ||= requestAnimationFrame(update);
-    if (!document.body.classList.contains('scrolling')) document.body.classList.add('scrolling');
-    clearTimeout(stop);
-    stop = setTimeout(() => document.body.classList.remove('scrolling'), 140);
-  }, { passive:true });
+  addEventListener('scroll', () => { raf ||= requestAnimationFrame(update); }, { passive:true });
+  addEventListener('resize', () => { raf ||= requestAnimationFrame(update); }, { passive:true });
   update();
 
   // Mobile menu
@@ -2596,13 +2951,16 @@ function setLang(next){
 /* ------------------------------------------------------------ SETTINGS */
 function initSettings(){
   const panel = $('#settingsPanel'), btn = $('#settingsBtn');
-  btn.onclick = e => { e.stopPropagation(); panel.classList.toggle('open'); };
-  $('#settingsClose').onclick = () => panel.classList.remove('open');
+  const setOpen = on => { panel.classList.toggle('open', on); btn.setAttribute('aria-expanded', String(on)); };
+  btn.onclick = e => { e.stopPropagation(); setOpen(!panel.classList.contains('open')); };
+  $('#settingsClose').onclick = () => setOpen(false);
   document.addEventListener('click', e => {
-    if (!panel.contains(e.target) && !btn.contains(e.target)) panel.classList.remove('open');
+    if (!panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
   });
+  addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
   $$('.theme').forEach(b => b.onclick = () => {
     applyTheme(b.dataset.themeSet);
+    try { localStorage.setItem('cvTheme', data.theme); } catch {}
     save();
     toast('Tema: ' + b.querySelector('b').textContent);
   });
@@ -2663,15 +3021,7 @@ async function initCloud(){
     const remoteAt = Date.parse(C.lastUpdatedAt || '') || 0;
     if (localEdits && C.status().signedIn && localAt >= remoteAt - 3000) return;
     data = normalizeML(upgradeCatalog(merge(DEFAULTS, remote), remote));
-    // Egasi chop etgan standart til — shaxsiy tanlovi yo'q tashrifchiga
-    // qo'llanadi (cvLang yozilmaydi: egasi keyin standartni o'zgartirsa,
-    // bu tashrifchiga ham yetib boradi).
-    if (!hasPersonalLang() && LANGS.includes(data.lang) && data.lang !== lang){
-      lang = data.lang;
-      $$('.lang__b').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-      applyStrings();
-    }
-    applyTheme(data.theme); renderAll(); applyBgVideo(); window.__applyMusic?.();
+    applyTheme(preferredTheme()); renderAll(); applyBgVideo(); window.__applyMusic?.();
     admin.renderSync?.();
   } catch(e){ console.warn('cloud:', e); admin.renderSync?.(); }
 }
@@ -2683,11 +3033,18 @@ function init(){
   // the active pill is lit.
   $$('.lang__b').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
   applyStrings();
-  applyTheme(data.theme);
+  applyTheme(preferredTheme());
   renderAll();
   applyBgVideo();
   initNav(); initMusic(); initForm(); initAdmin(); initStealth(); initSettings();
-  initEducation(); initPlaylist(); initCrop();
+  initEducation(); initPlaylist(); initCrop(); initWorks(); initDock();
+  mountSignature();
+  // Yashirin tabda video aylanmaydi — batareya va CPU tejaladi.
+  document.addEventListener('visibilitychange', () => {
+    const v = $('#bgVideo'); if (!v) return;
+    if (document.hidden) v.pause();
+    else if (v.classList.contains('on') && data.theme !== 'sculpt') v.play().catch(()=>{});
+  });
   $('#portfolioCats')?.addEventListener('click', e => {
     const c = e.target.closest('[data-cat]'); if (!c) return;
     portfolioFilter = c.dataset.cat;
@@ -2710,11 +3067,7 @@ function init(){
      oyna (#docLightbox), o'ng/chap tugmalar bilan varaqlanadi. */
   $('#certsWrap')?.addEventListener('click', e => {
     const b = e.target.closest('[data-cert]'); if (!b) return;
-    const list = (data.certificates || []).filter(c => c && c.file);
-    if (!list.length) return;
-    eduDocs = list.map(c => ({ src: `assets/certs/${c.file}.jpg` }));
-    showDoc(+b.dataset.cert);
-    $('#docLightbox')?.classList.add('open');
+    openCert(+b.dataset.cert);
   });
 
   $('#downloadCv').onclick = downloadCV;

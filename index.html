@@ -8,7 +8,7 @@
 <meta name="keywords" content="Kamolbek, Kamolbek Muzaffarov, MKM777, Muzaffarov, dasturchi, full stack dasturchi, full-stack developer, AI muhandis, sun'iy intellekt, ixtirochi, Telegram bot, veb dasturchi, Toshkent dasturchi, O'zbekiston" />
 <meta name="author" content="Kamolbek Muzaffarov" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#08080a" />
+<meta name="theme-color" content="#0b0f14" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="profile" />
@@ -118,57 +118,87 @@
 
 <!-- Favicons. SVG first (crisp at any size, adapts to light/dark tab bars);
      PNG fallbacks for Safari/iOS which ignore SVG icons. -->
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-k-64.png" />
+<link rel="apple-touch-icon" href="assets/apple-touch-k.png" />
 
+<!-- Critical CSS. Paints the background, the app bar and a skeleton of the
+     page before style.css, fonts or any script arrive — so a slow network
+     shows the shape of the site, never a blank screen. -->
+<style>
+html{background:#0b0f14}
+body{margin:0;background:#0b0f14;color:#f4f6f8;font-family:"Space Grotesk",system-ui,-apple-system,sans-serif;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#0b0f14 url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAASACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDl7WT5sEtn1HatvTkinuQ092No/hHBGe+aqW+iXW3Plsue5rUsdKMRImjQ/wC1WsmjKKZ0sUDpAoWUsB0INSwG4Ri0shKY4XFZdvD9gIa3nbHUoeRV+C9MzbWQ59R0rJmgi1DKBxwOtFFAMaqgqcgdavWoAhGAKKKbBH//2Q==") center/cover no-repeat}
+.bg__poster{position:absolute;inset:0;background:url("assets/bg/forest.jpg") center/cover no-repeat}
+.bg__tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,16,.35),rgba(6,10,16,.62))}
+html:not(.css) .admin,html:not(.css) .msheet,html:not(.css) .edm,html:not(.css) .lbox,html:not(.css) .cropm,
+html:not(.css) .settings__panel,html:not(.css) .hcursor,html:not(.css) .hstatus,html:not(.css) .toast,
+html:not(.css) .fwin,html:not(.css) .shero,html:not(.css) video,html:not(.css) .fab{display:none}
+html:not(.css) .nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);height:52px;width:min(940px,calc(100vw - 24px));border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+html:not(.css) .nav *{display:none}
+html:not(.css) .hero{max-width:1180px;margin:0 auto;padding:150px 24px 60px}
+html:not(.css) .hero__photo,html:not(.css) .hero__cta,html:not(.css) .badge{display:none}
+html:not(.css) .hero__name{font-size:clamp(38px,6.2vw,74px);line-height:1.02;margin:0}
+html:not(.css) .section{max-width:1180px;margin:0 auto;padding:96px 24px 0}
+.skel{display:block;border-radius:16px;background:linear-gradient(100deg,rgba(255,255,255,.06) 30%,rgba(255,255,255,.13) 50%,rgba(255,255,255,.06) 70%) 0 0/300% 100%;animation:skel 1.4s linear infinite;min-height:18px}
+@keyframes skel{to{background-position:-300% 0}}
+@media(prefers-reduced-motion:reduce){.skel{animation:none}}
+</style>
+
+<link rel="preload" as="image" href="assets/bg/forest.jpg" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260918c" />
+<!-- Fonts and the main stylesheet never block the first paint. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Amiri:wght@700&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" href="style.css?v=20261031d" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('css')" />
+<noscript><link rel="stylesheet" href="style.css?v=20261031d" /><style>html .nav *{display:revert}</style></noscript>
 </head>
 <body data-theme="liquid">
+<script>/* the visitor's own theme, before first paint — no flash, no video download */
+try{var t=localStorage.getItem('cvTheme');if(t==='sculpt')document.body.dataset.theme=t}catch(e){}</script>
 
-<!-- Background: gradient blobs always; video layer only if switched on in admin -->
+<!-- Background. Paint order on a slow network: tiny inline blur (in the CSS
+     above) → 20 KB poster → the 0.6 MB loop, which only starts downloading
+     after the page has loaded. -->
 <div class="bg" aria-hidden="true">
-  <span class="bg__blob bg__blob--1"></span>
-  <span class="bg__blob bg__blob--2"></span>
-  <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <span class="bg__poster"></span>
+  <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true"></video>
   <span class="bg__tint" id="bgTint"></span>
 </div>
 
-<!-- Brand mark, top-left. Inherits currentColor so it stays legible in both
-     themes (white on the dark glass, navy on the paper theme). -->
-<a class="brand" href="#hero" aria-label="Kamolbek Muzaffarov — bosh sahifa">
-  <img class="brand__mk" id="brandImg" src="assets/logo-mk.png?v=20260918c" alt="MK" />
-</a>
-
-<!-- Settings: theme switcher + CV download -->
-<div class="settings" id="settings">
-  <button class="settings__btn" id="settingsBtn" aria-label="Sozlamalar" title="Sozlamalar">
-    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-    </svg>
-  </button>
-  <div class="settings__panel" id="settingsPanel">
-    <div class="settings__head"><h3 data-i18n="settings_title">Til va koʻrinish</h3><button class="settings__x" id="settingsClose" aria-label="Yopish">×</button></div>
-
-    <!-- Language: UZ / EN / RU. Default Uzbek. -->
+<!-- ============ APP BAR ============
+     Brand on the left edge (no frame), five sections, language, settings. -->
+<nav class="nav" id="nav" aria-label="Asosiy menyu">
+  <a class="nav__brand" href="#hero" aria-label="Kamolbek Muzaffarov — bosh sahifa">
+    <img class="nav__logo" id="brandImg" src="assets/logo-k.webp" width="34" height="34" alt="K" decoding="async" />
+  </a>
+  <ul class="nav__links">
+    <li><a href="#hero" data-nav="hero" class="active" data-i18n="nav_home">Bosh</a></li>
+    <li><a href="#about" data-nav="about" data-i18n="nav_about">Haqimda</a></li>
+    <li><a href="#experience" data-nav="experience" data-i18n="nav_exp">Tajriba</a></li>
+    <li><a href="#works" data-nav="works" data-i18n="nav_works">Ishlarim</a></li>
+    <li><a href="#contact" data-nav="contact" data-i18n="nav_contact">Kontakt</a></li>
+  </ul>
+  <div class="nav__end">
     <div class="lang" role="group" aria-label="Til / Language">
-      <button class="lang__b active" data-lang="uz">UZ</button>
-      <button class="lang__b" data-lang="en">EN</button>
-      <button class="lang__b" data-lang="ru">RU</button>
+      <button class="lang__b active" data-lang="uz" aria-label="Oʻzbekcha">UZ</button>
+      <button class="lang__b" data-lang="en" aria-label="English">EN</button>
+      <button class="lang__b" data-lang="ru" aria-label="Русский">RU</button>
     </div>
+    <button class="nav__icon" id="settingsBtn" aria-label="Sozlamalar" title="Sozlamalar" aria-controls="settingsPanel"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+    <button class="nav__icon nav__burger" id="navBurger" aria-label="Menyu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
-    <div class="themes">
-      <button class="theme" data-theme-set="liquid"><span class="theme__p theme__p--liquid"></span><b data-i18n="theme_liquid">Suyuq shisha</b></button>
-      <button class="theme" data-theme-set="sand"><span class="theme__p theme__p--sand"></span><b data-i18n="theme_sand">Uch rang</b></button>
-    </div>
-    <button class="btn btn--ghost btn--full" id="downloadCv2" data-i18n="download_cv">CV yuklab olish (PDF) ↓</button>
+<!-- Settings: theme + CV + hand-control tuning -->
+<div class="settings__panel" id="settingsPanel" role="dialog" aria-label="Sozlamalar">
+  <div class="settings__head"><h3 data-i18n="settings_title">Koʻrinish</h3><button class="settings__x" id="settingsClose" aria-label="Yopish">×</button></div>
+  <div class="themes">
+    <button class="theme" data-theme-set="liquid"><span class="theme__p theme__p--liquid"></span><b data-i18n="theme_liquid">Suyuq shisha</b></button>
+    <button class="theme" data-theme-set="sculpt"><span class="theme__p theme__p--sculpt"></span><b data-i18n="theme_sculpt">Haykal</b></button>
+  </div>
+  <button class="btn btn--ghost btn--full" id="downloadCv2" data-i18n="download_cv">CV yuklab olish (PDF) ↓</button>
 
-    <!-- Hand-control tuning. Lives here so it's reachable before the camera
-         is even switched on, and stays reachable while it's running. -->
-    <div class="hset">
+  <div class="hset">
       <div class="hset__h"><span data-i18n="hand_title">Qoʻl bilan boshqaruv</span><button class="hset__reset" id="handReset" data-i18n="hand_reset">standart</button></div>
       <p class="hset__hint" data-i18n="hand_hint">
         Koʻrsatkich barmogʻingiz — sichqoncha. Bosh barmoqqa tez tekkizsangiz — bosish. Tekkizib turib qoʻlni tepa/pastga — scroll.
@@ -190,44 +220,27 @@
         <input type="range" id="hsScroll" min="5" max="90" step="1" />
       </div>
     </div>
-  </div>
 </div>
-
-<!-- ============ NAV ============ -->
-<nav class="nav" id="nav">
-  <ul class="nav__links">
-    <li><a href="#hero" data-section="hero" class="active" data-i18n="nav_home">Bosh</a></li>
-    <li><a href="#about" data-section="about" data-i18n="nav_about">Haqimda</a></li>
-    <li><a href="#skills" data-section="skills" data-i18n="nav_skills">Koʻnikmalar</a></li>
-    <li><a href="#experience" data-section="experience" data-i18n="nav_exp">Tajriba</a></li>
-    <li><a href="#education" data-section="education" data-i18n="nav_edu">Taʼlim</a></li>
-    <li><a href="#certs" data-section="certs" data-i18n="nav_certs">Sertifikat</a></li>
-    <li><a href="#portfolio" data-section="portfolio" data-i18n="nav_portfolio">Ishlarim</a></li>
-    <li><a href="#favorites" data-section="favorites" data-i18n="nav_fav">Sevimli</a></li>
-    <li><a href="#contact" data-section="contact" data-i18n="nav_contact">Kontakt</a></li>
-  </ul>
-  <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
 
 <!-- Mobile menu -->
 <div class="msheet" id="mobileMenu" aria-hidden="true">
   <div class="msheet__bg" id="mobileMenuBg"></div>
   <div class="msheet__panel">
     <button class="msheet__close" id="mobileMenuClose" aria-label="Yopish">×</button>
+    <a href="#hero" data-i18n="nav_home">Bosh</a>
     <a href="#about" data-i18n="nav_about">Haqimda</a>
-    <a href="#skills" data-i18n="nav_skills">Koʻnikmalar</a>
     <a href="#experience" data-i18n="nav_exp">Tajriba</a>
-    <a href="#education" data-i18n="nav_edu">Taʼlim</a>
-    <a href="#certs" data-i18n="nav_certs">Sertifikat</a>
-    <a href="#portfolio" data-i18n="nav_portfolio">Ishlarim</a>
-    <a href="#favorites" data-i18n="nav_fav">Sevimli</a>
+    <a href="#works" data-i18n="nav_works">Ishlarim</a>
     <a href="#contact" data-i18n="nav_contact">Kontakt</a>
   </div>
 </div>
 
-<!-- ============ HERO ============ -->
-<header class="hero" id="hero">
-  <div class="hero__inner">
+<!-- ============ HERO ============
+     Two faces of one header: the glass hero (theme «Suyuq shisha») and the
+     liquid sculpture hero (theme «Haykal»). Only the active one is shown. -->
+<header class="hero-wrap" id="hero" data-nav="hero">
+  <div class="hero">
+    <div class="hero__inner">
     <div class="hero__text">
       <span class="badge"><i class="dot"></i><span data-bind="ui.hero_badge">Yangi loyihalar uchun ochiq · 2026</span></span>
       <h1 class="hero__name" data-bind="profile.name">Kamolbek Muzaffarov</h1>
@@ -250,78 +263,113 @@
       <!-- Clicking the portrait opens the photo gallery in a new tab. -->
       <a class="hero__disc" id="galleryOpen" href="gallery.html" target="_blank" rel="noopener"
          aria-label="Fotogalereya" title="Fotogalereya">
-        <img id="avatarImg" src="assets/kamolbek-900.jpg" width="900" height="1124"
+        <img id="avatarImg" src="assets/kamolbek-640.jpg"
+             srcset="assets/kamolbek-320.webp 320w, assets/kamolbek-640.webp 640w"
+             sizes="(max-width:880px) 210px, 300px" width="640" height="640"
              alt="Kamolbek Muzaffarov" fetchpriority="high" decoding="async" />
         <span class="hero__shine" aria-hidden="true"></span>
         <span class="hero__photos"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg> <span data-i18n="photos_link">Rasmlarim</span></span>
       </a>
       <figcaption class="hero__motto" dir="rtl" lang="ar" data-bind="profile.motto">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</figcaption>
     </figure>
+    </div>
+  </div>
+
+  <div class="shero" id="shero">
+    <div class="sh-backdrop" aria-hidden="true">kamolbek</div>
+    <div class="sh-stage" aria-hidden="true">
+      <img class="sh-fallback" src="assets/sculpture/light.webp" alt="" draggable="false" decoding="async" loading="lazy" />
+    </div>
+    <div class="sh-hint" aria-hidden="true" data-i18n="sh_hint">Shaklni silang</div>
+    <div class="sh-spacer"></div>
+    <div class="sh-content">
+      <div>
+        <p class="sh-eyebrow"><span data-bind="ui.hero_badge">Yangi loyihalar uchun ochiq · 2026</span></p>
+        <p class="sh-h1" id="shName" aria-hidden="true"><span class="sh-line">Kamolbek</span><span class="sh-line sh-accent">Muzaffarov</span></p>
+      </div>
+      <div class="sh-aside">
+        <p class="sh-role" data-bind="profile.profession">Full-Stack dasturchi va sunʼiy intellekt muhandisi</p>
+        <p class="sh-body" data-bind="profile.slogan"></p>
+        <div class="sh-ctas">
+          <a class="sh-btn" href="#contact"><span data-i18n="hero_contact">Bogʻlanish</span><svg viewBox="0 0 14 14" width="14" height="14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="sh-txt" href="#works"><span data-i18n="nav_works">Ishlarim</span><svg viewBox="0 0 14 14" width="14" height="14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <!-- ============ ABOUT ============ -->
-<section class="section" id="about">
+<section class="section" id="about" data-nav="about">
   <div class="shead"><span class="shead__i">01</span><h2 data-i18n="sec_about">Haqimda</h2></div>
   <div class="card about">
     <p class="about__bio" data-bind="profile.bio"></p>
-    <div class="stats" id="statsWrap"></div>
+    <div class="stats" id="statsWrap"><i class="skel" style="height:86px"></i><i class="skel" style="height:86px"></i><i class="skel" style="height:86px"></i><i class="skel" style="height:86px"></i></div>
   </div>
 </section>
 
 <!-- ============ SKILLS ============ -->
-<section class="section" id="skills">
+<section class="section" id="skills" data-nav="about">
   <div class="shead"><span class="shead__i">02</span><h2 data-i18n="sec_skills">Koʻnikmalar</h2></div>
-  <div class="skills" id="skillsWrap"></div>
+  <div class="skills" id="skillsWrap"><i class="skel" style="height:230px"></i><i class="skel" style="height:230px"></i><i class="skel" style="height:230px"></i></div>
 </section>
 
 <!-- ============ EXPERIENCE ============ -->
-<section class="section" id="experience">
+<section class="section" id="experience" data-nav="experience">
   <div class="shead"><span class="shead__i">03</span><h2 data-i18n="sec_exp">Ish tajribasi</h2></div>
-  <div class="timeline" id="timelineWrap"></div>
+  <div class="timeline" id="timelineWrap"><i class="skel" style="height:96px;margin-bottom:18px"></i><i class="skel" style="height:96px;margin-bottom:18px"></i><i class="skel" style="height:96px"></i></div>
 </section>
 
 <!-- ============ EDUCATION ============ -->
-<section class="section" id="education">
+<section class="section" id="education" data-nav="experience">
   <div class="shead"><span class="shead__i">04</span><h2 data-i18n="sec_edu">Taʼlim</h2></div>
-  <div class="edus" id="educationWrap"></div>
+  <div class="edus" id="educationWrap"><i class="skel" style="height:64px"></i><i class="skel" style="height:64px"></i></div>
 </section>
 
-<!-- ============ CERTIFICATES ============ -->
-<section class="section" id="certs">
-  <div class="shead"><span class="shead__i">05</span><h2 data-i18n="sec_certs">Sertifikatlar</h2></div>
-  <p class="shead__sub" data-i18n="sec_certs_sub">Har biri Coursera'da rasmiy tekshiriladi — havolani bosing</p>
-  <div class="certs" id="certsWrap"></div>
-</section>
+<!-- ============ WORKS ============
+     Everything I've made and every certificate, each in one liquid-glass
+     folder. Click a folder to fan its files; "all" opens the full list. -->
+<section class="section" id="works" data-nav="works">
+  <div class="shead"><span class="shead__i">05</span><h2 data-i18n="sec_works">Ishlarim</h2></div>
+  <p class="shead__sub" data-i18n="sec_works_sub">Papkani bosing — ichidagi fayllar chiqadi</p>
+  <div class="folders">
+    <div class="folder-cell">
+      <div class="folder-slot" id="folderProjects"><i class="skel folder-skel"></i></div>
+      <button class="folder-all" data-win="projects"><span data-i18n="folder_all_projects">Barcha loyihalar</span> <b id="countProjects"></b></button>
+    </div>
+    <div class="folder-cell">
+      <div class="folder-slot" id="folderCerts"><i class="skel folder-skel"></i></div>
+      <button class="folder-all" data-win="certs"><span data-i18n="folder_all_certs">Barcha sertifikatlar</span> <b id="countCerts"></b></button>
+    </div>
+  </div>
 
-<!-- ============ PORTFOLIO ============ -->
-<section class="section" id="portfolio">
-  <div class="shead"><span class="shead__i">06</span><h2 data-i18n="sec_portfolio">Ishlarim</h2></div>
-  <div class="chips" id="portfolioCats"></div>
-  <div class="grid" id="portfolioWrap"></div>
-</section>
-
-<!-- ============ FAVORITES / LINKS ============ -->
-<section class="section" id="favorites">
-  <div class="shead"><span class="shead__i">07</span><h2 data-i18n="sec_fav">Sevimlilarim</h2></div>
-  <p class="shead__sub" data-i18n="sec_fav_sub">Men yoqtirgan pleylistlar, kanallar va resurslar</p>
-  <div class="links" id="favoritesWrap"></div>
-
-  <div class="playlist" id="playlistBlock" hidden>
-    <h3 class="playlist__h" data-i18n="sec_playlist">Musiqalarim</h3>
-    <p class="shead__sub" data-i18n="playlist_sub">Men yoqtirgan qoʻshiqlar — shu yerda tinglang yoki havolada oching</p>
-    <div class="trks" id="playlistWrap"></div>
+  <div class="fwin" id="fwin" hidden>
+    <div class="fwin__head">
+      <div class="fwin__t">
+        <span class="fwin__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H9l2 2.2h7.5A2.5 2.5 0 0 1 21 9.7v7.8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5Z"/></svg></span>
+        <div><h3 id="fwinTitle"></h3><p id="fwinMeta"></p></div>
+      </div>
+      <button class="fwin__x" id="fwinClose" aria-label="Yopish">×</button>
+    </div>
+    <div class="fwin__pane" data-pane-win="projects" hidden>
+      <div class="chips" id="portfolioCats"></div>
+      <div class="grid" id="portfolioWrap"></div>
+    </div>
+    <div class="fwin__pane" data-pane-win="certs" hidden>
+      <p class="shead__sub" data-i18n="sec_certs_sub">Har biri Coursera'da rasmiy tekshiriladi — havolani bosing</p>
+      <div class="certs" id="certsWrap"></div>
+    </div>
   </div>
 </section>
 
 <!-- ============ CONTACT ============ -->
-<section class="section" id="contact">
-  <div class="shead"><span class="shead__i">08</span><h2 data-i18n="sec_contact">Bogʻlanish</h2></div>
+<section class="section" id="contact" data-nav="contact">
+  <div class="shead"><span class="shead__i">06</span><h2 data-i18n="sec_contact">Bogʻlanish</h2></div>
   <div class="card contact">
     <div class="contact__left">
       <h3 data-i18n="contact_h">Loyihangiz haqida gaplashaylikmi?</h3>
       <p class="muted" data-i18n="contact_sub">Xabar yozing — 24 soat ichida javob beraman.</p>
-      <div class="channels" id="channelsWrap"></div>
+      <div class="channels" id="channelsWrap"><i class="skel" style="height:58px"></i><i class="skel" style="height:58px"></i><i class="skel" style="height:58px"></i></div>
     </div>
     <form class="contact__form" id="contactForm">
       <div class="field"><label data-i18n="form_name">Ismingiz</label><input type="text" name="name" required data-i18n-ph="form_ph_name" placeholder="Toʻliq ismingiz" /></div>
@@ -336,7 +384,10 @@
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <div class="footer__social" id="socialWrap"></div>
+  <!-- The brand mark revealed through a glass tile. The WebGL engine is only
+       fetched when this tile is about to scroll into view. -->
+  <div class="sig" id="sig"><div class="sig__tile" id="sigTile" title="MKM777"></div></div>
+  <div class="dock" id="socialWrap" aria-label="Ijtimoiy tarmoqlar"></div>
   <div class="footer__meta">
     <span><span data-bind="profile.name">Kamolbek Muzaffarov</span> · <span data-bind="profile.profession"></span></span>
     <a id="footerPhone" href="#"></a>
@@ -365,12 +416,10 @@
         <button class="admin__tab" data-tab="portfolio">Portfolio</button>
         <button class="admin__tab" data-tab="education">Taʼlim</button>
         <button class="admin__tab" data-tab="gallery">Fotogalereya</button>
-        <button class="admin__tab" data-tab="favorites">Sevimlilar</button>
         <button class="admin__tab" data-tab="social">Ijtimoiy tarmoq</button>
         <button class="admin__tab" data-tab="contacts">Kontakt</button>
         <button class="admin__tab" data-tab="music">Musiqalar</button>
         <button class="admin__tab" data-tab="bgvideo">Videolar</button>
-        <button class="admin__tab" data-tab="sandtheme">Uch rang 🎨</button>
         <button class="admin__tab" data-tab="cloud">Bulut ☁</button>
         <button class="admin__tab" data-tab="security">Maxfiylik</button>
         <button class="admin__tab admin__tab--red" data-tab="reset">Reset</button>
@@ -704,10 +753,11 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="config.js?v=20260918c" onerror="window.__noConfig=1"></script>
-<script src="data.js?v=20260918c"></script>
-<script src="cloud.js?v=20260918c"></script>
-<script src="app.js?v=20260918c"></script>
-<script src="hand-control.js?v=20260918c" defer></script>
+<script src="config.js?v=20261031d" onerror="window.__noConfig=1"></script>
+<script src="data.js?v=20261031d" defer></script>
+<script src="cloud.js?v=20261031d" defer></script>
+<script src="folders.js?v=20261031d" defer></script>
+<script src="app.js?v=20261031d" defer></script>
+<script src="hand-control.js?v=20261031d" defer></script>
 </body>
 </html>
