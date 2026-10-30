@@ -1150,13 +1150,14 @@ function applyTheme(t){
     resolveAccent();
     if (prev === 'sculpt') applyBgVideo();
   }
+  liquidNav?.setTone(t === 'sculpt' ? 'light' : 'dark');
   if (prev && prev !== t){ renderWorks(); mountSignature(); }
 }
 
 /* ---------------------------------------------------- LAZY MODULES
    Og'ir qismlar (WebGL haykal, shisha logo) faqat kerak bo'lganda yuklanadi.
    Sahifa ochilishini hech qachon kutdirmaydi. */
-const ASSET_V = '20261031d';
+const ASSET_V = '20261031i';
 const OFFLINE = location.protocol === 'file:';
 const scriptCache = Object.create(null);
 function loadScript(src){
@@ -1183,6 +1184,7 @@ function loadSculptFonts(){
 }
 
 let sculpt = null, sculptToken = 0;
+let liquidNav = null;
 async function mountSculpture(){
   const root = $('#shero');
   if (!root || sculpt) return;
@@ -1205,33 +1207,46 @@ function unmountSculpture(){
   sculpt?.destroy(); sculpt = null;
 }
 
-/* Footer: K belgisi shisha plitka ichidan "chiqib keladi". Dvigatel faqat
-   plitka ko'rinishga yaqinlashganda yuklanadi. */
-let sig = null, sigLook = '', sigWait = null;
+/* App bar logosi: K belgisi shisha ichidan "chiqib keladi" — ramkasiz.
+   Dvigatel qora (yoki oq) fonga chizadi va shader o'sha fonni shaffoflikka
+   aylantiradi (key): logo to'g'ridan-to'g'ri shisha bar ustida turadi. Sahifa chizilgandan keyin yuklanadi; o'ngacha oddiy rasm turadi.
+   Kursor ustiga kelganda qayta o'ynaydi. */
+let sig = null, sigLook = '', revealT = 0;
+/* The glass only shows while it is revealing; afterwards the crisp K image
+   takes over again (the keyed canvas alone would lose the logo's dark chrome). */
+function playReveal(replay){
+  const brand = $('#navBrand');
+  if (!brand || !sig) return;
+  brand.classList.add('revealed');
+  if (replay) sig.replay();
+  clearTimeout(revealT);
+  revealT = setTimeout(() => brand.classList.remove('revealed'), 3300);
+}
 function mountSignature(){
-  const tile = $('#sigTile');
-  if (!tile) return;
+  const host = $('#navReveal');
+  if (!host) return;
   const look = data.theme === 'sculpt' ? 'light' : 'dark';
+  if (sig && sigLook === look) return;
   const go = async () => {
     try {
       const [, off] = await Promise.all([loadScript('glass-reveal.js?v=' + ASSET_V), offlineData()]);
       if (!window.GlassReveal || (sig && sigLook === look)) return;
       sig?.destroy();
+      $('#navBrand')?.classList.remove('revealed');
       const logo = off.logo || 'assets/logo-k-512.webp';
-      sig = window.GlassReveal.mount(tile, look === 'dark'
-        ? { logo, look: 'dark', originalColors: true, background: '#0c1117', plateColor: '#0a0e14', loop: true, hold: 3.5, label: 'MKM777', fallback: 'assets/logo-k.webp' }
-        : { logo, look: 'light', originalColors: true, background: '#EBE9E5', loop: true, hold: 3.5, label: 'MKM777', fallback: 'assets/logo-k.webp' });
+      const common = { logo, originalColors: true, loop: false, label: 'K', logoScale: .92, finalScale: .92, tileSize: 64,
+                       onReady: () => playReveal(false) };
+      sig = window.GlassReveal.mount(host, look === 'dark'
+        ? { ...common, look: 'dark', background: '#000000', plateColor: '#000000', key: 1 }
+        : { ...common, look: 'light', background: '#ffffff', key: 2 });
+      host.dataset.look = look;
       sigLook = look;
+      const brand = $('#navBrand');
+      if (brand && !brand.dataset.hover){ brand.dataset.hover = '1'; brand.addEventListener('mouseenter', () => playReveal(true)); }
     } catch (e){ console.warn('glass reveal', e); }
   };
-  if (sig){ if (sigLook !== look) go(); return; }
-  if (sigWait) return;
-  if (!('IntersectionObserver' in window)){ go(); return; }
-  sigWait = new IntersectionObserver(es => {
-    if (!es.some(e => e.isIntersecting)) return;
-    sigWait.disconnect(); sigWait = null; go();
-  }, { rootMargin: '500px 0px' });
-  sigWait.observe(tile);
+  if (!sig && document.readyState !== 'complete') addEventListener('load', () => setTimeout(go, 300), { once:true });
+  else go();
 }
 
 /* ---------------------------------------------------------- colour utils */
@@ -1546,7 +1561,12 @@ function applyBgVideo(){
 
   if (!bgVideoArmed && document.readyState !== 'complete'){
     bgVideoArmed = true;
-    addEventListener('load', () => setTimeout(applyBgVideo, 350), { once:true });
+    // Whichever comes first: the page finished loading, or 1.2 s passed —
+    // a slow third-party request must not hold the video back.
+    let fired = false;
+    const go = () => { if (!fired){ fired = true; applyBgVideo(); } };
+    addEventListener('load', () => setTimeout(go, 150), { once:true });
+    setTimeout(go, 1200);
     return;
   }
   bgVideoArmed = true;
@@ -1570,11 +1590,11 @@ function applyBgVideo(){
     // all. Colour comes from resolveAccent()/probeAccent() instead.
     v.src = src;
     // play() must wait for loadeddata — calling it right after load() aborts
-    // the promise and the video silently never starts.
-    v.addEventListener('loadeddata', () => {
-      v.classList.add('on');
-      v.play().catch(()=>{});
-    }, { once:true });
+    // the promise and the video silently never starts. The video only fades
+    // in once frames are really moving ('playing'); its first frame is the
+    // poster underneath, so the hand-over is invisible.
+    v.addEventListener('loadeddata', () => { v.play().catch(()=>{}); }, { once:true });
+    v.addEventListener('playing', () => v.classList.add('on'), { once:true });
     v.addEventListener('error', () => {
       v.classList.remove('on'); bg.classList.remove('video-on');
       toast('Videoni yuklab bo\'lmadi');
@@ -1671,12 +1691,8 @@ const nT = (key, n) => T(key).replace('{n}', n);
 
 function folderLook(kind){
   const sculpt = data.theme === 'sculpt';
-  if (kind === 'projects'){
-    return { tone: sculpt ? 'light' : 'dark', seed: 3,
-      art: sculpt ? 'aurora' : { style:'marble', colors:['#04070b','#0d2033','#2a5b80','#091119','#3f98d0','#a6d8f2','#eaf6fc'],
-                                 scale:.62, warp:3.1, angle:-.5, gloss:.55, veins:.45 } };
-  }
-  return { tone: sculpt ? 'light' : 'dark', seed: 11, art: sculpt ? 'glacier' : 'dusk' };
+  // Hech qanday rasm yo'q — papka butunlay shishadan.
+  return { tone: sculpt ? 'light' : 'dark', seed: kind === 'projects' ? 3 : 11, art: 'none' };
 }
 
 function projectFiles(){
@@ -1837,6 +1853,13 @@ function initNav(){
   const nav = $('#nav');
   const links = $$('.nav__links a[data-nav]');
   const secs = $$('[data-nav]:not(a)');
+  if (window.LiquidNav && nav){
+    liquidNav = window.LiquidNav.mount(nav, { tone: data.theme === 'sculpt' ? 'light' : 'dark', active: 0 });
+  }
+  // Bosilgan band darhol suv tomchisini oladi; silliq skroll davomida oraliq
+  // bo'limlar tomchini o'zlariga tortib ketmasin.
+  let lockUntil = 0;
+  links.forEach(a => a.addEventListener('click', () => { lockUntil = performance.now() + 1100; cur = a.dataset.nav; }));
   let raf = null, cur = '', scrolled = null;
   const update = () => {
     raf = null;
@@ -1846,9 +1869,10 @@ function initNav(){
       if (s.hidden) continue;
       if (s.getBoundingClientRect().top <= y) next = s.dataset.nav;
     }
-    if (next !== cur){
+    if (next !== cur && performance.now() > lockUntil){
       cur = next;
       links.forEach(a => a.classList.toggle('active', a.dataset.nav === cur));
+      liquidNav?.setActive(links.findIndex(a => a.dataset.nav === cur));
     }
     // Faqat holat o'zgarganda klass yoziladi — har kadrda emas.
     const sc = scrollY > 24;
@@ -2964,7 +2988,13 @@ function initSettings(){
     save();
     toast('Tema: ' + b.querySelector('b').textContent);
   });
-  $$('.lang__b').forEach(b => b.onclick = () => { setLang(b.dataset.lang); save(); });
+  $$('.lang__b').forEach(b => b.onclick = () => {
+    let next = b.dataset.lang;
+    // Tor ekranda faqat joriy til ko'rinadi — bosilsa keyingisiga o'tadi.
+    if (next === lang && matchMedia('(max-width:720px)').matches) next = LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length];
+    setLang(next); save();
+    requestAnimationFrame(() => liquidNav?.refresh());
+  });
   $('#downloadCv2').onclick = downloadCV;
   initHandSettings();
 }

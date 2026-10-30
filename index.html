@@ -125,9 +125,8 @@
      page before style.css, fonts or any script arrive — so a slow network
      shows the shape of the site, never a blank screen. -->
 <style>
-html{background:#0b0f14}
 body{margin:0;background:#0b0f14;color:#f4f6f8;font-family:"Space Grotesk",system-ui,-apple-system,sans-serif;overflow-x:hidden}
-.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#0b0f14 url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAASACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDl7WT5sEtn1HatvTkinuQ092No/hHBGe+aqW+iXW3Plsue5rUsdKMRImjQ/wC1WsmjKKZ0sUDpAoWUsB0INSwG4Ri0shKY4XFZdvD9gIa3nbHUoeRV+C9MzbWQ59R0rJmgi1DKBxwOtFFAMaqgqcgdavWoAhGAKKKbBH//2Q==") center/cover no-repeat}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#0b0f14 url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAASACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDl7WTnBLZ9R2rb05Ip7kNPdjaP4RwRnvmqlvol1tz5bLnua1bHSjESJo0Po1ayaMopnSRQOkCgSlgOhBqWA3CMWlkJTHAxWXbw/YCGt52x1KNyKvwXpmbayc+o6VkzQRahlA44HWiigGNABU5A61etQBCMAUUUMEf/2Q==") center/cover no-repeat}
 .bg__poster{position:absolute;inset:0;background:url("assets/bg/forest.jpg") center/cover no-repeat}
 .bg__tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,16,.35),rgba(6,10,16,.62))}
 html:not(.css) .admin,html:not(.css) .msheet,html:not(.css) .edm,html:not(.css) .lbox,html:not(.css) .cropm,
@@ -149,35 +148,52 @@ html:not(.css) .section{max-width:1180px;margin:0 auto;padding:96px 24px 0}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Fonts and the main stylesheet never block the first paint. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Amiri:wght@700&display=swap" media="print" onload="this.media='all'">
-<link rel="preload" href="style.css?v=20261031d" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('css')" />
-<noscript><link rel="stylesheet" href="style.css?v=20261031d" /><style>html .nav *{display:revert}</style></noscript>
+<link rel="preload" href="style.css?v=20261031i" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('css')" />
+<noscript><link rel="stylesheet" href="style.css?v=20261031i" /><style>html .nav *{display:revert}</style></noscript>
 </head>
 <body data-theme="liquid">
 <script>/* the visitor's own theme, before first paint — no flash, no video download */
-try{var t=localStorage.getItem('cvTheme');if(t==='sculpt')document.body.dataset.theme=t}catch(e){}</script>
+try{var t=localStorage.getItem('cvTheme');if(t==='sculpt')document.body.dataset.theme=t}catch(e){}
+/* weak devices keep the glass look but skip the costly card blur */
+if((navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=2)document.documentElement.classList.add('lowfx')</script>
 
 <!-- Background. Paint order on a slow network: tiny inline blur (in the CSS
-     above) → 20 KB poster → the 0.6 MB loop, which only starts downloading
-     after the page has loaded. -->
+     above) → the poster, which IS the loop's first frame → the 0.6 MB loop,
+     faded in over it once it is actually playing, so the swap can't be seen. -->
 <div class="bg" aria-hidden="true">
-  <span class="bg__poster"></span>
-  <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true"></video>
+  <span class="bg__media">
+    <span class="bg__poster"></span>
+    <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true"></video>
+  </span>
   <span class="bg__tint" id="bgTint"></span>
 </div>
 
 <!-- ============ APP BAR ============
      Brand on the left edge (no frame), five sections, language, settings. -->
-<nav class="nav" id="nav" aria-label="Asosiy menyu">
-  <a class="nav__brand" href="#hero" aria-label="Kamolbek Muzaffarov — bosh sahifa">
+<nav class="nav nimbus-nav" id="nav" aria-label="Asosiy menyu" data-tone="dark">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="nimbus-refract" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.02" numOctaves="2" seed="7" result="noise"/>
+      <feGaussianBlur in="noise" stdDeviation="2" result="soft"/>
+      <feDisplacementMap in="SourceGraphic" in2="soft" scale="60" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+  <span class="nimbus-glass" aria-hidden="true"></span>
+  <canvas class="nimbus-water" aria-hidden="true"></canvas>
+  <span class="nimbus-drop" aria-hidden="true"></span>
+
+  <!-- The K mark, revealed through glass, with no frame of its own. -->
+  <a class="nav__brand" id="navBrand" href="#hero" aria-label="Kamolbek Muzaffarov — bosh sahifa">
     <img class="nav__logo" id="brandImg" src="assets/logo-k.webp" width="34" height="34" alt="K" decoding="async" />
+    <span class="nav__reveal" id="navReveal" aria-hidden="true"></span>
   </a>
-  <ul class="nav__links">
-    <li><a href="#hero" data-nav="hero" class="active" data-i18n="nav_home">Bosh</a></li>
-    <li><a href="#about" data-nav="about" data-i18n="nav_about">Haqimda</a></li>
-    <li><a href="#experience" data-nav="experience" data-i18n="nav_exp">Tajriba</a></li>
-    <li><a href="#works" data-nav="works" data-i18n="nav_works">Ishlarim</a></li>
-    <li><a href="#contact" data-nav="contact" data-i18n="nav_contact">Kontakt</a></li>
-  </ul>
+  <div class="nav__links">
+    <a class="nimbus-item" href="#hero" data-nav="hero" data-fx="glow"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.2 12 4l8.5 7.2"/><path d="M6 9.6V20h12V9.6"/><path class="nv-door" d="M10 20v-5h4v5Z"/></svg></span><span class="nimbus-label" data-i18n="nav_home">Bosh</span></a>
+    <a class="nimbus-item" href="#about" data-nav="about" data-fx="wave"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.8 20c1.2-3.4 4-5 7.2-5s6 1.6 7.2 5"/></svg></span><span class="nimbus-label" data-i18n="nav_about">Haqimda</span></a>
+    <a class="nimbus-item" href="#experience" data-nav="experience" data-fx="spin"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7.5" width="17" height="12" rx="2.5"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 12.5h17"/></svg></span><span class="nimbus-label" data-i18n="nav_exp">Tajriba</span></a>
+    <a class="nimbus-item" href="#works" data-nav="works" data-fx="drop"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7.5a2 2 0 0 1 2-2H9l2 2h7.5a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2Z"/></svg></span><span class="nimbus-label" data-i18n="nav_works">Ishlarim</span></a>
+    <a class="nimbus-item" href="#contact" data-nav="contact" data-fx="plane"><span class="nv-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.2 3.6 5.4l2.7 6.8-2.7 6.4L21 12.2Zm-14.7 0H13"/></svg></span><span class="nimbus-label" data-i18n="nav_contact">Kontakt</span></a>
+  </div>
   <div class="nav__end">
     <div class="lang" role="group" aria-label="Til / Language">
       <button class="lang__b active" data-lang="uz" aria-label="Oʻzbekcha">UZ</button>
@@ -185,7 +201,7 @@ try{var t=localStorage.getItem('cvTheme');if(t==='sculpt')document.body.dataset.
       <button class="lang__b" data-lang="ru" aria-label="Русский">RU</button>
     </div>
     <button class="nav__icon" id="settingsBtn" aria-label="Sozlamalar" title="Sozlamalar" aria-controls="settingsPanel"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
-    <button class="nav__icon nav__burger" id="navBurger" aria-label="Menyu"><span></span><span></span><span></span></button>
+    <button class="nav__icon nav__burger" id="navBurger" aria-label="Menyu" hidden><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -384,9 +400,6 @@ try{var t=localStorage.getItem('cvTheme');if(t==='sculpt')document.body.dataset.
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <!-- The brand mark revealed through a glass tile. The WebGL engine is only
-       fetched when this tile is about to scroll into view. -->
-  <div class="sig" id="sig"><div class="sig__tile" id="sigTile" title="MKM777"></div></div>
   <div class="dock" id="socialWrap" aria-label="Ijtimoiy tarmoqlar"></div>
   <div class="footer__meta">
     <span><span data-bind="profile.name">Kamolbek Muzaffarov</span> · <span data-bind="profile.profession"></span></span>
@@ -753,11 +766,12 @@ try{var t=localStorage.getItem('cvTheme');if(t==='sculpt')document.body.dataset.
 
 <div class="toast" id="toast"></div>
 
-<script src="config.js?v=20261031d" onerror="window.__noConfig=1"></script>
-<script src="data.js?v=20261031d" defer></script>
-<script src="cloud.js?v=20261031d" defer></script>
-<script src="folders.js?v=20261031d" defer></script>
-<script src="app.js?v=20261031d" defer></script>
-<script src="hand-control.js?v=20261031d" defer></script>
+<script src="config.js?v=20261031i" onerror="window.__noConfig=1"></script>
+<script src="data.js?v=20261031i" defer></script>
+<script src="cloud.js?v=20261031i" defer></script>
+<script src="liquid-nav.js?v=20261031i" defer></script>
+<script src="folders.js?v=20261031i" defer></script>
+<script src="app.js?v=20261031i" defer></script>
+<script src="hand-control.js?v=20261031i" defer></script>
 </body>
 </html>

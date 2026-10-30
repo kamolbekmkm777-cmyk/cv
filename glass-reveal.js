@@ -261,6 +261,7 @@ uniform float uLightAng;   // how far the rim light has turned, radians
 uniform vec3 uBg;
 uniform vec3 uPlateCol;
 uniform vec3 uLogoCol;
+uniform float uKey;      // 0 = opaque backdrop, 1 = key out black, 2 = key out white
 
 float px; // one device pixel in plate units
 
@@ -479,7 +480,15 @@ void main() {
 
   vec3 outc = mix(plain, col, uPlateAlpha);
   outc += (hash(gl_FragCoord.xy) - 0.5) / 255.0;
-  outColor = vec4(outc, 1.0);
+  if (uKey > 1.5) {
+    float a = clamp(1.0 - min(outc.r, min(outc.g, outc.b)), 0.0, 1.0);
+    outColor = vec4(clamp((outc - (1.0 - a)) / max(a, 1e-4), 0.0, 1.0), a);
+  } else if (uKey > 0.5) {
+    float a = clamp(max(outc.r, max(outc.g, outc.b)), 0.0, 1.0);
+    outColor = vec4(clamp(outc / max(a, 1e-4), 0.0, 1.0), a);
+  } else {
+    outColor = vec4(outc, 1.0);
+  }
 }`
 
 /* ------------------------------------------------------------------ *
@@ -697,6 +706,7 @@ function frameAt(T, P, outro = 0) {
     uSpec: P.specular,
     uIconPlate: P.iconPlate ? 1 : 0,
     uUseColor: P.originalColors ? 1 : 0,
+    uKey: P.key || 0,
     uLightScene: luminance(bg) > 0.5 ? 1 : 0,
     uLightGlass: luminance(P.iconPlate ? hexToRgb(P.plateColor) : bg) > 0.5 ? 1 : 0,
     uBg: bg,
@@ -872,13 +882,14 @@ function startEngine(
 function mount(wrap, props) {
   const p = Object.assign({ look: 'dark', loop: false, speed: 1, label: 'Logo' }, props)
   const own = {}
-  for (const k of ['background', 'logoColor', 'plateColor', 'iconPlate', 'keepPlate', 'originalColors', 'tileSize', 'logoScale', 'finalScale', 'hold', 'logoOffset'])
+  for (const k of ['background', 'logoColor', 'plateColor', 'iconPlate', 'keepPlate', 'originalColors', 'tileSize', 'logoScale', 'finalScale', 'hold', 'logoOffset', 'key'])
     if (p[k] !== undefined) own[k] = p[k]
   const settings = Object.assign({}, LOOKS[p.look] || LOOKS.dark, own, p.tuning || {})
   const live = { current: { settings, loop: p.loop, speed: p.speed, time: undefined } }
   wrap.setAttribute('role', 'img')
   wrap.setAttribute('aria-label', p.label)
-  wrap.style.backgroundColor = settings.background
+  // With a key the backdrop colour is cut out in the shader: no tile, no frame.
+  wrap.style.backgroundColor = settings.key ? 'transparent' : settings.background
   let engine = null, dead = false
   try { engine = startEngine(wrap, live) } catch (e) { engine = null }
   const fallback = () => {
@@ -887,7 +898,7 @@ function mount(wrap, props) {
     wrap.appendChild(im)
   }
   if (!engine) fallback()
-  else loadLogo(p.logo).then(d => { if (!dead) engine.setLogo(d) }, () => { if (!dead) { engine.dispose(); engine = null; fallback() } })
+  else loadLogo(p.logo).then(d => { if (!dead) { engine.setLogo(d); p.onReady?.() } }, () => { if (!dead) { engine.dispose(); engine = null; fallback() } })
   const onClick = () => engine?.replay()
   wrap.addEventListener('click', onClick)
   return {
