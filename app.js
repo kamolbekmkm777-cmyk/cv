@@ -1152,7 +1152,7 @@ function applyTheme(t){
   }
   liquidNav?.setTone(t === 'sculpt' ? 'light' : 'dark');
   beads.forEach(b => b.setTone(t === 'sculpt' ? 'light' : 'dark'));
-  if (t === 'sculpt'){ gtext?.destroy(); gtext = null; }
+  if (t === 'sculpt'){ gtexts.forEach(g => g.destroy()); gtexts = []; }
   else if (prev === 'sculpt') mountGlassText();
   if (prev && prev !== t){ renderWorks(); mountSignature(); }
 }
@@ -1160,7 +1160,7 @@ function applyTheme(t){
 /* ---------------------------------------------------- LAZY MODULES
    Og'ir qismlar (WebGL haykal, shisha logo) faqat kerak bo'lganda yuklanadi.
    Sahifa ochilishini hech qachon kutdirmaydi. */
-const ASSET_V = '20261031q';
+const ASSET_V = '20261031r';
 const OFFLINE = location.protocol === 'file:';
 const scriptCache = Object.create(null);
 function loadScript(src){
@@ -1189,16 +1189,17 @@ function loadSculptFonts(){
 let sculpt = null, sculptToken = 0;
 let liquidNav = null;
 let beads = [];
-/* Hero name as liquid glass (theme 1 only). Loaded after the page, so the
-   plain text paints first; the glass takes over without moving a pixel. */
-let gtext = null;
+/* Big white type as liquid glass (theme 1 only): the hero name and the
+   section titles. Loaded after the page, so plain text paints first and the
+   glass takes over without moving a pixel. */
+let gtexts = [];
 function mountGlassText(){
-  if (data.theme === 'sculpt' || gtext) return;
-  const go = () => loadScript('glass-text.js?v=' + ASSET_V).then(() => {
-    const el = $('.hero__name');
-    if (data.theme === 'sculpt' || gtext || !el || !window.GlassText) return;
-    gtext = window.GlassText.mount(el, { media: $('.bg__media'), video: $('#bgVideo'), poster: 'assets/bg/forest.jpg' });
-    if (!gtext) el.classList.add('gtext-css');
+  if (data.theme === 'sculpt' || gtexts.length) return;
+  const go = () => Promise.all([loadScript('glass-text.js?v=' + ASSET_V), offlineData()]).then(([, off]) => {
+    if (data.theme === 'sculpt' || gtexts.length || !window.GlassText) return;
+    const opts = { media: $('.bg__media'), video: $('#bgVideo'), poster: off.poster || 'assets/bg/forest.jpg' };
+    // the name and every section title — the big, heavy white type
+    gtexts = $$('.hero__name, .shead h2').map(el => window.GlassText.mount(el, opts));
   }).catch(e => console.warn('glass text', e));
   if (document.readyState === 'complete') go(); else addEventListener('load', go, { once:true });
 }

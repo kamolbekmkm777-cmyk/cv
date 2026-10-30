@@ -5,8 +5,14 @@
    refraction, then lit like the app bar's water drop (bright rim, iridescent
    fresnel, specular that follows the cursor, a soft shadow under the glass).
    The DOM text stays (selectable, readable by screen readers) — it just turns
-   transparent while the glass is drawn. No WebGL2, a cross-origin video, or
-   file:// → a CSS glass look instead.
+   transparent while the glass is drawn.
+
+   One WebGL context serves every glass heading on the page: it renders each
+   one into a corner of its own buffer and copies that into the heading's 2D
+   canvas, so ten headings never exhaust the browser's context limit.
+   When the video's pixels can't be read (file://, a host without CORS) the
+   still poster — the loop's first frame — is refracted instead. No WebGL2 at
+   all → a CSS glass look.
    ========================================================================== */
 (() => {
 'use strict';
@@ -129,20 +135,20 @@ void main(){
   o = vec4(c * cov, a);
 }`
 
-function mount(el, opts) {
-  const o = Object.assign({ media: null, video: null, poster: '' }, opts)
+
+/* ------------------------------------------------------------ shared GL */
+let G = null
+function gl0() {
+  if (G !== null) return G
   const canvas = document.createElement('canvas')
-  canvas.className = 'gtext-canvas'
-  canvas.setAttribute('aria-hidden', 'true')
-  const gl = canvas.getContext('webgl2', { premultipliedAlpha: true, alpha: true, antialias: false })
-  if (!gl) return null
+  const gl = canvas.getContext('webgl2', { premultipliedAlpha: true, alpha: true, antialias: false, preserveDrawingBuffer: true })
+  if (!gl) return (G = false)
   const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s }
   const prog = gl.createProgram()
-  try {
-    gl.attachShader(prog, sh(gl.VERTEX_SHADER, VERT)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FRAG))
-  } catch (e) { console.warn('glass text', e); return null }
+  try { gl.attachShader(prog, sh(gl.VERTEX_SHADER, VERT)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FRAG)) }
+  catch (e) { console.warn('glass text', e); return (G = false) }
   gl.linkProgram(prog)
-  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return (G = false)
   gl.useProgram(prog)
   gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer())
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW)
@@ -150,157 +156,186 @@ function mount(el, opts) {
   gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0)
   const U = {}
   for (const k of ['uSdf', 'uBg', 'uSize', 'uDpr', 'uRect', 'uCover', 'uOp', 'uBase', 'uMouse', 'uMouseOn', 'uTime', 'uBevel']) U[k] = gl.getUniformLocation(prog, k)
-  const sdfTex = gl.createTexture(), bgTex = gl.createTexture()
-  const params = () => {
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
-  }
-  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, sdfTex); params()
-  gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, bgTex); params()
+  const bgTex = gl.createTexture()
+  gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, bgTex); params(gl)
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([20, 26, 34, 255]))
   gl.uniform1i(U.uSdf, 0); gl.uniform1i(U.uBg, 1)
+  canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); items.forEach(it => toCss(it)); items.clear(); G = false })
+  return (G = { canvas, gl, U, bgTex })
+}
+function params(gl) {
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
+}
 
-  // A sibling, not a child: the page rewrites the name with textContent,
-  // which would wipe anything inside it.
-  el.insertAdjacentElement('afterend', canvas)
-  let W = 0, H = 0, dpr = 1, ready = false, bevel = 6, srcW = 1280, srcH = 720
-  let posterImg = null, usingVideo = false, dead = false, raf = 0, visible = true, last = 0, time = 0
-  const mouse = { x: -1e4, y: -1e4, on: 0, target: 0 }
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  /* draw every glyph exactly where the browser laid it out */
-  function build() {
-    const r = el.getBoundingClientRect()
-    if (!r.width || !r.height) return
-    dpr = Math.min(window.devicePixelRatio || 1, 2)
-    const cw = r.width + PAD * 2, ch = r.height + PAD * 2
-    W = Math.round(cw * dpr); H = Math.round(ch * dpr)
-    canvas.width = W; canvas.height = H
-    canvas.style.width = cw + 'px'; canvas.style.height = ch + 'px'
-    canvas.style.left = (el.offsetLeft - PAD) + 'px'
-    canvas.style.top = (el.offsetTop - PAD) + 'px'
-    const cs = getComputedStyle(el)
-    const size = parseFloat(cs.fontSize)
-    bevel = Math.max(4, Math.min(11, size * 0.13))
-    const c2 = document.createElement('canvas'); c2.width = W; c2.height = H
-    const ctx = c2.getContext('2d', { willReadFrequently: true })
-    ctx.scale(dpr, dpr)
-    ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`
-    ctx.textBaseline = 'alphabetic'
-    ctx.fillStyle = '#fff'
-    const asc = ctx.measureText('Hg').fontBoundingBoxAscent || size * 0.8
-    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
-    const range = document.createRange()
-    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-      const s = node.textContent
-      for (let i = 0; i < s.length; i++) {
-        if (/\s/.test(s[i])) continue
-        range.setStart(node, i); range.setEnd(node, i + 1)
-        const b = range.getBoundingClientRect()
-        if (!b.width) continue
-        ctx.fillText(s[i], b.left - r.left + PAD, b.top - r.top + PAD + asc)
-      }
-    }
-    const data = ctx.getImageData(0, 0, W, H).data
-    const sdf = sdfFromMask(data, W, H, dpr)
-    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, sdfTex)
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.R16F, W, H, 0, gl.RED, gl.FLOAT, sdf)
-    ready = true
-    el.classList.add('gtext-on')
-    draw()
-  }
-
-  function upload() {
-    const v = o.video
-    gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, bgTex)
+/* ------------------------------------------------------- the background */
+const bg = { media: null, video: null, poster: null, w: 1280, h: 720, videoBlocked: false, posterReady: false }
+function uploadBg() {
+  const { gl, bgTex } = G
+  gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, bgTex)
+  const v = bg.video
+  if (v && !bg.videoBlocked && v.classList.contains('on') && v.readyState >= 2 && v.videoWidth) {
     try {
-      if (v && v.classList.contains('on') && v.readyState >= 2 && v.videoWidth) {
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, v)
-        srcW = v.videoWidth; srcH = v.videoHeight; usingVideo = true
-        return
-      }
-      if (posterImg && posterImg.complete && posterImg.naturalWidth && !usingVideo) {
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, posterImg)
-        srcW = posterImg.naturalWidth; srcH = posterImg.naturalHeight
-      }
-    } catch (e) {
-      // a video from a host without CORS: keep the CSS glass instead
-      fail()
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, v)
+      bg.w = v.videoWidth; bg.h = v.videoHeight
+      return
+    } catch (e) { bg.videoBlocked = true }        // file:// or no CORS: stay on the poster
+  }
+  if (bg.poster && bg.poster.naturalWidth && !bg.posterReady) {
+    try {
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, bg.poster)
+      bg.w = bg.poster.naturalWidth; bg.h = bg.poster.naturalHeight; bg.posterReady = true
+    } catch (e) { bg.posterReady = true }
+  }
+}
+const videoMoving = () => !!(bg.video && !bg.videoBlocked && !bg.video.paused && bg.video.classList.contains('on'))
+
+/* ---------------------------------------------------------- the items */
+const items = new Set()
+const mouse = { x: -1e4, y: -1e4, inside: false }
+let raf = 0, last = 0, time = 0
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+function toCss(it) {
+  it.dead = true
+  it.canvas.remove()
+  it.el.classList.remove('gtext-on')
+  it.el.classList.add('gtext-css')
+}
+
+/* draw every glyph exactly where the browser laid it out, then its SDF */
+function build(it) {
+  const el = it.el
+  const r = el.getBoundingClientRect()
+  if (!r.width || !r.height) return
+  const dpr = Math.min(window.devicePixelRatio || 1, 2)
+  const cw = r.width + PAD * 2, ch = r.height + PAD * 2
+  const W = Math.round(cw * dpr), H = Math.round(ch * dpr)
+  it.canvas.width = W; it.canvas.height = H
+  it.canvas.style.width = cw + 'px'; it.canvas.style.height = ch + 'px'
+  it.canvas.style.left = (el.offsetLeft - PAD) + 'px'
+  it.canvas.style.top = (el.offsetTop - PAD) + 'px'
+  const cs = getComputedStyle(el)
+  const size = parseFloat(cs.fontSize)
+  it.bevel = Math.max(4, Math.min(11, size * 0.13))
+  const c2 = document.createElement('canvas'); c2.width = W; c2.height = H
+  const ctx = c2.getContext('2d', { willReadFrequently: true })
+  ctx.scale(dpr, dpr)
+  ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`
+  ctx.textBaseline = 'alphabetic'
+  ctx.fillStyle = '#fff'
+  const asc = ctx.measureText('Hg').fontBoundingBoxAscent || size * 0.8
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
+  const range = document.createRange()
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    const s = node.textContent
+    for (let i = 0; i < s.length; i++) {
+      if (/\s/.test(s[i])) continue
+      range.setStart(node, i); range.setEnd(node, i + 1)
+      const b = range.getBoundingClientRect()
+      if (!b.width) continue
+      ctx.fillText(s[i], b.left - r.left + PAD, b.top - r.top + PAD + asc)
     }
   }
+  const sdf = sdfFromMask(ctx.getImageData(0, 0, W, H).data, W, H, dpr)
+  const { gl } = G
+  if (!it.sdfTex) { it.sdfTex = gl.createTexture(); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, it.sdfTex); params(gl) }
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, it.sdfTex)
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.R16F, W, H, 0, gl.RED, gl.FLOAT, sdf)
+  Object.assign(it, { W, H, dpr, ready: true })
+  el.classList.add('gtext-on')
+  frame(performance.now(), true)
+}
 
-  function draw() {
-    if (!ready || dead) return
-    upload()
-    if (dead) return
-    const r = canvas.getBoundingClientRect()
-    const vw = innerWidth, vh = innerHeight
-    const k = Math.max(vw / srcW, vh / srcH)
-    const dw = srcW * k, dh = srcH * k
-    const op = o.media ? parseFloat(getComputedStyle(o.media).opacity) || 1 : 1
-    gl.viewport(0, 0, W, H)
-    gl.uniform2f(U.uSize, W, H)
-    gl.uniform1f(U.uDpr, dpr)
-    gl.uniform4f(U.uRect, r.left, r.top, r.width, r.height)
-    gl.uniform4f(U.uCover, (vw - dw) / 2, (vh - dh) / 2, dw, dh)
-    gl.uniform1f(U.uOp, op)
-    gl.uniform3f(U.uBase, 8 / 255, 8 / 255, 10 / 255)
-    gl.uniform2f(U.uMouse, mouse.x, mouse.y)
-    gl.uniform1f(U.uMouseOn, mouse.on)
-    gl.uniform1f(U.uTime, time)
-    gl.uniform1f(U.uBevel, bevel)
-    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT)
-    gl.drawArrays(gl.TRIANGLES, 0, 3)
+function render(it) {
+  const { gl, U, canvas } = G
+  if (canvas.width < it.W || canvas.height < it.H) {
+    canvas.width = Math.max(canvas.width, it.W); canvas.height = Math.max(canvas.height, it.H)
   }
+  const r = it.canvas.getBoundingClientRect()
+  const vw = innerWidth, vh = innerHeight
+  const k = Math.max(vw / bg.w, vh / bg.h), dw = bg.w * k, dh = bg.h * k
+  const op = bg.media ? parseFloat(getComputedStyle(bg.media).opacity) || 1 : 1
+  const mx = mouse.x - r.left, my = mouse.y - r.top
+  const near = mouse.inside && mx > -240 && my > -240 && mx < r.width + 240 && my < r.height + 240 ? 1 : 0
+  it.mouseOn += (near - it.mouseOn) * 0.18
+  gl.viewport(0, 0, it.W, it.H)
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, it.sdfTex)
+  gl.uniform2f(U.uSize, it.W, it.H)
+  gl.uniform1f(U.uDpr, it.dpr)
+  gl.uniform4f(U.uRect, r.left, r.top, r.width, r.height)
+  gl.uniform4f(U.uCover, (vw - dw) / 2, (vh - dh) / 2, dw, dh)
+  gl.uniform1f(U.uOp, op)
+  gl.uniform3f(U.uBase, 8 / 255, 8 / 255, 10 / 255)
+  gl.uniform2f(U.uMouse, mx, my)
+  gl.uniform1f(U.uMouseOn, it.mouseOn)
+  gl.uniform1f(U.uTime, time)
+  gl.uniform1f(U.uBevel, it.bevel)
+  gl.enable(gl.SCISSOR_TEST); gl.scissor(0, 0, it.W, it.H)
+  gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT)
+  gl.drawArrays(gl.TRIANGLES, 0, 3)
+  gl.disable(gl.SCISSOR_TEST)
+  // the result sits in the buffer's bottom-left corner; canvas y runs down
+  it.ctx.clearRect(0, 0, it.W, it.H)
+  it.ctx.drawImage(canvas, 0, canvas.height - it.H, it.W, it.H, 0, 0, it.W, it.H)
+  return Math.abs(near - it.mouseOn) > 0.01
+}
 
-  function loop() {
-    if (raf || dead) return
-    last = performance.now()
-    const tick = now => {
-      raf = 0
-      const dt = Math.min((now - last) / 1000, 0.1); last = now; time += dt
-      mouse.on += (mouse.target - mouse.on) * Math.min(1, dt * 6)
-      draw()
-      const moving = (o.video && !o.video.paused && o.video.classList.contains('on')) || Math.abs(mouse.target - mouse.on) > 0.01
-      if (visible && !document.hidden && (moving || mouse.target) && !reduce) raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-  }
+function frame(now, once) {
+  if (!once) raf = 0
+  if (!G) return
+  const dt = Math.min((now - last) / 1000, 0.1); last = now; time += dt
+  uploadBg()
+  let busy = false
+  for (const it of items) if (it.ready && !it.dead && it.visible) busy = render(it) || busy
+  if (once) return
+  const anyVisible = [...items].some(it => it.visible && it.ready)
+  if (anyVisible && !document.hidden && !reduce && (videoMoving() || busy)) raf = requestAnimationFrame(frame)
+}
+function kick() { if (!raf && G) { last = performance.now(); raf = requestAnimationFrame(frame) } }
 
-  function fail() {
-    dead = true
-    cancelAnimationFrame(raf)
-    canvas.remove()
-    el.classList.remove('gtext-on')
-    el.classList.add('gtext-css')
-  }
+let wired = false
+function wireOnce() {
+  if (wired) return
+  wired = true
+  addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mouse.x = e.clientX; mouse.y = e.clientY; mouse.inside = true; kick() }, { passive: true })
+  document.addEventListener('pointerleave', () => { mouse.inside = false; kick() })
+  addEventListener('scroll', () => { if (!raf) frame(performance.now(), true) }, { passive: true })
+  document.addEventListener('visibilitychange', kick)
+  bg.video?.addEventListener('playing', kick)
+}
 
-  // the poster is the loop's first frame: refraction works before the video
-  if (o.poster) { posterImg = new Image(); posterImg.onload = () => draw(); posterImg.src = o.poster }
-  o.video?.addEventListener('playing', loop)
-  const io = new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) loop() })
+function mount(el, opts) {
+  const o = opts || {}
+  if (o.media) bg.media = o.media
+  if (o.video) bg.video = o.video
+  if (o.poster && !bg.poster) { bg.poster = new Image(); bg.poster.onload = () => { bg.posterReady = false; frame(performance.now(), true) }; bg.poster.src = o.poster }
+  const canvas = document.createElement('canvas')
+  canvas.className = 'gtext-canvas'
+  canvas.setAttribute('aria-hidden', 'true')
+  const it = { el, canvas, ctx: canvas.getContext('2d'), sdfTex: null, W: 0, H: 0, dpr: 1, bevel: 6, ready: false, dead: false, visible: false, mouseOn: 0 }
+  if (!gl0()) { toCss(it); return { destroy() { el.classList.remove('gtext-css') }, refresh() {} } }
+  wireOnce()
+  // a sibling, not a child: the page rewrites headings with textContent
+  if (getComputedStyle(el.parentElement).position === 'static') el.parentElement.style.position = 'relative'
+  el.insertAdjacentElement('afterend', canvas)
+  items.add(it)
+  const io = new IntersectionObserver(es => { it.visible = es[0].isIntersecting; if (it.visible) kick() }, { rootMargin: '120px 0px' })
   io.observe(el)
-  const host = el.closest('.hero') || el
-  host.addEventListener('pointermove', e => {
-    if (e.pointerType !== 'mouse') return
-    const r = canvas.getBoundingClientRect()
-    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.target = 1; loop()
-  })
-  host.addEventListener('pointerleave', () => { mouse.target = 0; loop() })
-  addEventListener('scroll', () => { if (visible && !raf) draw() }, { passive: true })
-  let rebuildT = 0
-  const rebuild = () => { clearTimeout(rebuildT); rebuildT = setTimeout(() => { if (!dead) build() }, 80) }
-  new ResizeObserver(rebuild).observe(el)
-  new MutationObserver(rebuild).observe(el, { childList: true, characterData: true, subtree: true })
-  canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); fail() })
-
-  ;(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { build(); loop() })
-
+  let t = 0
+  const rebuild = () => { clearTimeout(t); t = setTimeout(() => { if (!it.dead) build(it) }, 80) }
+  const ro = new ResizeObserver(rebuild); ro.observe(el)
+  const mo = new MutationObserver(rebuild); mo.observe(el, { childList: true, characterData: true, subtree: true })
+  ;(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { build(it); kick() })
   return {
     refresh: rebuild,
-    destroy() { dead = true; cancelAnimationFrame(raf); io.disconnect(); canvas.remove(); el.classList.remove('gtext-on', 'gtext-css') }
+    destroy() {
+      it.dead = true; items.delete(it); io.disconnect(); ro.disconnect(); mo.disconnect(); clearTimeout(t)
+      canvas.remove(); el.classList.remove('gtext-on', 'gtext-css')
+      if (it.sdfTex && G) G.gl.deleteTexture(it.sdfTex)
+    }
   }
 }
 
