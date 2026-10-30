@@ -19,7 +19,9 @@ function sdfFromMask(alpha, W, H, dpr) {
   const n = W * H, INF = 1e20
   const outer = new Float64Array(n), inner = new Float64Array(n)
   for (let i = 0; i < n; i++) {
-    const a = alpha[i * 4 + 3] / 255
+    // Solid letters: glyphs built from overlapping contours rasterise with
+    // faint seams where the pieces meet; those would read as lines in glass.
+    const a = alpha[i * 4 + 3] >= 90 ? 1 : 0
     if (a >= 1) { outer[i] = 0; inner[i] = INF }
     else if (a <= 0) { outer[i] = INF; inner[i] = 0 }
     else { const d = 0.5 - a; outer[i] = d > 0 ? d * d : 0; inner[i] = d < 0 ? d * d : 0 }
@@ -101,29 +103,26 @@ void main(){
   vec2 q = view + off;
   vec3 c = bgAt(q) * 0.36
          + (bgAt(q + vec2(2.5, 0.0)) + bgAt(q - vec2(2.5, 0.0)) + bgAt(q + vec2(0.0, 2.5)) + bgAt(q - vec2(0.0, 2.5))) * 0.16;
-  // a clear, slightly bright glass body
-  c = c * 1.12 + vec3(0.035, 0.045, 0.06);
+  // a clear, slightly milky glass body — like the bar's water drop
+  c = mix(c * 1.1, vec3(1.0), 0.10) + vec3(0.02, 0.03, 0.045);
 
-  // iridescent fresnel at the steep edge
-  float fres = clamp((1.0 - n.z) * 3.2, 0.0, 1.0);
+  // soft light gathered along the rounded edge (no hard outline)
+  float edge = 1.0 - t;
+  c = mix(c, vec3(1.0), edge * edge * 0.30);
+
+  // gentle iridescence where the surface turns steep
+  float fres = clamp((1.0 - n.z) * 2.2, 0.0, 1.0);
   vec3 irid = 0.5 + 0.5 * cos(6.2831 * (vec3(0.0, 0.33, 0.67) + fres * 0.85 + view.x * 0.0028 + uTime * 0.035));
-  c = mix(c, mix(vec3(1.0), irid, 0.5), fres * 0.5);
+  c = mix(c, irid, fres * 0.16);
 
-  // key light from the top-left, plus a light that follows the cursor
+  // the drop's bright crescent on the lower edge, and a key light top-left
+  float cres = smoothstep(0.12, 0.6, dot(n.xy, normalize(vec2(0.55, 0.85)))) * edge;
   vec3 V = vec3(0.0, 0.0, 1.0);
-  float spec = pow(max(dot(reflect(-normalize(vec3(-0.45, -0.8, 0.85)), n), V), 0.0), 60.0);
+  float spec = pow(max(dot(reflect(-normalize(vec3(-0.45, -0.8, 0.85)), n), V), 0.0), 32.0);
   vec2 m = p - uMouse;
   vec3 Lm = normalize(vec3(-m / 260.0, 0.9));
-  float specM = pow(max(dot(reflect(-Lm, n), V), 0.0), 28.0) * uMouseOn;
-  float glow = exp(-dot(m, m) / 26000.0) * uMouseOn * 0.10;
-  c += vec3(spec * 0.95 + specM * 0.6 + glow);
-
-  // the bright inner rim, like the drop's meniscus
-  float rim = smoothstep(2.2, 0.0, abs(d + 1.3));
-  c = mix(c, vec3(1.0), rim * 0.6);
-  // a whisper of a dark outer line keeps the shape legible on bright fog
-  float line = smoothstep(1.4, 0.0, abs(d)) * 0.18;
-  c *= 1.0 - line;
+  float specM = pow(max(dot(reflect(-Lm, n), V), 0.0), 24.0) * uMouseOn;
+  c += vec3(cres * 0.38 + spec * 0.75 + specM * 0.45);
 
   c = clamp(c, 0.0, 1.0);
   float a = cov + shadow * (1.0 - cov);
@@ -184,7 +183,7 @@ function mount(el, opts) {
     canvas.style.top = (el.offsetTop - PAD) + 'px'
     const cs = getComputedStyle(el)
     const size = parseFloat(cs.fontSize)
-    bevel = Math.max(3, Math.min(9, size * 0.085))
+    bevel = Math.max(4, Math.min(11, size * 0.13))
     const c2 = document.createElement('canvas'); c2.width = W; c2.height = H
     const ctx = c2.getContext('2d', { willReadFrequently: true })
     ctx.scale(dpr, dpr)
