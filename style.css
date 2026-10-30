@@ -2140,3 +2140,15 @@ html.lowfx .fwin, html.lowfx .gtile, html.lowfx .psheet{ -webkit-backdrop-filter
 /* ---------- sub-pages (gallery, works) in theme «Haykal»: plain ---------- */
 [data-theme="sculpt"] .pback{ background:#151514; color:#F3F1EC; box-shadow:0 8px 20px -10px rgba(21,21,20,.45); }
 [data-theme="sculpt"] .gmotto, [data-theme="sculpt"] .wtitle{ color:#151514; text-shadow:none; }
+
+/* hero portrait: no gallery hint, no zoom-in cursor — a quiet door */
+.hero__photos{ display:none !important; }
+.hero__disc{ cursor:default; }
+
+/* folder face: title and count on one size, a little larger */
+.gf-title, .gf-meta{
+  font-family:inherit; font-size:21px; line-height:1.2; letter-spacing:-.01em; white-space:nowrap;
+}
+.gf-title{ font-weight:600; }
+.gf-meta{ font-weight:500; color:var(--gf-ink-soft); }
+.gf-label{ gap:2px; }

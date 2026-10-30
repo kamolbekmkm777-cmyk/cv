@@ -277,7 +277,7 @@ const STRINGS = {
   folder_open:   { uz:'Ochish: ', en:'Open ', ru:'Открыть: ' },
   folder_close:  { uz:'Yopish: ', en:'Close ', ru:'Закрыть: ' },
   n_projects:    { uz:'{n} ta loyiha', en:'{n} projects', ru:'Проектов: {n}' },
-  n_certs:       { uz:'{n} ta · Coursera', en:'{n} · Coursera', ru:'{n} · Coursera' },
+  n_certs:       { uz:'{n} ta sertifikat', en:'{n} certificates', ru:'Сертификатов: {n}' },
 
   settings_title:{ uz:'Koʻrinish', en:'Appearance', ru:'Внешний вид' },
   lang_label:    { uz:'Til',       en:'Language',   ru:'Язык' },
@@ -1036,7 +1036,7 @@ function applyTheme(t){
 /* ---------------------------------------------------- LAZY MODULES
    Og'ir qismlar (WebGL haykal, shisha logo) faqat kerak bo'lganda yuklanadi.
    Sahifa ochilishini hech qachon kutdirmaydi. */
-const ASSET_V = '20261031v';
+const ASSET_V = '20261031x';
 const OFFLINE = location.protocol === 'file:';
 const scriptCache = Object.create(null);
 function loadScript(src){

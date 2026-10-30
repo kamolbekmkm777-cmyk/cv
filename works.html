@@ -20,7 +20,7 @@ body{margin:0;background:#0b0f14;color:#f4f6f8;font-family:"Space Grotesk",syste
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261031v" />
+<link rel="stylesheet" href="style.css?v=20261031x" />
 <style>
   /* Page chrome; cards, chips, certificates and the lightbox come from style.css. */
   /* the main page tints its links with the background video's colour */
@@ -47,6 +47,12 @@ body{margin:0;background:#0b0f14;color:#f4f6f8;font-family:"Space Grotesk",syste
   }
   [data-theme="sculpt"] .wtab.active{ background:#151514; color:#F3F1EC; box-shadow:none; }
   [data-pane] .chips{ justify-content:center; margin:0 0 22px; }
+  .chip__n{ font-weight:600; opacity:.7; margin-left:2px; }
+  .cgroup{ margin-top:34px; }
+  .cgroup:first-child{ margin-top:0; }
+  .cgroup__h{ display:flex; align-items:baseline; gap:10px; font-family:var(--disp); font-size:22px; font-weight:700; margin:0 0 14px; }
+  .cgroup__h span{ font-size:13px; font-weight:600; color:var(--muted); }
+  .cgroup .certs{ margin-top:0; }
   .pback{
     position:fixed; top:16px; left:16px; z-index:900; width:50px; height:50px; border-radius:50%;
     display:grid; place-items:center; color:#fff; isolation:isolate; background:rgba(255,255,255,.02);
@@ -86,7 +92,8 @@ document.documentElement.classList.add('css')</script>
     <div class="grid" id="portfolioWrap"></div>
   </section>
   <section data-pane="certs" hidden>
-    <div class="certs" id="certsWrap"></div>
+    <div class="chips" id="certCats"></div>
+    <div id="certsWrap"></div>
   </section>
 </main>
 
@@ -97,12 +104,12 @@ document.documentElement.classList.add('css')</script>
   <button class="lbox__nav lbox__nav--next" id="dlbNext" aria-label="Keyingi">›</button>
 </div>
 
-<script src="config.js?v=20261031v" onerror="window.__noConfig=1"></script>
-<script src="cloud.js?v=20261031v"></script>
-<script src="catalog.js?v=20261031v"></script>
-<script src="liquid-nav.js?v=20261031v"></script>
-<script src="glass-text.js?v=20261031v"></script>
-<script src="works.js?v=20261031v"></script>
-<script src="pages.js?v=20261031v"></script>
+<script src="config.js?v=20261031x" onerror="window.__noConfig=1"></script>
+<script src="cloud.js?v=20261031x"></script>
+<script src="catalog.js?v=20261031x"></script>
+<script src="liquid-nav.js?v=20261031x"></script>
+<script src="glass-text.js?v=20261031x"></script>
+<script src="works.js?v=20261031x"></script>
+<script src="pages.js?v=20261031x"></script>
 </body>
 </html>

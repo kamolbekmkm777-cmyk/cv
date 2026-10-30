@@ -22,7 +22,7 @@ const STR = {
   projects:  { uz:'Loyihalar', en:'Projects', ru:'Проекты' },
   certs:     { uz:'Sertifikatlar', en:'Certificates', ru:'Сертификаты' },
   n_projects:{ uz:'{n} ta loyiha', en:'{n} projects', ru:'Проектов: {n}' },
-  n_certs:   { uz:'{n} ta · har biri Coursera’da rasmiy tekshiriladi', en:'{n} · each one verifiable on Coursera', ru:'{n} · каждый проверяется на Coursera' },
+  n_certs:   { uz:'{n} ta sertifikat · har birida rasmiy tekshirish havolasi', en:'{n} certificates · each with an official verification link', ru:'Сертификатов: {n} · у каждого официальная ссылка для проверки' },
   back:      { uz:'Orqaga', en:'Back', ru:'Назад' },
   view:      { uz:'Koʻrish ↗', en:'View ↗', ru:'Открыть ↗' },
   code:      { uz:'Kod ↗', en:'Code ↗', ru:'Код ↗' },
@@ -42,6 +42,20 @@ const STR = {
   cat_other: { uz:'Boshqa', en:'Other', ru:'Другое' }
 };
 const T = k => (STR[k] ? (STR[k][lang] || STR[k].uz) : k);
+
+/* Certificates are grouped by who issued them. A certificate may name its
+   group outright (group:"Anthropic"); otherwise "Google AR & VR" etc. fold
+   into their parent brand. New issuers (Claude, OpenAI…) simply appear as a
+   new section. Known brands keep this order; any others follow. */
+const GROUP_ORDER = ['Google', 'Anthropic', 'OpenAI', 'IBM', 'Coursera', 'SkillUp'];
+const GROUP_LABEL = { Anthropic:'Anthropic · Claude', OpenAI:'OpenAI' };
+const groupOf = c => {
+  if (c.group) return String(c.group);
+  const i = String(c.issuer || '').trim();
+  for (const g of GROUP_ORDER) if (i.toLowerCase().startsWith(g.toLowerCase())) return g;
+  if (/claude/i.test(i)) return 'Anthropic';
+  return i || 'Other';
+};
 const CATS = ['bot', 'site', 'app', 'esp32', 'award', 'other'];
 const CAT_ICON = { bot:'bot', site:'globe', app:'chip', esp32:'chip', award:'award', other:'globe' };
 const ICONS = window.CV_ICONS || {};
@@ -89,7 +103,7 @@ function glassTile(p){
 }
 
 let tab = new URLSearchParams(location.search).get('tab') === 'certs' ? 'certs' : 'projects';
-let filter = 'all';
+let filter = 'all', certFilter = 'all';
 
 function renderProjects(){
   const list = data.portfolio || [];
@@ -137,12 +151,11 @@ function fmtDate(s){
   if (lang === 'ru') return `${+m[3]} ${mo} ${m[1]}`;
   return `${+m[3]}-${mo} ${m[1]}`;
 }
-function renderCerts(){
+function certCard(c, i){
   const kindT = { pro:'pro', course:'course', project:'project' };
-  $('#certsWrap').innerHTML = certList().map((c, i) => {
-    const courses = Number(c.courses) > 0 ? ` · ${c.courses} ${esc(T('courses'))}` : '';
-    const v = tidyUrl(c.verify);
-    return `
+  const courses = Number(c.courses) > 0 ? ` · ${c.courses} ${esc(T('courses'))}` : '';
+  const v = tidyUrl(c.verify);
+  return `
     <article class="cert ${c.kind === 'pro' ? 'cert--pro' : ''}">
       <button class="cert__shot" data-cert="${i}" aria-label="${esc(c.title)}">
         <img src="assets/certs/thumb/${esc(c.file)}.jpg" alt="${esc(c.title)}" loading="lazy" decoding="async" onerror="this.remove()">
@@ -154,7 +167,26 @@ function renderCerts(){
         ${v ? `<a class="cert__v" href="${esc(v)}" target="_blank" rel="noopener">${esc(T('verify'))}</a>` : ''}
       </div>
     </article>`;
-  }).join('');
+}
+function certGroups(){
+  const list = certList(), map = new Map();
+  list.forEach((c, i) => { const g = groupOf(c); if (!map.has(g)) map.set(g, []); map.get(g).push([c, i]); });
+  const rank = g => { const k = GROUP_ORDER.indexOf(g); return k < 0 ? 99 : k; };
+  return [...map.entries()].sort((a, b) => rank(a[0]) - rank(b[0]) || a[0].localeCompare(b[0]));
+}
+function renderCerts(){
+  const groups = certGroups();
+  if (certFilter !== 'all' && !groups.some(([g]) => g === certFilter)) certFilter = 'all';
+  $('#certCats').innerHTML = groups.length > 1
+    ? [['all', certList().length], ...groups.map(([g, l]) => [g, l.length])].map(([g, n]) =>
+        `<button class="chip ${certFilter === g ? 'active' : ''}" data-group="${esc(g)}">${esc(g === 'all' ? T('cat_all') : (GROUP_LABEL[g] || g))} <b class="chip__n">${n}</b></button>`).join('')
+    : '';
+  const shown = certFilter === 'all' ? groups : groups.filter(([g]) => g === certFilter);
+  $('#certsWrap').innerHTML = shown.map(([g, l]) => `
+    <section class="cgroup">
+      <h2 class="cgroup__h">${esc(GROUP_LABEL[g] || g)} <span>${l.length}</span></h2>
+      <div class="certs">${l.map(([c, i]) => certCard(c, i)).join('')}</div>
+    </section>`).join('');
 }
 
 function render(){
@@ -231,6 +263,10 @@ function init(){
     const [pi, si] = im.dataset.shot.split('.').map(Number);
     const shots = (data.portfolio?.[pi]?.shots || []).map(s => String(s || '').trim()).filter(Boolean);
     if (shots.length) openDocs(shots, si);
+  });
+  $('#certCats').addEventListener('click', e => {
+    const c = e.target.closest('[data-group]'); if (!c) return;
+    certFilter = c.dataset.group; renderCerts();
   });
   $('#certsWrap').addEventListener('click', e => {
     const b = e.target.closest('[data-cert]'); if (!b) return;
