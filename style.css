@@ -1993,3 +1993,61 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 
 html.lowfx .card, html.lowfx .sgroup, html.lowfx .pitem, html.lowfx .cert, html.lowfx .edu,
 html.lowfx .fwin, html.lowfx .gtile, html.lowfx .psheet{ -webkit-backdrop-filter:none; backdrop-filter:none; }
+
+/* ==========================================================================
+   WATER BEAD — the same clear drop the app bar uses for its active item:
+   a lit, see-through body, a bright inner rim and an iridescent edge.
+   Used by the music / hand buttons, the hero and send buttons, and the
+   contact icons.
+   ========================================================================== */
+.fab, .contact__form .btn--primary, .hero__cta .btn--primary, .chan__i{
+  isolation:isolate; color:#fff; border:0;
+  background:
+    radial-gradient(120% 140% at 30% 0%, rgba(255,255,255,.62), rgba(255,255,255,0) 55%),
+    radial-gradient(110% 120% at 50% 125%, rgba(150,215,255,.22), rgba(150,215,255,0) 60%),
+    rgba(255,255,255,.13);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.95),
+    inset 0 0 0 1px rgba(255,255,255,.45),
+    inset 0 -3px 9px rgba(110,190,255,.22),
+    0 10px 24px -10px rgba(0,40,90,.6);
+  -webkit-backdrop-filter:blur(8px) saturate(1.7) brightness(1.1);
+  backdrop-filter:blur(8px) saturate(1.7) brightness(1.1);
+  text-shadow:0 1px 3px rgba(0,0,0,.28);
+}
+/* the rim needs a positioned host; the FABs are already position:fixed */
+.contact__form .btn--primary, .hero__cta .btn--primary, .chan__i{ position:relative; }
+/* the iridescent rim — a thin conic ring masked to the edge */
+.fab::before, .contact__form .btn--primary::before, .hero__cta .btn--primary::before, .chan__i::before{
+  content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit; padding:1.6px; pointer-events:none;
+  background:conic-gradient(from 210deg,
+    rgba(255,255,255,.95), rgba(150,255,225,.75), rgba(255,255,255,.35),
+    rgba(175,150,255,.75), rgba(255,195,235,.65), rgba(255,255,255,.95));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+}
+.fab svg, .chan__i svg{ filter:drop-shadow(0 1px 2px rgba(0,0,0,.3)); }
+.fab:hover, .contact__form .btn--primary:hover, .hero__cta .btn--primary:hover{
+  filter:brightness(1.08); transform:translateY(-2px);
+  box-shadow:inset 0 1px 1px #fff, inset 0 0 0 1px rgba(255,255,255,.55),
+             inset 0 -3px 9px rgba(110,190,255,.28), 0 14px 28px -10px rgba(0,40,90,.65);
+}
+/* "on" = a fuller, brighter drop rather than a colour swap */
+.fab--music.on, .fab--hand.on{
+  color:#fff; border:0;
+  background:
+    radial-gradient(120% 140% at 30% 0%, rgba(255,255,255,.75), rgba(255,255,255,0) 55%),
+    radial-gradient(110% 120% at 50% 125%, rgba(150,215,255,.4), rgba(150,215,255,0) 60%),
+    rgba(255,255,255,.26);
+  box-shadow:inset 0 1px 1px #fff, inset 0 0 0 1px rgba(255,255,255,.6),
+             inset 0 -3px 10px rgba(110,190,255,.35), 0 0 22px rgba(170,220,255,.45), 0 10px 24px -10px rgba(0,40,90,.6);
+}
+.chan__i{ width:34px; height:34px; border-radius:11px; }
+.chan__i svg{ color:#fff; }
+.chan__i svg [fill="currentColor"], .chan__i svg path[fill="currentColor"]{ fill:#fff; }
+[data-theme="sculpt"] .fab, [data-theme="sculpt"] .contact__form .btn--primary, [data-theme="sculpt"] .hero__cta .btn--primary, [data-theme="sculpt"] .chan__i{
+  color:#151514; text-shadow:none;
+  background:radial-gradient(120% 140% at 30% 0%, #fff, rgba(255,255,255,0) 55%), rgba(255,255,255,.5);
+  box-shadow:inset 0 1px 1px #fff, inset 0 0 0 1px rgba(255,255,255,.8), 0 0 0 1px rgba(21,21,20,.06), 0 10px 24px -12px rgba(40,30,14,.35);
+}
+[data-theme="sculpt"] .chan__i svg{ color:#151514; }

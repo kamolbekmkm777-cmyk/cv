@@ -1157,7 +1157,7 @@ function applyTheme(t){
 /* ---------------------------------------------------- LAZY MODULES
    Og'ir qismlar (WebGL haykal, shisha logo) faqat kerak bo'lganda yuklanadi.
    Sahifa ochilishini hech qachon kutdirmaydi. */
-const ASSET_V = '20261031i';
+const ASSET_V = '20261031l';
 const OFFLINE = location.protocol === 'file:';
 const scriptCache = Object.create(null);
 function loadScript(src){
