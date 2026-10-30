@@ -349,5 +349,77 @@ function mount(nav, opts) {
   }
 }
 
-window.LiquidNav = { mount }
+/* ---------------------------------------------------------------------------
+   Bead — any button drawn as the same water drop the bar uses for its active
+   item: one drop filling the button, inside a hair-wider pill. Drawn once,
+   and only animated while the cursor is over it (the meniscus follows).
+   ------------------------------------------------------------------------- */
+function bead(el, opts) {
+  const o = Object.assign({ tone: 'dark' }, opts)
+  const canvas = document.createElement('canvas')
+  canvas.className = 'wbead-water'
+  canvas.setAttribute('aria-hidden', 'true')
+  let glc = null
+  try { glc = initGL(canvas) } catch (e) { glc = null }
+  if (!glc) return null
+  el.insertBefore(canvas, el.firstChild)
+  el.classList.add('wbead')
+  let dark = o.tone === 'dark' ? 1 : 0
+  let w = 0, h = 0, raf = 0, last = 0, time = 0
+  const mouse = { x: 0, y: 0, s: 0, on: false }
+
+  function size() {
+    w = el.offsetWidth; h = el.offsetHeight
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    const W = w + PAD * 2, H = h + PAD * 2
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr)
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px'
+  }
+  function draw() {
+    if (!w || !h) return
+    const { gl: g, u } = glc
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    g.viewport(0, 0, g.drawingBufferWidth, g.drawingBufferHeight)
+    g.uniform2f(u.uRes, w + PAD * 2, h + PAD * 2)
+    g.uniform1f(u.uDpr, dpr)
+    g.uniform1f(u.uTime, time)
+    g.uniform4f(u.uPill, PAD - 2, PAD - 2, w + 4, h + 4)
+    const r = h / 2, q = Math.max(0, w / 2 - r)
+    const blobs = new Float32Array(24)
+    blobs.set([PAD + w / 2, PAD + h / 2, q, r], 0)
+    g.uniform4fv(u.uBlob, blobs)
+    g.uniform1fv(u.uSy, new Float32Array(6).fill(1))
+    g.uniform4fv(u.uRip, new Float32Array(24))
+    g.uniform3f(u.uMouse, mouse.x, mouse.y, mouse.s)
+    g.uniform1f(u.uDark, dark)
+    g.uniform1f(u.uAmb, 0)
+    g.clearColor(0, 0, 0, 0)
+    g.clear(g.COLOR_BUFFER_BIT)
+    g.drawArrays(g.TRIANGLES, 0, 3)
+  }
+  function loop() {
+    if (raf) return
+    last = performance.now()
+    const tick = now => {
+      const dt = Math.min((now - last) / 1000, 1 / 20); last = now; time += dt
+      mouse.s += ((mouse.on ? 1 : 0) - mouse.s) * Math.min(1, dt * 7)
+      draw()
+      raf = mouse.on || mouse.s > 0.01 ? requestAnimationFrame(tick) : 0
+    }
+    raf = requestAnimationFrame(tick)
+  }
+  el.addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse') return
+    const b = el.getBoundingClientRect()
+    mouse.x = e.clientX - b.left + PAD; mouse.y = e.clientY - b.top + PAD; mouse.on = true
+    loop()
+  })
+  el.addEventListener('pointerleave', () => { mouse.on = false; loop() })
+  new ResizeObserver(() => { size(); draw() }).observe(el)
+  canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); canvas.remove(); el.classList.remove('wbead') })
+  size(); draw()
+  return { setTone(t) { dark = t === 'dark' ? 1 : 0; draw() } }
+}
+
+window.LiquidNav = { mount, bead }
 })();

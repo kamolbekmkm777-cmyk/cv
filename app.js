@@ -1151,13 +1151,14 @@ function applyTheme(t){
     if (prev === 'sculpt') applyBgVideo();
   }
   liquidNav?.setTone(t === 'sculpt' ? 'light' : 'dark');
+  beads.forEach(b => b.setTone(t === 'sculpt' ? 'light' : 'dark'));
   if (prev && prev !== t){ renderWorks(); mountSignature(); }
 }
 
 /* ---------------------------------------------------- LAZY MODULES
    Og'ir qismlar (WebGL haykal, shisha logo) faqat kerak bo'lganda yuklanadi.
    Sahifa ochilishini hech qachon kutdirmaydi. */
-const ASSET_V = '20261031l';
+const ASSET_V = '20261031m';
 const OFFLINE = location.protocol === 'file:';
 const scriptCache = Object.create(null);
 function loadScript(src){
@@ -1185,6 +1186,16 @@ function loadSculptFonts(){
 
 let sculpt = null, sculptToken = 0;
 let liquidNav = null;
+let beads = [];
+/* The four call-to-action buttons are drawn with the app bar's own water
+   shader, so they are exactly the drop the bar shows on its active item. */
+function initBeads(){
+  if (!window.LiquidNav?.bead) return;
+  const tone = data.theme === 'sculpt' ? 'light' : 'dark';
+  beads = ['#musicBtn', '#handFab', '.hero__cta .btn--primary', '.contact__form .btn--primary']
+    .map(sel => $(sel)).filter(Boolean)
+    .map(el => window.LiquidNav.bead(el, { tone })).filter(Boolean);
+}
 async function mountSculpture(){
   const root = $('#shero');
   if (!root || sculpt) return;
@@ -3068,6 +3079,7 @@ function init(){
   applyBgVideo();
   initNav(); initMusic(); initForm(); initAdmin(); initStealth(); initSettings();
   initEducation(); initPlaylist(); initCrop(); initWorks(); initDock();
+  initBeads();
   mountSignature();
   // Yashirin tabda video aylanmaydi — batareya va CPU tejaladi.
   document.addEventListener('visibilitychange', () => {
