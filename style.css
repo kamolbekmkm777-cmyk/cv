@@ -2136,3 +2136,7 @@ html.lowfx .fwin, html.lowfx .gtile, html.lowfx .psheet{ -webkit-backdrop-filter
 .sh-btn{ border:0; cursor:pointer; font-family:inherit; }
 /* the hero now has a single button (CV); don't let it stretch across tablets */
 @media(max-width:880px){ .hero__cta .btn{ flex:0 1 340px; } }
+
+/* ---------- sub-pages (gallery, works) in theme «Haykal»: plain ---------- */
+[data-theme="sculpt"] .pback{ background:#151514; color:#F3F1EC; box-shadow:0 8px 20px -10px rgba(21,21,20,.45); }
+[data-theme="sculpt"] .gmotto, [data-theme="sculpt"] .wtitle{ color:#151514; text-shadow:none; }

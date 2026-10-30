@@ -231,6 +231,19 @@ function build(it) {
   const range = document.createRange()
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
     const s = node.textContent
+    if (/[\u0590-\u08FF]/.test(s)) {
+      // Joined scripts (Arabic): letters change shape with their neighbours,
+      // so whole words are drawn, right-aligned to where the browser put them.
+      ctx.direction = 'rtl'; ctx.textAlign = 'right'
+      for (const m of s.matchAll(/\S+/g)) {
+        range.setStart(node, m.index); range.setEnd(node, m.index + m[0].length)
+        const b = range.getBoundingClientRect()
+        if (!b.width) continue
+        ctx.fillText(m[0], b.right - r.left + PAD, b.top - r.top + PAD + asc)
+      }
+      ctx.direction = 'ltr'; ctx.textAlign = 'left'
+      continue
+    }
     for (let i = 0; i < s.length; i++) {
       if (/\s/.test(s[i])) continue
       range.setStart(node, i); range.setEnd(node, i + 1)

@@ -16,49 +16,48 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261031t" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261031v" />
 <style>
   /* Page-specific chrome; the gallery/lightbox styles come from style.css. */
-  .gwrap{ max-width:var(--maxw); margin:0 auto; padding:96px 22px 80px; }
-  .ghead{
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
-    margin-bottom:28px; flex-wrap:wrap;
+  .gwrap{ max-width:var(--maxw); margin:0 auto; padding:110px 22px 80px; }
+  .ghead{ text-align:center; margin-bottom:34px; }
+  /* the motto, big, as liquid glass (glass-text.js draws it) */
+  .gmotto{
+    display:inline-block; font-family:Amiri, serif; font-weight:700; direction:rtl;
+    font-size:clamp(46px, 8.5vw, 104px); line-height:1.5; color:#fff;
+    text-shadow:0 2px 24px rgba(0,0,0,.3); padding:0 .15em;
   }
-  .ghead__t h1{ font-family:var(--disp); font-size:clamp(26px,5vw,42px); font-weight:800; line-height:1.05; }
-  .ghead__t p{ color:var(--muted); font-size:14px; margin-top:4px; }
-  .gback{
-    display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px;
-    background:var(--glass-bg); border:1px solid var(--glass-line); color:var(--fg);
-    backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
-    font-size:13px; font-weight:600; transition:border-color .2s, transform .2s;
+  .ghead p{ color:var(--muted); font-size:14px; margin-top:4px; }
+  /* back: a single glass drop with an arrow, top-left */
+  .pback{
+    position:fixed; top:16px; left:16px; z-index:900; width:50px; height:50px; border-radius:50%;
+    display:grid; place-items:center; color:#fff; isolation:isolate;
+    background:rgba(255,255,255,.02);
   }
-  .gback:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .pback svg{ filter:drop-shadow(0 1px 2px rgba(0,0,0,.35)); transition:transform .25s var(--ease); }
+  .pback:hover svg{ transform:translateX(-3px); }
   .gempty{ color:var(--muted); padding:40px 0; text-align:center; }
 </style>
 </head>
 <body data-theme="liquid">
 
 <div class="bg" aria-hidden="true">
-  <span class="bg__poster"></span>
-  <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <span class="bg__media">
+    <span class="bg__poster"></span>
+    <video class="bg__video" id="bgVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
+  </span>
   <span class="bg__tint"></span>
 </div>
 
-<a class="brand" href="index.html" aria-label="Bosh sahifa">
-  <img class="brand__mk" id="brandImg" src="assets/logo-k.webp" alt="K" />
+<a class="pback" id="pBack" href="index.html" aria-label="Orqaga" title="Orqaga">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
 </a>
 
 <main class="gwrap">
   <div class="ghead">
-    <div class="ghead__t">
-      <h1 id="gTitle">Fotogalereya</h1>
-      <p id="gSub"></p>
-    </div>
-    <a class="gback" href="index.html">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-      <span id="gBack">Saytga qaytish</span>
-    </a>
+    <h1 class="gmotto" id="gTitle" lang="ar" dir="rtl" data-glass>إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</h1>
+    <p id="gSub"></p>
   </div>
   <div class="gallery" id="galleryWrap"></div>
   <p class="gempty" id="gEmpty" hidden>Hali rasm yoʻq.</p>
@@ -73,9 +72,12 @@
   <p class="lbox__cap" id="lbCap"></p>
 </div>
 
-<script src="config.js?v=20261031t" onerror="window.__noConfig=1"></script>
-<script src="data.js?v=20261031t"></script>
-<script src="cloud.js?v=20261031t"></script>
+<script src="config.js?v=20261031v" onerror="window.__noConfig=1"></script>
+<script src="data.js?v=20261031v"></script>
+<script src="cloud.js?v=20261031v"></script>
+<script src="liquid-nav.js?v=20261031v"></script>
+<script src="glass-text.js?v=20261031v"></script>
+<script src="pages.js?v=20261031v"></script>
 <script>
 /* Standalone gallery page. It reuses the SAME data sources as the main site so
    whatever the admin publishes shows up here too, with no build step:
@@ -150,8 +152,7 @@ async function loadData(){
 let photos = [];
 function render(){
   document.documentElement.lang = lang;
-  $('#gTitle').textContent = t('title');
-  $('#gBack').textContent = t('back');
+  if (data?.profile?.motto) $('#gTitle').textContent = data.profile.motto;
   $('#gEmpty').textContent = t('empty');
   const w = $('#galleryWrap');
   photos = (data?.gallery || []).filter(g => g && g.src);
